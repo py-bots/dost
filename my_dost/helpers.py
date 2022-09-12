@@ -1,7 +1,5 @@
-from ast import keyword
-from email.policy import default
 import sys
-from typing import Tuple, Union, List, get_args, Tuple
+from typing import get_args, Tuple
 import os
 from functools import wraps
 from datetime import datetime
@@ -14,7 +12,7 @@ def get_time():
     return datetime.now().strftime('%Y:%m:%d_%H:%M:%S - ')
 
 
-def try_catch_log_check_output(errors: list = None, save_log: bool = True, log_file: str = 'log.txt'):
+def try_catch_log_check_output(errors: list, save_log: bool, log_file: str):
     """This decorator logs the call time and parameters of a function
     as well as indicating if the function was successful"""
 
@@ -34,15 +32,15 @@ def try_catch_log_check_output(errors: list = None, save_log: bool = True, log_f
                 try:
                     type_dict = func.__annotations__
                     result = func(*args, **kwargs)
-                    check_type('return', result, type_dict['return'])
-                    return result
+                    if 'return' in type_dict:
+                        check_type('return', result, type_dict['return'])
                 except TypeError:
                     print(f'\n_____________________________\nType mismatch : {func.__qualname__} in "return"\nExpected type : {get_args(type_dict["return"])}\nReceived      : Type {type(result)}\n_____________________________\n')
                     sys.exit(1)
                 end = time.perf_counter()
                 delta = (end - start)
                 if save_log:
-                    with open('log.txt', 'a', encoding='utf-8') as f:
+                    with open(log_file, 'a', encoding='utf-8') as f:
                         f.write(
                             get_time() + f"Function: {func.__qualname__} succeeded with args: {*args, {**kwargs} } - "
                                          f"execution time: {delta} seconds\n")
@@ -50,6 +48,7 @@ def try_catch_log_check_output(errors: list = None, save_log: bool = True, log_f
                     print(
                         get_time() + f"Function: {func.__qualname__} succeeded with args: {*args, {**kwargs} } - "
                                      f"execution time: {delta} seconds")
+                return result
             except Exception as e:
                 if errors:
                     if type(e) in [error[0] for error in errors]:
@@ -61,7 +60,7 @@ def try_catch_log_check_output(errors: list = None, save_log: bool = True, log_f
                             print(
                                 get_time() + f"Function: {func.__qualname__} failed with args: {*args, {**kwargs} } and error: {e.__repr__()}")
                         else:
-                            with open('log.txt', 'a', encoding='utf-8') as f:
+                            with open(log_file, 'a', encoding='utf-8') as f:
                                 f.write(
                                     get_time() + f"Function: {func.__qualname__} failed with args: {*args, {**kwargs} } and "
                                                  f"error: {e.__repr__()}\n")
@@ -70,7 +69,7 @@ def try_catch_log_check_output(errors: list = None, save_log: bool = True, log_f
                         reporting_to_dev_team(e)
                 else:
                     if save_log:
-                        with open('log.txt', 'a', encoding='utf-8') as f:
+                        with open(log_file, 'a', encoding='utf-8') as f:
                             f.write(
                                 get_time() + f"Function: {func.__qualname__} failed with args: {*args, {**kwargs} } and "
                                              f"error: {e.__repr__()}\n")
@@ -120,7 +119,7 @@ def type_checker(func):
             sys.exit(1)
     return wrapper
 
-def dostify(errors:list = None, save_log: bool = True, log_file: str = 'log.txt'):
+def dostify(errors:list = None, save_log: bool = True, log_file: str = 'pip-log.txt'):
     def decorator_wrap(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
