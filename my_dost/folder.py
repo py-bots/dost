@@ -27,7 +27,7 @@ def folder_read_text_file(txt_file_path: Union[str, List[str], WindowsPath, List
         txt_file_path (Union[str, List[str], WindowsPath, List[WindowsPath]]): The path to the text file.
 
     Returns:
-         Union[str, List[str]]: The contents of the text file. If a list of paths is provided, a list of strings is returned. 
+         The contents of the text file. If a list of paths is provided, a list of strings is returned. 
     
     Examples:
         >>> folder_read_text_file('tests\\demo.txt')
