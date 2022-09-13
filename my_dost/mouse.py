@@ -4,7 +4,7 @@ from tkinter import E
 from helpers import dostify
 from pathlib import WindowsPath
 
-@dostify(errors=[(ArgumentTypeError,'')])
+@dostify(errors=[(ValueError,'')])
 def mouse_click(x:int, y:int, left_or_right:str="left", no_of_clicks:int=1, type_of_movement:str="abs"):
     """Clicks the mouse at the given co-ordinates.
     Args:
@@ -28,9 +28,9 @@ def mouse_click(x:int, y:int, left_or_right:str="left", no_of_clicks:int=1, type
     # if (x == "" and y == ""):
     #     x, y = win32api.GetCursorPos()
     if (type_of_movement!="abs" and type_of_movement!="rel"):
-        raise ArgumentTypeError(f'Invalid type of movement: {type_of_movement}')
+        raise ValueError(f'Invalid type of movement: {type_of_movement}')
     if (left_or_right != "left" and left_or_right != "right"):
-        raise ArgumentTypeError(f'Invalid left_or_right: {left_or_right}')
+        raise ValueError(f'Invalid left_or_right: {left_or_right}')
     # if x and y:
     if type_of_movement == "rel":
         current_x, current_y = win32api.GetCursorPos()
@@ -80,4 +80,4 @@ def mouse_search_snip_return_coordinates_x_y(img:WindowsPath, wait:int=10) -> tu
     time.sleep(wait)
     x, y = pag.locateCenterOnScreen(img)
     return (x, y)
-mouse_click(x=-4000, y=-1,left_or_right='left',type_of_movement='abs')
+mouse_click(x=-4000, y=-1,left_or_right='left',type_of_movement='a')
