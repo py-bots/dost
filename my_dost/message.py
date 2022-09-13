@@ -3,8 +3,9 @@
 
 
 from typing import Union,List
-# from my_dost.helpers import dostify
+from my_dost.helpers import dostify
 
+@dostify(errors=[])
 def msg_box_info(msg_for_user:str):
     """Display a message box with an 'OK' button.
 
@@ -13,7 +14,6 @@ def msg_box_info(msg_for_user:str):
 
     Examples:
         >>> msg_box_info('This is a demo message.')
-
 
     """
     import tkinter as tk
