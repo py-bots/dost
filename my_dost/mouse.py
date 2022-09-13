@@ -1,10 +1,11 @@
-from argparse import ArgumentError
-import string
+from argparse import ArgumentError, ArgumentTypeError
+from distutils.log import error
+from tkinter import E
 from helpers import dostify
 from pathlib import WindowsPath
 
-@dostify(errors=[(ArgumentError,'')])
-def mouse_click(x:int, y:int, left_or_right:str="left", no_of_clicks:int=1, type_of_movement:string="abs"):
+@dostify(errors=[(ArgumentTypeError,'')])
+def mouse_click(x:int, y:int, left_or_right:str="left", no_of_clicks:int=1, type_of_movement:str="abs"):
     """Clicks the mouse at the given co-ordinates.
     Args:
         x (int): X co-ordinate.
@@ -26,27 +27,30 @@ def mouse_click(x:int, y:int, left_or_right:str="left", no_of_clicks:int=1, type
     # Validation section
     # if (x == "" and y == ""):
     #     x, y = win32api.GetCursorPos()
-    if (type_of_movement not in ["abs", "rel"]):
-        raise ArgumentError(f'Invalid type_of_movement: {type_of_movement}')
-    if (left_or_right not in ["left", "right"]):
-        raise ArgumentError(f'Invalid left_or_right: {left_or_right}')
+    if (type_of_movement!="abs" and type_of_movement!="rel"):
+        raise ArgumentTypeError(f'Invalid type of movement: {type_of_movement}')
+    if (left_or_right != "left" and left_or_right != "right"):
+        raise ArgumentTypeError(f'Invalid left_or_right: {left_or_right}')
+    # if x and y:
+    if type_of_movement == "rel":
+        current_x, current_y = win32api.GetCursorPos()
+        # x, y = int(x), int(y)
+        # current_x, current_y = int(current_x), int(current_y)
+        x, y = (current_x + x), (current_y + y)
 
-    if x and y:
-        if type_of_movement == "abs":
-            x, y = int(x), int(y)
-        elif type_of_movement == "rel":
-            current_x, current_y = win32api.GetCursorPos()
-            x, y = int(x), int(y)
-            current_x, current_y = int(current_x), int(current_y)
-            x, y = int(current_x + x), int(current_y + y)
-
-        if no_of_clicks == 1:
+    if no_of_clicks == 1:
+        pwa.mouse.click(coords=(x, y), button=left_or_right)
+    elif no_of_clicks == 2:
+        pwa.mouse.double_click(coords=(x, y), button=left_or_right)
+    else:
+        for i in range(no_of_clicks):
             pwa.mouse.click(coords=(x, y), button=left_or_right)
-        elif no_of_clicks == 2:
-            pwa.mouse.double_click(coords=(x, y), button=left_or_right)
-        else:
-            for i in range(no_of_clicks):
+
+    """Above three if blocks can be replaced by the following line
+        for i in range(no_of_clicks):
                 pwa.mouse.click(coords=(x, y), button=left_or_right)
+        """
+
 
 
 @dostify(errors=[(FileNotFoundError,'')])
@@ -76,4 +80,4 @@ def mouse_search_snip_return_coordinates_x_y(img:WindowsPath, wait:int=10) -> tu
     time.sleep(wait)
     x, y = pag.locateCenterOnScreen(img)
     return (x, y)
-mouse_click(x=100, y=100,left_or_right='a')
+mouse_click(x=-4000, y=-1,left_or_right='left',type_of_movement='abs')
