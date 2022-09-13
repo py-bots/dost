@@ -76,4 +76,4 @@ def mouse_search_snip_return_coordinates_x_y(img:WindowsPath, wait:int=10) -> tu
     time.sleep(wait)
     x, y = pag.locateCenterOnScreen(img)
     return (x, y)
-# mouse_click(x=100, y=100,left_or_right='a')
+mouse_click(x=100, y=100,left_or_right='a')
