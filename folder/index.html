@@ -13,7 +13,7 @@
     
     
       
-        <title>Reference - My-DOST</title>
+        <title>Folder - My-DOST</title>
       
     
     
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Reference
+              Folder
             
           </span>
         </div>
@@ -229,36 +229,6 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../tutorials/" class="md-nav__link">
-        Tutorials
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../how-to-guides/" class="md-nav__link">
-        How-To Guides
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
     
   
   
@@ -269,12 +239,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Reference
+          Folder
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Reference
+        Folder
       </a>
       
         
@@ -298,15 +268,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#my_dost.folder.folder_read_text_file" class="md-nav__link">
-    folder_read_text_file()
+  <a href="#my_dost.folder.read_text_file" class="md-nav__link">
+    read_text_file()
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#my_dost.folder.folder_write_text_file" class="md-nav__link">
-    folder_write_text_file()
+  <a href="#my_dost.folder.write_text_file" class="md-nav__link">
+    write_text_file()
   </a>
   
 </li>
@@ -327,8 +297,23 @@
   
   
     <li class="md-nav__item">
-      <a href="../explanation/" class="md-nav__link">
-        Explanation
+      <a href="../mouse/" class="md-nav__link">
+        Mouse
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../message/" class="md-nav__link">
+        Message
       </a>
     </li>
   
@@ -366,15 +351,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#my_dost.folder.folder_read_text_file" class="md-nav__link">
-    folder_read_text_file()
+  <a href="#my_dost.folder.read_text_file" class="md-nav__link">
+    read_text_file()
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#my_dost.folder.folder_write_text_file" class="md-nav__link">
-    folder_write_text_file()
+  <a href="#my_dost.folder.write_text_file" class="md-nav__link">
+    write_text_file()
   </a>
   
 </li>
@@ -393,13 +378,7 @@
                 
 
 
-  <h1>Reference</h1>
-
-<p>This part of the project documentation focuses on
-an <strong>information-oriented</strong> approach. Use it as a
-reference for the technical implementation of the
-<code>My-DOST</code> project code.</p>
-
+  <h1>Folder</h1>
 
 <div class="doc doc-object doc-module">
 
@@ -411,12 +390,13 @@ reference for the technical implementation of the
 
 <p><strong>Examples:</strong></p>
     <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">my_dost</span> <span class="kn">import</span> <span class="n">folder</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">folder</span><span class="o">.</span><span class="n">folder_read_text_file</span><span class="p">(</span><span class="s1">&#39;tests\demo.txt&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">folder</span><span class="o">.</span><span class="n">read_text_file</span><span class="p">(</span><span class="s1">&#39;tests\demo.txt&#39;</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">&#39;This is a demo text file.&#39;</span>
 </code></pre></div>
       <p>The module contains the following functions:</p>
 <ul>
-<li><code>folder_read_text_file(txt_file_path)</code>: Read a text file and return the content as a string.</li>
+<li><code>read_text_file(path)</code>: Read a text file and return the content as a string.</li>
+<li><code>write_text_file(path, content)</code>: Write a text file with the given content.</li>
 </ul>
 
   
@@ -435,8 +415,8 @@ reference for the technical implementation of the
 
 
 
-<h2 id="my_dost.folder.folder_read_text_file" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">folder_read_text_file</span><span class="p">(</span><span class="n">txt_file_path</span><span class="p">)</span></code>
+<h2 id="my_dost.folder.read_text_file" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">read_text_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></code>
 
 </h2>
 
@@ -457,7 +437,7 @@ reference for the technical implementation of the
     </thead>
     <tbody>
         <tr>
-          <td><code>txt_file_path</code></td>
+          <td><code>path</code></td>
           <td>
                 <code><span title="typing.Union">Union</span>[str, <span title="typing.List">List</span>[str], <span title="pathlib.WindowsPath">WindowsPath</span>, <span title="typing.List">List</span>[<span title="pathlib.WindowsPath">WindowsPath</span>]]</code>
           </td>
@@ -488,17 +468,16 @@ reference for the technical implementation of the
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">folder_read_text_file</span><span class="p">(</span><span class="s1">&#39;tests\demo.txt&#39;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">read_text_file</span><span class="p">(</span><span class="s1">&#39;tests\demo.txt&#39;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">&#39;This is a demo text file.&#39;</span>
 </code></pre></div>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">folder_read_text_file</span><span class="p">([</span><span class="s1">&#39;tests\demo.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;tests\demo2.txt&#39;</span><span class="p">])</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">read_text_file</span><span class="p">([</span><span class="s1">&#39;tests\demo.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;tests\demo2.txt&#39;</span><span class="p">])</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">[&#39;This is a demo text file.&#39;, &#39;This is a demo2 text file.&#39;]</span>
 </code></pre></div>
 
       <details class="quote">
         <summary>Source code in <code>my_dost\folder.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-22">22</a></span>
-<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-23">23</a></span>
 <span class="normal"><a href="#__codelineno-0-24">24</a></span>
 <span class="normal"><a href="#__codelineno-0-25">25</a></span>
 <span class="normal"><a href="#__codelineno-0-26">26</a></span>
@@ -523,33 +502,34 @@ reference for the technical implementation of the
 <span class="normal"><a href="#__codelineno-0-45">45</a></span>
 <span class="normal"><a href="#__codelineno-0-46">46</a></span>
 <span class="normal"><a href="#__codelineno-0-47">47</a></span>
-<span class="normal"><a href="#__codelineno-0-48">48</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="nd">@dostify</span><span class="p">(</span><span class="n">errors</span><span class="o">=</span><span class="p">[(</span><span class="ne">FileNotFoundError</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)])</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="k">def</span> <span class="nf">folder_read_text_file</span><span class="p">(</span><span class="n">txt_file_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">WindowsPath</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">WindowsPath</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24"></a>    <span class="sd">&quot;&quot;&quot;Reads a text file and returns its contents as a string.</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25"></a>
-<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="sd">        txt_file_path (Union[str, List[str], WindowsPath, List[WindowsPath]]): The path to the text file.</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28"></a>
-<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">         The contents of the text file. If a list of paths is provided, a list of strings is returned. </span>
-<a id="__codelineno-0-31" name="__codelineno-0-31"></a>
-<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">    Examples:</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">        &gt;&gt;&gt; folder_read_text_file(&#39;tests\\demo.txt&#39;)</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">        &#39;This is a demo text file.&#39;</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a>
-<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="sd">        &gt;&gt;&gt; folder_read_text_file([&#39;tests\\demo.txt&#39;, &#39;tests\\demo2.txt&#39;])</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="sd">        [&#39;This is a demo text file.&#39;, &#39;This is a demo2 text file.&#39;]</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38"></a>
-<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">txt_file_path</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a>        <span class="k">return</span> <span class="p">[</span><span class="n">folder_read_text_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">txt_file_path</span><span class="p">]</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">txt_file_path</span><span class="p">)</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a>        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;File not found: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">txt_file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a>        <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="normal"><a href="#__codelineno-0-48">48</a></span>
+<span class="normal"><a href="#__codelineno-0-49">49</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="nd">@dostify</span><span class="p">(</span><span class="n">errors</span><span class="o">=</span><span class="p">[(</span><span class="ne">FileNotFoundError</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)])</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="k">def</span> <span class="nf">read_text_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">WindowsPath</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">WindowsPath</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a>    <span class="sd">&quot;&quot;&quot;Reads a text file and returns its contents as a string.</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">        path (Union[str, List[str], WindowsPath, List[WindowsPath]]): The path to the text file.</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">         The contents of the text file. If a list of paths is provided, a list of strings is returned. </span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">    Examples:</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">        &gt;&gt;&gt; read_text_file(&#39;tests\\demo.txt&#39;)</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">        &#39;This is a demo text file.&#39;</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="sd">        &gt;&gt;&gt; read_text_file([&#39;tests\\demo.txt&#39;, &#39;tests\\demo2.txt&#39;])</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="sd">        [&#39;This is a demo text file.&#39;, &#39;This is a demo2 text file.&#39;]</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a>        <span class="k">return</span> <span class="p">[</span><span class="n">read_text_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">path</span><span class="p">]</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;File not found: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a>        <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -560,8 +540,8 @@ reference for the technical implementation of the
 
 
 
-<h2 id="my_dost.folder.folder_write_text_file" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">folder_write_text_file</span><span class="p">(</span><span class="n">txt_file_path</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span></code>
+<h2 id="my_dost.folder.write_text_file" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">write_text_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span></code>
 
 </h2>
 
@@ -582,7 +562,7 @@ reference for the technical implementation of the
     </thead>
     <tbody>
         <tr>
-          <td><code>txt_file_path</code></td>
+          <td><code>path</code></td>
           <td>
                 <code><span title="typing.Union">Union</span>[str, <span title="pathlib.WindowsPath">WindowsPath</span>]</code>
           </td>
@@ -605,15 +585,14 @@ reference for the technical implementation of the
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">folder_write_text_file</span><span class="p">(</span><span class="s1">&#39;tests\demo.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;This is a demo text file.&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">folder_read_text_file</span><span class="p">(</span><span class="s1">&#39;tests\demo.txt&#39;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">write_text_file</span><span class="p">(</span><span class="s1">&#39;tests\demo.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;This is a demo text file.&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">read_text_file</span><span class="p">(</span><span class="s1">&#39;tests\demo.txt&#39;</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">&#39;This is a demo text file.&#39;</span>
 </code></pre></div>
 
       <details class="quote">
         <summary>Source code in <code>my_dost\folder.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-50">50</a></span>
-<span class="normal"><a href="#__codelineno-0-51">51</a></span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-51">51</a></span>
 <span class="normal"><a href="#__codelineno-0-52">52</a></span>
 <span class="normal"><a href="#__codelineno-0-53">53</a></span>
 <span class="normal"><a href="#__codelineno-0-54">54</a></span>
@@ -630,24 +609,23 @@ reference for the technical implementation of the
 <span class="normal"><a href="#__codelineno-0-65">65</a></span>
 <span class="normal"><a href="#__codelineno-0-66">66</a></span>
 <span class="normal"><a href="#__codelineno-0-67">67</a></span>
-<span class="normal"><a href="#__codelineno-0-68">68</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="nd">@dostify</span><span class="p">(</span><span class="n">errors</span><span class="o">=</span><span class="p">[])</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="k">def</span> <span class="nf">folder_write_text_file</span><span class="p">(</span><span class="n">txt_file_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">WindowsPath</span><span class="p">],</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a>    <span class="c1"># Description:</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>    <span class="sd">&quot;&quot;&quot; Write a text file with the given contents.</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        txt_file_path (Union[str, WindowsPath]): The path to the text file.</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">        contents (str): The contents of the text file.</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">    Examples:</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        &gt;&gt;&gt; folder_write_text_file(&#39;tests\\demo.txt&#39;, &#39;This is a demo text file.&#39;)</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">        &gt;&gt;&gt; folder_read_text_file(&#39;tests\\demo.txt&#39;)</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">        &#39;This is a demo text file.&#39;</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a>    <span class="c1"># Body section</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="n">txt_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">txt_file_path</span><span class="p">)</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">txt_file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="normal"><a href="#__codelineno-0-68">68</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="nd">@dostify</span><span class="p">(</span><span class="n">errors</span><span class="o">=</span><span class="p">[])</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="k">def</span> <span class="nf">write_text_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">WindowsPath</span><span class="p">],</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a>    <span class="c1"># Description:</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a>    <span class="sd">&quot;&quot;&quot; Write a text file with the given contents.</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">        path (Union[str, WindowsPath]): The path to the text file.</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">        contents (str): The contents of the text file.</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">    Examples:</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">        &gt;&gt;&gt; write_text_file(&#39;tests\\demo.txt&#39;, &#39;This is a demo text file.&#39;)</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">        &gt;&gt;&gt; read_text_file(&#39;tests\\demo.txt&#39;)</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">        &#39;This is a demo text file.&#39;</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="c1"># Body section</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
 <a id="__codelineno-0-68" name="__codelineno-0-68"></a>        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
@@ -680,7 +658,7 @@ reference for the technical implementation of the
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../how-to-guides/" class="md-footer__link md-footer__link--prev" aria-label="Previous: How-To Guides" rel="prev">
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: My-DOST Docs" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -689,20 +667,20 @@ reference for the technical implementation of the
               <span class="md-footer__direction">
                 Previous
               </span>
-              How-To Guides
+              My-DOST Docs
             </div>
           </div>
         </a>
       
       
         
-        <a href="../explanation/" class="md-footer__link md-footer__link--next" aria-label="Next: Explanation" rel="next">
+        <a href="../mouse/" class="md-footer__link md-footer__link--next" aria-label="Next: Mouse" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Explanation
+              Mouse
             </div>
           </div>
           <div class="md-footer__button md-icon">
