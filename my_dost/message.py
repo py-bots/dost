@@ -1,26 +1,72 @@
+"""
+Message module for my_dost. This module contains functions for displaying messages to the user.
 
-# import string
+Examples:
+    >>> from my_dost import message
+    >>> message.info('Hello World!')
+    >>> message.error('Hello World!')
+    >>> message.warning('Hello World!')
 
 
-from typing import Union,List
+The module contains the following functions:
+
+- `info(msg)`: Display an info message.
+- `error(msg)`: Display an error message.
+- `warning(msg)`: Display a warning message.
+
+"""
+
+
 from helpers import dostify
 
 @dostify(errors=[])
-def msg_box_info(msg_for_user:str):
+def info(message:str, title:str="PyBOTs") -> None:
     """Display a message box with an 'OK' button.
 
     Args:   
-        msg_for_user (str): The message to display to the user.
+        message (str): The message to display to the user.
 
     Examples:
-        >>> msg_box_info('This is a demo message.')
+        >>> info('This is a demo message.')
 
     """
-    import tkinter as tk
-    from tkinter import messagebox
-    root = tk.Tk()
-    root.attributes('-topmost', True)
-    root.withdraw()
-    tk.messagebox.showinfo('PyBOTs', msg_for_user, parent=root)
-    root.destroy()
+    # import section
+    import ctypes
+
+    # code section
+    ctypes.windll.user32.MessageBoxW(0, message, title, 0x40)
+
+@dostify(errors=[])
+def error(message:str, title:str="PyBOTs") -> None:
+    """Display a message box with an 'OK' button.
+
+    Args:   
+        message (str): The message to display to the user.
+
+    Examples:
+        >>> error('This is a demo message.')
+
+    """
+    # import section
+    import ctypes
+
+    # code section
+    ctypes.windll.user32.MessageBoxW(0, message, title, 0x10)
+
+@dostify(errors=[])
+def warning(message:str, title:str="PyBOTs") -> None:
+    """Display a message box with an 'OK' button.
+
+    Args:   
+        message (str): The message to display to the user.
+
+    Examples:
+        >>> warning('This is a demo message.')
+
+    """
+    # import section
+    import ctypes
+
+    # code section
+    ctypes.windll.user32.MessageBoxW(0, message, title, 0x30)
 

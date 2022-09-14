@@ -1,14 +1,5 @@
-import sys
-from typing import get_args, Tuple
-import os
-from functools import wraps
-from datetime import datetime
-import time
-from typeguard import check_type
-
-
-
 def get_time():
+    from datetime import datetime
     return datetime.now().strftime('%Y:%m:%d_%H:%M:%S - ')
 
 
@@ -17,6 +8,12 @@ def try_catch_log_check_output(errors: list, save_log: bool, log_file: str):
     as well as indicating if the function was successful"""
 
     import sys
+    import os
+    import time
+    import sys
+    from typing import get_args
+    from functools import wraps
+    from typeguard import check_type
 
     log_path = os.path.abspath(log_file)
     if not os.path.exists(log_path):
@@ -77,9 +74,9 @@ def try_catch_log_check_output(errors: list, save_log: bool, log_file: str):
                         print(
                             get_time() + f"Function: {func.__qualname__} failed with args: {*args, {**kwargs} } and error: {e.__repr__()}")
                     reporting_to_dev_team(e)
-                # raise e
         return wrapper
     return log_wrap
+
 
 def reporting_to_dev_team(e):
     import sys
@@ -89,9 +86,13 @@ def reporting_to_dev_team(e):
     print("Reporting to Dev")
     sys.exit(1)
 
+
 def type_checker(func):
     """Checks the types of the arguments and return value and prints an error if there's a mismatch."""
-
+    from typing import get_args
+    from functools import wraps
+    from typeguard import check_type
+    import sys
     @wraps(func)
     def wrapper(*args, **kwargs):
         varnames = list(func.__code__.co_varnames)
@@ -119,7 +120,9 @@ def type_checker(func):
             sys.exit(1)
     return wrapper
 
+
 def dostify(errors:list = None, save_log: bool = True, log_file: str = 'pip-log.txt'):
+    from functools import wraps
     def decorator_wrap(func):
         @wraps(func)
         def wrapper(*args, **kwargs):

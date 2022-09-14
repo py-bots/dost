@@ -29,6 +29,9 @@ classifiers = [
 [tool.poetry.dependencies]
 python = ">=3.8.0,<=3.10.40"
 typeguard = "^2.13.3"
+PyScreeze = "^0.1.28"
+pywinauto = "^0.6.8"
+Pillow = "^9.2.0"
 
 
 [tool.poetry.dev-dependencies]
