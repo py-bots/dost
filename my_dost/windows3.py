@@ -24,7 +24,7 @@ def _window_find_exact_name(windowName:str="") -> str:
     return win
 
 @dostify(errors=[])
-def window_show_desktop():
+def window_show_desktop() -> None:
 
     # import section
     import pywinauto as pwa
@@ -48,7 +48,7 @@ def window_get_active_window() -> Union[str,List[str]]:
     return data
 
 @dostify(errors=[])
-def window_activate_window(window_title:str=''):
+def window_activate_window(window_title:str) -> None:
 
 
     # import section
@@ -77,8 +77,6 @@ def window_activate_window(window_title:str=''):
 @dostify(errors=[])
 def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
 
-    
-
     # import section
     import pygetwindow as gw
 
@@ -92,15 +90,13 @@ def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
 
     return data
 
-@dostify(errors=[])
-def window_maximize_windows(windowName:str=""):
+@dostify(errors=[(ValueError,'')])
+def window_maximize_windows(windowName:str="") -> None:
 
     # import section
     import time
     import pygetwindow as gw
 
-
-  
     if not windowName:
         raise Exception('Window title name is empty.')
 
@@ -110,10 +106,10 @@ def window_maximize_windows(windowName:str=""):
         windw.maximize()
 
     else:
-        Exception('Window title name {} not found'.format(windowName))
+        raise ValueError(f'Window title name {windowName} not found')
 
 @dostify(errors=[])
-def window_minimize_windows(windowName=""):
+def window_minimize_windows(windowName:str) -> None:
 
 
     # import section
@@ -133,7 +129,8 @@ def window_minimize_windows(windowName=""):
 
 
 @dostify(errors=[])
-def window_close_windows(windowName:str=""):
+def window_close_windows(windowName:str) -> None:
+
 
 
     # import section
@@ -153,7 +150,7 @@ def window_close_windows(windowName:str=""):
 
 
 @dostify(errors=[])
-def launch_any_exe_bat_application(pathOfExeFile:WindowsPath):
+def launch_any_exe_bat_application(pathOfExeFile:WindowsPath) -> None:
 
 
     # import section

@@ -1,9 +1,41 @@
 from my_dost.CrashHandler import report_error
 from helpers import dostify
 @dostify(errors=[])
-def key_press(key_1='', key_2='', key_3='', write_to_window:str=""):
-
-
+def key_press(write_to_window:str, key_1='', key_2='', key_3='') -> None:
+    """Press a key or a combination of keys.
+    Args:
+        write_to_window (str): The window to write to.
+        key_1 (str): The first key to press.
+        key_2 (str): The second key to press.
+        key_3 (str): The third key to press.
+    Examples:
+        >>> key_press('Notepad', 'a')
+        >>> key_press('Notepad', 'a', 'b')
+        >>> key_press('Notepad', 'a', 'b', 'c')
+    """
+    # import section
+    import pywinauto as pwa
+    import pygetwindow as gw
+    from my_dost.windows3 import window_activate_window
+    from my_dost.windows3 import _window_find_exact_name
+    from my_dost.windows3 import window_get_active_window
+    # code section
+    if not write_to_window:
+        raise Exception('Window title name is empty.')
+    item, window_found = _window_find_exact_name(write_to_window)
+    if window_found:
+        windw = gw.getWindowsWithTitle(item)[0]
+        window_activate_window(write_to_window)
+        if key_1 and key_2 and key_3:
+            pwa.keyboard.send_keys(key_1 + key_2 + key_3)
+        elif key_1 and key_2:
+            pwa.keyboard.send_keys(key_1 + key_2)
+        elif key_1:
+            pwa.keyboard.send_keys(key_1)
+        else:
+            raise Exception('No key was provided.')
+    else:
+        raise Exception('Window not found.')
     # import section
     import pywinauto as pwa
     from my_dost.Engine import window_activate_window
@@ -63,12 +95,19 @@ def key_press(key_1='', key_2='', key_3='', write_to_window:str=""):
         key_2_up = make_up(key_2)
         pwa.keyboard.send_keys(
             str(key_1_down + key_2_down + key_3 + key_2_up + key_1_up))
-    # If the function returns a value, it should be assigned to the data variable.
-    # data = value
 
 @dostify(errors=[])
-def key_write_enter(text_to_write:str="", write_to_window:str="", key="e"):
+def key_write_enter(text_to_write:str, write_to_window:str, key:str="e") -> None:
+    """Write text to window and press enter key
+    
+    Args:
+        text_to_write (str): Text to write
+        write_to_window (str): Window to write to
+        key (str, optional): Key to press. Defaults to "e".
 
+    Examples:
+        >>> key_write_enter("Hello World", "Notepad")
+    """
 
     # import section
     import time
@@ -90,12 +129,27 @@ def key_write_enter(text_to_write:str="", write_to_window:str="", key="e"):
     if key.lower() == "t":
         pwa.keyboard.send_keys('{TAB}')
 
-    # If the function returns a value, it should be assigned to the data variable.
-    # data = value
 
 @dostify(errors=[])
-def key_hit_enter(write_to_window:str=""):
-
+def key_hit_enter(write_to_window:str) -> None:
+    """Hit enter key
+        
+    Args:
+        write_to_window (str): Window to write to
+        
+    Examples:
+        >>> key_press(key="enter", write_to_window=write_to_window)
+        """
+    
+        # import section
+        import pywinauto as pwa
+        from my_dost.Engine import window_activate_window
+    
+        # Logic section
+        if write_to_window:
+            window_activate_window(write_to_window)
+    
+        pwa.keyboard.send_keys('{ENTER}')
 
     # import section
     import pywinauto as pwa
@@ -106,6 +160,3 @@ def key_hit_enter(write_to_window:str=""):
     if write_to_window:
         window_activate_window(write_to_window)
     pwa.keyboard.send_keys('{ENTER}')
-
-    # If the function returns a value, it should be assigned to the data variable.
-    # data = value
