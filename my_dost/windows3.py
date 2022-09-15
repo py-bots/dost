@@ -91,7 +91,15 @@ def window_activate_window(window_title:str) -> None:
 
 @dostify(errors=[])
 def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
-
+    """Get all opened titles windows
+        
+    Returns:
+        Union[str, List[str]]: All opened titles windows
+    
+    Examples:
+        >>> window_get_all_opened_titles_windows()
+    """
+    
     # import section
     import pygetwindow as gw
 
