@@ -26,6 +26,7 @@ def _window_find_exact_name(windowName:str="") -> str:
 @dostify(errors=[])
 def window_show_desktop() -> None:
 
+
     # import section
     import pywinauto as pwa
 
@@ -34,7 +35,14 @@ def window_show_desktop() -> None:
     
 @dostify(errors=[])
 def window_get_active_window() -> Union[str,List[str]]:
-
+    """Get active window
+    
+    Returns:
+        Union[str,List[str]]: Active window
+    
+    Examples:
+        >>> window_get_active_window()
+    """
 
     # import section
     import win32gui
@@ -49,7 +57,14 @@ def window_get_active_window() -> Union[str,List[str]]:
 
 @dostify(errors=[])
 def window_activate_window(window_title:str) -> None:
-
+    """Activate window
+        
+    Args:
+        window_title (str): Window title
+    
+    Examples:
+        >>> window_activate_window('Notepad')
+    """
 
     # import section
     import pygetwindow as gw
