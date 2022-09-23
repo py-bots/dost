@@ -1,3 +1,32 @@
+"""
+Converter module for my_dost. This module contains functions to convert between different data types.
+
+Examples:
+    >>> from my_dost import converter
+    >>> converter.convert_csv_to_excel('tests\\demo.csv', 'tests\\demo.xlsx')
+    >>> converter.get_image_from_base64('tests\\demo.txt')
+    >>> converter.get_base64_from_image('tests\\demo.png')
+    >>> converter.excel_change_corrupt_xls_to_xlsx('tests\\demo.xls', 'tests\\demo.xlsx')
+    >>> converter.excel_convert_xls_to_xlsx('tests\\demo.xls', 'tests\\demo.xlsx')
+    >>> converter.convert_image_jpg_to_png('tests\\demo.jpg', 'tests\\demo.png')
+    >>> converter.convert__image_png_to_jpg('tests\\demo.png', 'tests\\demo.jpg')
+    >>> converter.excel_to_colored_html('tests\\demo.xlsx', 'tests\\demo.html')
+
+
+The module contains the following functions:
+
+- `convert_csv_to_excel(csv_path, excel_path)`: Convert a CSV file to an Excel file.
+- `get_image_from_base64(path)`: Get an image from a base64 encoded string.
+- `get_base64_from_image(path)`: Get a base64 encoded string from an image.
+- `excel_change_corrupt_xls_to_xlsx(xls_path, xlsx_path)`: Change a corrupt XLS file to an XLSX file.
+- `excel_convert_xls_to_xlsx(xls_path, xlsx_path)`: Convert an XLS file to an XLSX file.
+- `convert_image_jpg_to_png(jpg_path, png_path)`: Convert a JPG image to a PNG image.
+- `convert__image_png_to_jpg(png_path, jpg_path)`: Convert a PNG image to a JPG image.
+- `excel_to_colored_html(excel_path, html_path)`: Convert an Excel file to a colored HTML file.
+
+"""
+
+
 import os
 from pathlib import WindowsPath
 from helpers import dostify
@@ -9,14 +38,27 @@ if not os.path.exists(output_folder_path):
 
 @dostify(errors=[])
 def convert_csv_to_excel(input_file:WindowsPath, output_folder:WindowsPath, output_filename:str,contains_headers:bool=True,sep:str=","):
-    # Import section
+    """Convert a CSV file to an Excel file.
+    
+    Args:
+        input_file (WindowsPath): The path to the CSV file.
+        output_folder (WindowsPath): The path to the output folder.
+        output_filename (str): The name of the output file.
+        contains_headers (bool): Whether the CSV file contains headers.
+        sep (str): The separator used in the CSV file.
+        
+    Examples:
+        >>> convert_csv_to_excel('tests\\demo.csv', 'tests\\demo.xlsx')
+
+    """
+    # Import Section
     from my_dost.CrashHandler import report_error
     import os
     from pathlib import Path
     import pandas as pd
     import datetime
 
-    # Logic section
+    # Code Section
     if not input_file:
         raise Exception("CSV File name cannot be empty")
 
@@ -41,18 +83,27 @@ def convert_csv_to_excel(input_file:WindowsPath, output_folder:WindowsPath, outp
     df = pd.read_csv(input_file, sep=sep,header=headers)
     df.to_excel(writer, sheet_name='Sheet1', index=False,header=contains_headers)
     writer.save()
-
-        
+    
 @dostify(errors=[])
 def get_image_from_base64(input_text:str, output_folder:WindowsPath, output_filename:str):
+    """Get an image from a base64 encoded string.
+    
+    Args:
+        input_text (str): The base64 encoded string.
+        output_folder (WindowsPath): The path to the output folder.
+        output_filename (str): The name of the output file.
+        
+    Examples:
+        >>> get_image_from_base64('tests\\demo.txt')
+    
+    """
     # Import Section
     import base64
     import os
     import datetime
     from my_dost.CrashHandler import report_error
 
-
-    # Logic Section
+    # Code Section
     if not input_text:
         raise Exception("Image base64 string cannot be empty")
 
@@ -82,14 +133,22 @@ def get_image_from_base64(input_text:str, output_folder:WindowsPath, output_file
 
 @dostify(errors=[])
 def convert_image_to_base64(input_file:WindowsPath):
+    """Get a base64 encoded string from an image.
 
+    Args:
+        input_file (WindowsPath): The path to the image file.
+    
+    Examples:
+        >>> convert_image_to_base64('tests\\demo.png')
+    
+    """
     # Import section
     import base64
     import os
     from my_dost.CrashHandler import report_error
 
 
-    # Logic section
+    # Code section
     if not input_file:
         raise Exception("Image file name cannot be empty")
 
@@ -99,11 +158,21 @@ def convert_image_to_base64(input_file:WindowsPath):
     else:
         raise Exception("Image file does not exist")
     return data
-# print(image_to_base64(r"C:\Users\PyBots\Desktop\images\image.jpg"))
 
 @dostify(errors=[])
 def excel_change_corrupt_xls_to_xlsx(input_file:WindowsPath, input_sheetname:str, output_folder:WindowsPath, output_filename:str):
+    """Change a corrupt XLS file to an XLSX file.
 
+    Args:
+        input_file (WindowsPath): The path to the corrupt XLS file.
+        input_sheetname (str): The name of the sheet in the corrupt XLS file.
+        output_folder (WindowsPath): The path to the output folder.
+        output_filename (str): The name of the output file.
+    
+    Examples:
+        >>> excel_change_corrupt_xls_to_xlsx('tests\\demo.xls', 'Sheet1')
+    
+    """
     # Import section
     import os
     from my_dost.CrashHandler import report_error
@@ -113,9 +182,7 @@ def excel_change_corrupt_xls_to_xlsx(input_file:WindowsPath, input_sheetname:str
     import datetime
     from pathlib import Path
 
-
-
-    # Logic section
+    # Code section
     if not input_file:
         raise Exception("XLS File name cannot be empty")
 
@@ -160,6 +227,17 @@ def excel_change_corrupt_xls_to_xlsx(input_file:WindowsPath, input_sheetname:str
 
 @dostify(errors=[])
 def excel_convert_xls_to_xlsx(input_file:WindowsPath, output_folder:WindowsPath, output_filename:str):
+    """Convert an XLS file to an XLSX file.
+    
+    Args:
+        input_file (WindowsPath): The path to the XLS file.
+        output_folder (WindowsPath): The path to the output folder.
+        output_filename (str): The name of the output file.
+        
+    Examples:
+        >>> excel_convert_xls_to_xlsx('tests\\demo.xls')
+        
+    """
     # Import section
     from my_dost.CrashHandler import report_error
     import os
@@ -167,8 +245,7 @@ def excel_convert_xls_to_xlsx(input_file:WindowsPath, output_folder:WindowsPath,
     from pathlib import Path
     import datetime
 
-
-    # Logic section
+    # Code section
     if not input_file:
         raise Exception("XLS File name cannot be empty")
 
@@ -190,15 +267,24 @@ def excel_convert_xls_to_xlsx(input_file:WindowsPath, output_folder:WindowsPath,
 
 @dostify(errors=[])
 def convert_image_jpg_to_png(input_filepath:WindowsPath, output_folder:WindowsPath, output_filename:str):
+    """Convert a JPG image to a PNG image.
 
+    Args:
+        input_filepath (WindowsPath): The path to the JPG image.
+        output_folder (WindowsPath): The path to the output folder.
+        output_filename (str): The name of the output file.
+    
+    Examples:
+        >>> convert_image_jpg_to_png('tests\\demo.jpg')
+    
+    """
     # import section
-
     from pathlib import Path
     import os
     from PIL import Image
     import datetime
 
-    # Logic section
+    # Code section
     if not input_filepath:
         raise Exception("Enter the valid input image path")
     if not output_folder:
@@ -213,21 +299,26 @@ def convert_image_jpg_to_png(input_filepath:WindowsPath, output_folder:WindowsPa
     rgb_im = im.convert('RGB')
     rgb_im.save(output_filename)
 
-
 @dostify(errors=[])
 def convert__image_png_to_jpg(input_filepath:WindowsPath, output_folder:WindowsPath, output_filename:str):
-
-
-    # import section
-
+    """Converts the image from png to jpg format
+    
+    Args:
+        input_filepath {WindowsPath} -- Input image file path
+        output_folder {WindowsPath} -- Output folder path
+        output_filename {str} -- Output file name
+        
+    Examples:
+        >>> convert__image_png_to_jpg('tests\\demo.png')
+        
+    """
+    # Import Section
     from pathlib import Path
     import os
     from PIL import Image
     import datetime
 
-   
-    # Logic section
-
+    # Code Section
     if not input_filepath:
         raise Exception("Enter the valid input image path")
     if not output_folder:
@@ -242,18 +333,24 @@ def convert__image_png_to_jpg(input_filepath:WindowsPath, output_folder:WindowsP
     rgb_im = im.convert('RGB')
     rgb_im.save(output_filename)
 
-   
-
 @dostify(errors=[])
 def excel_to_colored_html(input_filepath:WindowsPath, output_folder:WindowsPath, output_filename:str):
+    """Converts the excel file to colored html file
 
-    # import section
+    Args:
+        input_filepath {WindowsPath} -- Input excel file path
+        output_folder {WindowsPath} -- Output folder path
+        output_filename {str} -- Output file name
+    
+    Examples:
+        >>> excel_to_colored_html('tests\\demo.xlsx')
+    """
+    # Import Section
     from pathlib import Path
     from xlsx2html import xlsx2html
     import datetime
 
-    
-    
+    # Code Section
     if not input_filepath:
         raise Exception("Please provide the excel path")
     if not output_folder:
@@ -267,9 +364,3 @@ def excel_to_colored_html(input_filepath:WindowsPath, output_folder:WindowsPath,
 
     xlsx2html(input_filepath, output_filename)
     os.startfile(output_folder)
-
-
-
-
-# excel_to_colored_html(input_filepath=r"C:\Users\PyBots\Desktop\dummy.xlsx",
-#                       output_folder=r"C:\Users\PyBots\My AutoPylot", output_filename="output")

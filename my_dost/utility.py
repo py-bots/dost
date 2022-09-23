@@ -1,25 +1,27 @@
-""" Utility module for my_dost. This module contains utility functions. 
+""" 
+Utility module for my_dost. This module contains utility functions. 
 
-    Examples:
-        >>> import my_dost.utility as utility
-        >>> utility.pause_program(5)
-        >>> utility.api_request("https://google.com")
-        >>> utility.clipboard_set_data("Hello World")
-        >>> utility.GetClipboardFormats()
-        >>> utility.clipboard_get_data()
-        >>> utility.clear_output()
-        >>> utility.install_module("requests")
-        >>> utility.uninstall_module("requests")
+Examples:
+    >>> import my_dost.utility as utility
+    >>> utility.pause_program(5)
+    >>> utility.api_request("https://google.com")
+    >>> utility.clipboard_set_data("Hello World")
+    >>> utility.GetClipboardFormats()
+    >>> utility.clipboard_get_data()
+    >>> utility.clear_output()
+    >>> utility.install_module("requests")
+    >>> utility.uninstall_module("requests")
 
 This module contains the following functions:
-    -`pause_program(seconds:int="5")`: Pauses the program for the specified number of seconds
-    -`api_request(url: str, method='GET', body: dict = None, headers: dict = None)->dict`: Makes an API request to the specified URL
-    -`clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT)`: Sets the clipboard data to the specified data
-    -`GetClipboardFormats()`: Returns a list of all the formats available in the clipboard
-    -`clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT)->typing.Any`: Gets the data from the clipboard
-    -`clear_output()`: Clears the output of the console
-    -`install_module(module_name:str)`: Installs the specified module
-    -`uninstall_module(module_name:str)`: Uninstalls the specified module 
+
+- `pause_program(seconds:int="5")`: Pauses the program for the specified number of seconds
+- `api_request(url: str, method='GET', body: dict = None, headers: dict = None)->dict`: Makes an API request to the specified URL
+- `clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT)`: Sets the clipboard data to the specified data
+- `GetClipboardFormats()`: Returns a list of all the formats available in the clipboard
+- `clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT)->typing.Any`: Gets the data from the clipboard
+- `clear_output()`: Clears the output of the console
+- `install_module(module_name:str)`: Installs the specified module
+- `uninstall_module(module_name:str)`: Uninstalls the specified module 
 
 """
 
@@ -27,6 +29,7 @@ This module contains the following functions:
 from pathlib import WindowsPath
 import win32clipboard
 import typing as typing
+from typing import List
 from helpers import dostify
 
 dostify(errors=[()])
@@ -119,9 +122,8 @@ def clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT) -> Non
     win32clipboard.SetClipboardData(format_id, data)
     win32clipboard.CloseClipboard()
 
-
 dostify(errors=[()])
-def GetClipboardFormats() -> list:
+def GetClipboardFormats() -> List(str):
     """Returns a list of all the formats available in the clipboard
         
     Returns:

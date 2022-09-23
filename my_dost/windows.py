@@ -15,7 +15,9 @@ Examples:
     >>> windows.window_close_windows('Notepad')
     >>> windows.launch_any_exe_bat_application('notepad.exe')
 
+
 The module contains the following functions:
+
 - `_window_find_exact_name(window_name)`: Find a window by its exact name.
 - `show_desktop()`: Show the desktop.
 - `window_get_active_window()`: Get the active window.
@@ -34,7 +36,6 @@ from typing import List,Union
 from xml.etree.ElementTree import QName
 from helpers import dostify
 
-
 @dostify(errors=[ValueError,''])
 def _window_find_exact_name(windowName:str) -> str:
     """Find window by exact name
@@ -46,9 +47,10 @@ def _window_find_exact_name(windowName:str) -> str:
         >>> _window_find_exact_name('Notepad')
 
     """
-
+    # Import Section
     import pygetwindow as gw
 
+    # Code Section
     if not windowName:
         raise ValueError(f'Window name cannot be empty')
 
@@ -68,13 +70,12 @@ def window_show_desktop() -> None:
         >>> window_show_desktop()
     """
 
-    # import section
+    # Import Section
     import pywinauto as pwa
 
-    #code section
+    # Code Section
     pwa.keyboard.send_keys('{VK_RWIN down} d {VK_RWIN up}')
 
-    
 @dostify(errors=[])
 def window_get_active_window() -> Union[str, List[str]]:
     """Get active window
@@ -86,11 +87,11 @@ def window_get_active_window() -> Union[str, List[str]]:
         >>> window_get_active_window()
     """
 
-    # import section
+    # Import Section
     import win32gui
     import pygetwindow as gw
 
-    #code section
+    # Code Section
     _title = win32gui.GetWindowText(win32gui.GetForegroundWindow())
     data = _title
 
@@ -107,10 +108,10 @@ def window_activate_window(window_title:str) -> None:
         >>> window_activate_window('Notepad')
     """
 
-    # import section
+    # Import Section
     import pygetwindow as gw
 
-    #code section
+    # Code Section
     if not window_title:
         raise ValueError('Window title name is empty.')
 
@@ -127,8 +128,6 @@ def window_activate_window(window_title:str) -> None:
     else:
         raise ValueError(f'Window title name {window_title} not found')
 
-    
-
 @dostify(errors=[])
 def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
     """Get all opened titles windows
@@ -140,10 +139,10 @@ def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
         >>> window_get_all_opened_titles_windows()
     """
     
-    # import section
+    # Import Section
     import pygetwindow as gw
 
-    #code section
+    # Code Section
     allTitles_lst = []
     lst = gw.getAllTitles()
     for item in lst:
@@ -162,11 +161,11 @@ def window_maximize_windows(windowName:str="") -> None:
         >>> window_maximize_windows()
     """
 
-    # import section
+    # Import Section
     import time
     import pygetwindow as gw
     
-    #code section
+    # Code Section
     if not windowName:
         raise Exception('Window title name is empty.')
 
@@ -187,10 +186,10 @@ def window_minimize_windows(windowName:str) -> None:
         >>> window_minimize_windows('Notepad')
     """
 
-    # import section
+    # Import Section
     import pygetwindow as gw
 
-    #code section 
+    # Code Section 
     if not windowName:
         raise ValueError(f'Window title name is empty.')
 
@@ -201,8 +200,6 @@ def window_minimize_windows(windowName:str) -> None:
     else:
         ValueError('Window title name {} not found'.format(windowName))
 
-
-
 @dostify(errors=[])
 def window_close_windows(windowName:str) -> None:
     """Close windows
@@ -212,10 +209,10 @@ def window_close_windows(windowName:str) -> None:
         >>> window_close_windows('Notepad')
     """
 
-    # import section
+    # Import Section
     import pygetwindow as gw
 
-    #code section
+    # Code Section
     if not windowName:
         raise Exception('Window title name is empty.')
 
@@ -226,8 +223,6 @@ def window_close_windows(windowName:str) -> None:
     else:
         Exception('Window title name {} not found'.format(windowName))
 
-
-
 @dostify(errors=[])
 def launch_any_exe_bat_application(pathOfExeFile:WindowsPath) -> None:
     """Launch any exe/bat application
@@ -237,13 +232,13 @@ def launch_any_exe_bat_application(pathOfExeFile:WindowsPath) -> None:
         >>> launch_any_exe_bat_application(WindowsPath('C:\\Windows\\System32\\notepad.exe'))
     """
 
-    # import section
+    # Import Section
     import win32gui
     import win32con
     import os
     import time
 
-    #code section
+    # Code Section
     if not pathOfExeFile:
         raise ValueError('Path of the exe file is empty.')
 

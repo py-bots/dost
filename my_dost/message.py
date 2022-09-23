@@ -30,10 +30,10 @@ def info(message:str, title:str="PyBOTs") -> None:
         >>> info('This is a demo message.')
 
     """
-    # import section
+    # Import Section
     import ctypes
 
-    # code section
+    # Code Section
     ctypes.windll.user32.MessageBoxW(0, message, title, 0x40)
 
 @dostify(errors=[])

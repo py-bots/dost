@@ -49,7 +49,7 @@ def read_text_file(path: Union[str, List[str], WindowsPath, List[WindowsPath]]) 
         return f.read()
 
 @dostify(errors=[])
-def write_text_file(path: Union[str, WindowsPath], contents: str):
+def write_text_file(path: Union[str, WindowsPath], contents: str) -> None:
     # Description:
     """ Write a text file with the given contents.
 

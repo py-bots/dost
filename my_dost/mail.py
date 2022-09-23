@@ -1,10 +1,24 @@
-from ctypes import Union
+""" 
+Mail module for my_dost. This module contains functions for sending emails.
+
+Examples:  
+    >>> from my_dost import mail
+    >>> mail.send_gmail_using_app_password('abcd','abcd','abcd@abc.com','abcd','abcd','abc.pdf')
+
+
+This module contains the following functions:
+
+- `send_gmail_using_app_password(sender_email, sender_password, receiver_email, subject, body, attachment_path)`: Send an email using a gmail account and an app password.
+
+"""
+
+
 from pathlib import WindowsPath
-from typing import List
+from typing import List,Union
 from helpers import dostify
 
 @dostify(errors=[(ValueError,'')])
-def send_gmail_using_app_password(gmail_username:str, gmail_app_password:str, to_email_id:Union[str, List[str]], subject:str, message:str, attachment_path:Union[WindowsPath, List[WindowsPath]]):
+def send_gmail_using_app_password(gmail_username:str, gmail_app_password:str, to_email_id:Union[str, List[str]], subject:str, message:str, attachment_path:Union[WindowsPath, List[WindowsPath]]) -> None:
 
     """Send email using gmail app password
     Args:
