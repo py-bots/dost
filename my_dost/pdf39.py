@@ -8,6 +8,8 @@ if not os.path.exists(output_folder_path):
 
 
 def pdf_extract_all_tables(pdf_file_path: str, output_folder: str, output_file_name: str, table_with_borders:bool=True) -> None:
+    
+    
     # Import Section
     import pdfplumber
     import pandas as pd

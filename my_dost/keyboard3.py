@@ -141,22 +141,12 @@ def key_hit_enter(write_to_window:str) -> None:
         >>> key_press(key="enter", write_to_window=write_to_window)
         """
     
-        # import section
-        import pywinauto as pwa
-        from my_dost.Engine import window_activate_window
-    
-        # Logic section
-        if write_to_window:
-            window_activate_window(write_to_window)
-    
-        pwa.keyboard.send_keys('{ENTER}')
-
     # import section
     import pywinauto as pwa
     from my_dost.Engine import window_activate_window
 
-
     # Logic section
     if write_to_window:
         window_activate_window(write_to_window)
+
     pwa.keyboard.send_keys('{ENTER}')
