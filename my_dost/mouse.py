@@ -1,5 +1,5 @@
 """
-Message module for my_dost. This module contains functions for mouse operations.
+Mouse module for my_dost. This module contains functions for mouse operations.
 Examples:
     >>> from my_dost import mouse
     >>> mouse.click()

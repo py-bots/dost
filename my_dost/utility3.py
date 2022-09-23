@@ -1,3 +1,30 @@
+""" Utility module for my_dost. This module contains utility functions. 
+
+    Examples:
+        >>> import my_dost.utility as utility
+        >>> utility.pause_program(5)
+        >>> utility.api_request("https://google.com")
+        >>> utility.clipboard_set_data("Hello World")
+        >>> utility.GetClipboardFormats()
+        >>> utility.clipboard_get_data()
+        >>> utility.clear_output()
+        >>> utility.install_module("requests")
+        >>> utility.uninstall_module("requests")
+
+This module contains the following functions:
+-`pause_program(seconds:int="5")`: Pauses the program for the specified number of seconds
+-`api_request(url: str, method='GET', body: dict = None, headers: dict = None)->dict`: Makes an API request to the specified URL
+-`clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT)`: Sets the clipboard data to the specified data
+-`GetClipboardFormats()`: Returns a list of all the formats available in the clipboard
+-`clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT)->typing.Any`: Gets the data from the clipboard
+-`clear_output()`: Clears the output of the console
+-`install_module(module_name:str)`: Installs the specified module
+-`uninstall_module(module_name:str)`: Uninstalls the specified module 
+
+
+"""
+
+
 from distutils import errors
 from pathlib import WindowsPath
 import win32clipboard
@@ -15,13 +42,11 @@ def pause_program(seconds:int="5"):
         >>> pause_program(5)
     """
 
-
     # import section
     import time
-    time.sleep(seconds)
 
-        # If the function returns a value, it should be assigned to the data variable.
-        # data = value
+    # Code Section
+    time.sleep(seconds)
 
 dostify(errors=[()])
 def api_request(url: str, method='GET', body: dict = None, headers: dict = None)->dict:
@@ -40,10 +65,12 @@ def api_request(url: str, method='GET', body: dict = None, headers: dict = None)
     Examples:
         >>> api_request("https://google.com")
     """
-    
+
+    # Import Section
     import requests
     import json
 
+    # Code Section
     if headers is None:
         headers = {"charset": "utf-8", "Content-Type": "application/json"}
 
@@ -138,7 +165,6 @@ def clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT)->typing.Any:
 
 
     # Code Section
-
     if format_id not in GetClipboardFormats():
         raise RuntimeError("That format is not available")
     win32clipboard.OpenClipboard()
@@ -174,7 +200,7 @@ def install_module(module_name:str):
     Examples:
         >>> install_module("requests")
     """
-
+    # Code Section
     if module_name != "my_dost":
         import subprocess
         import sys
@@ -191,7 +217,7 @@ def uninstall_module(module_name:str):
     Examples:
         >>> uninstall_module("requests")
     """
-    
+    # Code Section
     if module_name != "my_dost":
         import subprocess
         import sys
@@ -214,13 +240,13 @@ def image_to_text(image_path:WindowsPath) -> str:
     Examples:
         >>> image_to_text("C:\\Users\\user\\Desktop\\image.png")
     """
-    # Imports
+    # Import Section
     from PIL import Image
     import pytesseract
     from my_dost.CrashHandler import report_error
 
     
-    # Logic section
+    # Code Section
     image = Image.open(image_path)
     data = pytesseract.image_to_string(image)
 

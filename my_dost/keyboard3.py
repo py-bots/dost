@@ -1,5 +1,6 @@
 from my_dost.CrashHandler import report_error
 from helpers import dostify
+
 @dostify(errors=[])
 def key_press(write_to_window:str, key_1='', key_2='', key_3='') -> None:
     """Press a key or a combination of keys.
@@ -13,35 +14,12 @@ def key_press(write_to_window:str, key_1='', key_2='', key_3='') -> None:
         >>> key_press('Notepad', 'a', 'b')
         >>> key_press('Notepad', 'a', 'b', 'c')
     """
-    # import section
-    import pywinauto as pwa
-    import pygetwindow as gw
-    from my_dost.windows3 import window_activate_window
-    from my_dost.windows3 import _window_find_exact_name
-    from my_dost.windows3 import window_get_active_window
-    # code section
-    if not write_to_window:
-        raise Exception('Window title name is empty.')
-    item, window_found = _window_find_exact_name(write_to_window)
-    if window_found:
-        windw = gw.getWindowsWithTitle(item)[0]
-        window_activate_window(write_to_window)
-        if key_1 and key_2 and key_3:
-            pwa.keyboard.send_keys(key_1 + key_2 + key_3)
-        elif key_1 and key_2:
-            pwa.keyboard.send_keys(key_1 + key_2)
-        elif key_1:
-            pwa.keyboard.send_keys(key_1)
-        else:
-            raise Exception('No key was provided.')
-    else:
-        raise Exception('Window not found.')
-    # import section
+    # Import Section
     import pywinauto as pwa
     from my_dost.Engine import window_activate_window
 
 
-    # Logic section
+    # Code Section
     if key_1 == '':
         raise Exception("Key 1 is empty.")
 
@@ -109,12 +87,12 @@ def key_write_enter(text_to_write:str, write_to_window:str, key:str="e") -> None
         >>> key_write_enter("Hello World", "Notepad")
     """
 
-    # import section
+    # Import Section
     import time
     import pywinauto as pwa
     from my_dost.Engine import window_activate_window
 
-    # Logic section
+    # Code Section
     if not text_to_write:
         raise Exception("Text to write is empty.")
 
@@ -141,11 +119,11 @@ def key_hit_enter(write_to_window:str) -> None:
         >>> key_press(key="enter", write_to_window=write_to_window)
         """
     
-    # import section
+    # Import Section
     import pywinauto as pwa
     from my_dost.Engine import window_activate_window
 
-    # Logic section
+    # Code Section
     if write_to_window:
         window_activate_window(write_to_window)
 
