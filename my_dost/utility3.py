@@ -12,27 +12,25 @@
         >>> utility.uninstall_module("requests")
 
 This module contains the following functions:
--`pause_program(seconds:int="5")`: Pauses the program for the specified number of seconds
--`api_request(url: str, method='GET', body: dict = None, headers: dict = None)->dict`: Makes an API request to the specified URL
--`clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT)`: Sets the clipboard data to the specified data
--`GetClipboardFormats()`: Returns a list of all the formats available in the clipboard
--`clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT)->typing.Any`: Gets the data from the clipboard
--`clear_output()`: Clears the output of the console
--`install_module(module_name:str)`: Installs the specified module
--`uninstall_module(module_name:str)`: Uninstalls the specified module 
-
+    -`pause_program(seconds:int="5")`: Pauses the program for the specified number of seconds
+    -`api_request(url: str, method='GET', body: dict = None, headers: dict = None)->dict`: Makes an API request to the specified URL
+    -`clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT)`: Sets the clipboard data to the specified data
+    -`GetClipboardFormats()`: Returns a list of all the formats available in the clipboard
+    -`clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT)->typing.Any`: Gets the data from the clipboard
+    -`clear_output()`: Clears the output of the console
+    -`install_module(module_name:str)`: Installs the specified module
+    -`uninstall_module(module_name:str)`: Uninstalls the specified module 
 
 """
 
 
-from distutils import errors
 from pathlib import WindowsPath
 import win32clipboard
 import typing as typing
 from helpers import dostify
 
 dostify(errors=[()])
-def pause_program(seconds:int="5"):
+def pause_program(seconds:int="5") -> None:
     """Pauses the program for the specified number of seconds
     
     Args:
@@ -42,7 +40,7 @@ def pause_program(seconds:int="5"):
         >>> pause_program(5)
     """
 
-    # import section
+    # Import Section
     import time
 
     # Code Section
@@ -100,7 +98,7 @@ def api_request(url: str, method='GET', body: dict = None, headers: dict = None)
 # print(api_request(url='https://todos.free.beeceptor.com/todos'))
 
 dostify(errors=[()])
-def clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT):
+def clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT) -> None:
     """Sets the clipboard data to the specified data
         
     Args:
@@ -123,7 +121,7 @@ def clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT):
 
 
 dostify(errors=[()])
-def GetClipboardFormats():
+def GetClipboardFormats() -> list:
     """Returns a list of all the formats available in the clipboard
         
     Returns:
@@ -174,7 +172,7 @@ def clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT)->typing.Any:
     return data
 
 dostify(errors=[()])
-def clear_output():
+def clear_output() -> None:
     """Clears the output of the console
 
     Examples:
@@ -191,7 +189,7 @@ def clear_output():
     os.system(command)
 
 dostify(errors=[()])
-def install_module(module_name:str):
+def install_module(module_name:str) -> None:
     """Installs the specified module
     
     Args:
@@ -208,7 +206,7 @@ def install_module(module_name:str):
                         "install", module_name])
 
 dostify(errors=[()])
-def uninstall_module(module_name:str):
+def uninstall_module(module_name:str) -> None:
     """Uninstalls the specified module
         
     Args:

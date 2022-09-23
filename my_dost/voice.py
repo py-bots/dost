@@ -1,10 +1,23 @@
-from pathlib import WindowsPath
-from my_dost.CrashHandler import report_error
+"""Voice Module for my_dost.This module contains all the functions related to voice recognition and text to speech.
 
+    Examples:
+        >>> import voice3
+        >>> voice3.text_to_speech("Hello World")
+        >>> voice3.speech_to_text()
+        "Hello World"
+        >>> voice3.text_to_speech_offline("Hello World")
+    This module contains the following functions:
+        - `text_to_speech(text)`: Converts text to speech.
+        - `speech_to_text()`: Converts speech to text.
+        - `text_to_speech_offline(text)`: Converts text to speech offline.
+"""
+
+from pathlib import WindowsPath
+from helpers import dostify
 from my_dost.helpers import _is_speaker_available
 is_speaker_connected = _is_speaker_available()
 
-
+@dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
 def _canonicalizePath(path:WindowsPath):
     """Converts to absolute path and removes trailing slash
     Args:
@@ -17,7 +30,7 @@ def _canonicalizePath(path:WindowsPath):
 
     return str(path)
 
-
+@dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
 def playsound(sound, block:bool=True):
     """Plays the specified sound
     Args:
@@ -26,7 +39,7 @@ def playsound(sound, block:bool=True):
     Examples:
         >>> playsound(WindowsPath('C:\\Users\\user\\Desktop\\sound.mp3'))
     """
-
+    # Code Section
     sound = '"' + _canonicalizePath(sound) + '"'
 
     from ctypes import create_unicode_buffer, windll, wintypes
@@ -63,27 +76,25 @@ def playsound(sound, block:bool=True):
             # If it fails, there's nothing more that can be done...
             pass
 
-
-def speech_to_text() -> str:
-   """Converts speech to text
+@dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
+def speech_to_text():
+    """ 
+    Converts speech to text
     Returns:
         string: Text from the speech
     Examples:
         >>> speech_to_text()
         "Hello World"
     """
-    # import section
-    try:
-        import pyaudio
-    except Exception as ex:
-        report_error(ex)
+    # Import Section
+    import pyaudio
     import speech_recognition as sr
     import sys
 
     """
     Speech to Text using Google's Generic API
     """
-
+    # Code Section
     recognizer = sr.Recognizer()
     energy_threshold = [3000]
 
@@ -126,23 +137,40 @@ def speech_to_text() -> str:
             # Windows OS - Python 3.8
     return data
 
-
+@dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
 def text_to_speech(audio, show:bool=True):
-
-    # import section
+    """
+    Converts text to speech
+    Args:
+        audio (string): Text to be converted to speech
+        show (bool): Whether to print the text or not
+    Examples:
+        >>> text_to_speech("Hello World")
+    """
+    # Import Section
     import random
     import os
     
-    
+    # Code Section
     text_to_speech_offline(audio, show)
 
-
+@dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
 def text_to_speech_offline(audio, show:bool=True, rate:int=170):
+    """
+    Converts text to speech offline
+    Args:
+        audio (string): Text to be converted to speech
+        show (bool): Whether to print the text or not
+        rate (int): Rate of speech. Default is 170
+    Examples:
+        >>> text_to_speech_offline("Hello World")
+    """
+    # Import Section
     import random
     import pyttsx3
     import sys
 
-
+    # Code Section
     if is_speaker_connected:
         engine = pyttsx3.init('sapi5')
         voices = engine.getProperty('voices')

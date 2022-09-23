@@ -1,4 +1,18 @@
-from my_dost.CrashHandler import report_error
+"""Keyboard module for my_dost.This module contains functions for keyboard input and output.
+
+Examples:
+    >>> from my_dost import keyboard
+    >>> keyboard.key_pressed('a')
+    >>> keyboard.key_write_enter('Hello World!')
+    >>> keyboard.key_hit_enter()
+
+This module contains the following functions:
+`key_pressed(key)`: Check if a key is pressed.
+`key_write_enter(text)`: Write text and press enter.
+`key_hit_enter()`: Press enter.
+"""
+
+
 from helpers import dostify
 
 @dostify(errors=[])
