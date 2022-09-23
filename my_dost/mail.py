@@ -5,6 +5,18 @@ from helpers import dostify
 
 @dostify(errors=[(ValueError,'')])
 def send_gmail_using_app_password(gmail_username:str, gmail_app_password:str, to_email_id:Union[str, List[str]], subject:str, message:str, attachment_path:Union[WindowsPath, List[WindowsPath]]):
+
+    """Send email using gmail app password
+    Args:
+        gmail_username (str): Gmail username
+        gmail_app_password (str): Gmail app password
+        to_email_id (Union[str, List[str]]): To email id
+        subject (str): Subject of the email
+        message (str): Message of the email
+        attachment_path (Union[WindowsPath, List[WindowsPath]]): Attachment path
+    Examples:
+        >>> send_gmail_using_app_password('xxxxxxxxx')
+    """
     # Import Section
     import os
     from my_dost.CrashHandler import report_error

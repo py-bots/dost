@@ -6,28 +6,25 @@ is_speaker_connected = _is_speaker_available()
 
 
 def _canonicalizePath(path:WindowsPath):
-    """
-    Description:
-        Support passing in a pathlib / Path-like object by converting to str.
+    """Converts to absolute path and removes trailing slash
     Args:
-        path: A pathlib / Path-like object.
+        path (WindowsPath): Path to be canonicalized
     Returns:
-        [status]
-        status (bool): True if success, False otherwise.
+        WindowsPath: Canonicalized path
+    Examples:
+        >>> _canonicalizePath(WindowsPath('C:\\Users\\'))
     """
+
     return str(path)
 
 
 def playsound(sound, block:bool=True):
-    """
-    Description:
-        Play a sound file.
+    """Plays the specified sound
     Args:
-        sound: A string containing the path to the sound file.
-        block: A boolean indicating whether to block the program while the sound is playing.
-    Returns:
-        [status]
-        status (bool): True if success, False otherwise.
+        sound (WindowsPath): Path to the sound
+        block (bool): Whether to block the thread or not
+    Examples:
+        >>> playsound(WindowsPath('C:\\Users\\user\\Desktop\\sound.mp3'))
     """
 
     sound = '"' + _canonicalizePath(sound) + '"'
@@ -67,18 +64,14 @@ def playsound(sound, block:bool=True):
             pass
 
 
-def speech_to_text():
-    """
-    Description:
-        Speech to Text using speech_recognition
-    Args:
-        None
+def speech_to_text() -> str:
+   """Converts speech to text
     Returns:
-        [status]
-        status (bool): True if success, False otherwise.
-        data (str): The text spoken.
+        string: Text from the speech
+    Examples:
+        >>> speech_to_text()
+        "Hello World"
     """
-
     # import section
     try:
         import pyaudio
