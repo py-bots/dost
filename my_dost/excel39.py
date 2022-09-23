@@ -2,6 +2,7 @@ from ctypes import Union
 import os
 from pathlib import WindowsPath
 from helpers import dostify
+from typing import List
 output_folder_path = os.path.join(os.path.abspath(
     r'C:\Users\Public\PyBots'), 'My-DOST', 'Excel Folder')
 
@@ -149,7 +150,7 @@ def excel_upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url:str, shee
             title=sheet_name, rows="999", cols="26")
         set_with_dataframe(worksheet, df)
 
-def excel_create_file(output_folder:WindowsPath, output_filename:str, output_sheetname:str="Sheet1"):
+def excel_create_file(output_folder:WindowsPath, output_filename:str, output_sheetname:str="Sheet1") -> None:
 
     # Import section
     from my_dost.CrashHandler import report_error
@@ -180,8 +181,24 @@ def excel_create_file(output_folder:WindowsPath, output_filename:str, output_she
 
     wb.save(filename=output_filename)
 
-def valid_data(input_filepath:WindowsPath, input_sheetname: str, validate_filepath:bool=True, validate_sheetname:bool=True):
+def valid_data(input_filepath:WindowsPath, input_sheetname: str, validate_filepath:bool=True, validate_sheetname:bool=True) -> bool:
+    """
+    Description:
+        This function validates the input file path and sheet name.
 
+    Args:
+        input_filepath (WindowsPath): Input file path.
+        input_sheetname (str): Input sheet name.
+        validate_filepath (bool, optional): Whether to validate file path or not. Defaults to True.
+        validate_sheetname (bool, optional): Whether to validate sheet name or not. Defaults to True.
+
+    Returns:
+        bool: True if valid, False if invalid.
+    
+    Examples:
+        >>> valid_data(input_filepath="C:\\Users\\user\\Desktop\\test.xlsx", input_sheetname="Sheet1")
+        True
+    """
     import os
     from openpyxl import load_workbook
     from my_dost.CrashHandler import report_error
@@ -203,7 +220,7 @@ def valid_data(input_filepath:WindowsPath, input_sheetname: str, validate_filepa
             if input_sheetname not in sheet_names:
                 raise Exception(
                     "Please provide the correct sheet name")
-                print('Available Sheet Names', sheet_names)
+        return True
 
 def excel_to_dataframe(input_filepath:WindowsPath, input_sheetname:str, header:int=1):
 
@@ -229,7 +246,7 @@ def excel_to_dataframe(input_filepath:WindowsPath, input_sheetname:str, header:i
     # data = value
     return data
 
-def excel_get_row_column_count(df):
+def excel_get_row_column_count(df) -> tuple:
 
     # Description:
     """
@@ -246,18 +263,18 @@ def excel_get_row_column_count(df):
         data (list): [row_count, column_count] 
     """
 
-    # import section
+    # Import Section
     import pandas as pd
     from my_dost.CrashHandler import report_error
 
 
-    
+    # Code Section
     if not isinstance(df, pd.DataFrame):
         raise Exception("Please provide the dataframe")
 
     row, col = df.shape
     row = row + 1
-    data = [row, col]
+    data = (row, col)
 
     # If the function returns a value, it should be assigned to the data variable.
     # data = value
@@ -347,17 +364,13 @@ def excel_set_single_cell(df, column_name:str, cell_number:int, text:str):
 
     return data
 
-def excel_get_single_cell(df, column_name:str, cell_number:int,header:int=1):
+def excel_get_single_cell(df, column_name:str, cell_number:int,header:int=1) -> str:
 
-    # import section
+    # Import Section
     import pandas as pd
     from my_dost.CrashHandler import report_error
 
-    # Response section
-    error = None
-    # status = False
-    data = None
-
+    # Code Section
     if not isinstance(df, pd.DataFrame):
         raise Exception("Please provide the dataframe")
 
@@ -372,19 +385,13 @@ def excel_get_single_cell(df, column_name:str, cell_number:int,header:int=1):
 
     data = df.at[cell_number-header-1, column_name[0]]
 
-        # If the function returns a value, it should be assigned to the data variable.
-        # data = value
     return data
 
-def excel_get_all_header_columns(df):
+def excel_get_all_header_columns(df) -> List[str]:
 
     # import section
     import pandas as pd
     from my_dost.CrashHandler import report_error
-    # Response section
-    error = None
-    # status = False
-    data = None
 
     if not isinstance(df, pd.DataFrame):
         raise Exception("Please provide the dataframe")
