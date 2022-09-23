@@ -88,15 +88,11 @@ def clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT):
     import win32clipboard
 
 
-    # Logic Section
+    # Code Section
     win32clipboard.OpenClipboard()
-    try:
-        win32clipboard.EmptyClipboard()
-        win32clipboard.SetClipboardData(format_id, data)
-    finally:
-        if error is not None:
-            raise Exception(error)
-        win32clipboard.CloseClipboard()
+    win32clipboard.EmptyClipboard()
+    win32clipboard.SetClipboardData(format_id, data)
+    win32clipboard.CloseClipboard()
 
 
 dostify(errors=[()])
@@ -109,8 +105,10 @@ def GetClipboardFormats():
     Examples:
         >>> GetClipboardFormats()
     """
+    # Import Section
     import win32clipboard
 
+    # Code Section
     win32clipboard.OpenClipboard()
     available_formats = []
     current_format = 0
@@ -139,7 +137,7 @@ def clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT)->typing.Any:
     import win32clipboard
 
 
-    # Logic Section
+    # Code Section
 
     if format_id not in GetClipboardFormats():
         raise RuntimeError("That format is not available")
@@ -160,7 +158,7 @@ def clear_output():
     # Import Section
     import os
 
-    # Logic Section
+    # Code Section
     command = 'clear'
     if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
         command = 'cls'
@@ -227,4 +225,3 @@ def image_to_text(image_path:WindowsPath) -> str:
     data = pytesseract.image_to_string(image)
 
     return data
-print(GetClipboardFormats())
