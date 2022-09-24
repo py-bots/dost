@@ -124,7 +124,6 @@ def window_activate_window(window_title:str) -> None:
         except:
             windw.minimize()
             windw.maximize()
-
     else:
         raise ValueError(f'Window title name {window_title} not found')
 
@@ -149,7 +148,6 @@ def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
         if str(item).strip() != "" and str(item).strip() not in allTitles_lst:
             allTitles_lst.append(str(item).strip())
     data = allTitles_lst
-
     return data
 
 @dostify(errors=[(ValueError,'')])
@@ -173,7 +171,6 @@ def window_maximize_windows(windowName:str="") -> None:
     if window_found:
         windw = gw.getWindowsWithTitle(item)[0]
         windw.maximize()
-
     else:
         raise ValueError(f'Window title name {windowName} not found')
 
@@ -224,10 +221,10 @@ def window_close_windows(windowName:str) -> None:
         Exception('Window title name {} not found'.format(windowName))
 
 @dostify(errors=[])
-def launch_any_exe_bat_application(pathOfExeFile:WindowsPath) -> None:
+def launch_any_exe_bat_application(pathOfExeFile:Union[str,WindowsPath]) -> None:
     """Launch any exe/bat application
     Args:
-        pathOfExeFile (WindowsPath): Path of exe file
+        pathOfExeFile (Union[str,WindowsPath]): Path of exe/bat file
     Examples:
         >>> launch_any_exe_bat_application(WindowsPath('C:\\Windows\\System32\\notepad.exe'))
     """
@@ -243,6 +240,7 @@ def launch_any_exe_bat_application(pathOfExeFile:WindowsPath) -> None:
         raise ValueError('Path of the exe file is empty.')
 
     try:
+        pathOfExeFile = os.path.abspath(pathOfExeFile)
         os.startfile(pathOfExeFile)
         time.sleep(2)
         hwnd = win32gui.GetForegroundWindow()

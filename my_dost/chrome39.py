@@ -24,7 +24,7 @@ The module contains the following functions:
 
 
 import logging
-, text_to_speech_error
+from my_dost.CrashHandler import text_to_speech_error
 from selenium.common.exceptions import TimeoutException
 import os
 

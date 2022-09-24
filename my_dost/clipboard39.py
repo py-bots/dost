@@ -87,7 +87,6 @@ def clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT) -> str:
         'Hello World!'
     """
     # Import Section
-    
     import win32clipboard
 
     # Code Section

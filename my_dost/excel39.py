@@ -222,7 +222,7 @@ def valid_data(input_filepath:WindowsPath, input_sheetname: str, validate_filepa
                     "Please provide the correct sheet name")
         return True
 
-def excel_to_dataframe(input_filepath:WindowsPath, input_sheetname:str, header:int=1):
+def excel_to_dataframe(input_filepath:Union[str,WindowsPath], input_sheetname:str, header:int=1):
 
     # import section
     import pandas as pd

@@ -1,4 +1,19 @@
+"""
+PDF module for my_dost. This module is used to extract data from PDF files.
+
+Examples:
+    >>> pdf.pdf_extract_all_tables("C:\\Users\\user\\Desktop\\demo.pdf", "C:\\Users\\user\\Desktop\\", "demo")
+
+
+The module contains the following functions:
+
+`pdf_extract_all_tables(pdf_file_path, output_folder, output_file_name, table_with_borders)`: Extracts all tables from a pdf file and saves them as csv files in the specified folder.
+
+"""
+
+
 import os
+from helpers import dostify
 output_folder_path = os.path.join(
     os.path.abspath(r'C:\Users\Public\PyBots'), 'My-DOST', 'PDF Folder')
 
@@ -6,21 +21,28 @@ output_folder_path = os.path.join(
 if not os.path.exists(output_folder_path):
     os.makedirs(output_folder_path)
 
-
+@dostify(errors=[(FileNotFoundError,"PDF file path cannot be empty")])
 def pdf_extract_all_tables(pdf_file_path: str, output_folder: str, output_file_name: str, table_with_borders:bool=True) -> None:
+    """Extracts all tables from a pdf file and saves them as csv files in the specified folder.
     
+    Args:
+        pdf_file_path (str): Path to the pdf file.
+        output_folder (str): Path to the output folder.
+        output_file_name (str): Name of the output file.
+        table_with_borders (bool, optional): Whether the table has borders. Defaults to True.
     
+    Examples:
+        >>> pdf_extract_all_tables("C:\\Users\\user\\Desktop\\demo.pdf", "C:\\Users\\user\\Desktop\\", "demo")
+    
+    """    
     # Import Section
     import pdfplumber
     import pandas as pd
     import datetime
-    
 
-
-
-    # Logic Section
+    # Code Section
     if not pdf_file_path:
-        raise Exception("PDF file path cannot be empty")
+        raise FileNotFoundError()
     if not output_folder:
         output_folder = output_folder_path
 
