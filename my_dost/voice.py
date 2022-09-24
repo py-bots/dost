@@ -79,7 +79,6 @@ def playsound(sound, block:bool=True) -> None:
         try:
             winCommand(u'close {}'.format(sound))
         except Exception:
-            # If it fails, there's nothing more that can be done...
             pass
 
 @dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
@@ -127,20 +126,15 @@ def speech_to_text() -> str:
                     text_to_speech("Speak now")
                 audio = recognizer.listen(source)
                 data = recognizer.recognize_google(audio)
-                status = True
-                # return [status, query]
             except AttributeError:
                 text_to_speech(
                     "Could not find PyAudio or no Microphone input device found. It may be being used by "
                     "another "
                     "application.")
-                # sys.exit()
             except sr.UnknownValueError:
                 unknown = True
             except sr.RequestError as e:
                 print("Try Again")
-
-            # Windows OS - Python 3.8
     return data
 
 @dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])

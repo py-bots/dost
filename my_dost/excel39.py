@@ -33,7 +33,7 @@ def authenticate_google_spreadsheet(credential_file_path:WindowsPath):
 
 def excel_get_dataframe_from_google_spreadsheet(auth, spreadsheet_url:str, sheet_name:str="Sheet1"):
     # import section
-    from my_dost.CrashHandler import report_error
+    
     import pandas as pd
 
     # Logic section
@@ -80,7 +80,7 @@ def excel_tabular_data_from_website(website_url:str, table_number:int=1):
 
     # Import Section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
+    
 
 
     # Logic Section
@@ -107,7 +107,7 @@ def excel_tabular_data_from_website(website_url:str, table_number:int=1):
 def excel_upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url:str, sheet_name:str, df=""):
 
     # import section
-    from my_dost.CrashHandler import report_error
+    
     from gspread_dataframe import set_with_dataframe
     import pandas as pd
 
@@ -153,7 +153,7 @@ def excel_upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url:str, shee
 def excel_create_file(output_folder:WindowsPath, output_filename:str, output_sheetname:str="Sheet1") -> None:
 
     # Import section
-    from my_dost.CrashHandler import report_error
+    
     import os
     from pathlib import Path
     from openpyxl import Workbook
@@ -201,7 +201,7 @@ def valid_data(input_filepath:WindowsPath, input_sheetname: str, validate_filepa
     """
     import os
     from openpyxl import load_workbook
-    from my_dost.CrashHandler import report_error
+    
 
     input_filepath = str(input_filepath)
     input_sheetname = str(input_sheetname)
@@ -226,7 +226,7 @@ def excel_to_dataframe(input_filepath:WindowsPath, input_sheetname:str, header:i
 
     # import section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
+    
 
 
 
@@ -265,7 +265,7 @@ def excel_get_row_column_count(df) -> tuple:
 
     # Import Section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
+    
 
 
     # Code Section
@@ -286,7 +286,7 @@ def dataframe_to_excel(df, output_folder:WindowsPath, output_filename:str, outpu
     import pandas as pd
     import os
     from pathlib import Path
-    from my_dost.CrashHandler import report_error
+    
 
 
     if not output_folder:
@@ -344,7 +344,7 @@ def excel_set_single_cell(df, column_name:str, cell_number:int, text:str):
 
     # import section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
+    
 
 
     if not isinstance(df, pd.DataFrame):
@@ -368,7 +368,7 @@ def excel_get_single_cell(df, column_name:str, cell_number:int,header:int=1) -> 
 
     # Import Section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
+    
 
     # Code Section
     if not isinstance(df, pd.DataFrame):
@@ -391,7 +391,7 @@ def excel_get_all_header_columns(df) -> List[str]:
 
     # import section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
+    
 
     if not isinstance(df, pd.DataFrame):
         raise Exception("Please provide the dataframe")
@@ -406,7 +406,7 @@ def excel_get_all_sheet_names(input_filepath:WindowsPath):
 
     # import section
     from openpyxl import load_workbook
-    from my_dost.CrashHandler import report_error
+    
 
 
     if not input_filepath:
@@ -425,7 +425,7 @@ def excel_drop_columns(df, cols:Union[str, list(str)]):
 
     # import section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
+    
 
     if not isinstance(df, pd.DataFrame):
         raise Exception("Please provide the dataframe")
@@ -448,7 +448,7 @@ def excel_clear_sheet(df):
 
     # import section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
+    
 
     if not isinstance(df, pd.DataFrame):
         raise Exception("Please provide the dataframe")
@@ -467,7 +467,7 @@ def excel_remove_duplicates(df, column_name:str):
 
     # import section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
+    
 
     which_one_to_keep = "first"
 
@@ -491,7 +491,7 @@ def isNaN(value:str):
     
 
     # import section
-    from my_dost.CrashHandler import report_error
+    
 
     # Response section
     error = None

@@ -33,7 +33,7 @@ def send_gmail_using_app_password(gmail_username:str, gmail_app_password:str, to
     """
     # Import Section
     import os
-    from my_dost.CrashHandler import report_error
+    
     from pathlib import Path
     import yagmail
 

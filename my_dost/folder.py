@@ -50,7 +50,6 @@ def read_text_file(path: Union[str, List[str], WindowsPath, List[WindowsPath]]) 
 
 @dostify(errors=[])
 def write_text_file(path: Union[str, WindowsPath], contents: str) -> None:
-    # Description:
     """ Write a text file with the given contents.
 
     Args:

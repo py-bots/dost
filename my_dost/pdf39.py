@@ -14,7 +14,7 @@ def pdf_extract_all_tables(pdf_file_path: str, output_folder: str, output_file_n
     import pdfplumber
     import pandas as pd
     import datetime
-    from my_dost.CrashHandler import report_error
+    
 
 
 
