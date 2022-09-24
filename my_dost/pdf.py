@@ -13,6 +13,7 @@ The module contains the following functions:
 
 
 import os
+from tkinter import EXCEPTION
 from helpers import dostify
 output_folder_path = os.path.join(
     os.path.abspath(r'C:\Users\Public\PyBots'), 'My-DOST', 'PDF Folder')
@@ -21,7 +22,7 @@ output_folder_path = os.path.join(
 if not os.path.exists(output_folder_path):
     os.makedirs(output_folder_path)
 
-@dostify(errors=[(FileNotFoundError,"PDF file path cannot be empty")])
+@dostify(errors=[(FileNotFoundError,"")])
 def pdf_extract_all_tables(pdf_file_path: str, output_folder: str, output_file_name: str, table_with_borders:bool=True) -> None:
     """Extracts all tables from a pdf file and saves them as csv files in the specified folder.
     
@@ -42,10 +43,11 @@ def pdf_extract_all_tables(pdf_file_path: str, output_folder: str, output_file_n
 
     # Code Section
     if not pdf_file_path:
-        raise FileNotFoundError()
+        raise Exception("PDF file path cannot be empty")
+    if(isinstance(pdf_file_path)):
+        raise FileNotFoundError(f"File not found: {pdf_file_path}")
     if not output_folder:
         output_folder = output_folder_path
-
     if not output_file_name:
         output_file_name = "pdf_" + \
             str(datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".xlsx"

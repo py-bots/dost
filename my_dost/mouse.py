@@ -16,11 +16,11 @@ This module contains the following functions:
 
 
 from argparse import ArgumentError, ArgumentTypeError
-from distutils.log import error
+from typing import Union
 from tkinter import E
 from helpers import dostify
 from pathlib import WindowsPath
-
+import os
 @dostify(errors=[(ValueError,'')])
 def mouse_click(x:int, y:int, left_or_right:str="left", no_of_clicks:int=1, type_of_movement:str="abs") -> None:
     """Clicks the mouse at the given co-ordinates.
@@ -69,7 +69,7 @@ def mouse_click(x:int, y:int, left_or_right:str="left", no_of_clicks:int=1, type
         """
 
 @dostify(errors=[(FileNotFoundError,'')])
-def mouse_search_snip_return_coordinates_x_y(img:WindowsPath, wait:int=10) -> tuple:
+def mouse_search_snip_return_coordinates_x_y(img:Union[str,WindowsPath], wait:int=10) -> tuple:
     """Searches for the given image and returns the co-ordinates of the image.
 
     Args:
@@ -88,6 +88,7 @@ def mouse_search_snip_return_coordinates_x_y(img:WindowsPath, wait:int=10) -> tu
     import time
 
     # Validation section
+    img=os.path.abspath(img)
     if not isinstance(img, WindowsPath):
         raise FileNotFoundError(f'Image not found: {img}')
 
