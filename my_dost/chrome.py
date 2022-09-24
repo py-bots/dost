@@ -64,12 +64,14 @@ class ChromeBrowser:
             >>> browser.open_browser()
 
         """
+        # Import Section
         import selenium.webdriver as webdriver
         from webdriver_manager.chrome import ChromeDriverManager
         import os
         from selenium.webdriver.chrome.options import Options
         import helium
 
+        # Code Section
         self.options = Options()
 
         self.options.add_argument("--start-maximized")
@@ -123,10 +125,12 @@ class ChromeBrowser:
             >>> browser.write("Hello World", "Search")
 
         """
+        # Import Section
         import helium
         import time
         from selenium.common.exceptions import WebDriverException
-        # import sys
+
+        # Code Section
         helium.set_driver(self.browser_driver)
 
         if text and str(user_visible_text_element).strip():
@@ -148,14 +152,15 @@ class ChromeBrowser:
             >>> browser.mouse("Search", "single", "t")
 
         """
+        # Import Section
         import helium
         import sys
         from selenium.common.exceptions import WebDriverException
         import time
 
+        # Code Section
         helium.set_driver(self.browser_driver)
-
-        
+    
         if not action_type:
             text_to_speech_error("Please provide click type", show=False)
         if not value:
@@ -288,7 +293,10 @@ class ChromeBrowser:
             >>> scroll("down", 3)
         
         """
+        # Import Section
         import helium
+
+        # Code Section
         helium.set_driver(self.browser_driver)
         scroll_pixs = int(weight)
         # try:
@@ -317,11 +325,12 @@ class ChromeBrowser:
             >>> key_press("ctrl", "shift", "t")
             
         """
-
+        # Import Section
         import sys
         import helium
         helium.set_driver(self.browser_driver)
 
+        # Code Section
         if not key_1:
             text_to_speech_error("Please select the text to type")
 
@@ -337,7 +346,10 @@ class ChromeBrowser:
             >>> hit_enter()
             
         """
+        # Import Section
         import helium
+
+        # Code Section
         helium.set_driver(self.browser_driver)
         helium.press(helium.ENTER)
 
@@ -348,7 +360,7 @@ class ChromeBrowser:
             >>> refresh_page()
         
         """
-        
+        # Code Section
         self.browser_driver.refresh()
     
     def set_waiting_time(self, time: int = 10) -> None:
@@ -361,7 +373,10 @@ class ChromeBrowser:
             >>> set_waiting_time(10)
             
         """
+        # Import Section
         import helium
+
+        # Code Section
         helium.set_driver(self.browser_driver)
         helium.Config.implicit_wait_secs = int(time)
 
@@ -378,7 +393,7 @@ class ChromeBrowser:
             >>> get_text("//div[@id='some_id']")
             
         """
-
+        # Code Section
         element = self.browser_driver.find_element_by_xpath(element_xpath)
         data = element.text
         return data
@@ -390,6 +405,7 @@ class ChromeBrowser:
             >>> close()
             
         """
+        # Code Section
         self.browser_driver.close()
         self.browser_driver.quit()
 
