@@ -52,7 +52,6 @@ def pause_program(seconds:int="5") -> None:
 
 dostify(errors=[()])
 def api_request(url: str, method='GET', body: dict = None, headers: dict = None)->dict:
-
     """Makes an API request to the specified URL
     
     Args:
@@ -113,7 +112,7 @@ def clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT) -> Non
         >>> clipboard_set_data("Hello World")
     """
     # Import Section
-    from my_dost.CrashHandler import report_error
+    
     import win32clipboard
 
 
@@ -161,7 +160,6 @@ def clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT)->typing.Any:
 
 
     # Import Section
-    from my_dost.CrashHandler import report_error
     import win32clipboard
 
 
@@ -244,7 +242,7 @@ def image_to_text(image_path:WindowsPath) -> str:
     # Import Section
     from PIL import Image
     import pytesseract
-    from my_dost.CrashHandler import report_error
+    
 
     
     # Code Section

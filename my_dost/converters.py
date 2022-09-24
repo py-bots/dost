@@ -52,7 +52,6 @@ def convert_csv_to_excel(input_file:WindowsPath, output_folder:WindowsPath, outp
 
     """
     # Import Section
-    from my_dost.CrashHandler import report_error
     import os
     from pathlib import Path
     import pandas as pd
@@ -101,8 +100,7 @@ def get_image_from_base64(input_text:str, output_folder:WindowsPath, output_file
     import base64
     import os
     import datetime
-    from my_dost.CrashHandler import report_error
-
+    
     # Code Section
     if not input_text:
         raise Exception("Image base64 string cannot be empty")
@@ -121,13 +119,9 @@ def get_image_from_base64(input_text:str, output_folder:WindowsPath, output_file
 
     input_text = bytes(input_text, 'utf-8')
     if os.path.exists(output_folder):
-        try:
-            img_binary = base64.decodebytes(input_text)
-            with open(os.path.join(output_folder, output_filename), "wb") as f:
-                f.write(img_binary)
-        except Exception as ex:
-            report_error(ex)
-            error = ex
+        img_binary = base64.decodebytes(input_text)
+        with open(os.path.join(output_folder, output_filename), "wb") as f:
+            f.write(img_binary)
     else:
         raise Exception("Image folder path does not exist")
 
@@ -145,8 +139,6 @@ def convert_image_to_base64(input_file:WindowsPath):
     # Import section
     import base64
     import os
-    from my_dost.CrashHandler import report_error
-
 
     # Code section
     if not input_file:
@@ -175,7 +167,7 @@ def excel_change_corrupt_xls_to_xlsx(input_file:WindowsPath, input_sheetname:str
     """
     # Import section
     import os
-    from my_dost.CrashHandler import report_error
+    
     import io
     from xlwt import Workbook
     from xls2xlsx import XLS2XLSX
@@ -239,7 +231,6 @@ def excel_convert_xls_to_xlsx(input_file:WindowsPath, output_folder:WindowsPath,
         
     """
     # Import section
-    from my_dost.CrashHandler import report_error
     import os
     from xls2xlsx import XLS2XLSX
     from pathlib import Path
