@@ -1,15 +1,19 @@
 """
 Mouse module for my_dost. This module contains functions for mouse operations.
+
 Examples:
     >>> from my_dost import mouse
     >>> mouse.click()
     >>> mouse.mouse_search_snip_return_coordinates_x_y('tests\\demo.png')
 
+
 This module contains the following functions:
+
 - `mouse_search_snip_return_coordinates_x_y(snip, x1, y1, x2, y2, precision=0.8, timeout=10, interval=0.5)`: Search for a snip in a region of the screen and return the coordinates of the snip.
 - `mouse_click(x, y)`: Move the mouse to the given coordinates and click.
  
 """
+
 
 from argparse import ArgumentError, ArgumentTypeError
 from distutils.log import error
@@ -18,7 +22,7 @@ from helpers import dostify
 from pathlib import WindowsPath
 
 @dostify(errors=[(ValueError,'')])
-def mouse_click(x:int, y:int, left_or_right:str="left", no_of_clicks:int=1, type_of_movement:str="abs"):
+def mouse_click(x:int, y:int, left_or_right:str="left", no_of_clicks:int=1, type_of_movement:str="abs") -> None:
     """Clicks the mouse at the given co-ordinates.
     Args:
         x (int): X co-ordinate.
@@ -63,8 +67,6 @@ def mouse_click(x:int, y:int, left_or_right:str="left", no_of_clicks:int=1, type
         for i in range(no_of_clicks):
                 pwa.mouse.click(coords=(x, y), button=left_or_right)
         """
-
-
 
 @dostify(errors=[(FileNotFoundError,'')])
 def mouse_search_snip_return_coordinates_x_y(img:WindowsPath, wait:int=10) -> tuple:

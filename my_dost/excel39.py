@@ -487,7 +487,7 @@ def excel_remove_duplicates(df, column_name:str):
     return data
 
 def isNaN(value:str):
-
+    """"""
     
 
     # import section
@@ -504,12 +504,24 @@ def isNaN(value:str):
     status = math.isnan(float(value))
 
 def df_from_list(list_of_lists:list, column_names:list(str)):
-    # import section
+    """Converts list of lists to dataframe
+    
+    Args:
+        list_of_lists (list): list of lists to be converted to dataframe
+        column_names (list): column names
+        
+    Returns:
+        pandas dataframe: dataframe
+        
+    Examples:
+        >>> df_from_list([[1,2,3],[4,5,6]], ["col1", "col2", "col3"])
+        dataframe
+    """
+
+    # Import Section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
 
-
-    # Logic section
+    # Code Section
     if not isinstance(list_of_lists, list):
         raise Exception("Please pass input as list of lists")
 
@@ -522,10 +534,27 @@ def df_from_list(list_of_lists:list, column_names:list(str)):
     return data
 
 def df_from_string(df_string: str, word_delimeter:str=" ", line_delimeter:str="\n", column_names:list=None):
-    # import section
+    """Converts string to dataframe
+
+    Args:
+        df_string (str): string to be converted to dataframe
+        word_delimeter (str): word delimeter.Defaults to space
+        line_delimeter (str): line delimeter. Defaults to new line
+        column_names (list): column names. Defaults to None
+    
+    Returns:
+        pandas dataframe: dataframe
+    
+    Examples:
+        >>> df_from_string("a b c d e f g h i j k l m n o p q r s t u v w x y z", " ", "\n", ["col1", "col2", "col3"])
+        dataframe
+    
+    """
+
+    # Import Section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
-    # Logic section
+
+    # Code Section
     if not df_string:
         raise Exception("Please pass input as string")
 
@@ -541,13 +570,28 @@ def df_from_string(df_string: str, word_delimeter:str=" ", line_delimeter:str="\
     return data
 
 def df_extract_sub_df(df, row_start: int, row_end: int, column_start: int, column_end: int):
-    # import section
+    """Extracts sub dataframe from the given dataframe
+    
+    Args:
+        df (pandas dataframe): dataframe
+        row_start (int): row start (inclusive)
+        row_end (int): row end   (exclusive)
+        column_start (int): column start (inclusive)
+        column_end (int): column end (exclusive)
+    
+    Returns:
+        pandas dataframe(pandas dataframe): sub dataframe
+        
+    Examples:
+        >>> df_extract_sub_df(df, 1, 2, 3, 4)
+        sub_dataframe
+    
+    """
+    
+    # Import Section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
 
-
-    # Logic section
-    # try:
+    # Code Section
     if df.empty:
         raise Exception("Dataframe cannot be empty")
 
@@ -557,16 +601,30 @@ def df_extract_sub_df(df, row_start: int, row_end: int, column_start: int, colum
     return data
 
 def set_value_in_df(df, row_number: int, column_number: int, value:str):
-    # import section
+    """Sets value in dataframe
+    
+    Args:
+        df (pandas dataframe): dataframe to be modified
+        row_number (int): Row number of the cell
+        column_number (int): Column number of the cell
+        value (str): value to be set in the cell
+        
+    Returns:
+        pandas dataframe: dataframe with value set
+    
+    Examples:
+        >>> set_value_in_df(df, 1, 2, "abc")
+        modified_dataframe
+    
+    """
+    
+    # Import Section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
 
-    # Logic section
-    # try:
+    # Code Section
     if df.empty:
         raise Exception("Dataframe cannot be empty")
 
-    # print(type(df))
     if isinstance(df, pd.DataFrame):
         if row_number < 1 or column_number < 1:
             raise Exception(
@@ -578,26 +636,28 @@ def set_value_in_df(df, row_number: int, column_number: int, value:str):
 
         df.iloc[row_number-1, column_number-1] = value
 
-    # except Exception as ex:
-    #     report_error(ex)
-    #     error = ex
-
-    # # else:
-    # #     status = True
-
-    # finally:
-    #     if error is not None:
-    #         raise Exception(error)
         return df
 
-def get_value_in_df(df, row_number: int, column_number: int):
-   
-    # import section
+def get_value_in_df(df, row_number: int, column_number: int) -> str:
+    """Gets value from dataframe
+    
+    Args:
+        df (pandas dataframe): dataframe
+        row_number (int): Row number of the cell
+        column_number (int): Column number of the cell
+        
+    Returns:
+        str: value in the cell
+    Examples:
+        >>> get_value_in_df(df, 1, 2)
+        abc
+    
+    """
+    
+    # Import Section
     import pandas as pd
-    from my_dost.CrashHandler import report_error
 
-
-    # Logic section
+    # Code Section
     if df.empty:
         raise Exception("Dataframe cannot be empty")
 
@@ -615,13 +675,24 @@ def get_value_in_df(df, row_number: int, column_number: int):
     return data
 
 def df_drop_rows(df, row_start: int, row_end: int):
-   
-    # import section
-    import pandas as pd
-    from my_dost.CrashHandler import report_error
+    """Drops rows from dataframe
+    
+    Args:
+        df (pandas dataframe): dataframe
+        row_start (int): row start (inclusive)
+        row_end (int): row end   (exclusive)
 
+    Returns:
+        pandas dataframe: dataframe with rows dropped
+    Examples:
+        >>> df = df_drop_rows(df, 1, 2)
+    
+    """
    
-    # Logic section
+    # Import Section
+    import pandas as pd
+   
+    # Code section
     if df.empty:
         raise Exception("Dataframe cannot be empty")
 

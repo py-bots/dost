@@ -25,6 +25,7 @@ def info(message:str, title:str="PyBOTs") -> None:
 
     Args:   
         message (str): The message to display to the user.
+        title (str, optional): The title of the message box. Defaults to "PyBOTs".
 
     Examples:
         >>> info('This is a demo message.')

@@ -12,6 +12,7 @@ Examples:
     >>> utility.install_module("requests")
     >>> utility.uninstall_module("requests")
 
+
 This module contains the following functions:
 
 - `pause_program(seconds:int="5")`: Pauses the program for the specified number of seconds
