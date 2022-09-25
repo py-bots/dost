@@ -1,98 +1,109 @@
 """
-Mouse module for my_dost. This module contains functions for mouse operations.
+Mouse module for my_dost. This module contains functions for mouse control.
 
 Examples:
     >>> from my_dost import mouse
-    >>> mouse.click()
-    >>> mouse.mouse_search_snip_return_coordinates_x_y('tests\\demo.png')
+    >>> mouse.click(100, 100)
+    >>> mouse.search('tests\\demo.png')
+    (23, 17)
 
 
-This module contains the following functions:
+The module contains the following functions:
 
-- `mouse_search_snip_return_coordinates_x_y(snip, x1, y1, x2, y2, precision=0.8, timeout=10, interval=0.5)`: Search for a snip in a region of the screen and return the coordinates of the snip.
-- `mouse_click(x, y)`: Move the mouse to the given coordinates and click.
- 
+- `click(x, y, button, clicks, absolute)`: Click at the given coordinates.
+- `search(img, wait, left_click)`: Search for an image on the screen and return the coordinates of the top-left corner of the image.
 """
 
-
-from argparse import ArgumentError, ArgumentTypeError
-from typing import Union
-from tkinter import E
+from typing import List, Tuple, Union
 from helpers import dostify
 from pathlib import WindowsPath
-import os
+
+
 @dostify(errors=[(ValueError,'')])
-def mouse_click(x:int, y:int, left_or_right:str="left", no_of_clicks:int=1, type_of_movement:str="abs") -> None:
+def click(x:int, y:int, button:str="left", clicks:int=1, absolute:bool=True):
     """Clicks the mouse at the given co-ordinates.
     Args:
         x (int): X co-ordinate.
         y (int): Y co-ordinate.
-        left_or_right (str): Whether to click the left or right mouse button. Defaults to "left".
-        no_of_clicks (int): Number of times to click the mouse. Defaults to 1.
-        type_of_movement (string): Whether the co-ordinates are absolute or relative. Defaults to "abs".
+        button (str): The button to click. Can be "left", "right" or "middle". Defaults to "left". Possible values: "left", "l", "right", "r", "middle", "m".
+        clicks (int): Number of times to click the mouse button. Defaults to 1.
+        absolute (bool): Whether the co-ordinates are absolute or relative to the current position. Defaults to True.
+
     Examples:
-        >>> mouse_click(100, 100)
-        >>> mouse_click(100, 100, left_or_right="right")
-        >>> mouse_click(100, 100, no_of_clicks=2)
-        >>> mouse_click(100, 100, type_of_movement="rel")
+        >>> click(100, 100)
+        >>> click(100, 100, button="right")
+        >>> click(100, 100, button="middle")
+        >>> click(100, 100, button="left", clicks=2)
+        >>> click(100, 100, button="left", clicks=2, absolute=False)
+
     """
 
     # import section
     import pywinauto as pwa
     import win32api
 
-    # Validation section
-    # if (x == "" and y == ""):
-    #     x, y = win32api.GetCursorPos()
-    if (type_of_movement!="abs" and type_of_movement!="rel"):
-        raise ValueError(f'Invalid type of movement: {type_of_movement}')
-    if (left_or_right != "left" and left_or_right != "right"):
-        raise ValueError(f'Invalid left_or_right: {left_or_right}')
-    # if x and y:
-    if type_of_movement == "rel":
+    if button not in ["left", "right", "middle", "l", "r", "m"]:
+        raise ValueError(f'Invalid button: {button}. Possible values: "left", "l", "right", "r", "middle", "m".')
+
+    if not absolute :
         current_x, current_y = win32api.GetCursorPos()
-        # x, y = int(x), int(y)
-        # current_x, current_y = int(current_x), int(current_y)
         x, y = (current_x + x), (current_y + y)
 
-    if no_of_clicks == 1:
-        pwa.mouse.click(coords=(x, y), button=left_or_right)
-    elif no_of_clicks == 2:
-        pwa.mouse.double_click(coords=(x, y), button=left_or_right)
-    else:
-        for i in range(no_of_clicks):
-            pwa.mouse.click(coords=(x, y), button=left_or_right)
+    if button in {"left", "l"}:
+        button = "left"
+    elif button in {"right", "r"}:
+        button = "right"
+    elif button in {"middle", "m"}:
+        button = "middle"
 
-    """Above three if blocks can be replaced by the following line
-        for i in range(no_of_clicks):
-                pwa.mouse.click(coords=(x, y), button=left_or_right)
-        """
+    for _ in range(clicks):
+        pwa.mouse.click(coords=(x, y), button=button)
 
-@dostify(errors=[(FileNotFoundError,'')])
-def mouse_search_snip_return_coordinates_x_y(img:Union[str,WindowsPath], wait:int=10) -> tuple:
+
+@dostify(errors=[(FileNotFoundError,''), (ValueError,'')])
+def search(img:Union[str, List[str], WindowsPath, List[WindowsPath]], wait:int=10, left_click:bool=False) -> Union[Tuple[int, int], List[Tuple[int, int]], None]:
     """Searches for the given image and returns the co-ordinates of the image.
 
     Args:
-        img (WindowsPath): The path to the image.
+        img (Union[str, List[str], WindowsPath, List[WindowsPath]]): The path to the image.
         wait (int): The time to wait for the image to appear. Defaults to 10.
+        left_click (bool): Whether to left click on the image. Defaults to False.
 
     Returns:
         A tuple containing the X and Y co-ordinates of the image.
 
     Examples:
-        >>> mouse_search_snip_return_coordinates_x_y('tests\\demo.png')
-        (100, 100)
+        >>> search('tests\\demo.png')
+        (23, 17)
+        >>> search('tests\\demo.png', wait=20, left_click=True)
+        >>> search(['tests\\demo.png', 'tests\\demo2.png'])
+        [(23, 17), (67, 16)]
+        >>> search('tests\\demo2.pdf')
+        You got ValueError error: Invalid image file: D:\PyBOTs\my_dost\\tests\demo2.pdf. Supported image formats: .png, .jpg, .jpeg, .bmp, .gif
     """
     # import section
-    import pyautogui as pag
-    import time
+    import pyscreeze as ps
+    import os
+
+    # List case handling
+    if isinstance(img, list):
+        return [search(i, wait=wait) for i in img]
 
     # Validation section
-    img=os.path.abspath(img)
-    if not isinstance(img, WindowsPath):
-        raise FileNotFoundError(f'Image not found: {img}')
+    path = os.path.abspath(img)
+    if not os.path.isfile(path):
+        raise FileNotFoundError(f'File not found: {path}')
+
+    # check whether given image is a valid image file or not
+    ext = os.path.splitext(path)[1]
+    if ext not in ['.png', '.jpg', '.jpeg', '.bmp', '.gif']:
+        raise ValueError(f'Invalid image file: {path}. Supported image formats: .png, .jpg, .jpeg, .bmp, .gif')
 
     # Body section
-    time.sleep(wait)
-    x, y = pag.locateCenterOnScreen(img)
-    return (x, y)
+    point = ps.locateCenterOnScreen(path,  minSearchTime=wait)
+    if point is None:
+        raise ValueError(f'Image not found: {path}')
+    if left_click:
+        click(point.x, point.y)
+        return None
+    return (point.x, point.y)
