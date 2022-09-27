@@ -52,22 +52,22 @@ if not os.path.exists(output_folder_path):
 
 @dostify(errors=[])
 def authenticate_google_spreadsheet(credential_file_path:WindowsPath):
-    """This creates
+    """Creates authentication object for google spreadsheet.
     
     Args:
-        credential_file_path (WindowsPath): Path to JSON file containing credentials
+        credential_file_path (WindowsPath): Credential file path.
     
     Returns:
+        object: Authentication object.
     
     Examples:
-        >>> authenticate_google_spreadsheet("C:\Users\Asus\Downloads\Credential_file.json")
+        >>> auth = authenticate_google_spreadsheet(credential_file_path="C:\\Users\\user\\Desktop\\credentials.json")
     """
 
 
     # Import Section
     import gspread
     from oauth2client.service_account import ServiceAccountCredentials
-
 
     # Code section
     if not credential_file_path:
@@ -98,6 +98,7 @@ def excel_get_dataframe_from_google_spreadsheet(auth, spreadsheet_url:str, sheet
     Examples:
         >>> excel_get_dataframe_from_google_spreadsheet(auth,spreadsheet_url="https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0", sheet_name="Sheet1")
         df
+
     """
 
 
