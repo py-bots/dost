@@ -150,7 +150,7 @@ def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
     data = allTitles_lst
     return data
 
-@dostify(errors=[(ValueError,''),])
+@dostify(errors=[(ValueError,'')])
 def window_maximize_windows(windowName:str) -> None:
     """Maximize windows
     Args:
@@ -173,7 +173,7 @@ def window_maximize_windows(windowName:str) -> None:
     else:
         raise ValueError(f'Window title name {windowName} not found')
 
-@dostify(errors=[ValueError,''])
+@dostify(errors=[(ValueError,'')])
 def window_minimize_windows(windowName: str) -> None:
     """Minimize windows
     Args:
@@ -197,7 +197,7 @@ def window_minimize_windows(windowName: str) -> None:
     else:
         raise ValueError(f'Window title name {windowName} not found')
 
-@dostify(errors=[])
+@dostify(errors=[(ValueError,'')])
 def window_close_windows(windowName:str) -> None:
     """Close windows
     Args:
@@ -218,9 +218,9 @@ def window_close_windows(windowName:str) -> None:
         windw = gw.getWindowsWithTitle(item)[0]
         windw.close()
     else:
-        Exception('Window title name {} not found'.format(windowName))
+        raise ValueError(f'Window title name {windowName} not found')
 
-@dostify(errors=[])
+@dostify(errors=[(FileNotFoundError,'')])
 def launch_any_exe_bat_application(pathOfExeFile:Union[str,WindowsPath]) -> None:
     """Launch any exe/bat application
     Args:
@@ -247,19 +247,7 @@ def launch_any_exe_bat_application(pathOfExeFile:Union[str,WindowsPath]) -> None
         win32gui.ShowWindow(hwnd, win32con.SW_MAXIMIZE)
         
     except Exception:
-        os.startfile(pathOfExeFile)
+        raise FileNotFoundError(f'No file found at {pathOfExeFile}')
 
 
 
-print("active window",window_get_active_window())
-# launch_any_exe_bat_application(WindowsPath('C:\\Windows\\System32\\notepad.exe'))
-window_activate_window('Chrme')
-print("All window titles",window_get_all_opened_titles_windows())
-window_maximize_windows('Notepd')
-# print("max")
-print("\n")
-# window_minimize_windows('kj')
-print("in")
-# window_close_windows('Notepd')
-# print("close")
-# window_show_desktop()
