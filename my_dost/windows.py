@@ -55,7 +55,7 @@ def _window_find_exact_name(windowName:str) -> str:
         raise ValueError(f'Window name cannot be empty')
 
     lst = gw.getAllTitles()
-
+    win=""
     for item in lst:
         if str(item).strip():
             if str(windowName).lower() in str(item).lower():
@@ -77,7 +77,7 @@ def window_show_desktop() -> None:
     pwa.keyboard.send_keys('{VK_RWIN down} d {VK_RWIN up}')
 
 @dostify(errors=[])
-def window_get_active_window() -> Union[str, List[str]]:
+def window_get_active_window() -> str:
     """Get active window
     
     Returns:
@@ -115,8 +115,8 @@ def window_activate_window(window_title:str) -> None:
     if not window_title:
         raise ValueError('Window title name is empty.')
 
-    item, window_found = _window_find_exact_name(window_title)
-    if window_found:
+    item = _window_find_exact_name(window_title)
+    if item!="":
         windw = gw.getWindowsWithTitle(item)[0]
 
         try:
@@ -150,7 +150,7 @@ def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
     data = allTitles_lst
     return data
 
-@dostify(errors=[(ValueError,'')])
+@dostify(errors=[(ValueError,''),])
 def window_maximize_windows(windowName:str) -> None:
     """Maximize windows
     Args:
@@ -166,7 +166,6 @@ def window_maximize_windows(windowName:str) -> None:
     # Code Section
     if not windowName:
         raise Exception('Window title name is empty.')
-    print(_window_find_exact_name(windowName))
     item = _window_find_exact_name(windowName)
     if item!="":                                    
         windw = gw.getWindowsWithTitle(item)[0]
@@ -175,7 +174,7 @@ def window_maximize_windows(windowName:str) -> None:
         raise ValueError(f'Window title name {windowName} not found')
 
 @dostify(errors=[ValueError,''])
-def window_minimize_windows(windowName:str) -> None:
+def window_minimize_windows(windowName: str) -> None:
     """Minimize windows
     Args:
         windowName (str): Window name
@@ -188,14 +187,15 @@ def window_minimize_windows(windowName:str) -> None:
 
     # Code Section 
     if not windowName:
-        raise ValueError(f'Window title name is empty.')
+        # raise ValueError(f'Window title name is empty.')
+        raise ValueError('empty')
 
     item = _window_find_exact_name(windowName)
-    if item:
+    if item!="":
         windw = gw.getWindowsWithTitle(item)[0]
         windw.minimize()
     else:
-        ValueError('Window title name {} not found'.format(windowName))
+        raise ValueError(f'Window title name {windowName} not found')
 
 @dostify(errors=[])
 def window_close_windows(windowName:str) -> None:
@@ -214,7 +214,7 @@ def window_close_windows(windowName:str) -> None:
         raise Exception('Window title name is empty.')
 
     item = _window_find_exact_name(windowName)
-    if item:
+    if item!="":
         windw = gw.getWindowsWithTitle(item)[0]
         windw.close()
     else:
@@ -245,14 +245,21 @@ def launch_any_exe_bat_application(pathOfExeFile:Union[str,WindowsPath]) -> None
         time.sleep(2)
         hwnd = win32gui.GetForegroundWindow()
         win32gui.ShowWindow(hwnd, win32con.SW_MAXIMIZE)
-        status = True
+        
     except Exception:
         os.startfile(pathOfExeFile)
+
+
+
+print("active window",window_get_active_window())
+# launch_any_exe_bat_application(WindowsPath('C:\\Windows\\System32\\notepad.exe'))
+window_activate_window('Chrme')
+print("All window titles",window_get_all_opened_titles_windows())
+window_maximize_windows('Notepd')
+# print("max")
+print("\n")
+# window_minimize_windows('kj')
+print("in")
+# window_close_windows('Notepd')
+# print("close")
 # window_show_desktop()
-# print("active window",window_get_active_window())
-# window_activate_window('Notepad')
-# print("All window titles",window_get_all_opened_titles_windows())
-# window_maximize_windows('Notepad')
-print("max")
-# window_close_windows('Notepad')
-launch_any_exe_bat_application(WindowsPath('C:\\Windows\\System32\\notepad.exe'))
