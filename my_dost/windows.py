@@ -165,7 +165,7 @@ def window_maximize_windows(windowName:str) -> None:
     
     # Code Section
     if not windowName:
-        raise Exception('Window title name is empty.')
+        raise ValueError('Window title name is empty.')
     item = _window_find_exact_name(windowName)
     if item!="":                                    
         windw = gw.getWindowsWithTitle(item)[0]
@@ -187,8 +187,7 @@ def window_minimize_windows(windowName: str) -> None:
 
     # Code Section 
     if not windowName:
-        # raise ValueError(f'Window title name is empty.')
-        raise ValueError('empty')
+        raise ValueError(f'Window title name is empty.')
 
     item = _window_find_exact_name(windowName)
     if item!="":
@@ -211,7 +210,7 @@ def window_close_windows(windowName:str) -> None:
 
     # Code Section
     if not windowName:
-        raise Exception('Window title name is empty.')
+        raise ValueError('Window title name is empty.')
 
     item = _window_find_exact_name(windowName)
     if item!="":
@@ -220,7 +219,7 @@ def window_close_windows(windowName:str) -> None:
     else:
         raise ValueError(f'Window title name {windowName} not found')
 
-@dostify(errors=[(FileNotFoundError,'')])
+@dostify(errors=[(FileNotFoundError,''),(ValueError,'')])
 def launch_any_exe_bat_application(pathOfExeFile:Union[str,WindowsPath]) -> None:
     """Launch any exe/bat application
     Args:
