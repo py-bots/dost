@@ -151,7 +151,7 @@ def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
     return data
 
 @dostify(errors=[(ValueError,'')])
-def window_maximize_windows(windowName:str="") -> None:
+def window_maximize_windows(windowName:str) -> None:
     """Maximize windows
     Args:
         windowName (str, optional): Window name. Defaults to "".
@@ -166,9 +166,9 @@ def window_maximize_windows(windowName:str="") -> None:
     # Code Section
     if not windowName:
         raise Exception('Window title name is empty.')
-
-    item, window_found = _window_find_exact_name(windowName)
-    if window_found:
+    print(_window_find_exact_name(windowName))
+    item = _window_find_exact_name(windowName)
+    if item!="":                                    
         windw = gw.getWindowsWithTitle(item)[0]
         windw.maximize()
     else:
@@ -190,8 +190,8 @@ def window_minimize_windows(windowName:str) -> None:
     if not windowName:
         raise ValueError(f'Window title name is empty.')
 
-    item, window_found = _window_find_exact_name(windowName)
-    if window_found:
+    item = _window_find_exact_name(windowName)
+    if item:
         windw = gw.getWindowsWithTitle(item)[0]
         windw.minimize()
     else:
@@ -213,8 +213,8 @@ def window_close_windows(windowName:str) -> None:
     if not windowName:
         raise Exception('Window title name is empty.')
 
-    item, window_found = _window_find_exact_name(windowName)
-    if window_found:
+    item = _window_find_exact_name(windowName)
+    if item:
         windw = gw.getWindowsWithTitle(item)[0]
         windw.close()
     else:
@@ -248,3 +248,11 @@ def launch_any_exe_bat_application(pathOfExeFile:Union[str,WindowsPath]) -> None
         status = True
     except Exception:
         os.startfile(pathOfExeFile)
+# window_show_desktop()
+# print("active window",window_get_active_window())
+# window_activate_window('Notepad')
+# print("All window titles",window_get_all_opened_titles_windows())
+# window_maximize_windows('Notepad')
+print("max")
+# window_close_windows('Notepad')
+launch_any_exe_bat_application(WindowsPath('C:\\Windows\\System32\\notepad.exe'))
