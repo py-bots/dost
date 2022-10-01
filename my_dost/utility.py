@@ -123,7 +123,7 @@ def clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT) -> Non
     win32clipboard.CloseClipboard()
 
 dostify(errors=[()])
-def GetClipboardFormats() -> List(str):
+def GetClipboardFormats() -> list:
     """Returns a list of all the formats available in the clipboard
         
     Returns:
