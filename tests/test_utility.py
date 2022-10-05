@@ -30,7 +30,7 @@ class tests(unittest.TestCase):
         install_module("pytesseract")
 
     def test_text_from_image(self):
-        SEassertEQ(image_to_text("tests\demo2.png"))
+        self.assertEqual(image_to_text("tests\demo2.png"),"File\n")
 
 
 if __name__ == '__main__':
