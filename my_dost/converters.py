@@ -30,6 +30,7 @@ The module contains the following functions:
 import os
 from pathlib import WindowsPath
 from helpers import dostify
+from typing import Union, List
 output_folder_path = os.path.join(
     os.path.abspath(r'C:\Users\Public\PyBots'), 'My-DOST', 'Converters Folder')
 
@@ -37,18 +38,19 @@ if not os.path.exists(output_folder_path):
     os.makedirs(output_folder_path)
 
 @dostify(errors=[])
-def convert_csv_to_excel(input_file:WindowsPath, output_folder:WindowsPath, output_filename:str,contains_headers:bool=True,sep:str=","):
+def convert_csv_to_excel(input_file:Union[str,WindowsPath], output_folder:Union[str,WindowsPath], output_filename:str="",contains_headers:bool=True,sep:str=","):
     """Convert a CSV file to an Excel file.
     
     Args:
-        input_file (WindowsPath): The path to the CSV file.
-        output_folder (WindowsPath): The path to the output folder.
+        input_file (str,WindowsPath): The path to the CSV file.
+        output_folder (str,WindowsPath): The path to the output folder.
         output_filename (str): The name of the output file.
         contains_headers (bool): Whether the CSV file contains headers.
         sep (str): The separator used in the CSV file.
         
     Examples:
-        >>> convert_csv_to_excel('tests\\demo.csv', 'tests\\demo.xlsx')
+        >>> convert_csv_to_excel('tests\\demo.csv', r'tests', "demo.xlsx")
+
 
     """
     # Import Section
@@ -84,12 +86,12 @@ def convert_csv_to_excel(input_file:WindowsPath, output_folder:WindowsPath, outp
     writer.save()
     
 @dostify(errors=[])
-def get_image_from_base64(input_text:str, output_folder:WindowsPath, output_filename:str):
+def get_image_from_base64(input_text:str, output_folder:Union[str,WindowsPath], output_filename:str):
     """Get an image from a base64 encoded string.
     
     Args:
         input_text (str): The base64 encoded string.
-        output_folder (WindowsPath): The path to the output folder.
+        output_folder (str,WindowsPath): The path to the output folder.
         output_filename (str): The name of the output file.
         
     Examples:
@@ -126,11 +128,11 @@ def get_image_from_base64(input_text:str, output_folder:WindowsPath, output_file
         raise Exception("Image folder path does not exist")
 
 @dostify(errors=[])
-def convert_image_to_base64(input_file:WindowsPath):
+def convert_image_to_base64(input_file:Union[str,WindowsPath]):
     """Get a base64 encoded string from an image.
 
     Args:
-        input_file (WindowsPath): The path to the image file.
+        input_file (str,WindowsPath): The path to the image file.
     
     Examples:
         >>> convert_image_to_base64('tests\\demo.png')
@@ -152,13 +154,13 @@ def convert_image_to_base64(input_file:WindowsPath):
     return data
 
 @dostify(errors=[])
-def excel_change_corrupt_xls_to_xlsx(input_file:WindowsPath, input_sheetname:str, output_folder:WindowsPath, output_filename:str):
+def excel_change_corrupt_xls_to_xlsx(input_file:Union[str,WindowsPath], input_sheetname:str, output_folder:Union[str,WindowsPath], output_filename:str):
     """Change a corrupt XLS file to an XLSX file.
 
     Args:
-        input_file (WindowsPath): The path to the corrupt XLS file.
+        input_file (str,WindowsPath): The path to the corrupt XLS file.
         input_sheetname (str): The name of the sheet in the corrupt XLS file.
-        output_folder (WindowsPath): The path to the output folder.
+        output_folder (str,WindowsPath): The path to the output folder.
         output_filename (str): The name of the output file.
     
     Examples:
@@ -218,12 +220,12 @@ def excel_change_corrupt_xls_to_xlsx(input_file:WindowsPath, input_sheetname:str
         x2x.to_xlsx(output_filename)
 
 @dostify(errors=[])
-def excel_convert_xls_to_xlsx(input_file:WindowsPath, output_folder:WindowsPath, output_filename:str):
+def excel_convert_xls_to_xlsx(input_file:Union[str,WindowsPath], output_folder:Union[str,WindowsPath], output_filename:str):
     """Convert an XLS file to an XLSX file.
     
     Args:
-        input_file (WindowsPath): The path to the XLS file.
-        output_folder (WindowsPath): The path to the output folder.
+        input_file (str,WindowsPath): The path to the XLS file.
+        output_folder (str,WindowsPath): The path to the output folder.
         output_filename (str): The name of the output file.
         
     Examples:
@@ -257,12 +259,12 @@ def excel_convert_xls_to_xlsx(input_file:WindowsPath, output_folder:WindowsPath,
         x2x.to_xlsx(output_filename)
 
 @dostify(errors=[])
-def convert_image_jpg_to_png(input_filepath:WindowsPath, output_folder:WindowsPath, output_filename:str):
+def convert_image_jpg_to_png(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath], output_filename:str):
     """Convert a JPG image to a PNG image.
 
     Args:
-        input_filepath (WindowsPath): The path to the JPG image.
-        output_folder (WindowsPath): The path to the output folder.
+        input_filepath (str,WindowsPath): The path to the JPG image.
+        output_folder (str,WindowsPath): The path to the output folder.
         output_filename (str): The name of the output file.
     
     Examples:
@@ -291,13 +293,13 @@ def convert_image_jpg_to_png(input_filepath:WindowsPath, output_folder:WindowsPa
     rgb_im.save(output_filename)
 
 @dostify(errors=[])
-def convert__image_png_to_jpg(input_filepath:WindowsPath, output_folder:WindowsPath, output_filename:str):
+def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath], output_filename:str):
     """Converts the image from png to jpg format
     
     Args:
-        input_filepath {WindowsPath} -- Input image file path
-        output_folder {WindowsPath} -- Output folder path
-        output_filename {str} -- Output file name
+        input_filepath (str,WindowsPath) -- Input image file path
+        output_folder (str,WindowsPath) -- Output folder path
+        output_filename (str) -- Output file name
         
     Examples:
         >>> convert__image_png_to_jpg('tests\\demo.png')
@@ -325,13 +327,13 @@ def convert__image_png_to_jpg(input_filepath:WindowsPath, output_folder:WindowsP
     rgb_im.save(output_filename)
 
 @dostify(errors=[])
-def excel_to_colored_html(input_filepath:WindowsPath, output_folder:WindowsPath, output_filename:str):
+def excel_to_colored_html(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath], output_filename:str):
     """Converts the excel file to colored html file
 
     Args:
-        input_filepath {WindowsPath} -- Input excel file path
-        output_folder {WindowsPath} -- Output folder path
-        output_filename {str} -- Output file name
+        input_filepath (str,WindowsPath) -- Input excel file path
+        output_folder (str,WindowsPath) -- Output folder path
+        output_filename (str) -- Output file name
     
     Examples:
         >>> excel_to_colored_html('tests\\demo.xlsx')

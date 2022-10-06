@@ -237,7 +237,7 @@ def image_to_text(image_path:WindowsPath) -> str:
         string: Text from the image
 
     Examples:
-        >>> image_to_text("C:\\Users\\user\\Desktop\\image.png")
+        >>> image_to_text("tests\demo2.png")
     """
     # Import Section
     from PIL import Image

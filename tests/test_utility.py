@@ -27,7 +27,7 @@ class tests(unittest.TestCase):
         uninstall_module("requests")
     
     def test_install_module(self):
-        install_module("pytesseract")
+        install_module("requests")
 
     def test_text_from_image(self):
         self.assertEqual(image_to_text("tests\demo2.png"),"File\n")
