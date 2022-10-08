@@ -38,11 +38,11 @@ if not os.path.exists(output_folder_path):
     os.makedirs(output_folder_path)
 
 @dostify(errors=[])
-def convert_csv_to_excel(input_file:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str="",contains_headers:bool=True,sep:str=","):
+def convert_csv_to_excel(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str="",contains_headers:bool=True,sep:str=","):
     """Convert a CSV file to an Excel file.
     
     Args:
-        input_file (str,WindowsPath): The path to the CSV file.
+        input_filepath (str,WindowsPath): The path to the CSV file.
         output_folder (str,WindowsPath): The path to the output folder.
         output_filename (str): The name of the output file.
         contains_headers (bool): Whether the CSV file contains headers.
@@ -60,7 +60,7 @@ def convert_csv_to_excel(input_file:Union[str,WindowsPath], output_folder:Union[
     import datetime
 
     # Code Section
-    if not input_file:
+    if not input_filepath:
         raise Exception("CSV File name cannot be empty")
 
     if not output_folder:
@@ -81,7 +81,7 @@ def convert_csv_to_excel(input_file:Union[str,WindowsPath], output_folder:Union[
     headers='infer'
     if contains_headers==False:
         headers=None
-    df = pd.read_csv(input_file, sep=sep,header=headers)
+    df = pd.read_csv(input_filepath, sep=sep,header=headers)
     df.to_excel(writer, sheet_name='Sheet1', index=False,header=contains_headers)
     writer.save()
     
@@ -128,11 +128,11 @@ def get_image_from_base64(input_text:str, output_folder:Union[str,WindowsPath]="
         raise Exception("Image folder path does not exist")
 
 @dostify(errors=[])
-def convert_image_to_base64(input_file:Union[str,WindowsPath]):
+def convert_image_to_base64(input_filepath:Union[str,WindowsPath]):
     """Get a base64 encoded string from an image.
 
     Args:
-        input_file (str,WindowsPath): The path to the image file.
+        input_filepath (str,WindowsPath): The path to the image file.
     
     Examples:
         >>> convert_image_to_base64('tests\\demo.png')
@@ -143,22 +143,22 @@ def convert_image_to_base64(input_file:Union[str,WindowsPath]):
     import os
 
     # Code section
-    if not input_file:
+    if not input_filepath:
         raise Exception("Image file name cannot be empty")
 
-    if os.path.exists(input_file):
-        with open(input_file, "rb") as f:
+    if os.path.exists(input_filepath):
+        with open(input_filepath, "rb") as f:
             data = base64.b64encode(f.read())
     else:
         raise Exception("Image file does not exist")
     return data
 
 @dostify(errors=[])
-def excel_change_corrupt_xls_to_xlsx(input_file:Union[str,WindowsPath], input_sheetname:str, output_folder:Union[str,WindowsPath]="", output_filename:str=""):
+def excel_change_corrupt_xls_to_xlsx(input_filepath:Union[str,WindowsPath], input_sheetname:str, output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Change a corrupt XLS file to an XLSX file.
 
     Args:
-        input_file (str,WindowsPath): The path to the corrupt XLS file.
+        input_filepath (str,WindowsPath): The path to the corrupt XLS file.
         input_sheetname (str): The name of the sheet in the corrupt XLS file.
         output_folder (str,WindowsPath): The path to the output folder.
         output_filename (str): The name of the output file.
@@ -177,7 +177,7 @@ def excel_change_corrupt_xls_to_xlsx(input_file:Union[str,WindowsPath], input_sh
     from pathlib import Path
 
     # Code section
-    if not input_file:
+    if not input_filepath:
         raise Exception("XLS File name cannot be empty")
 
     if not input_sheetname:
@@ -187,7 +187,7 @@ def excel_change_corrupt_xls_to_xlsx(input_file:Union[str,WindowsPath], input_sh
         output_folder = output_folder_path
 
     if not output_filename:
-        output_filename = os.path.join(output_folder, str(Path(input_file).stem), str(
+        output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+ str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".xlsx")
     else:
         output_filename = output_filename.split(".")[0] + ".xlsx"
@@ -195,7 +195,7 @@ def excel_change_corrupt_xls_to_xlsx(input_file:Union[str,WindowsPath], input_sh
             output_folder, str(output_filename))
 
     # Opening the file
-    file1 = io.open(input_file, "r")
+    file1 = io.open(input_filepath, "r")
     data = file1.readlines()
 
     # Creating a workbook object
@@ -211,20 +211,20 @@ def excel_change_corrupt_xls_to_xlsx(input_file:Union[str,WindowsPath], input_sh
             sheet.write(i, j, val)
 
     # Saving the file as a normal xls excel file
-    xldoc.save(input_file)
+    xldoc.save(input_filepath)
 
     # checking the downloaded file is present or not
-    if os.path.exists(input_file):
+    if os.path.exists(input_filepath):
         # converting xls to xlsx
-        x2x = XLS2XLSX(input_file)
+        x2x = XLS2XLSX(input_filepath)
         x2x.to_xlsx(output_filename)
 
 @dostify(errors=[])
-def excel_convert_xls_to_xlsx(input_file:Union[str,WindowsPath], output_folder:Union[str,WindowsPath], output_filename:str):
+def excel_convert_xls_to_xlsx(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Convert an XLS file to an XLSX file.
     
     Args:
-        input_file (str,WindowsPath): The path to the XLS file.
+        input_filepath (str,WindowsPath): The path to the XLS file.
         output_folder (str,WindowsPath): The path to the output folder.
         output_filename (str): The name of the output file.
         
@@ -239,23 +239,23 @@ def excel_convert_xls_to_xlsx(input_file:Union[str,WindowsPath], output_folder:U
     import datetime
 
     # Code section
-    if not input_file:
+    if not input_filepath:
         raise Exception("XLS File name cannot be empty")
 
     if not output_folder:
         output_folder = output_folder_path
 
     if not output_filename:
-        output_filename = os.path.join(output_folder, str(Path(input_file).stem), str(
+        output_filename = os.path.join(output_folder, str(Path(input_filepath).stem), str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".xlsx")
     else:
         output_filename = os.path.join(
             output_folder, str(output_filename)+".xlsx")
 
     # Checking the path and then converting it to xlsx file
-    if os.path.exists(input_file):
+    if os.path.exists(input_filepath):
         # converting xls to xlsx
-        x2x = XLS2XLSX(input_file)
+        x2x = XLS2XLSX(input_filepath)
         x2x.to_xlsx(output_filename)
 
 @dostify(errors=[])
@@ -325,7 +325,7 @@ def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_fold
     rgb_im = im.convert('RGB')
     print(output_filename)
     rgb_im.save(output_filename)
-
+print(convert_image_to_base64('tests\\demo2.png')[0:1])
 @dostify(errors=[])
 def excel_to_colored_html(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Converts the excel file to colored html file

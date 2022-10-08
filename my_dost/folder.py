@@ -17,7 +17,7 @@ The module contains the following functions:
 import os
 from pathlib import WindowsPath
 from typing import List, Union
-from my_dost.helpers import dostify
+from helpers import dostify
 
 
 @dostify(errors=[(FileNotFoundError,'')])

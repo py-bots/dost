@@ -15,10 +15,11 @@ This module contains the following functions:
 
 from pathlib import WindowsPath
 from typing import List,Union
+import os
 from helpers import dostify
 
 @dostify(errors=[(ValueError,'')])
-def send_gmail_using_app_password(gmail_username:str, gmail_app_password:str, to_email_id:Union[str, List[str]], subject:str, message:str, attachment_path:Union[WindowsPath, List[WindowsPath]]) -> None:
+def send_gmail_using_app_password(gmail_username:str, gmail_app_password:str, to_email_id:Union[str, List[str]], subject:str, message:str, attachment_path:Union[str,List[str],WindowsPath, List[WindowsPath]]="") -> None:
 
     """Send email using gmail app password
     Args:
@@ -27,9 +28,10 @@ def send_gmail_using_app_password(gmail_username:str, gmail_app_password:str, to
         to_email_id (Union[str, List[str]]): To email id
         subject (str): Subject of the email
         message (str): Message of the email
-        attachment_path (Union[WindowsPath, List[WindowsPath]]): Attachment path
+        attachment_path (Union[str, List(str)(optional), WindowsPath, List[WindowsPath]]): Attachment path
     Examples:
-        >>> send_gmail_using_app_password('xxxxxxxxx')
+        >>> send_gmail_using_app_password('abcd','abcd','abcd@abc.com','abcd','abcd','abc.pdf')
+
     """
     # Import Section
     import os
