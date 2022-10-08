@@ -259,7 +259,7 @@ def excel_convert_xls_to_xlsx(input_file:Union[str,WindowsPath], output_folder:U
         x2x.to_xlsx(output_filename)
 
 @dostify(errors=[])
-def convert_image_jpg_to_png(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath], output_filename:str):
+def convert_image_jpg_to_png(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Convert a JPG image to a PNG image.
 
     Args:
@@ -276,24 +276,26 @@ def convert_image_jpg_to_png(input_filepath:Union[str,WindowsPath], output_folde
     import os
     from PIL import Image
     import datetime
-
+    print(5)
     # Code section
     if not input_filepath:
+        print(6)
         raise Exception("Enter the valid input image path")
     if not output_folder:
+        print(7)
         output_folder = output_folder_path
     if not output_filename:
-        output_filename = os.path.join(output_folder, str(Path(input_filepath).stem), str(
+        print(8)
+        output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+ str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".png")
     else:
         output_filename = os.path.join(output_folder, str(output_filename) + ".png")
-
     im = Image.open(input_filepath)
     rgb_im = im.convert('RGB')
     rgb_im.save(output_filename)
-
+    
 @dostify(errors=[])
-def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath], output_filename:str):
+def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Converts the image from png to jpg format
     
     Args:
@@ -317,13 +319,14 @@ def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_fold
     if not output_folder:
         output_folder = output_folder_path
     if not output_filename:
-        output_filename = os.path.join(output_folder, str(Path(input_filepath).stem), str(
+        output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+ str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".jpg")
     else:
         output_filename = os.path.join(output_folder, str(output_filename) + ".jpg")
 
     im = Image.open(input_filepath)
     rgb_im = im.convert('RGB')
+    print(output_filename)
     rgb_im.save(output_filename)
 
 @dostify(errors=[])
