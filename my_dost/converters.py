@@ -38,7 +38,7 @@ if not os.path.exists(output_folder_path):
     os.makedirs(output_folder_path)
 
 @dostify(errors=[])
-def convert_csv_to_excel(input_file:Union[str,WindowsPath], output_folder:Union[str,WindowsPath], output_filename:str="",contains_headers:bool=True,sep:str=","):
+def convert_csv_to_excel(input_file:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str="",contains_headers:bool=True,sep:str=","):
     """Convert a CSV file to an Excel file.
     
     Args:
@@ -49,7 +49,7 @@ def convert_csv_to_excel(input_file:Union[str,WindowsPath], output_folder:Union[
         sep (str): The separator used in the CSV file.
         
     Examples:
-        >>> convert_csv_to_excel('tests\\demo.csv', r'tests', "demo.xlsx")
+        >>> convert_csv_to_excel('tests\\demo.csv')
 
 
     """
@@ -86,7 +86,7 @@ def convert_csv_to_excel(input_file:Union[str,WindowsPath], output_folder:Union[
     writer.save()
     
 @dostify(errors=[])
-def get_image_from_base64(input_text:str, output_folder:Union[str,WindowsPath], output_filename:str):
+def get_image_from_base64(input_text:str, output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Get an image from a base64 encoded string.
     
     Args:
@@ -95,7 +95,7 @@ def get_image_from_base64(input_text:str, output_folder:Union[str,WindowsPath], 
         output_filename (str): The name of the output file.
         
     Examples:
-        >>> get_image_from_base64('tests\\demo.txt')
+        >>> get_image_from_base64('"base_64_string')
     
     """
     # Import Section
@@ -154,7 +154,7 @@ def convert_image_to_base64(input_file:Union[str,WindowsPath]):
     return data
 
 @dostify(errors=[])
-def excel_change_corrupt_xls_to_xlsx(input_file:Union[str,WindowsPath], input_sheetname:str, output_folder:Union[str,WindowsPath], output_filename:str):
+def excel_change_corrupt_xls_to_xlsx(input_file:Union[str,WindowsPath], input_sheetname:str, output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Change a corrupt XLS file to an XLSX file.
 
     Args:
@@ -276,16 +276,13 @@ def convert_image_jpg_to_png(input_filepath:Union[str,WindowsPath], output_folde
     import os
     from PIL import Image
     import datetime
-    print(5)
+
     # Code section
     if not input_filepath:
-        print(6)
         raise Exception("Enter the valid input image path")
     if not output_folder:
-        print(7)
         output_folder = output_folder_path
     if not output_filename:
-        print(8)
         output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+ str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".png")
     else:
@@ -293,7 +290,7 @@ def convert_image_jpg_to_png(input_filepath:Union[str,WindowsPath], output_folde
     im = Image.open(input_filepath)
     rgb_im = im.convert('RGB')
     rgb_im.save(output_filename)
-    
+
 @dostify(errors=[])
 def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Converts the image from png to jpg format
@@ -330,7 +327,7 @@ def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_fold
     rgb_im.save(output_filename)
 
 @dostify(errors=[])
-def excel_to_colored_html(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath], output_filename:str):
+def excel_to_colored_html(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Converts the excel file to colored html file
 
     Args:
