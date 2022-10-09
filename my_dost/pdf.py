@@ -13,8 +13,11 @@ The module contains the following functions:
 
 
 import os
+from pathlib import WindowsPath
 from tkinter import EXCEPTION
+from typing import Union
 from helpers import dostify
+
 output_folder_path = os.path.join(
     os.path.abspath(r'C:\Users\Public\PyBots'), 'My-DOST', 'PDF Folder')
 
@@ -23,12 +26,12 @@ if not os.path.exists(output_folder_path):
     os.makedirs(output_folder_path)
 
 @dostify(errors=[(FileNotFoundError,"")])
-def pdf_extract_all_tables(pdf_file_path: str, output_folder: str, output_file_name: str, table_with_borders:bool=True) -> None:
+def pdf_extract_all_tables(pdf_file_path: Union[str,WindowsPath], output_folder: Union[str,WindowsPath], output_file_name: str, table_with_borders:bool=True) -> None:
     """Extracts all tables from a pdf file and saves them as csv files in the specified folder.
     
     Args:
-        pdf_file_path (str): Path to the pdf file.
-        output_folder (str): Path to the output folder.
+        pdf_file_path (str,WindowsPath): Path to the pdf file.
+        output_folder (str,WindowsPath): Path to the output folder.
         output_file_name (str): Name of the output file.
         table_with_borders (bool, optional): Whether the table has borders. Defaults to True.
     
