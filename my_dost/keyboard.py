@@ -20,7 +20,7 @@ This module contains the following functions:
 from helpers import dostify
 
 @dostify(errors=[])
-def key_press(write_to_window:str, key_1='', key_2='', key_3='') -> None:
+def key_press(write_to_window:str, key_1:str, key_2:str='', key_3:str='') -> None:
     """Press a key or a combination of keys.
     Args:
         write_to_window (str): The window to write to.
@@ -29,12 +29,12 @@ def key_press(write_to_window:str, key_1='', key_2='', key_3='') -> None:
         key_3 (str): The third key to press.
     Examples:
         >>> key_press('Notepad', 'a')
-        >>> key_press('Notepad', 'a', 'b')
-        >>> key_press('Notepad', 'a', 'b', 'c')
+        >>> key_press('Notepad', '{VK_CONTROL}', 'S')
+        >>> key_press('Notepad', '{VK_CONTROL}', 'S',"enter")
     """
     # Import Section
     import pywinauto as pwa
-    from my_dost.Engine import window_activate_window
+    from windows import window_activate_window
 
 
     # Code Section
@@ -93,22 +93,22 @@ def key_press(write_to_window:str, key_1='', key_2='', key_3='') -> None:
             str(key_1_down + key_2_down + key_3 + key_2_up + key_1_up))
 
 @dostify(errors=[])
-def key_write_enter(text_to_write:str, write_to_window:str, key:str="e") -> None:
+def key_write_enter(write_to_window:str, text_to_write:str, key:str="e") -> None:
     """Write text to window and press enter key
     
     Args:
-        text_to_write (str): Text to write
         write_to_window (str): Window to write to
+        text_to_write (str): Text to write
         key (str, optional): Key to press. Defaults to "e".
 
     Examples:
-        >>> key_write_enter("Hello World", "Notepad")
+        >>> key_write_enter("Notepad", "Hello World")
     """
 
     # Import Section
     import time
     import pywinauto as pwa
-    from my_dost.Engine import window_activate_window
+    from windows import window_activate_window
 
     # Code Section
     if not text_to_write:
@@ -133,12 +133,12 @@ def key_hit_enter(write_to_window:str) -> None:
         write_to_window (str): Window to write to
         
     Examples:
-        >>> key_press(key="enter", write_to_window=write_to_window)
+        >>> key_press(write_to_window=write_to_window, key="enter",)
         """
     
     # Import Section
     import pywinauto as pwa
-    from my_dost.Engine import window_activate_window
+    from windows import window_activate_window
 
     # Code Section
     if write_to_window:
