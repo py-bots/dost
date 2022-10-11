@@ -345,7 +345,7 @@ def excel_to_dataframe(input_filepath:Union[str,WindowsPath], input_sheetname:st
     return data
 
 @dostify(errors=[])
-def excel_get_row_column_count(df) -> tuple(int,int):
+def excel_get_row_column_count(df: pd.DataFrame) -> tuple(int,int):
     """ Returns the row and column count of the dataframe
     
     Args:
@@ -376,7 +376,7 @@ def excel_get_row_column_count(df) -> tuple(int,int):
     return data
 
 @dostify(errors=[])
-def dataframe_to_excel(df, output_folder:WindowsPath, output_filename:str, output_sheetname:str="Sheet1", mode:str='a') -> None:  # append / overwrite
+def dataframe_to_excel(df:pd.DataFrame, output_folder:WindowsPath, output_filename:str, output_sheetname:str="Sheet1", mode:str='a') -> None:  # append / overwrite
     """ Converts the dataframe to excel file
     
     Args:
@@ -434,7 +434,7 @@ def dataframe_to_excel(df, output_folder:WindowsPath, output_filename:str, outpu
             df.to_excel(writer, sheet_name=output_sheetname, index=False)
 
 @dostify(errors=[])
-def excel_set_single_cell(df, column_name:str, cell_number:int, text:str) -> pd.DataFrame:
+def excel_set_single_cell(df:pd.DataFrame, column_name:str, cell_number:int, text:str) -> pd.DataFrame:
     """
     Description:
         Writes the given text to the desired column/cell number for the given excel file
@@ -474,7 +474,7 @@ def excel_set_single_cell(df, column_name:str, cell_number:int, text:str) -> pd.
     return data
 
 @dostify(errors=[])
-def excel_get_single_cell(df, column_name:str, cell_number:int,header:int=1) -> str:
+def excel_get_single_cell(df:pd.DataFrame, column_name:str, cell_number:int,header:int=1) -> str:
     """Gets the text from the desired column/cell number for the given excel file
     
     Args:

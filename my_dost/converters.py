@@ -326,7 +326,7 @@ def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_fold
     rgb_im = im.convert('RGB')
     print(output_filename)
     rgb_im.save(output_filename)
-print(convert_image_to_base64('tests\\demo2.png')[0:1])
+
 @dostify(errors=[])
 def excel_to_colored_html(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Converts the excel file to colored html file
@@ -357,4 +357,4 @@ def excel_to_colored_html(input_filepath:Union[str,WindowsPath], output_folder:U
             output_folder, output_filename+'.html')
 
     xlsx2html(input_filepath, output_filename)
-    os.startfile(output_folder)
+    # os.startfile(output_folder)
