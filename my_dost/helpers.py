@@ -26,9 +26,10 @@ def try_catch_log_check_output(errors: list, save_log: bool, log_file: str):
         def wrapper(*args, **kwargs):
             try:
                 start = time.perf_counter()
+                result = func(*args, **kwargs)
                 try:
                     type_dict = func.__annotations__
-                    result = func(*args, **kwargs)
+                    
                     if 'return' in type_dict:
                         check_type('return', result, type_dict['return'])
                 except TypeError:
