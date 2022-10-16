@@ -19,7 +19,7 @@ The module contains the following functions:
 """
 
 
-from helpers import dostify
+from my_dost.helpers import dostify
 
 @dostify(errors=[])
 def string_extract_only_alphabets(inputString:str) -> str:

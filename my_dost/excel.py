@@ -36,12 +36,13 @@ This module contains the following functions:
 """
 
 
-from ctypes import Union
+from asyncore import read
+from typing import Union
 from multiprocessing.sharedctypes import Value
 import pandas as pd
 import os
 from pathlib import WindowsPath
-from helpers import dostify
+from my_dost.helpers import dostify
 from typing import List
 
 output_folder_path = os.path.join(os.path.abspath(
@@ -227,7 +228,7 @@ def excel_upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url:str, shee
         set_with_dataframe(worksheet, df)
 
 @dostify(errors=[])
-def excel_create_file(output_folder:WindowsPath, output_filename:str, output_sheetname:str="Sheet1") -> None:
+def excel_create_file(output_folder:Union[str,WindowsPath], output_filename:str, output_sheetname:str="Sheet1") -> None:
     """ Creates an excel file with a sheet in the specified folder.
     
     Args:
@@ -269,7 +270,7 @@ def excel_create_file(output_folder:WindowsPath, output_filename:str, output_she
     wb.save(filename=output_filename)
 
 @dostify(errors=[])
-def valid_data(input_filepath:WindowsPath, input_sheetname: str, validate_filepath:bool=True, validate_sheetname:bool=True) -> bool:
+def valid_data(input_filepath:Union[str,WindowsPath], input_sheetname: str, validate_filepath:bool=True, validate_sheetname:bool=True) -> bool:
     """This function validates the input file path and sheet name.
 
     Args:
@@ -309,7 +310,7 @@ def valid_data(input_filepath:WindowsPath, input_sheetname: str, validate_filepa
                     "Please provide the correct sheet name")
         return True
 
-@dostify(errors=[])
+@dostify(errors=[(ValueError,'')])
 def excel_to_dataframe(input_filepath:Union[str,WindowsPath], input_sheetname:str, header:int=1) -> pd.DataFrame:
     """Converts excel file to dataframe.
     
@@ -338,14 +339,19 @@ def excel_to_dataframe(input_filepath:Union[str,WindowsPath], input_sheetname:st
 
     if not valid_data(input_filepath, input_sheetname):
         raise ValueError("File does not contain valid data")
-
-    if header > 0:
+    data=pd.DataFrame()
+    if header >0:
         data = pd.read_excel(
             input_filepath, sheet_name=input_sheetname, header=header-1, engine='openpyxl')
+    elif header==0:
+        data=pd.read_excel(
+            input_filepath, sheet_name=input_sheetname, header=None, engine='openpyxl')
+    else:
+        ValueError(f'Header value cannot be negative')
     return data
 
 @dostify(errors=[])
-def excel_get_row_column_count(df: pd.DataFrame) -> tuple(int,int):
+def excel_get_row_column_count(df: pd.DataFrame) -> tuple:
     """ Returns the row and column count of the dataframe
     
     Args:
@@ -368,7 +374,6 @@ def excel_get_row_column_count(df: pd.DataFrame) -> tuple(int,int):
         raise Exception("Please provide the dataframe")
 
     row, col = df.shape
-    row = row + 1
     data = (row, col)
 
     # If the function returns a value, it should be assigned to the data variable.
@@ -448,7 +453,7 @@ def excel_set_single_cell(df:pd.DataFrame, column_name:str, cell_number:int, tex
         data (df): Modified dataframe
     
     Examples:
-        >>> excel_set_single_cell(dataframe, "Column1", 1, "abc")
+        >>> excel_set_single_cell(dataframe, "Column 1", 1, "abc")
         df
     """
 
@@ -487,7 +492,7 @@ def excel_get_single_cell(df:pd.DataFrame, column_name:str, cell_number:int,head
         data (str): Text from the desired column/cell number for the given excel file
     
     Examples:
-        >>> excel_get_single_cell("C:\\Users\\user\\Desktop\\excel_file.xlsx", "Column1", 1)
+        >>> excel_get_single_cell(df, "Column 1", 1)
         "abc"
     """
 
@@ -512,7 +517,7 @@ def excel_get_single_cell(df:pd.DataFrame, column_name:str, cell_number:int,head
     return data
 
 @dostify(errors=[])
-def excel_get_all_header_columns(df) -> List[str]:
+def excel_get_all_header_columns(df:pd.DataFrame) -> Union[List[str],List[int]]:
     """Gets all header columns from the excel file
     
     Args:
@@ -522,7 +527,7 @@ def excel_get_all_header_columns(df) -> List[str]:
         data (list): List of header columns
     
     Examples:
-        >>> excel_get_all_header_columns("C:\\Users\\user\\Desktop\\excel_file.xlsx")
+        >>> excel_get_all_header_columns(df)
         ["Column1", "Column2"]
     """
 
@@ -567,7 +572,7 @@ def excel_get_all_sheet_names(input_filepath:WindowsPath) -> List[str]:
     return data
 
 @dostify(errors=[])
-def excel_drop_columns(df, cols:Union[str, list(str)]) -> pd.DataFrame:
+def excel_drop_columns(df:pd.DataFrame, cols:Union[str, List[str]]) -> pd.DataFrame:
     """Drops the columns from the excel file
     
     Args:
@@ -690,7 +695,7 @@ def isNaN(value:str) -> bool:
     return math.isnan(float(value))
 
 @dostify(errors=[])
-def df_from_list(list_of_lists:list, column_names:list(str)) -> pd.DataFrame:
+def df_from_list(list_of_lists:list, column_names:List[str]) -> pd.DataFrame:
     """Converts list of lists to dataframe
     
     Args:
@@ -790,7 +795,7 @@ def df_extract_sub_df(df, row_start: int, row_end: int, column_start: int, colum
     return data
 
 @dostify(errors=[])
-def set_value_in_df(df, row_number: int, column_number: int, value:str) -> pd.DataFrame:
+def set_value_in_df(df:pd.DataFrame, row_number: int, column_number: int, value:str) -> pd.DataFrame:
     """Sets value in dataframe
     
     Args:
