@@ -1,6 +1,3 @@
-from email import header
-from fcntl import F_SEAL_SEAL
-import sys
 import os
 import unittest
 from my_dost.excel import *
@@ -103,7 +100,28 @@ class test(unittest.TestCase):
         df=get_demo_df(header_value)
         df=excel_clear_sheet(df)
         self.assertEqual(df.empty,True)
-        # self.assertEqual(df.columns.empty,False)
+        if(df.columns.empty):
+            self.assertEqual(df.columns.empty,True)
+        else:
+            self.assertEqual(df.columns.empty,False)
+    
+    def test_excel_drop_columns(self):
+        df=get_demo_df(header_value)
+        columns=list(df.columns)
+        columns_to_drop=[columns[0],columns[1]]
+        # columns_to_drop=columns[0]
+        if(isinstance(columns_to_drop,list)):
+            df=excel_drop_columns(df, columns_to_drop)
+            for column_to_drop in columns_to_drop:
+                self.assertEqual(column_to_drop not in df.columns,True)
+        else:
+            df=excel_drop_columns(df, columns_to_drop)
+            self.assertEqual(columns_to_drop not in df.columns,True)
         
+    def test_isNaN(self):
+        value="3"
+        if(isNaN(value)!=None):
+            self.assertEqual(isNaN(value),False)
+
 if __name__ == '__main__':
     unittest.main()

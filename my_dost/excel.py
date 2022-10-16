@@ -571,7 +571,7 @@ def excel_get_all_sheet_names(input_filepath:WindowsPath) -> List[str]:
     data = wb.sheetnames
     return data
 
-@dostify(errors=[])
+@dostify(errors=[(KeyError,"Please provide valid column names")])
 def excel_drop_columns(df:pd.DataFrame, cols:Union[str, List[str]]) -> pd.DataFrame:
     """Drops the columns from the excel file
     
@@ -672,12 +672,12 @@ def excel_remove_duplicates(df, column_name:str) -> pd.DataFrame:
     data = df
     return data
 
-@dostify(errors=[])
+@dostify(errors=[(ValueError,"Give a valid value")])
 def isNaN(value:str) -> bool:
     """Checks if the value is NaN
 
     Args:
-        value (str): value to be checked
+        value (str of number): value to be checked
 
     Returns:
         bool: True if value is NaN, False otherwise
@@ -689,8 +689,7 @@ def isNaN(value:str) -> bool:
 
     # Code Section
     if not value:
-        raise Exception(
-            "Value is empty. Please give a value to check.")
+        raise ValueError
     import math
     return math.isnan(float(value))
 
