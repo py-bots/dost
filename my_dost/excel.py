@@ -877,7 +877,7 @@ def df_drop_rows(df:pd.DataFrame, row_start: int, row_end: int) -> pd.DataFrame:
     Args:
         df (pandas dataframe): dataframe
         row_start (int): row start (inclusive)
-        row_end (int): row end   (exclusive)
+        row_end (int): row end   (inclusive)
 
     Returns:
         pandas dataframe: dataframe with rows dropped

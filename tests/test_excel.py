@@ -84,9 +84,9 @@ class test(unittest.TestCase):
         df=get_demo_df(header_value)
         total_rows=df.shape[0]
         start_row=2
-        end_row=4
+        end_row=3
         df=df_drop_rows(df, start_row,end_row)
-        self.assertEqual(df.shape[0], total_rows-(end_row-start_row))
+        self.assertEqual(df.shape[0], total_rows-(end_row-start_row+1))   ## as we are deleting both starting and ending rows
 
 if __name__ == '__main__':
     unittest.main()
