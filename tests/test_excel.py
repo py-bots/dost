@@ -9,6 +9,12 @@ def get_demo_df(header):
     df=excel_to_dataframe(input_filepath=file_path, input_sheetname=sheetname, header=header)
     return df
 
+def create_excel_sheet(file_path="tests/test.xlsx",sheetname=["Test_sheet","sheet2","Sheet 3"]):
+    folder=file_path.split("/")[0]
+    file_name=file_path.split("/")[1]
+    excel_create_file(output_folder=folder, output_filename=file_name, output_sheetname=sheetname)
+
+
 class test(unittest.TestCase):
     def test_write_excel_file(self):
         ## Case 1 - Complete inputs
@@ -36,6 +42,15 @@ class test(unittest.TestCase):
         excel_create_file(output_folder=folder, output_filename=file_name, output_sheetname=sheetname)
         assert os.path.exists(file_path+".xlsx")==True
         os.remove(file_path+".xlsx")
+
+        ## Case 4 - Multiple Sheets
+        file_path="tests/test.xlsx"
+        sheetname=["Test_sheet","sheet2","Sheet 3"]
+        folder=file_path.split("/")[0]
+        file_name=file_path.split("/")[1]
+        excel_create_file(output_folder=folder, output_filename=file_name, output_sheetname=sheetname)
+        assert os.path.exists(file_path)==True
+        os.remove(file_path)
     
     def test_excel_to_dataframe(self):
         df=get_demo_df(header_value)
@@ -123,5 +138,13 @@ class test(unittest.TestCase):
         if(isNaN(value)!=None):
             self.assertEqual(isNaN(value),False)
 
+    def test_excel_get_all_sheet_names(self):
+        sheet_names=["Test_sheet","sheet2","sheet 2"]
+        create_excel_sheet(sheetname=sheet_names)
+        sheets=excel_get_all_sheet_names("tests/test.xlsx")
+        sheets.sort()
+        sheet_names.sort()
+        self.assertEqual(sheets,sheet_names)
+        os.remove("tests/test.xlsx")
 if __name__ == '__main__':
     unittest.main()

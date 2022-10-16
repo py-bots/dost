@@ -228,7 +228,7 @@ def excel_upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url:str, shee
         set_with_dataframe(worksheet, df)
 
 @dostify(errors=[])
-def excel_create_file(output_folder:Union[str,WindowsPath], output_filename:str, output_sheetname:str="Sheet1") -> None:
+def excel_create_file(output_folder:Union[str,WindowsPath], output_filename:str, output_sheetname:Union[str, List[str]]="Sheet1") -> None:
     """ Creates an excel file with a sheet in the specified folder.
     
     Args:
@@ -265,12 +265,16 @@ def excel_create_file(output_folder:Union[str,WindowsPath], output_filename:str,
 
     wb = Workbook()
     ws = wb.active
-    ws.title = output_sheetname
-
+    if(isinstance(output_sheetname, list)):
+        ws.title = output_sheetname[0]
+        for sheet in output_sheetname[1:]:
+            wb.create_sheet(sheet)
+    else:
+        ws.title = output_sheetname
     wb.save(filename=output_filename)
 
 @dostify(errors=[])
-def valid_data(input_filepath:Union[str,WindowsPath], input_sheetname: str, validate_filepath:bool=True, validate_sheetname:bool=True) -> bool:
+def valid_data(input_filepath:Union[str,WindowsPath], input_sheetname: str="", validate_filepath:bool=True, validate_sheetname:bool=True) -> bool:
     """This function validates the input file path and sheet name.
 
     Args:
@@ -543,7 +547,7 @@ def excel_get_all_header_columns(df:pd.DataFrame) -> Union[List[str],List[int]]:
     return data
 
 @dostify(errors=[])
-def excel_get_all_sheet_names(input_filepath:WindowsPath) -> List[str]:
+def excel_get_all_sheet_names(input_filepath:Union[str,WindowsPath]) -> List[str]:
     """Gets the sheet names from the excel file
     
     Args:
@@ -553,7 +557,7 @@ def excel_get_all_sheet_names(input_filepath:WindowsPath) -> List[str]:
         data (list): List of sheet names
         
     Examples:
-        >>> excel_get_all_sheet_names("C:\\Users\\user\\Desktop\\excel_file.xlsx")
+        >>> excel_get_all_sheet_names("demo")
         ["Sheet1", "Sheet2"]
     """
 
