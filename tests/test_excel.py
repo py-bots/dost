@@ -72,5 +72,21 @@ class test(unittest.TestCase):
         value="abc"
         set_value_in_df(df, row_number, column_number, value)
         self.assertEqual(df.iloc[row_number-1,column_number-1], value)
+
+    def test_get_value_in_df(self):
+        df=get_demo_df(header_value)
+        row_number=1
+        column_number=2
+        value=get_value_in_df(df, row_number, column_number)
+        self.assertEqual(df.iloc[row_number-1,column_number-1], value)
+
+    def test_df_drop_rows(self):
+        df=get_demo_df(header_value)
+        total_rows=df.shape[0]
+        start_row=2
+        end_row=4
+        df=df_drop_rows(df, start_row,end_row)
+        self.assertEqual(df.shape[0], total_rows-(end_row-start_row))
+
 if __name__ == '__main__':
     unittest.main()

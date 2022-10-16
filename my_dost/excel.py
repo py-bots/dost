@@ -834,7 +834,7 @@ def set_value_in_df(df:pd.DataFrame, row_number: int, column_number: int, value:
         return df
 
 @dostify(errors=[])
-def get_value_in_df(df, row_number: int, column_number: int) -> str:
+def get_value_in_df(df:pd.DataFrame, row_number: int, column_number: int) -> str:
     """Gets value from dataframe
     
     Args:
@@ -871,7 +871,7 @@ def get_value_in_df(df, row_number: int, column_number: int) -> str:
     return data
 
 @dostify(errors=[])
-def df_drop_rows(df, row_start: int, row_end: int) -> pd.DataFrame: 
+def df_drop_rows(df:pd.DataFrame, row_start: int, row_end: int) -> pd.DataFrame: 
     """Drops rows from dataframe
     
     Args:
