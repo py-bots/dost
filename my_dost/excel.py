@@ -606,7 +606,7 @@ def excel_drop_columns(df:pd.DataFrame, cols:Union[str, List[str]]) -> pd.DataFr
     return df
 
 @dostify(errors=[])
-def excel_clear_sheet(df) -> pd.DataFrame:
+def excel_clear_sheet(df:pd.DataFrame) -> pd.DataFrame:
     """Clears the sheet
     
     Args:
@@ -763,7 +763,7 @@ def df_from_string(df_string: str, word_delimeter:str=" ", line_delimeter:str="\
     return data
 
 @dostify(errors=[])
-def df_extract_sub_df(df, row_start: int, row_end: int, column_start: int, column_end: int) -> pd.DataFrame:
+def df_extract_sub_df(df:pd.DataFrame, row_start: int, row_end: int, column_start: int, column_end: int) -> pd.DataFrame:
     """Extracts sub dataframe from the given dataframe
     
     Args:
@@ -790,7 +790,7 @@ def df_extract_sub_df(df, row_start: int, row_end: int, column_start: int, colum
         raise Exception("Dataframe cannot be empty")
 
     if isinstance(df, pd.DataFrame):
-        data = df.iloc[row_start:row_end, column_start:column_end]
+        data = df.iloc[row_start-1:row_end-1, column_start-1:column_end-1]
 
     return data
 
@@ -877,7 +877,7 @@ def df_drop_rows(df:pd.DataFrame, row_start: int, row_end: int) -> pd.DataFrame:
     Args:
         df (pandas dataframe): dataframe
         row_start (int): row start (inclusive)
-        row_end (int): row end   (inclusive)
+        row_end (int): row end   (exclusive)
 
     Returns:
         pandas dataframe: dataframe with rows dropped
@@ -895,6 +895,6 @@ def df_drop_rows(df:pd.DataFrame, row_start: int, row_end: int) -> pd.DataFrame:
 
     if isinstance(df, pd.DataFrame):
         # -1 because index starts from 0
-        data = df.drop(df.index[row_start-1:row_end])
+        data = df.drop(df.index[row_start-1:row_end-1])
 
     return data
