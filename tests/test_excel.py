@@ -146,5 +146,23 @@ class test(unittest.TestCase):
         sheet_names.sort()
         self.assertEqual(sheets,sheet_names)
         os.remove("tests/test.xlsx")
+
+    def test_df_from_string(self):
+        string="a b c;d e f"
+        word_delimiter=" "
+        line_delimiter=";"
+        columns=["Column 1","Column 2","Column 3"]
+        df=df_from_string(string,word_delimiter, line_delimiter, columns)
+        correct_result=data = pd.DataFrame([x.split(word_delimiter) for x in string.split( line_delimiter)], columns=columns)
+        if (df.equals(correct_result)):
+            assert True
+    
+    def test_df_from_list(self):
+        list=[[1,2,3],[4,5,6]]
+        cols=["col1", "col2", "col3"]
+        df=df_from_list(list, cols)
+        correct_df = pd.DataFrame(list, columns=cols)
+        if(df.equals(correct_df)):
+            assert True
 if __name__ == '__main__':
     unittest.main()

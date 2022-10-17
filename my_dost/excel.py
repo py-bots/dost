@@ -711,6 +711,9 @@ def df_from_list(list_of_lists:list, column_names:List[str]) -> pd.DataFrame:
     Examples:
         >>> df_from_list([[1,2,3],[4,5,6]], ["col1", "col2", "col3"])
         dataframe
+        ..   col1  col2  col3
+        0     1     2     3
+        1     4     5     6
     """
 
     # Import Section
@@ -742,8 +745,11 @@ def df_from_string(df_string: str, word_delimeter:str=" ", line_delimeter:str="\
         pandas dataframe: dataframe
     
     Examples:
-        >>> df_from_string("a b c d e f g h i j k l m n o p q r s t u v w x y z", " ", "\n", ["col1", "col2", "col3"])
-        dataframe
+        >>> print(df_from_string("a b c;d e f"," ", ";", ["Column 1","Column 2","Column 3"]))
+        dataframe object
+        ..   Column 1  Column 2  Column 3
+        0     a     b     c
+        1     d     e     f
     
     """
 
