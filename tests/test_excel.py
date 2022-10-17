@@ -164,5 +164,13 @@ class test(unittest.TestCase):
         correct_df = pd.DataFrame(list, columns=cols)
         if(df.equals(correct_df)):
             assert True
+    
+    def test_remove_duplicates(self):
+        list=[["a","b","c"],["a","d","e"],["a","d","f"]]
+        # cols=["col1", "col2", "col3"]
+        df=pd.DataFrame(list)
+        print(df)
+        df=excel_remove_duplicates(df, 0)
+        print(df)
 if __name__ == '__main__':
     unittest.main()

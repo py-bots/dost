@@ -639,7 +639,7 @@ def excel_clear_sheet(df:pd.DataFrame) -> pd.DataFrame:
     return data
 
 @dostify(errors=[])
-def excel_remove_duplicates(df, column_name:str) -> pd.DataFrame:
+def excel_remove_duplicates(df:pd.DataFrame, column_name:Union[str,List[str],int,List[int]]) -> pd.DataFrame:
     """Removes the duplicates from the given column
     
     Args:
