@@ -4,9 +4,10 @@ from my_dost.excel import *
 
 header_value=1
 def get_demo_df(header):
-    file_path="tests/demo.xlsx"
-    sheetname="Sheet1"
-    df=excel_to_dataframe(input_filepath=file_path, input_sheetname=sheetname, header=header)
+    # file_path="tests/demo.xlsx"
+    # sheetname="Sheet1"
+    # df=excel_to_dataframe(input_filepath=file_path, input_sheetname=sheetname, header=header)
+    df=pd.DataFrame([[1,2,3],[4,5,6],[7,8,9]],columns=["Column 1","Column 2","Column 3"])
     return df
 
 def create_excel_sheet(file_path="tests/test.xlsx",sheetname=["Test_sheet","sheet2","Sheet 3"]):
@@ -72,7 +73,7 @@ class test(unittest.TestCase):
         df=get_demo_df(header_value)
         column_name="Column 2"
         cell_number=3
-        self.assertEqual(df[column_name][cell_number-header_value-1], excel_get_single_cell(df, column_name, cell_number,header=header_value))
+        self.assertEqual(str(df[column_name][cell_number-header_value-1]), excel_get_single_cell(df, column_name, cell_number,header=header_value))
 
     def test_get_all_headers(self):
         df=get_demo_df(header_value)
@@ -91,7 +92,7 @@ class test(unittest.TestCase):
         row_number=1
         column_number=2
         value=get_value_in_df(df, row_number, column_number)
-        self.assertEqual(df.iloc[row_number-1,column_number-1], value)
+        self.assertEqual(str(df.iloc[row_number-1,column_number-1]), value)
 
     def test_df_drop_rows(self):
         df=get_demo_df(header_value)
@@ -172,5 +173,17 @@ class test(unittest.TestCase):
         print(df)
         df=excel_remove_duplicates(df, 0)
         print(df)
+    
+    def test_df_to_excel(self):
+        df=get_demo_df(header_value)
+        dataframe_to_excel(df, output_folder="tests", output_filename="dftest.xlsx", output_sheetname="trial sheet", mode='o')
+        df_generated=pd.read_excel("tests/dftest.xlsx", sheet_name="trial sheet")
+        self.assertEqual(os.path.exists("tests/dftest.xlsx"),True)
+        if(df_generated.equals(df)):
+            assert True
+        os.remove("tests/dftest.xlsx")
+    
+    def test_authenticate_google_spreadsheet(credential_file_path):
+        authenticate_google_spreadsheet(credential_file_path)
 if __name__ == '__main__':
     unittest.main()

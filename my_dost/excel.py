@@ -40,6 +40,7 @@ from asyncore import read
 from typing import Union
 from multiprocessing.sharedctypes import Value
 import pandas as pd
+import numpy as np
 import os
 from pathlib import WindowsPath
 from my_dost.helpers import dostify
@@ -385,7 +386,7 @@ def excel_get_row_column_count(df: pd.DataFrame) -> tuple:
     return data
 
 @dostify(errors=[])
-def dataframe_to_excel(df:pd.DataFrame, output_folder:WindowsPath, output_filename:str, output_sheetname:str="Sheet1", mode:str='a') -> None:  # append / overwrite
+def dataframe_to_excel(df:pd.DataFrame, output_folder:Union[str,WindowsPath], output_filename:str, output_sheetname:str="Sheet1", mode:str='a') -> None:  # append / overwrite
     """ Converts the dataframe to excel file
     
     Args:
@@ -518,7 +519,7 @@ def excel_get_single_cell(df:pd.DataFrame, column_name:str, cell_number:int,head
 
     data = df.at[cell_number-header-1, column_name[0]]
 
-    return data
+    return str(data)
 
 @dostify(errors=[])
 def excel_get_all_header_columns(df:pd.DataFrame) -> Union[List[str],List[int]]:
@@ -877,7 +878,7 @@ def get_value_in_df(df:pd.DataFrame, row_number: int, column_number: int) -> str
 
         data = df.iloc[row_number-1, column_number-1]
 
-    return data
+    return str(data)
 
 @dostify(errors=[])
 def df_drop_rows(df:pd.DataFrame, row_start: int, row_end: int) -> pd.DataFrame: 
