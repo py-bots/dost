@@ -54,7 +54,7 @@ if not os.path.exists(output_folder_path):
     os.makedirs(output_folder_path)
 
 @dostify(errors=[])
-def authenticate_google_spreadsheet(credential_file_path:WindowsPath):
+def authenticate_google_spreadsheet(credential_file_path:Union[str,WindowsPath]):
     """Creates authentication object for google spreadsheet.
     
     Args:
