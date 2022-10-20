@@ -186,11 +186,21 @@ class test(unittest.TestCase):
     def test_authenticate_google_spreadsheet(self):
         authenticate_google_spreadsheet("D:\Pybots resources\Excel\client_secret_492007253144-qh2obpp4v65h6jcrkbnulqou9k108v3h.apps.googleusercontent.com.json")
 
+    def test_excel_upload_dataframe_to_google_spreadsheet(self):
+        auth=self.test_authenticate_google_spreadsheet()
+        url="https://docs.google.com/spreadsheets/d/1z5h839kECYR484hPBYR-mC_hkxXkmuJjU-5wOoj78BQ/edit#gid=0"
+        df=get_demo_df()
+        excel_upload_dataframe_to_google_spreadsheet(auth=auth, spreadsheet_url=url, sheet_name="Sheet1", df=df)
+
     def test_get_df_from_google_spreadsheet(self):
         auth=self.test_authenticate_google_spreadsheet()
         url="https://docs.google.com/spreadsheets/d/1z5h839kECYR484hPBYR-mC_hkxXkmuJjU-5wOoj78BQ/edit#gid=0"
         df=excel_get_dataframe_from_google_spreadsheet(auth,spreadsheet_url=url, sheet_name="Sheet1")
-        print(df)
+        df_actual=get_demo_df()
+        if(df.equals(df_actual)):
+            assert True
+
+  
        
 
 if __name__ == '__main__':
