@@ -4,19 +4,52 @@ import os
 import unittest
 from converters import *
 from folder import *
+import pandas as pd
+
 class test(unittest.TestCase):
+    def check_remove(type:str,output_folder,output_filename):
+        self.assertEqual(os.path.exists(os.path.join(output_folder,output_filename)),True)
+        if(type=="excel"):
+            converted_df=pd.read_excel(os.path.join(output_folder,output_filename))
+            self.assertEqual(actual_df.equals(converted_df),True)
+            # os.remove(os.path.join(output_folder,output_filename))
     def test_convert_csv_to_excel(self):
+        
         # return 0
+        input_filepath='tests\demo.csv'
+        output_folder='tests'
+        output_filename="demo.xlsx"
+        default_out_path=os.path.join(os.path.abspath(r'C:\Users\Public\PyBots'), 'My-DOST', 'Converters Folder')
+        actual_df=pd.read_csv(input_filepath)
+
         # convert_csv_to_excel(input_filepath=r'tests\demo.csv')
-        convert_csv_to_excel(input_filepath='tests\demo.csv')
-        # convert_csv_to_excel(input_filepath=r'tests\demo.csv', output_folder=r'tests')
-        convert_csv_to_excel(input_filepath='tests\demo.csv', output_folder='tests')
-        # convert_csv_to_excel(input_filepath=r'tests\demo.csv', output_folder=r'tests',output_filename="demo_nosephead.xlsx")
-        convert_csv_to_excel(input_filepath='tests\demo.csv', output_folder='tests',output_filename="demo_nosephead.xlsx")
-        # convert_csv_to_excel(input_filepath=r'tests\demo.csv', output_folder=r'tests',output_filename="demo_nosep.xlsx",contains_headers=True)
-        convert_csv_to_excel(input_filepath='tests\demo.csv', output_folder='tests',output_filename="demo_nosep.xlsx",contains_headers=True)
-        # convert_csv_to_excel(input_filepath=r'tests\demo.csv', output_folder=r'tests',output_filename="demo.xlsx",contains_headers=True,sep=",")
-        convert_csv_to_excel(input_filepath='tests\demo.csv', output_folder='tests',output_filename="demo.xlsx",contains_headers=True,sep=",")
+        convert_csv_to_excel(input_filepath=input_filepath)
+
+        convert_csv_to_excel(input_filepath=r'tests\demo.csv', output_folder=r'tests')
+        # self.assertEqual(os.path.exists(os.path.join(output_folder,"")),True)
+        # self.assertEqual(pd.read_csv(input_filepath).equals(os.path.join(output_folder,output_filename)),True)
+
+        convert_csv_to_excel(input_filepath=input_filepath, output_folder=output_folder)
+    
+
+        convert_csv_to_excel(input_filepath=r'tests\demo.csv', output_folder=r'tests',output_filename=output_filename)
+        check_remove("excel",output_folder,output_filename)
+
+        convert_csv_to_excel(input_filepath=input_filepath, output_folder=output_folder,output_filename=output_filename)
+        check_remove("excel",output_folder,output_filename)
+
+        convert_csv_to_excel(input_filepath=r'tests\demo.csv', output_folder=r'tests',output_filename=output_filename,contains_headers=True)
+        check_remove("excel",output_folder,output_filename)
+
+        convert_csv_to_excel(input_filepath=input_filepath, output_folder=output_folder,output_filename=output_filename,contains_headers=True)
+        check_remove("excel",output_folder,output_filename)
+
+        convert_csv_to_excel(input_filepath=r'tests\demo.csv', output_folder=r'tests',output_filename=output_filename,contains_headers=True,sep=",")
+        check_remove("excel",output_folder,output_filename)
+
+        convert_csv_to_excel(input_filepath=input_filepath, output_folder=output_folder,output_filename=output_filename,contains_headers=True,sep=",")
+        check_remove("excel",output_folder,output_filename)
+
     
     def test_jpg_to_png(self):
         # return 0
