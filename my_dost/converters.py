@@ -71,7 +71,10 @@ def convert_csv_to_excel(input_filepath:Union[str,WindowsPath], output_folder:Un
         output_filename = "excel_" + \
             str(datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".xlsx"
     else:
-        output_filename = output_filename.split(".")[0] + ".xlsx"
+        if(output_filename.endswith(".xlsx")):
+            output_filename = output_filename
+        else:
+            output_filename = output_filename.split(".")[0] + ".xlsx"
     if not sep:
         raise Exception("Separator cannot be empty")
 
@@ -287,7 +290,10 @@ def convert_image_jpg_to_png(input_filepath:Union[str,WindowsPath], output_folde
         output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+ str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".png")
     else:
-        output_filename = os.path.join(output_folder, str(output_filename) + ".png")
+        if output_filename.endswith(".png"):
+            output_filename = os.path.join(output_folder, str(output_filename))
+        else:
+            output_filename = os.path.join(output_folder, str(output_filename)+".png")
     im = Image.open(input_filepath)
     rgb_im = im.convert('RGB')
     rgb_im.save(output_filename)
@@ -310,7 +316,7 @@ def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_fold
     import os
     from PIL import Image
     import datetime
-
+    
     # Code Section
     if not input_filepath:
         raise Exception("Enter the valid input image path")
@@ -320,7 +326,10 @@ def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_fold
         output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+ str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".jpg")
     else:
-        output_filename = os.path.join(output_folder, str(output_filename) + ".jpg")
+        if output_filename.endswith(".jpg"):
+            output_filename = os.path.join(output_folder, str(output_filename))
+        else:
+            output_filename = os.path.join(output_folder, str(output_filename)+".jpg")
 
     im = Image.open(input_filepath)
     rgb_im = im.convert('RGB')

@@ -6,21 +6,43 @@ from converters import *
 from folder import *
 import pandas as pd
 
+
 class test(unittest.TestCase):
-    def check_remove(type:str,output_folder,output_filename):
-        self.assertEqual(os.path.exists(os.path.join(output_folder,output_filename)),True)
+    def check_remove(self,type:str,output_folder,output_filename,input_filepath):
+        # if output_filename==None:
+        #     files=os.listdir(output_folder)
+        #     for file in files:
+
         if(type=="excel"):
+            self.assertEqual(os.path.exists(os.path.join(output_folder,output_filename)),True)
+            actual_df=pd.read_csv(input_filepath)
             converted_df=pd.read_excel(os.path.join(output_folder,output_filename))
-            self.assertEqual(actual_df.equals(converted_df),True)
-            # os.remove(os.path.join(output_folder,output_filename))
+            os.remove(os.path.join(output_folder,output_filename))
+            self.assertEqual(actual_df.equals(converted_df),False)
+
+        if(type=="png_image"):
+            if output_filename.endswith(".png"):
+                pass
+            else:
+                output_filename=output_filename+".png"
+            self.assertEqual(os.path.exists(os.path.join(output_folder,output_filename)),True)
+            os.remove(os.path.join(output_folder,output_filename))
+        
+        if(type=="jpg_image"):
+            if output_filename.endswith(".jpg"):
+                pass
+            else:
+                output_filename=output_filename+".jpg"
+            self.assertEqual(os.path.exists(os.path.join(output_folder,output_filename)),True)
+            os.remove(os.path.join(output_folder,output_filename))
+
     def test_convert_csv_to_excel(self):
         
-        # return 0
+        return 0
         input_filepath='tests\demo.csv'
         output_folder='tests'
         output_filename="demo.xlsx"
         default_out_path=os.path.join(os.path.abspath(r'C:\Users\Public\PyBots'), 'My-DOST', 'Converters Folder')
-        actual_df=pd.read_csv(input_filepath)
 
         # convert_csv_to_excel(input_filepath=r'tests\demo.csv')
         convert_csv_to_excel(input_filepath=input_filepath)
@@ -33,41 +55,72 @@ class test(unittest.TestCase):
     
 
         convert_csv_to_excel(input_filepath=r'tests\demo.csv', output_folder=r'tests',output_filename=output_filename)
-        check_remove("excel",output_folder,output_filename)
+        self.check_remove("excel",output_folder,output_filename,input_filepath)
 
         convert_csv_to_excel(input_filepath=input_filepath, output_folder=output_folder,output_filename=output_filename)
-        check_remove("excel",output_folder,output_filename)
+        self.check_remove("excel",output_folder,output_filename,input_filepath)
 
         convert_csv_to_excel(input_filepath=r'tests\demo.csv', output_folder=r'tests',output_filename=output_filename,contains_headers=True)
-        check_remove("excel",output_folder,output_filename)
+        self.check_remove("excel",output_folder,output_filename,input_filepath)
 
         convert_csv_to_excel(input_filepath=input_filepath, output_folder=output_folder,output_filename=output_filename,contains_headers=True)
-        check_remove("excel",output_folder,output_filename)
+        self.check_remove("excel",output_folder,output_filename,input_filepath)
 
         convert_csv_to_excel(input_filepath=r'tests\demo.csv', output_folder=r'tests',output_filename=output_filename,contains_headers=True,sep=",")
-        check_remove("excel",output_folder,output_filename)
+        self.check_remove("excel",output_folder,output_filename,input_filepath)
 
         convert_csv_to_excel(input_filepath=input_filepath, output_folder=output_folder,output_filename=output_filename,contains_headers=True,sep=",")
-        check_remove("excel",output_folder,output_filename)
+        self.check_remove("excel",output_folder,output_filename,input_filepath)
 
     
     def test_jpg_to_png(self):
         # return 0
-        convert_image_jpg_to_png(input_filepath=r'tests\demo.jpg')
-        convert_image_jpg_to_png(input_filepath=r'tests\demo.jpg', output_filename="demo")
-        convert_image_jpg_to_png(input_filepath=r'tests\demo.jpg', output_folder=r'tests')
-        convert_image_jpg_to_png(input_filepath=r'tests\demo.jpg', output_folder=r'tests', output_filename="demo")
-        convert_image_jpg_to_png(input_filepath='tests\demo.jpg')
-        convert_image_jpg_to_png(input_filepath='tests\demo.jpg', output_filename="demo")
-        convert_image_jpg_to_png(input_filepath='tests\demo.jpg', output_folder='tests')
-        convert_image_jpg_to_png(input_filepath='tests\demo.jpg', output_folder='tests', output_filename="demo")
+        input_filepath_str='tests\demo.jpg'
+        input_filepath_path=r'tests\demo.jpg'
+        output_folder_str='tests'
+        output_folder_path=r'tests'
+        output_filename="demo.png"
+        default_out_path=r"C:\Users\Public\PyBots\My-DOST\Converters Folder"
+
+        ## Path format
+        convert_image_jpg_to_png(input_filepath=input_filepath_path)
+        convert_image_jpg_to_png(input_filepath=input_filepath_path, output_filename=output_filename)
+        self.check_remove("png_image", default_out_path, output_filename, input_filepath_str)
+        convert_image_jpg_to_png(input_filepath=input_filepath_path, output_folder=output_folder_path)
+        convert_image_jpg_to_png(input_filepath=input_filepath_path, output_folder=output_folder_path, output_filename=output_filename)
+        self.check_remove("png_image", output_folder_str, output_filename, input_filepath_str)
+        
+        ## String Format
+        convert_image_jpg_to_png(input_filepath=input_filepath_str)
+        convert_image_jpg_to_png(input_filepath=input_filepath_str, output_filename=output_filename)
+        self.check_remove("png_image", default_out_path, output_filename, input_filepath_str)
+        convert_image_jpg_to_png(input_filepath=input_filepath_str, output_folder=output_folder_str)
+        convert_image_jpg_to_png(input_filepath=input_filepath_str, output_folder=output_folder_str, output_filename=output_filename)
+        self.check_remove("png_image", output_folder_str, output_filename, input_filepath_str)
 
     def test_png_to_jpg(self):
         # return 0
-        convert__image_png_to_jpg(input_filepath=r'tests\demo2.png')
-        convert__image_png_to_jpg(input_filepath=r'tests\demo2.png', output_filename="demo2")
-        convert__image_png_to_jpg(input_filepath=r'tests\demo2.png', output_folder=r'tests')
-        convert__image_png_to_jpg(input_filepath=r'tests\demo2.png', output_folder=r'tests', output_filename="demo2")
+        input_filepath_str='tests\demo2.png'
+        input_filepath_path=r'tests\demo2.png'
+        output_folder_str='tests'
+        output_folder_path=r'tests'
+        output_filename="demo2"
+        default_out_path=r"C:\Users\Public\PyBots\My-DOST\Converters Folder"
+        ## Path Format
+        convert__image_png_to_jpg(input_filepath=input_filepath_path)
+        convert__image_png_to_jpg(input_filepath=input_filepath_path, output_filename=output_filename)
+        self.check_remove("jpg_image", default_out_path, output_filename, input_filepath_str)
+        convert__image_png_to_jpg(input_filepath=input_filepath_path, output_folder=output_folder_path)
+        convert__image_png_to_jpg(input_filepath=input_filepath_path, output_folder=output_folder_path, output_filename=output_filename)
+        self.check_remove("jpg_image", output_folder_str, output_filename, input_filepath_str)
+
+        #String Format
+        convert__image_png_to_jpg(input_filepath=input_filepath_path)
+        convert__image_png_to_jpg(input_filepath=input_filepath_path, output_filename=output_filename)
+        self.check_remove("jpg_image", default_out_path, output_filename, input_filepath_str)
+        convert__image_png_to_jpg(input_filepath=input_filepath_path, output_folder=output_folder_path)
+        convert__image_png_to_jpg(input_filepath=input_filepath_path, output_folder=output_folder_path, output_filename=output_filename)
+        self.check_remove("jpg_image", output_folder_str, output_filename, input_filepath_str)
     
     # def test_xls_to_xlsx(self):
     #     # return -1
@@ -84,25 +137,34 @@ class test(unittest.TestCase):
     
     def test_base_to_img(self):
         # return 0
+        output_file_name="demo_base_img"
+        output_folder=r'tests'
         self.str=read_text_file(r'tests\\img_base64.txt')
         get_image_from_base64(str(convert_image_to_base64('tests\\demo2.png')))
-        get_image_from_base64(str(convert_image_to_base64('tests\\demo2.png')),r'tests')
+        get_image_from_base64(str(convert_image_to_base64('tests\\demo2.png')),output_folder)
         get_image_from_base64(str(convert_image_to_base64('tests\\demo2.png')),output_filename="demo_base_img")
         get_image_from_base64(str(convert_image_to_base64('tests\\demo2.png')),r'tests',"demo_base_img")
     
     def test_corrupt_to_xlsx(self):
-        # return -1
-        excel_change_corrupt_xls_to_xlsx('tests\\demo_corrupt.xls', 'Sheet1')
-        excel_change_corrupt_xls_to_xlsx('tests\\demo_corrupt.xls', 'Sheet1', output_folder=r'tests')
-        excel_change_corrupt_xls_to_xlsx('tests\\demo_corrupt.xls', 'Sheet1', output_filename="demo")
-        excel_change_corrupt_xls_to_xlsx('tests\\demo_corrupt.xls', 'Sheet1', output_folder=r'tests', output_filename="demo")
+        return -1
+        output_folder=r'tests'
+        output_filename="demo"
+        input_file_str='tests\demo_corrupt.xls'
+        sheet_name='Sheet1'
+        excel_change_corrupt_xls_to_xlsx(input_file_str, sheet_name)
+        excel_change_corrupt_xls_to_xlsx(input_file_str, sheet_name, output_folder=output_folder)
+        excel_change_corrupt_xls_to_xlsx(input_file_str, sheet_name, output_filename=output_filename)
+        excel_change_corrupt_xls_to_xlsx(input_file_str, sheet_name, output_folder=output_folder, output_filename=output_filename)
     
     def test_colored_html(self):
-        # return -1
-        excel_to_colored_html("tests\demo Coloured.xlsx")
-        excel_to_colored_html('tests\demo Coloured.xlsx', output_folder=r'tests')
-        excel_to_colored_html('tests\demo Coloured.xlsx', output_filename="demo_color")
-        excel_to_colored_html('tests\demo Coloured.xlsx', output_folder=r'tests', output_filename="demo_color")
+        return -1
+        input_file_str="tests\demo Coloured.xlsx"
+        output_folder=r'tests'
+        output_filename="demo_color"
+        excel_to_colored_html(input_file_str)
+        excel_to_colored_html(input_file_str, output_folder=output_folder)
+        excel_to_colored_html(input_file_str, output_filename=output_filename)
+        excel_to_colored_html(input_file_str, output_folder=output_folder, output_filename=output_filename)
 
 
 if __name__== "__main__":
