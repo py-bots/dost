@@ -63,7 +63,7 @@ class test(unittest.TestCase):
             self.assertEqual(os.path.exists(os.path.join(output_folder,output_filename)),True)
             os.remove(os.path.join(output_folder,output_filename))
 
-        if(type=="base_img"):
+        if(type=="base_image"):
             if not output_filename:
                 start_name="image_"
                 mid_part=datetime.datetime.now().strftime("%Y")
@@ -73,13 +73,12 @@ class test(unittest.TestCase):
                     if file.startswith(start_name) and (file.endswith(".jpg") or file.endswith(".png")):
                         output_filename=file
                         break
-                print("\n\nfile name ", output_filename,"\n\n")
             if output_filename.endswith(".png") or output_filename.endswith(".jpg"):
                 pass
             else:
                 output_filename=output_filename+".png"
             self.assertEqual(os.path.exists(os.path.join(output_folder,output_filename)),True)
-            # os.remove(os.path.join(output_folder,output_filename))
+            os.remove(os.path.join(output_folder,output_filename))
         
         if(type=="colored_html"):
             if not output_filename:
@@ -135,7 +134,6 @@ class test(unittest.TestCase):
         output_folder_path=r'tests'
         output_filename="demo.png"
     
-
         ## Path format
         convert_image_jpg_to_png(input_filepath=input_filepath_path)
         self.check_remove("png_image",input_filepath= input_filepath_path)
@@ -157,6 +155,7 @@ class test(unittest.TestCase):
         self.check_remove("png_image", output_folder_str, output_filename, input_filepath_str)
 
     def test_png_to_jpg(self):
+        # return 0
         input_filepath_str='tests\demo2.png'
         input_filepath_path=r'tests\demo2.png'
         output_folder_str='tests'
@@ -184,14 +183,14 @@ class test(unittest.TestCase):
         self.check_remove("jpg_image", output_folder_str, output_filename, input_filepath_str)
     
     def test_xls_to_xlsx(self):
-        return -1
+        # return -1
         excel_convert_xls_to_xlsx(input_filepath=r'tests\demo.xls')
         excel_convert_xls_to_xlsx(input_filepath=r'tests\demo.xls', output_folder=r'tests')
         excel_convert_xls_to_xlsx(input_filepath=r'tests\demo.xls', output_filename="demo_xls")
         excel_convert_xls_to_xlsx(input_filepath=r'tests\demo.xls', output_folder=r'tests', output_filename="demo_xls")
     
     def test_img_to_base(self):
-        return -1
+        # return -1
         self.str=convert_image_to_base64('tests\\demo2.png')
         write_text_file(r'tests\\base64.txt',str(self.str))
         print(self.str)
@@ -201,18 +200,19 @@ class test(unittest.TestCase):
         output_folder=r'tests'
         output_filename="demo_base_img"
         
-        input_img_base64=str(convert_image_to_base64('tests\\demo2.png'))
+        input_img_base64=str(convert_image_to_base64(r'tests\demo2.png'))
+        input_img_base64=input_img_base64[2:-1]
         get_image_from_base64(input_img_base64)
         self.check_remove("base_image",input_filepath= input_img_base64)
         get_image_from_base64(input_img_base64,output_folder)
         self.check_remove("base_image",output_folder=output_folder , input_filepath= input_img_base64)
         get_image_from_base64(input_img_base64,output_filename=output_filename)
-        self.check_remove("base_img", output_filename=output_filename, input_filepath=input_img_base64)
+        self.check_remove("base_image", output_filename=output_filename, input_filepath=input_img_base64)
         get_image_from_base64(input_img_base64,output_folder,output_filename)
-        self.check_remove("base_img",output_folder,output_filename,input_img_base64)
+        self.check_remove("base_image",output_folder,output_filename,input_img_base64)
     
     def test_corrupt_to_xlsx(self):
-        return -1
+        # return -1
         output_folder=r'tests'
         output_filename="demo"
         input_file_str='tests\demo_corrupt.xls'
@@ -231,9 +231,9 @@ class test(unittest.TestCase):
         output_filename="demo_color"
         default_out_path=r"C:\Users\Public\PyBots\My-DOST\Converters Folder"
         excel_to_colored_html(input_file_str)
-        self.check_remove("html_color",input_filepath= input_file_str)
+        self.check_remove("colored_html",input_filepath= input_file_str)
         excel_to_colored_html(input_file_str, output_folder=output_folder_str)
-        self.check_remove("html_color",output_folder=output_folder_str , input_filepath= input_file_str)
+        self.check_remove("colored_html",output_folder=output_folder_str , input_filepath= input_file_str)
         excel_to_colored_html(input_file_str, output_filename=output_filename)
         self.check_remove("colored_html", default_out_path, output_filename, input_file_str)
         excel_to_colored_html(input_file_str, output_folder=output_folder_str, output_filename=output_filename)
