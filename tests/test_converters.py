@@ -240,15 +240,18 @@ class test(unittest.TestCase):
         self.check_remove("colored_html", output_folder_str, output_filename, input_file_str)
 
         ##Path Format
-        input_file_path=r"tests\demo Coloured.xlsx"
+        input_file_path=r"tests\demo_Coloured.xlsx"
         output_folder_path=r'tests'
 
         excel_to_colored_html(input_file_path)
+        self.check_remove("colored_html",input_filepath= input_file_str)
         excel_to_colored_html(input_file_path, output_folder=output_folder_path)
+        self.check_remove("colored_html",output_folder=output_folder_str , input_filepath= input_file_str)
         excel_to_colored_html(input_file_path, output_filename=output_filename)
         self.check_remove("colored_html", default_out_path, output_filename, input_file_str)
         excel_to_colored_html(input_file_path, output_folder=output_folder_path, output_filename=output_filename)
         self.check_remove("colored_html", output_folder_str, output_filename, input_file_str)
+        
 
 
 
