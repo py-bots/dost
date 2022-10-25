@@ -86,7 +86,7 @@ def authenticate_google_spreadsheet(credential_file_path:Union[str,WindowsPath])
 
     return gc
 
-# @dostify(errors=[])
+@dostify(errors=[])
 def excel_get_dataframe_from_google_spreadsheet(auth, spreadsheet_url:str, sheet_name:str="Sheet1") -> pd.DataFrame:
     """ Get dataframe from google spreadsheet
 
@@ -145,7 +145,7 @@ def excel_tabular_data_from_website(website_url:str, table_number:int=1) -> pd.D
        table_number (int, optional): Table number. Defaults to 1.
     
     Examples:
-        >>> excel_tabular_data_from_website(website_url="https://www.worldometers.info/coronavirus/", table_number=1)
+        >>> excel_tabular_data_from_website(website_url="https://en.wikipedia.org/wiki/Wiki")
     """
 
     # Import Section
@@ -274,6 +274,7 @@ def excel_create_file(output_folder:Union[str,WindowsPath], output_filename:str,
     else:
         ws.title = output_sheetname
     wb.save(filename=output_filename)
+    wb.close()
 
 @dostify(errors=[])
 def valid_data(input_filepath:Union[str,WindowsPath], input_sheetname: str="", validate_filepath:bool=True, validate_sheetname:bool=True) -> bool:
