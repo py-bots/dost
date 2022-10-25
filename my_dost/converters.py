@@ -74,7 +74,7 @@ def convert_csv_to_excel(input_filepath:Union[str,WindowsPath], output_folder:Un
         if(output_filename.endswith(".xlsx")):
             output_filename = output_filename
         else:
-            output_filename = output_filename.split(".")[0] + ".xlsx"
+            output_filename = output_filename+".xlsx"
     if not sep:
         raise Exception("Separator cannot be empty")
 
@@ -96,7 +96,7 @@ def get_image_from_base64(input_text:str, output_folder:Union[str,WindowsPath]="
     Args:
         input_text (str): The base64 encoded string.
         output_folder (str,WindowsPath): The path to the output folder.
-        output_filename (str): The name of the output file.
+        output_filename (str default ending with .png): The name of the output file.
         
     Examples:
         >>> get_image_from_base64('"base_64_string')
@@ -118,7 +118,7 @@ def get_image_from_base64(input_text:str, output_folder:Union[str,WindowsPath]="
         output_filename = "image_" + \
             str(datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".png"
     else:
-        if not str(output_filename).endswith(".*"):
+        if not (str(output_filename).endswith(".png") or str(output_filename).endswith(".jpg")):
             output_filename = output_filename + ".png"
         else:
             output_filename = output_filename
@@ -194,9 +194,10 @@ def excel_change_corrupt_xls_to_xlsx(input_filepath:Union[str,WindowsPath], inpu
         output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+ str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".xlsx")
     else:
-        output_filename = output_filename.split(".")[0] + ".xlsx"
-        output_filename = os.path.join(
-            output_folder, str(output_filename))
+        if(output_filename.endswith(".xlsx")):
+            output_filename = os.path.join(output_folder, output_filename)
+        else:
+            output_filename = os.path.join(output_folder, output_filename+".xlsx") 
 
     # Opening the file
     file1 = io.open(input_filepath, "r")
@@ -253,8 +254,11 @@ def excel_convert_xls_to_xlsx(input_filepath:Union[str,WindowsPath], output_fold
         output_filename = os.path.join(output_folder, str(Path(input_filepath).stem), str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".xlsx")
     else:
-        output_filename = os.path.join(
-            output_folder, str(output_filename)+".xlsx")
+        if(output_filename.endswith("xlsx")):
+            output_filename = os.path.join(output_folder, output_filename)
+        else:
+            output_filename = os.path.join(
+                output_folder, str(output_filename)+".xlsx")
 
     # Checking the path and then converting it to xlsx file
     if os.path.exists(input_filepath):
@@ -362,8 +366,10 @@ def excel_to_colored_html(input_filepath:Union[str,WindowsPath], output_folder:U
         output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+'_'+str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".html")
     else:
-        output_filename = os.path.join(
-            output_folder, output_filename+'.html')
+        if(output_filename.endswith(".html")):
+            output_filename = os.path.join(output_folder, str(output_filename))
+        else:
+            output_filename = os.path.join(output_folder, output_filename+'.html')
 
     xlsx2html(input_filepath, output_filename)
     # os.startfile(output_folder)
