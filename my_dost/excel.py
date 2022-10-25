@@ -86,7 +86,7 @@ def authenticate_google_spreadsheet(credential_file_path:Union[str,WindowsPath])
 
     return gc
 
-@dostify(errors=[])
+# @dostify(errors=[])
 def excel_get_dataframe_from_google_spreadsheet(auth, spreadsheet_url:str, sheet_name:str="Sheet1") -> pd.DataFrame:
     """ Get dataframe from google spreadsheet
 
@@ -134,6 +134,7 @@ def excel_get_dataframe_from_google_spreadsheet(auth, spreadsheet_url:str, sheet
         worksheet = sh.worksheet(sheet_name)
 
     data_frame = pd.DataFrame(worksheet.get_all_records())
+    return data_frame
 
 @dostify(errors=[])
 def excel_tabular_data_from_website(website_url:str, table_number:int=1) -> pd.DataFrame:
@@ -170,7 +171,7 @@ def excel_tabular_data_from_website(website_url:str, table_number:int=1) -> pd.D
 
     return data
 
-@dostify(errors=[])
+# @dostify(errors=[])
 def excel_upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url:str, sheet_name:str, df:pd.DataFrame) -> None:
     """Uploads a dataframe to a google spreadsheet.
     

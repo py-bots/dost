@@ -369,6 +369,19 @@ google-auth = ">=1.12.0"
 google-auth-oauthlib = ">=0.4.1"
 
 [[package]]
+name = "gspread-dataframe"
+version = "3.3.0"
+description = "Read/write gspread worksheets using pandas DataFrames"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+gspread = ">=3.0.0"
+pandas = ">=0.24.0"
+six = ">=1.12.0"
+
+[[package]]
 name = "httplib2"
 version = "0.20.4"
 description = "A comprehensive HTTP client library."
@@ -3486,7 +3499,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<=3.10.40"
-content-hash = "c742619ddc8bc37b26d9cec5794dc1f08bf1f626e27cbb6d074e736bfa3e330f"
+content-hash = "8645ce63c3e36af767256f0bf96ca7467ac8f9a89c554721bdc30cf8305374e1"
 
 [metadata.files]
 appnope = [
@@ -3693,6 +3706,10 @@ griffe = [
 gspread = [
     {file = "gspread-5.6.2-py3-none-any.whl", hash = "sha256:41f7a416425f1ec5a1b677f49b8fbf599102766c27ed7be6601a58c9a1550ebc"},
     {file = "gspread-5.6.2.tar.gz", hash = "sha256:d3bbff4b7aad0fc2c986458e148537a02fe7b46e7162f41f3a42392bfa2adb89"},
+]
+gspread-dataframe = [
+    {file = "gspread-dataframe-3.3.0.tar.gz", hash = "sha256:8c15f3af8e3b9801f33dd544aa06fe35f0b069414f78791231b44c8da469e708"},
+    {file = "gspread_dataframe-3.3.0-py2.py3-none-any.whl", hash = "sha256:6fdbe3586db1c12820e85b867d2241b34e6c5afff47450bd4b1e92134ce0dbe8"},
 ]
 httplib2 = [
     {file = "httplib2-0.20.4-py3-none-any.whl", hash = "sha256:8b6a905cb1c79eefd03f8669fd993c36dc341f7c558f056cb5a33b5c2f458543"},

@@ -184,20 +184,19 @@ class test(unittest.TestCase):
         os.remove("tests/dftest.xlsx")
     
     def test_authenticate_google_spreadsheet(self):
-        auth=authenticate_google_spreadsheet("D:\Pybots resources\Excel\o-auth.json")
-        return auth
+        auth=authenticate_google_spreadsheet("D:\Pybots resources\Excel\cred.json")
 
     def test_excel_upload_dataframe_to_google_spreadsheet(self):
-        auth=authenticate_google_spreadsheet("D:\Pybots resources\Excel\o-auth.json")
-        url="https://docs.google.com/spreadsheets/d/1z5h839kECYR484hPBYR-mC_hkxXkmuJjU-5wOoj78BQ/edit#gid=0"
-        df=get_demo_df(header=0)
-        excel_upload_dataframe_to_google_spreadsheet(auth=auth, spreadsheet_url=url, sheet_name="Sheet1", df=df)
+        auth=authenticate_google_spreadsheet("D:\Pybots resources\Excel\cred.json")
+        url="https://docs.google.com/spreadsheets/d/1z5h839kECYR484hPBYR-mC_hkxXkmuJjU-5wOoj78BQ"
+        df=get_demo_df(header_value)
+        excel_upload_dataframe_to_google_spreadsheet(auth=auth, spreadsheet_url=url, sheet_name="Sheet3", df=df)
 
     def test_get_df_from_google_spreadsheet(self):
-        auth=authenticate_google_spreadsheet("D:\Pybots resources\Excel\o-auth.json")
-        url="https://docs.google.com/spreadsheets/d/1z5h839kECYR484hPBYR-mC_hkxXkmuJjU-5wOoj78BQ/edit#gid=0"
+        auth=authenticate_google_spreadsheet("D:\Pybots resources\Excel\cred.json")
+        url="https://docs.google.com/spreadsheets/d/1z5h839kECYR484hPBYR-mC_hkxXkmuJjU-5wOoj78BQ"
         df=excel_get_dataframe_from_google_spreadsheet(auth,spreadsheet_url=url, sheet_name="Sheet1")
-        df_actual=get_demo_df(header=0)
+        df_actual=get_demo_df(header_value)
         if(df.equals(df_actual)):
             assert True
 
