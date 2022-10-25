@@ -88,6 +88,7 @@ def convert_csv_to_excel(input_filepath:Union[str,WindowsPath], output_folder:Un
     df = pd.read_csv(input_filepath, sep=sep,header=headers)
     df.to_excel(writer, sheet_name='Sheet1', index=False,header=contains_headers)
     writer.save()
+    writer.close()
     
 @dostify(errors=[])
 def get_image_from_base64(input_text:str, output_folder:Union[str,WindowsPath]="", output_filename:str=""):
@@ -337,7 +338,6 @@ def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_fold
 
     im = Image.open(input_filepath)
     rgb_im = im.convert('RGB')
-    print(output_filename)
     rgb_im.save(output_filename)
 
 @dostify(errors=[])
