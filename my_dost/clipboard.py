@@ -44,7 +44,6 @@ def clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT) -> Non
     finally:
         win32clipboard.CloseClipboard()
 
-
 @dostify(errors=[])
 def GetClipboardFormats() -> list:
     """Get a list of all available clipboard formats.

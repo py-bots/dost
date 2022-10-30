@@ -38,7 +38,7 @@ output_folder_path = os.path.join(
 if not os.path.exists(output_folder_path):
     os.makedirs(output_folder_path)
 
-@dostify(errors=[])
+@dostify(errors=[(FileNotFoundError,'')])
 def convert_csv_to_excel(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str="",contains_headers:bool=True,sep:str=","):
     """Convert a CSV file to an Excel file.
     
@@ -63,9 +63,16 @@ def convert_csv_to_excel(input_filepath:Union[str,WindowsPath], output_folder:Un
     # Code Section
     if not input_filepath:
         raise Exception("CSV File name cannot be empty")
+    
+    if not os.path.exists(input_filepath):
+        raise FileNotFoundError(f"File not found at path {input_filepath}")
 
     if not output_folder:
         output_folder = output_folder_path
+    
+    if not os.path.exists(output_folder):
+        # os.makedirs(output_folder)
+        raise FileNotFoundError(f"Folder not found at path {output_folder}")
 
     if not output_filename:
         output_filename = "excel_" + \
@@ -114,6 +121,10 @@ def get_image_from_base64(input_text:str, output_folder:Union[str,WindowsPath]="
 
     if not output_folder:
         output_folder = output_folder_path
+    
+    if not os.path.exists(output_folder):
+        # os.makedirs(output_folder)
+        raise FileNotFoundError(f"Folder not found at path {output_folder}")
 
     if not output_filename:
         output_filename = "image_" + \
@@ -132,7 +143,7 @@ def get_image_from_base64(input_text:str, output_folder:Union[str,WindowsPath]="
     else:
         raise Exception("Image folder path does not exist")
 
-@dostify(errors=[])
+@dostify(errors=[(FileNotFoundError,'')])
 def convert_image_to_base64(input_filepath:Union[str,WindowsPath]):
     """Get a base64 encoded string from an image.
 
@@ -151,6 +162,9 @@ def convert_image_to_base64(input_filepath:Union[str,WindowsPath]):
     if not input_filepath:
         raise Exception("Image file name cannot be empty")
 
+    if not os.path.exists(input_filepath):
+        raise FileNotFoundError(f"File not found at path {input_filepath}")
+
     if os.path.exists(input_filepath):
         with open(input_filepath, "rb") as f:
             data = base64.b64encode(f.read())
@@ -158,7 +172,7 @@ def convert_image_to_base64(input_filepath:Union[str,WindowsPath]):
         raise Exception("Image file does not exist")
     return data
 
-@dostify(errors=[])
+@dostify(errors=[(FileNotFoundError,'')])
 def excel_change_corrupt_xls_to_xlsx(input_filepath:Union[str,WindowsPath], input_sheetname:str, output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Change a corrupt XLS file to an XLSX file.
 
@@ -185,11 +199,18 @@ def excel_change_corrupt_xls_to_xlsx(input_filepath:Union[str,WindowsPath], inpu
     if not input_filepath:
         raise Exception("XLS File name cannot be empty")
 
+    if not os.path.exists(input_filepath)==False:
+        raise FileNotFoundError(f"File not found at path {input_filepath}")
+
     if not input_sheetname:
         raise Exception("XLS Sheet name cannot be empty")
 
     if not output_folder:
         output_folder = output_folder_path
+    
+    if not os.path.exists(output_folder):
+        # os.makedirs(output_folder)
+        raise FileNotFoundError(f"Folder not found at path {output_folder}")
 
     if not output_filename:
         output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+ str(
@@ -225,7 +246,7 @@ def excel_change_corrupt_xls_to_xlsx(input_filepath:Union[str,WindowsPath], inpu
         x2x = XLS2XLSX(input_filepath)
         x2x.to_xlsx(output_filename)
 
-@dostify(errors=[])
+@dostify(errors=[(FileNotFoundError,'')])
 def excel_convert_xls_to_xlsx(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Convert an XLS file to an XLSX file.
     
@@ -247,9 +268,15 @@ def excel_convert_xls_to_xlsx(input_filepath:Union[str,WindowsPath], output_fold
     # Code section
     if not input_filepath:
         raise Exception("XLS File name cannot be empty")
+    if not os.path.exists(input_filepath):
+        raise FileNotFoundError(f"File not found at path {input_filepath}")
 
     if not output_folder:
         output_folder = output_folder_path
+
+    if not os.path.exists(output_folder):
+        # os.makedirs(output_folder)
+        raise FileNotFoundError(f"Folder not found at path {output_folder}")
 
     if not output_filename:
         output_filename = os.path.join(output_folder, str(Path(input_filepath).stem), str(
@@ -267,7 +294,7 @@ def excel_convert_xls_to_xlsx(input_filepath:Union[str,WindowsPath], output_fold
         x2x = XLS2XLSX(input_filepath)
         x2x.to_xlsx(output_filename)
 
-@dostify(errors=[])
+@dostify(errors=[(FileNotFoundError,'')])
 def convert_image_jpg_to_png(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Convert a JPG image to a PNG image.
 
@@ -289,8 +316,17 @@ def convert_image_jpg_to_png(input_filepath:Union[str,WindowsPath], output_folde
     # Code section
     if not input_filepath:
         raise Exception("Enter the valid input image path")
+
+    if not os.path.exists(input_filepath):
+        raise FileNotFoundError(f"File not found at path {input_filepath}")
+
     if not output_folder:
         output_folder = output_folder_path
+    
+    if not os.path.exists(output_folder):
+        # os.makedirs(output_folder)
+        raise FileNotFoundError(f"Folder not found at path {output_folder}")
+
     if not output_filename:
         output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+ str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".png")
@@ -303,7 +339,7 @@ def convert_image_jpg_to_png(input_filepath:Union[str,WindowsPath], output_folde
     rgb_im = im.convert('RGB')
     rgb_im.save(output_filename)
 
-@dostify(errors=[])
+@dostify(errors=[(FileNotFoundError,'')])
 def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Converts the image from png to jpg format
     
@@ -325,8 +361,17 @@ def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_fold
     # Code Section
     if not input_filepath:
         raise Exception("Enter the valid input image path")
+
+    if not os.path.exists(input_filepath):
+        raise FileNotFoundError(f"File not found at path {input_filepath}")
+    
     if not output_folder:
         output_folder = output_folder_path
+    
+    if not os.path.exists(output_folder):
+        # os.makedirs(output_folder)
+        raise FileNotFoundError(f"Folder not found at path {output_folder}")
+    
     if not output_filename:
         output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+ str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".jpg")
@@ -340,7 +385,7 @@ def convert__image_png_to_jpg(input_filepath:Union[str,WindowsPath], output_fold
     rgb_im = im.convert('RGB')
     rgb_im.save(output_filename)
 
-@dostify(errors=[])
+@dostify(errors=[(FileNotFoundError,'')])
 def excel_to_colored_html(input_filepath:Union[str,WindowsPath], output_folder:Union[str,WindowsPath]="", output_filename:str=""):
     """Converts the excel file to colored html file
 
@@ -360,8 +405,17 @@ def excel_to_colored_html(input_filepath:Union[str,WindowsPath], output_folder:U
     # Code Section
     if not input_filepath:
         raise Exception("Please provide the excel path")
+
+    if not os.path.exists(input_filepath):
+        raise FileNotFoundError(f"File not found at path {input_filepath}")
+        
     if not output_folder:
         output_folder = output_folder_path
+    
+    if not os.path.exists(output_folder):
+        # os.makedirs(output_folder)
+        raise FileNotFoundError(f"Folder not found at path {output_folder}")
+
     if not output_filename:
         output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+'_'+str(
             datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".html")
@@ -373,3 +427,5 @@ def excel_to_colored_html(input_filepath:Union[str,WindowsPath], output_folder:U
 
     xlsx2html(input_filepath, output_filename)
     # os.startfile(output_folder)
+# convert_image_jpg_to_png(input_filepath='tests\demo2.png',output_folder="testssad",output_filename="demo")
+convert_image_jpg_to_png(input_filepath='tests\demo2.png',output_folder="testssad")
