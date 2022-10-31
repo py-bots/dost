@@ -51,6 +51,10 @@ imageio = "^2.22.1"
 pyzbar = "^0.1.9"
 PyQRCode = "^1.2.1"
 geopy = "^2.2.0"
+easyocr = "^1.6.2"
+invoice2data = "^0.3.6"
+winshell = "^0.6"
+opencv-python = "^4.6.0.66"
 
 
 [tool.poetry.dev-dependencies]
