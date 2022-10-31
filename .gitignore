@@ -153,3 +153,4 @@ cython_debug/
 *.mp4
 dost/PyWhatKit_DB.txt
 dost/2022-10-15-08-08-18.png
+my_dost/PyWhatKit_DB.txt
