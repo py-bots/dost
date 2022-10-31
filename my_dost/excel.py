@@ -40,6 +40,7 @@ from asyncore import read
 from typing import Union
 from multiprocessing.sharedctypes import Value
 import pandas as pd
+import numpy as np
 import os
 from pathlib import WindowsPath
 from my_dost.helpers import dostify
@@ -53,7 +54,7 @@ if not os.path.exists(output_folder_path):
     os.makedirs(output_folder_path)
 
 @dostify(errors=[])
-def authenticate_google_spreadsheet(credential_file_path:WindowsPath):
+def authenticate_google_spreadsheet(credential_file_path:Union[str,WindowsPath]):
     """Creates authentication object for google spreadsheet.
     
     Args:
@@ -133,6 +134,7 @@ def excel_get_dataframe_from_google_spreadsheet(auth, spreadsheet_url:str, sheet
         worksheet = sh.worksheet(sheet_name)
 
     data_frame = pd.DataFrame(worksheet.get_all_records())
+    return data_frame
 
 @dostify(errors=[])
 def excel_tabular_data_from_website(website_url:str, table_number:int=1) -> pd.DataFrame:
@@ -143,7 +145,7 @@ def excel_tabular_data_from_website(website_url:str, table_number:int=1) -> pd.D
        table_number (int, optional): Table number. Defaults to 1.
     
     Examples:
-        >>> excel_tabular_data_from_website(website_url="https://www.worldometers.info/coronavirus/", table_number=1)
+        >>> excel_tabular_data_from_website(website_url="https://en.wikipedia.org/wiki/Wiki")
     """
 
     # Import Section
@@ -169,7 +171,7 @@ def excel_tabular_data_from_website(website_url:str, table_number:int=1) -> pd.D
 
     return data
 
-@dostify(errors=[])
+# @dostify(errors=[])
 def excel_upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url:str, sheet_name:str, df:pd.DataFrame) -> None:
     """Uploads a dataframe to a google spreadsheet.
     
@@ -272,6 +274,7 @@ def excel_create_file(output_folder:Union[str,WindowsPath], output_filename:str,
     else:
         ws.title = output_sheetname
     wb.save(filename=output_filename)
+    wb.close()
 
 @dostify(errors=[])
 def valid_data(input_filepath:Union[str,WindowsPath], input_sheetname: str="", validate_filepath:bool=True, validate_sheetname:bool=True) -> bool:
@@ -385,7 +388,7 @@ def excel_get_row_column_count(df: pd.DataFrame) -> tuple:
     return data
 
 @dostify(errors=[])
-def dataframe_to_excel(df:pd.DataFrame, output_folder:WindowsPath, output_filename:str, output_sheetname:str="Sheet1", mode:str='a') -> None:  # append / overwrite
+def dataframe_to_excel(df:pd.DataFrame, output_folder:Union[str,WindowsPath], output_filename:str, output_sheetname:str="Sheet1", mode:str='a') -> None:  # append / overwrite
     """ Converts the dataframe to excel file
     
     Args:
@@ -518,7 +521,7 @@ def excel_get_single_cell(df:pd.DataFrame, column_name:str, cell_number:int,head
 
     data = df.at[cell_number-header-1, column_name[0]]
 
-    return data
+    return str(data)
 
 @dostify(errors=[])
 def excel_get_all_header_columns(df:pd.DataFrame) -> Union[List[str],List[int]]:
@@ -877,7 +880,7 @@ def get_value_in_df(df:pd.DataFrame, row_number: int, column_number: int) -> str
 
         data = df.iloc[row_number-1, column_number-1]
 
-    return data
+    return str(data)
 
 @dostify(errors=[])
 def df_drop_rows(df:pd.DataFrame, row_start: int, row_end: int) -> pd.DataFrame: 
