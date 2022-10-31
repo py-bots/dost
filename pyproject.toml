@@ -1,17 +1,17 @@
 [tool.poetry]
-name = "my-dost"
-version = "0.1.0"
+name = "dost_edu"
+version = "0.0.2"
 readme = "README.md"
-packages = [{include = "my_dost"}]
+packages = [{include = "dost"}]
 description = "My-DOST is a Python based Utility platform as an Open Source project. We strive to liberate humans from mundane, repetitive tasks, giving them more time to use their intellect and creativity to solve higher-order business challenges and perform knowledge work."
 authors = ["PyBots <support@pybots.ai>"]
 license = "MIT"
 homepage = ""
 repository = ""
-documentation = "https://auto-pylot.readthedocs.io/"
+documentation = "https://py-bots.github.io/my-dost/"
 keywords = ["PyBots","dost","my-dost","utility","Python","Automation", "Software BOT","Dost", "bots", "RPA"]
 classifiers = [
-    'Development Status :: 1 - Beta',
+    'Development Status :: 4 - Beta',
     'Environment :: Console',
     'Intended Audience :: Developers',
     'Intended Audience :: Education',

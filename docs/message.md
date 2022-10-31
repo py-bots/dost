@@ -1,4 +1,4 @@
-::: my_dost.message
+::: dost.message
     :members:
     :undoc-members:
     :show-inheritance:

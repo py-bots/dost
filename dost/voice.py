@@ -1,5 +1,5 @@
 """
-Voice Module for my_dost.This module contains all the functions related to voice recognition and text to speech.
+Voice Module for dost.This module contains all the functions related to voice recognition and text to speech.
 
 Examples:
     >>> import voice3
@@ -19,12 +19,13 @@ This module contains the following functions:
 
 
 from pathlib import WindowsPath
-from helpers import dostify
-from my_dost.helpers import _is_speaker_available
+from dost.helpers import dostify
+from dost.helpers import _is_speaker_available
 is_speaker_connected = _is_speaker_available()
 
+
 @dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
-def _canonicalizePath(path:WindowsPath) -> WindowsPath:
+def _canonicalizePath(path: WindowsPath) -> WindowsPath:
     """Converts to absolute path and removes trailing slash
     Args:
         path (WindowsPath): Path to be canonicalized
@@ -36,8 +37,9 @@ def _canonicalizePath(path:WindowsPath) -> WindowsPath:
 
     return str(path)
 
+
 @dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
-def playsound(sound, block:bool=True) -> None:
+def playsound(sound, block: bool = True) -> None:
     """Plays the specified sound
     Args:
         sound (WindowsPath): Path to the sound
@@ -80,6 +82,7 @@ def playsound(sound, block:bool=True) -> None:
             winCommand(u'close {}'.format(sound))
         except Exception:
             pass
+
 
 @dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
 def speech_to_text() -> str:
@@ -137,8 +140,9 @@ def speech_to_text() -> str:
                 print("Try Again")
     return data
 
+
 @dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
-def text_to_speech(audio, show:bool=True) -> None:
+def text_to_speech(audio, show: bool = True) -> None:
     """
     Converts text to speech
     Args:
@@ -150,12 +154,13 @@ def text_to_speech(audio, show:bool=True) -> None:
     # Import Section
     import random
     import os
-    
+
     # Code Section
     text_to_speech_offline(audio, show)
 
+
 @dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
-def text_to_speech_offline(audio, show:bool=True, rate:int=170) -> None:
+def text_to_speech_offline(audio, show: bool = True, rate: int = 170) -> None:
     """
     Converts text to speech offline
     Args:
@@ -187,5 +192,3 @@ def text_to_speech_offline(audio, show:bool=True, rate:int=170) -> None:
     else:
         if show:
             print(str(audio))
-
-

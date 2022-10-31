@@ -1,8 +1,8 @@
 """
-Keyboard module for my_dost.This module contains functions for keyboard input and output.
+Keyboard module for dost.This module contains functions for keyboard input and output.
 
 Examples:
-    >>> from my_dost import keyboard
+    >>> from dost import keyboard
     >>> keyboard.key_pressed('a')
     >>> keyboard.key_write_enter('Hello World!')
     >>> keyboard.key_hit_enter()
@@ -17,10 +17,11 @@ This module contains the following functions:
 """
 
 
-from helpers import dostify
+from dost.helpers import dostify
+
 
 @dostify(errors=[])
-def key_press(write_to_window:str, key_1:str, key_2:str='', key_3:str='') -> None:
+def key_press(write_to_window: str, key_1: str, key_2: str = '', key_3: str = '') -> None:
     """Press a key or a combination of keys.
     Args:
         write_to_window (str): The window to write to.
@@ -35,7 +36,6 @@ def key_press(write_to_window:str, key_1:str, key_2:str='', key_3:str='') -> Non
     # Import Section
     import pywinauto as pwa
     from windows import window_activate_window
-
 
     # Code Section
     if key_1 == '':
@@ -92,10 +92,11 @@ def key_press(write_to_window:str, key_1:str, key_2:str='', key_3:str='') -> Non
         pwa.keyboard.send_keys(
             str(key_1_down + key_2_down + key_3 + key_2_up + key_1_up))
 
+
 @dostify(errors=[])
-def key_write_enter(write_to_window:str, text_to_write:str, key:str="e") -> None:
+def key_write_enter(write_to_window: str, text_to_write: str, key: str = "e") -> None:
     """Write text to window and press enter key
-    
+
     Args:
         write_to_window (str): Window to write to
         text_to_write (str): Text to write
@@ -125,17 +126,18 @@ def key_write_enter(write_to_window:str, text_to_write:str, key:str="e") -> None
     if key.lower() == "t":
         pwa.keyboard.send_keys('{TAB}')
 
+
 @dostify(errors=[])
-def key_hit_enter(write_to_window:str) -> None:
+def key_hit_enter(write_to_window: str) -> None:
     """Hit enter key
-        
+
     Args:
         write_to_window (str): Window to write to
-        
+
     Examples:
         >>> key_press(write_to_window=write_to_window, key="enter",)
         """
-    
+
     # Import Section
     import pywinauto as pwa
     from windows import window_activate_window

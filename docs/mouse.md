@@ -1,4 +1,4 @@
-::: my_dost.mouse
+::: dost.mouse
     :members:
     :undoc-members:
     :show-inheritance:

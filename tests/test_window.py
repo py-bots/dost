@@ -1,8 +1,9 @@
+from windows import *
 import sys
 import unittest
 # adding Folder_2/subfolder to the system path
-sys.path.insert(0, 'my_dost')
-from windows import *
+sys.path.insert(0, 'dost')
+
 
 class tests(unittest.TestCase):
     def line_gap(self):
@@ -15,7 +16,7 @@ class tests(unittest.TestCase):
         self.line_gap()
 
     def test_active_window(self):
-        print("active window",window_get_active_window())
+        print("active window", window_get_active_window())
         self.line_gap()
 
     def test_activate_window(self):
@@ -26,7 +27,7 @@ class tests(unittest.TestCase):
         self.line_gap()
 
     def test_window_titles(self):
-        print("All window titles",window_get_all_opened_titles_windows())
+        print("All window titles", window_get_all_opened_titles_windows())
         self.line_gap()
 
     def test_maximize(self):
@@ -53,7 +54,6 @@ class tests(unittest.TestCase):
     def test_show(self):
         window_show_desktop()
         self.line_gap()
-
 
 
 if __name__ == '__main__':

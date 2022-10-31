@@ -1,8 +1,8 @@
 """
-Mouse module for my_dost. This module contains functions for mouse control.
+Mouse module for dost. This module contains functions for mouse control.
 
 Examples:
-    >>> from my_dost import mouse
+    >>> from dost import mouse
     >>> mouse.click(100, 100)
     >>> mouse.search('tests\\demo.png')
     (23, 17)
@@ -15,12 +15,12 @@ The module contains the following functions:
 """
 
 from typing import List, Tuple, Union
-from helpers import dostify
+from dost.helpers import dostify
 from pathlib import WindowsPath
 
 
-@dostify(errors=[(ValueError,'')])
-def click(x:int, y:int, button:str="left", clicks:int=1, absolute:bool=True):
+@dostify(errors=[(ValueError, '')])
+def click(x: int, y: int, button: str = "left", clicks: int = 1, absolute: bool = True):
     """Clicks the mouse at the given co-ordinates.
     Args:
         x (int): X co-ordinate.
@@ -43,9 +43,10 @@ def click(x:int, y:int, button:str="left", clicks:int=1, absolute:bool=True):
     import win32api
 
     if button not in ["left", "right", "middle", "l", "r", "m"]:
-        raise ValueError(f'Invalid button: {button}. Possible values: "left", "l", "right", "r", "middle", "m".')
+        raise ValueError(
+            f'Invalid button: {button}. Possible values: "left", "l", "right", "r", "middle", "m".')
 
-    if not absolute :
+    if not absolute:
         current_x, current_y = win32api.GetCursorPos()
         x, y = (current_x + x), (current_y + y)
 
@@ -60,8 +61,8 @@ def click(x:int, y:int, button:str="left", clicks:int=1, absolute:bool=True):
         pwa.mouse.click(coords=(x, y), button=button)
 
 
-@dostify(errors=[(FileNotFoundError,''), (ValueError,'')])
-def search(img:Union[str, List[str], WindowsPath, List[WindowsPath]], wait:int=10, left_click:bool=False) -> Union[Tuple[int, int], List[Tuple[int, int]], None]:
+@dostify(errors=[(FileNotFoundError, ''), (ValueError, '')])
+def search(img: Union[str, List[str], WindowsPath, List[WindowsPath]], wait: int = 10, left_click: bool = False) -> Union[Tuple[int, int], List[Tuple[int, int]], None]:
     """Searches for the given image and returns the co-ordinates of the image.
 
     Args:
@@ -79,7 +80,7 @@ def search(img:Union[str, List[str], WindowsPath, List[WindowsPath]], wait:int=1
         >>> search(['tests\\demo.png', 'tests\\demo2.png'])
         [(23, 17), (67, 16)]
         >>> search('tests\\demo2.pdf')
-        You got ValueError error: Invalid image file: D:\PyBOTs\my_dost\\tests\demo2.pdf. Supported image formats: .png, .jpg, .jpeg, .bmp, .gif
+        You got ValueError error: Invalid image file: D:\PyBOTs\dost\\tests\demo2.pdf. Supported image formats: .png, .jpg, .jpeg, .bmp, .gif
     """
     # import section
     import pyscreeze as ps
@@ -97,7 +98,8 @@ def search(img:Union[str, List[str], WindowsPath, List[WindowsPath]], wait:int=1
     # check whether given image is a valid image file or not
     ext = os.path.splitext(path)[1]
     if ext not in ['.png', '.jpg', '.jpeg', '.bmp', '.gif']:
-        raise ValueError(f'Invalid image file: {path}. Supported image formats: .png, .jpg, .jpeg, .bmp, .gif')
+        raise ValueError(
+            f'Invalid image file: {path}. Supported image formats: .png, .jpg, .jpeg, .bmp, .gif')
 
     # Body section
     point = ps.locateCenterOnScreen(path,  minSearchTime=wait)

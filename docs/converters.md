@@ -1,4 +1,4 @@
-::: dost.folder
+::: dost.converters
     :members:
     :undoc-members:
     :show-inheritance:

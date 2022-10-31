@@ -1,8 +1,8 @@
 """
-Clipboard module for my_dost. This module is used to interact with the Windows clipboard.
+Clipboard module for dost. This module is used to interact with the Windows clipboard.
 
 Examples:
-    >>> from my_dost import clipboard
+    >>> from dost import clipboard
     >>> clipboard.clipboard_set_data('Hello World!')
     >>> clipboard.clipboard_get_data()
 
@@ -17,21 +17,22 @@ It contains the following functions:
 
 
 import win32clipboard
-from helpers import dostify
+from dost.helpers import dostify
+
 
 @dostify(errors=[])
-def clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT) -> None:
+def clipboard_set_data(data: str, format_id=win32clipboard.CF_UNICODETEXT) -> None:
     """Set the clipboard data to the given string.
-    
+
     Args:
         data (str): The data to set the clipboard to.
         format_id (int): The format of the data. Defaults to CF_UNICODETEXT.
-        
+
     Examples:
         >>> clipboard_set_data('Hello World!')
         >>> clipboard_get_data()
         'Hello World!'
-    
+
     """
     # Import Section
     import win32clipboard
@@ -44,17 +45,18 @@ def clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT) -> Non
     finally:
         win32clipboard.CloseClipboard()
 
+
 @dostify(errors=[])
 def GetClipboardFormats() -> list:
     """Get a list of all available clipboard formats.
-    
+
     Returns:
         A list of all available clipboard formats.
-    
+
     Examples:
         >>> GetClipboardFormats()
         [1,2,3]
-    
+
     """
     # Import Section
     import win32clipboard
@@ -71,16 +73,17 @@ def GetClipboardFormats() -> list:
     win32clipboard.CloseClipboard()
     return available_formats
 
+
 @dostify(errors=[])
 def clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT) -> str:
     """Get the clipboard data as a string.
-    
+
     Args:
         format_id (int): The format of the data. Defaults to CF_UNICODETEXT.
-    
+
     Returns:
         The clipboard data as a string.
-    
+
     Examples:
         >>> clipboard_get_data()
         'Hello World!'
