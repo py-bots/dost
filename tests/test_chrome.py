@@ -1,6 +1,7 @@
 import os
 import unittest
-from my_dost.chrome import *
+from dost.chrome import *
+
 
 class test(unittest.TestCase):
     def test_chrome(self):

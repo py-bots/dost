@@ -1,8 +1,8 @@
 """
-Folder module for my_dost. This module contains functions for working with folders and files.
+Folder module for dost. This module contains functions for working with folders and files.
 
 Examples:
-    >>> from my_dost import folder
+    >>> from dost import folder
     >>> folder.read_text_file('tests\\demo.txt')
     'This is a demo text file.'
 
@@ -17,10 +17,10 @@ The module contains the following functions:
 import os
 from pathlib import WindowsPath
 from typing import List, Union
-from my_dost.helpers import dostify
+from dost.helpers import dostify
 
 
-@dostify(errors=[(FileNotFoundError,'')])
+@dostify(errors=[(FileNotFoundError, '')])
 def read_text_file(path: Union[str, List[str], WindowsPath, List[WindowsPath]]) -> Union[str, List[str]]:
     """Reads a text file and returns its contents as a string.
 
@@ -29,7 +29,7 @@ def read_text_file(path: Union[str, List[str], WindowsPath, List[WindowsPath]]) 
 
     Returns:
          The contents of the text file. If a list of paths is provided, a list of strings is returned. 
-    
+
     Examples:
         >>> read_text_file('tests\\demo.txt')
         'This is a demo text file.'
@@ -40,13 +40,14 @@ def read_text_file(path: Union[str, List[str], WindowsPath, List[WindowsPath]]) 
     """
     if isinstance(path, list):
         return [read_text_file(path) for path in path]
-    
+
     file_path = os.path.abspath(path)
 
     if not os.path.isfile(file_path):
         raise FileNotFoundError(f'File not found: {file_path}')
     with open(path, 'r') as f:
         return f.read()
+
 
 @dostify(errors=[])
 def write_text_file(path: Union[str, WindowsPath], contents: str) -> None:
@@ -65,4 +66,3 @@ def write_text_file(path: Union[str, WindowsPath], contents: str) -> None:
     path = os.path.abspath(path)
     with open(path, 'w') as f:
         f.write(contents)
-

@@ -1,8 +1,8 @@
 """ 
-Mail module for my_dost. This module contains functions for sending emails.
+Mail module for dost. This module contains functions for sending emails.
 
 Examples:  
-    >>> from my_dost import mail
+    >>> from dost import mail
     >>> mail.send_gmail_using_app_password('abcd','abcd','abcd@abc.com','abcd','abcd','abc.pdf')
 
 
@@ -14,13 +14,13 @@ This module contains the following functions:
 
 
 from pathlib import WindowsPath
-from typing import List,Union
+from typing import List, Union
 import os
-from helpers import dostify
+from dost.helpers import dostify
 
-@dostify(errors=[(ValueError,'')])
-def send_gmail_using_app_password(gmail_username:str, gmail_app_password:str, to_email_id:Union[str, List[str]], subject:str, message:str, attachment_path:Union[str,List[str],WindowsPath, List[WindowsPath]]="") -> None:
 
+@dostify(errors=[(ValueError, '')])
+def send_gmail_using_app_password(gmail_username: str, gmail_app_password: str, to_email_id: Union[str, List[str]], subject: str, message: str, attachment_path: Union[str, List[str], WindowsPath, List[WindowsPath]] = "") -> None:
     """Send email using gmail app password
     Args:
         gmail_username (str): Gmail username
@@ -35,7 +35,7 @@ def send_gmail_using_app_password(gmail_username:str, gmail_app_password:str, to
     """
     # Import Section
     import os
-    
+
     from pathlib import Path
     import yagmail
 
@@ -59,7 +59,7 @@ def send_gmail_using_app_password(gmail_username:str, gmail_app_password:str, to
 
     if attachment_path:
         yag.send(to_email_id, subject, message,
-                    attachments=attachment_path)
+                 attachments=attachment_path)
     else:
         yag.send(to=to_email_id, subject=subject, contents=message)
 

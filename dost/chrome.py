@@ -24,7 +24,7 @@ The module contains the following functions:
 
 
 import logging
-from my_dost.CrashHandler import text_to_speech_error
+from dost.CrashHandler import text_to_speech_error
 from selenium.common.exceptions import TimeoutException
 import os
 
@@ -34,7 +34,7 @@ output_folder_path = os.path.join(
 if not os.path.exists(output_folder_path):
     os.makedirs(output_folder_path)
 
-                
+
 class DisableLogger():
 
     def __enter__(self):
@@ -50,7 +50,7 @@ class ChromeBrowser:
 
     def open_browser(self, dummy_browser: bool = True, profile: str = "Default", incognito: bool = False, ):
         """This function starts browser
-        
+
         Args:
             dummy_browser (bool, optional): Choose browser type. Defaults to True.
             profile (str, optional): Which profile should browser start with. Defaults to "Default".
@@ -88,13 +88,13 @@ class ChromeBrowser:
             if incognito:
                 self.options.add_argument("--incognito")
             self.browser_driver = webdriver.Chrome(
-                    ChromeDriverManager().install(), options=self.options)
+                ChromeDriverManager().install(), options=self.options)
 
             helium.set_driver(self.browser_driver)
             helium.Config.implicit_wait_secs = 60
         return self.browser_driver
 
-    def navigate(self, url:str) -> None:
+    def navigate(self, url: str) -> None:
         """This function navigates to given url
 
         Args:
@@ -140,7 +140,7 @@ class ChromeBrowser:
         if text and not str(user_visible_text_element).strip():
             helium.write(text)
 
-    def mouse(self, value: str = "", action_type: str = "single", value_type: str = "t") -> None: 
+    def mouse(self, value: str = "", action_type: str = "single", value_type: str = "t") -> None:
         """This function performs mouse actions
 
         Args:
@@ -160,7 +160,7 @@ class ChromeBrowser:
 
         # Code Section
         helium.set_driver(self.browser_driver)
-    
+
         if not action_type:
             text_to_speech_error("Please provide click type", show=False)
         if not value:
@@ -278,20 +278,20 @@ class ChromeBrowser:
                         helium.rightclick(helium.RadioButton(value))
                     elif action_type == "hover":
                         helium.hover(helium.RadioButton(value))
-          
+
     def scroll(self, direction: str = "down", weight=3) -> None:
         """This function is used to scroll the page up or down.
-        
+
         Args:
             direction (str, optional): Direction of the scroll. Defaults to "down".
             weight (int, optional): Weight of the scroll. Defaults to 3.
-        
+
         Returns:
             bool: True if the scroll is successful, False otherwise.
-        
+
         Example:
             >>> scroll("down", 3)
-        
+
         """
         # Import Section
         import helium
@@ -323,7 +323,7 @@ class ChromeBrowser:
             >>> key_press("a")
             >>> key_press("ctrl", "a")
             >>> key_press("ctrl", "shift", "t")
-            
+
         """
         # Import Section
         import sys
@@ -344,7 +344,7 @@ class ChromeBrowser:
 
         Example:
             >>> hit_enter()
-            
+
         """
         # Import Section
         import helium
@@ -355,14 +355,14 @@ class ChromeBrowser:
 
     def refresh_page(self) -> None:
         """This function is used to refresh the page.
-        
+
         Example:
             >>> refresh_page()
-        
+
         """
         # Code Section
         self.browser_driver.refresh()
-    
+
     def set_waiting_time(self, time: int = 10) -> None:
         """This function is used to set the waiting time for the browser.
 
@@ -371,7 +371,7 @@ class ChromeBrowser:
 
         Example:
             >>> set_waiting_time(10)
-            
+
         """
         # Import Section
         import helium
@@ -391,7 +391,7 @@ class ChromeBrowser:
 
         Example:
             >>> get_text("//div[@id='some_id']")
-            
+
         """
         # Code Section
         element = self.browser_driver.find_element_by_xpath(element_xpath)
@@ -400,10 +400,10 @@ class ChromeBrowser:
 
     def close(self) -> None:
         """This function is used to close the browser.
-            
+
         Example:
             >>> close()
-            
+
         """
         # Code Section
         self.browser_driver.close()

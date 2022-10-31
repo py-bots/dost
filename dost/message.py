@@ -1,8 +1,8 @@
 """
-Message module for my_dost. This module contains functions for displaying messages to the user.
+Message module for dost. This module contains functions for displaying messages to the user.
 
 Examples:
-    >>> from my_dost import message
+    >>> from dost import message
     >>> message.info('Hello World!')
     >>> message.error('Hello World!')
     >>> message.warning('Hello World!')
@@ -17,10 +17,11 @@ The module contains the following functions:
 """
 
 
-from helpers import dostify
+from dost.helpers import dostify
+
 
 @dostify(errors=[])
-def info(message:str, title:str="PyBOTs") -> None:
+def info(message: str, title: str = "PyBOTs") -> None:
     """Display a message box with an 'OK' button.
 
     Args:   
@@ -37,8 +38,9 @@ def info(message:str, title:str="PyBOTs") -> None:
     # Code Section
     ctypes.windll.user32.MessageBoxW(0, message, title, 0x40)
 
+
 @dostify(errors=[])
-def error(message:str, title:str="PyBOTs") -> None:
+def error(message: str, title: str = "PyBOTs") -> None:
     """Display a message box with an 'OK' button.
 
     Args:   
@@ -54,8 +56,9 @@ def error(message:str, title:str="PyBOTs") -> None:
     # code section
     ctypes.windll.user32.MessageBoxW(0, message, title, 0x10)
 
+
 @dostify(errors=[])
-def warning(message:str, title:str="PyBOTs") -> None:
+def warning(message: str, title: str = "PyBOTs") -> None:
     """Display a message box with an 'OK' button.
 
     Args:   
@@ -70,4 +73,3 @@ def warning(message:str, title:str="PyBOTs") -> None:
 
     # code section
     ctypes.windll.user32.MessageBoxW(0, message, title, 0x30)
-

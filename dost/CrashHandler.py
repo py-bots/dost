@@ -72,7 +72,7 @@ def text_to_speech_offline(audio, show=True, rate=170):
     import random
     import pyttsx3
     import sys
-    from my_dost.helpers import _is_speaker_available
+    from dost.helpers import _is_speaker_available
     is_speaker_available = _is_speaker_available()
 
     try:
@@ -188,14 +188,14 @@ def uninstall_module(module_name):
 
     """
     try:
-        if module_name != "my_dost":
+        if module_name != "dost":
             import subprocess
             import sys
             subprocess.call([sys.executable, "-m", "pip",
                             "uninstall", "-y", module_name])
         else:
             text_to_speech_error(
-                "You cannot uninstall my_dost from here.")
+                "You cannot uninstall dost from here.")
     except:
         text_to_speech("Sorry, I could not uninstall the module {}".format(
             module_name))
@@ -229,6 +229,7 @@ def install_pyaudio():
     else:
         pass
 
+
 def report_error(ex: Exception):
 
     exception_name = type(ex).__name__
@@ -241,6 +242,7 @@ def report_error(ex: Exception):
     text_to_speech_error("You got a {}. Please check the line number {} .It describes as {}.".format(
         exception_name, exception_line, exception_message))
 
+
 def report_error_user(ex: Exception):
 
     exception_name = type(ex).__name__
@@ -252,4 +254,3 @@ def report_error_user(ex: Exception):
 
     text_to_speech_error("You got a {}. Please check the line number {} .It describes as {}.".format(
         exception_name, exception_line, exception_message))
-

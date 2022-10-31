@@ -1,8 +1,8 @@
 """
-Windows module for my_dost.This module contains functions that are specific to Windows.
+Windows module for dost.This module contains functions that are specific to Windows.
 
 Examples:
-    >>> from my_dost import windows
+    >>> from dost import windows
     >>> windows._window_find_exact_name('Notepad')
     'Notepad'
     >>> windows.show_desktop()
@@ -32,12 +32,13 @@ The module contains the following functions:
 
 from multiprocessing.sharedctypes import Value
 from pathlib import WindowsPath
-from typing import List,Union
+from typing import List, Union
 from xml.etree.ElementTree import QName
-from helpers import dostify
+from dost.helpers import dostify
 
-@dostify(errors=[ValueError,''])
-def _window_find_exact_name(windowName:str) -> str:
+
+@dostify(errors=[ValueError, ''])
+def _window_find_exact_name(windowName: str) -> str:
     """Find window by exact name
     Args:
         windowName (str): Window name
@@ -55,14 +56,15 @@ def _window_find_exact_name(windowName:str) -> str:
         raise ValueError(f'Window name cannot be empty')
 
     lst = gw.getAllTitles()
-    win=""
+    win = ""
     for item in lst:
         if str(item).strip():
             if str(windowName).lower() in str(item).lower():
                 win = item
                 break
     return win
-    
+
+
 @dostify(errors=[])
 def window_show_desktop() -> None:
     """Show desktop
@@ -76,13 +78,14 @@ def window_show_desktop() -> None:
     # Code Section
     pwa.keyboard.send_keys('{VK_RWIN down} d {VK_RWIN up}')
 
+
 @dostify(errors=[])
 def window_get_active_window() -> str:
     """Get active window
-    
+
     Returns:
         Union[str,List[str]]: Active window
-    
+
     Examples:
         >>> window_get_active_window()
     """
@@ -97,13 +100,14 @@ def window_get_active_window() -> str:
 
     return data
 
-@dostify(errors=[(ValueError,'')])
-def window_activate_window(window_title:str) -> None:
+
+@dostify(errors=[(ValueError, '')])
+def window_activate_window(window_title: str) -> None:
     """Activate window
-        
+
     Args:
         window_title (str): Window title
-    
+
     Examples:
         >>> window_activate_window('Notepad')
     """
@@ -116,7 +120,7 @@ def window_activate_window(window_title:str) -> None:
         raise ValueError('Window title name is empty.')
 
     item = _window_find_exact_name(window_title)
-    if item!="":
+    if item != "":
         windw = gw.getWindowsWithTitle(item)[0]
 
         try:
@@ -127,17 +131,18 @@ def window_activate_window(window_title:str) -> None:
     else:
         raise ValueError(f'Window title name {window_title} not found')
 
+
 @dostify(errors=[])
 def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
     """Get all opened titles windows
-        
+
     Returns:
         Union[str, List[str]]: All opened titles windows
-    
+
     Examples:
         >>> window_get_all_opened_titles_windows()
     """
-    
+
     # Import Section
     import pygetwindow as gw
 
@@ -150,8 +155,9 @@ def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
     data = allTitles_lst
     return data
 
-@dostify(errors=[(ValueError,'')])
-def window_maximize_windows(windowName:str) -> None:
+
+@dostify(errors=[(ValueError, '')])
+def window_maximize_windows(windowName: str) -> None:
     """Maximize windows
     Args:
         windowName (str, optional): Window name. Defaults to "".
@@ -162,18 +168,19 @@ def window_maximize_windows(windowName:str) -> None:
     # Import Section
     import time
     import pygetwindow as gw
-    
+
     # Code Section
     if not windowName:
         raise ValueError('Window title name is empty.')
     item = _window_find_exact_name(windowName)
-    if item!="":                                    
+    if item != "":
         windw = gw.getWindowsWithTitle(item)[0]
         windw.maximize()
     else:
         raise ValueError(f'Window title name {windowName} not found')
 
-@dostify(errors=[(ValueError,'')])
+
+@dostify(errors=[(ValueError, '')])
 def window_minimize_windows(windowName: str) -> None:
     """Minimize windows
     Args:
@@ -185,19 +192,20 @@ def window_minimize_windows(windowName: str) -> None:
     # Import Section
     import pygetwindow as gw
 
-    # Code Section 
+    # Code Section
     if not windowName:
         raise ValueError(f'Window title name is empty.')
 
     item = _window_find_exact_name(windowName)
-    if item!="":
+    if item != "":
         windw = gw.getWindowsWithTitle(item)[0]
         windw.minimize()
     else:
         raise ValueError(f'Window title name {windowName} not found')
 
-@dostify(errors=[(ValueError,'')])
-def window_close_windows(windowName:str) -> None:
+
+@dostify(errors=[(ValueError, '')])
+def window_close_windows(windowName: str) -> None:
     """Close windows
     Args:
         windowName (str): Window name
@@ -213,14 +221,15 @@ def window_close_windows(windowName:str) -> None:
         raise ValueError('Window title name is empty.')
 
     item = _window_find_exact_name(windowName)
-    if item!="":
+    if item != "":
         windw = gw.getWindowsWithTitle(item)[0]
         windw.close()
     else:
         raise ValueError(f'Window title name {windowName} not found')
 
-@dostify(errors=[(FileNotFoundError,''),(ValueError,'')])
-def launch_any_exe_bat_application(pathOfExeFile:Union[str,WindowsPath]) -> None:
+
+@dostify(errors=[(FileNotFoundError, ''), (ValueError, '')])
+def launch_any_exe_bat_application(pathOfExeFile: Union[str, WindowsPath]) -> None:
     """Launch any exe/bat application
     Args:
         pathOfExeFile (Union[str,WindowsPath]): Path of exe/bat file
@@ -244,9 +253,6 @@ def launch_any_exe_bat_application(pathOfExeFile:Union[str,WindowsPath]) -> None
         time.sleep(2)
         hwnd = win32gui.GetForegroundWindow()
         win32gui.ShowWindow(hwnd, win32con.SW_MAXIMIZE)
-        
+
     except Exception:
         raise FileNotFoundError(f'No file found at {pathOfExeFile}')
-
-
-
