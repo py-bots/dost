@@ -229,16 +229,6 @@ class test(unittest.TestCase):
         self.check_remove("jpg_image", output_folder_str,
                           output_filename, input_filepath_str)
 
-    def test_xls_to_xlsx(self):
-        # return -1
-        excel_convert_xls_to_xlsx(input_filepath=r'tests\demo.xls')
-        excel_convert_xls_to_xlsx(
-            input_filepath=r'tests\demo.xls', output_folder=r'tests')
-        excel_convert_xls_to_xlsx(
-            input_filepath=r'tests\demo.xls', output_filename="demo_xls")
-        excel_convert_xls_to_xlsx(
-            input_filepath=r'tests\demo.xls', output_folder=r'tests', output_filename="demo_xls")
-
     def test_img_to_base(self):
         # return -1
         self.str = convert_image_to_base64('tests\\demo2.png')
@@ -264,20 +254,6 @@ class test(unittest.TestCase):
         get_image_from_base64(input_img_base64, output_folder, output_filename)
         self.check_remove("base_image", output_folder,
                           output_filename, input_img_base64)
-
-    def test_corrupt_to_xlsx(self):
-        # return -1
-        output_folder = r'tests'
-        output_filename = "demo"
-        input_file_str = 'tests\demo_corrupt.xls'
-        sheet_name = 'Sheet1'
-        excel_change_corrupt_xls_to_xlsx(input_file_str, sheet_name)
-        excel_change_corrupt_xls_to_xlsx(
-            input_file_str, sheet_name, output_folder=output_folder)
-        excel_change_corrupt_xls_to_xlsx(
-            input_file_str, sheet_name, output_filename=output_filename)
-        excel_change_corrupt_xls_to_xlsx(
-            input_file_str, sheet_name, output_folder=output_folder, output_filename=output_filename)
 
     def test_colored_html(self):
         # return -1
