@@ -1,4 +1,4 @@
-from utility import *
+from dost.utility import *
 import sys
 import unittest
 
@@ -8,7 +8,13 @@ sys.path.insert(0, 'dost')
 
 class tests(unittest.TestCase):
     def test_pause(self):
-        pause_program(5)
+        import time
+        sleep_time=3
+        start = time.time()
+        pause_program(sleep_time)
+        end = time.time()
+        self.assertGreaterEqual(end - start, sleep_time)
+
 
     def test_clipboard_set(self):
         clipboard_set_data("Hello World")

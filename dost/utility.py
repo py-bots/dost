@@ -27,13 +27,14 @@ This module contains the following functions:
 """
 
 
+from multiprocessing.sharedctypes import Value
 from pathlib import WindowsPath
 import win32clipboard
 import typing as typing
 from typing import List
 from dost.helpers import dostify
 
-dostify(errors=[()])
+dostify(errors=[(OverflowError,"Time is too large")])
 
 
 def pause_program(seconds: int = "5") -> None:
@@ -50,7 +51,11 @@ def pause_program(seconds: int = "5") -> None:
     import time
 
     # Code Section
+    if seconds>4294967:
+        raise OverflowError
+
     time.sleep(seconds)
+    
 
 
 dostify(errors=[()])
