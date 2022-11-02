@@ -96,7 +96,7 @@ def convert_csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder:
     writer.close()
 
 
-@dostify(errors=[])
+@dostify(errors=[(FileNotFoundError,"")])
 def get_image_from_base64(input_text: str, output_folder: Union[str, WindowsPath] = "", output_filename: str = ""):
     """Get an image from a base64 encoded string.
 
