@@ -312,6 +312,3 @@ def excel_to_colored_html(input_filepath: Union[str, WindowsPath], output_folder
     xlsx2html(input_filepath, output_filename)
 
     # os.startfile(output_folder)
-# convert_image_jpg_to_png(input_filepath='tests\demo2.png',output_folder="testssad",output_filename="demo")
-convert_image_jpg_to_png(
-    input_filepath='tests\demo2.png', output_folder="testssad")
