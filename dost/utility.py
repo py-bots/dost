@@ -31,7 +31,7 @@ from multiprocessing.sharedctypes import Value
 from pathlib import WindowsPath
 import win32clipboard
 import typing as typing
-from typing import List
+from typing import List,Union
 from dost.helpers import dostify
 
 dostify(errors=[(OverflowError,"Time is too large")])
@@ -251,10 +251,10 @@ def uninstall_module(module_name: str) -> None:
             "You cannot uninstall dost from here.")
 
 
-dostify(errors=[()])
+dostify(errors=[(FileNotFoundError, '')])
 
 
-def image_to_text(image_path: WindowsPath) -> str:
+def image_to_text(image_path: Union[str,WindowsPath]) -> str:
     """Converts the specified image to text
 
     Args:
@@ -269,6 +269,12 @@ def image_to_text(image_path: WindowsPath) -> str:
     # Import Section
     from PIL import Image
     import pytesseract
+
+    image_path=WindowsPath(image_path)
+    
+    # Validation 
+    if not image_path.exists():
+        raise FileNotFoundError(f"File not found at path {image_path}")
 
     # Code Section
     image = Image.open(image_path)

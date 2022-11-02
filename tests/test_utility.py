@@ -36,7 +36,8 @@ class tests(unittest.TestCase):
         install_module("requests")
 
     def test_text_from_image(self):
-        self.assertEqual(image_to_text("tests\demo2.png"), "File\n")
+        text_form_function=image_to_text(r"tests\demo2.png")
+        self.assertEqual(text_form_function, "File\n")
 
 
 if __name__ == '__main__':
