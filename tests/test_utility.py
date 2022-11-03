@@ -1,4 +1,4 @@
-from utility import *
+from dost.utility import *
 import sys
 import unittest
 
@@ -8,7 +8,13 @@ sys.path.insert(0, 'dost')
 
 class tests(unittest.TestCase):
     def test_pause(self):
-        pause_program(5)
+        import time
+        sleep_time=3
+        start = time.time()
+        pause_program(sleep_time)
+        end = time.time()
+        self.assertGreaterEqual(end - start, sleep_time)
+
 
     def test_clipboard_set(self):
         clipboard_set_data("Hello World")
@@ -30,7 +36,8 @@ class tests(unittest.TestCase):
         install_module("requests")
 
     def test_text_from_image(self):
-        self.assertEqual(image_to_text("tests\demo2.png"), "File\n")
+        text_form_function=image_to_text(r"tests\demo2.png")
+        self.assertEqual(text_form_function, "File\n")
 
 
 if __name__ == '__main__':
