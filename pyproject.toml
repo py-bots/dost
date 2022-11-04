@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "dost_edu"
+name = "dost"
 version = "0.0.2"
 readme = "README.md"
 packages = [{include = "dost"}]
@@ -57,7 +57,6 @@ winshell = "^0.6"
 opencv-python = "^4.6.0.66"
 requests = "^2.28.1"
 gspread = "^5.6.2"
-currency-symbols = "^2.0.3"
 oauth2client = "^4.1.3"
 gspread-dataframe = "^3.3.0"
 pdfplumber = "^0.7.5"
