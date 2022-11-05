@@ -13,7 +13,7 @@
     
     
       
-        <title>Mouse - DOST</title>
+        <title>Keyboard - DOST</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dost.mouse" class="md-skip">
+        <a href="#dost.keyboard" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mouse
+              Keyboard
             
           </span>
         </div>
@@ -306,11 +306,69 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../keyboard/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Keyboard
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Keyboard
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dost.keyboard" class="md-nav__link">
+    dost.keyboard
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dost.keyboard.hit_enter" class="md-nav__link">
+    hit_enter()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dost.keyboard.press" class="md-nav__link">
+    press()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dost.keyboard.write_enter" class="md-nav__link">
+    write_enter()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -351,62 +409,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Mouse
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../mouse/" class="md-nav__link">
         Mouse
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#dost.mouse" class="md-nav__link">
-    dost.mouse
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dost.mouse.click" class="md-nav__link">
-    click()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dost.mouse.search" class="md-nav__link">
-    search()
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -511,22 +518,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#dost.mouse" class="md-nav__link">
-    dost.mouse
+  <a href="#dost.keyboard" class="md-nav__link">
+    dost.keyboard
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#dost.mouse.click" class="md-nav__link">
-    click()
+  <a href="#dost.keyboard.hit_enter" class="md-nav__link">
+    hit_enter()
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#dost.mouse.search" class="md-nav__link">
-    search()
+  <a href="#dost.keyboard.press" class="md-nav__link">
+    press()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dost.keyboard.write_enter" class="md-nav__link">
+    write_enter()
   </a>
   
 </li>
@@ -546,26 +560,27 @@
                   
 
 
-  <h1>Mouse</h1>
+  <h1>Keyboard</h1>
 
 <div class="doc doc-object doc-module">
 
 
-<a id="dost.mouse"></a>
+<a id="dost.keyboard"></a>
   <div class="doc doc-contents first">
   
-      <p>Mouse module for dost. This module contains functions for mouse control.</p>
+      <p>Keyboard module for dost.This module contains functions for keyboard input and output.</p>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dost</span> <span class="kn">import</span> <span class="n">mouse</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mouse</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mouse</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">(23, 17)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dost</span> <span class="kn">import</span> <span class="n">keyboard</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">write_enter</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">hit_enter</span><span class="p">()</span>
 </code></pre></div>
-      <p>The module contains the following functions:</p>
+      <p>This module contains the following functions:</p>
 <ul>
-<li><code>click(x, y, button, clicks, absolute)</code>: Click at the given coordinates.</li>
-<li><code>search(img, wait, left_click)</code>: Search for an image on the screen and return the coordinates of the top-left corner of the image.</li>
+<li><code>press(key)</code>: Check if a key is pressed.</li>
+<li><code>write_enter(text)</code>: Write text and press enter.</li>
+<li><code>hit_enter()</code>: Press enter.</li>
 </ul>
 
   
@@ -584,15 +599,15 @@
 
 
 
-<h2 id="dost.mouse.click" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">absolute</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+<h2 id="dost.keyboard.hit_enter" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">hit_enter</span><span class="p">(</span><span class="n">write_to_window</span><span class="p">)</span></code>
 
 </h2>
 
 
   <div class="doc doc-contents ">
   
-      <p>Clicks the mouse at the given co-ordinates.</p>
+      <p>Hit enter key</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -606,64 +621,20 @@
     </thead>
     <tbody>
         <tr>
-          <td><code>x</code></td>
-          <td>
-                <code>int</code>
-          </td>
-          <td><p>X co-ordinate.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>y</code></td>
-          <td>
-                <code>int</code>
-          </td>
-          <td><p>Y co-ordinate.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>button</code></td>
+          <td><code>write_to_window</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>The button to click. Can be "left", "right" or "middle". Defaults to "left". Possible values: "left", "l", "right", "r", "middle", "m".</p></td>
+          <td><p>Window to write to</p></td>
           <td>
-                <code>&#39;left&#39;</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>clicks</code></td>
-          <td>
-                <code>int</code>
-          </td>
-          <td><p>Number of times to click the mouse button. Defaults to 1.</p></td>
-          <td>
-                <code>1</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>absolute</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td><p>Whether the co-ordinates are absolute or relative to the current position. Defaults to True.</p></td>
-          <td>
-                <code>True</code>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">click</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">click</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">click</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s2">&quot;middle&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">click</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">click</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">absolute</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">press</span><span class="p">(</span><span class="n">write_to_window</span><span class="o">=</span><span class="n">write_to_window</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;enter&quot;</span><span class="p">,)</span>
 </code></pre></div>
 
   </div>
@@ -674,15 +645,15 @@
 
 
 
-<h2 id="dost.mouse.search" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">search</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">conf</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">left_click</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<h2 id="dost.keyboard.press" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">press</span><span class="p">(</span><span class="n">key_1</span><span class="p">,</span> <span class="n">key_2</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">key_3</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">write_to_window</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
 
 </h2>
 
 
   <div class="doc doc-contents ">
   
-      <p>Searches for the given image and returns the co-ordinates of the image.</p>
+      <p>Press a key or a combination of keys.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -696,62 +667,118 @@
     </thead>
     <tbody>
         <tr>
-          <td><code>img</code></td>
+          <td><code>write_to_window</code></td>
           <td>
-                <code><span title="typing.Union">Union</span>[str, <span title="typing.List">List</span>[str], <span title="pathlib.WindowsPath">WindowsPath</span>, <span title="typing.List">List</span>[<span title="pathlib.WindowsPath">WindowsPath</span>]]</code>
+                <code>str</code>
           </td>
-          <td><p>The path to the image.</p></td>
+          <td><p>The window to write to.</p></td>
+          <td>
+                <code>&#39;&#39;</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>key_1</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The first key to press.</p></td>
           <td>
               <em>required</em>
           </td>
         </tr>
         <tr>
-          <td><code>wait</code></td>
+          <td><code>key_2</code></td>
           <td>
-                <code>int</code>
+                <code>str</code>
           </td>
-          <td><p>The time to wait for the image to appear. Defaults to 10.</p></td>
+          <td><p>The second key to press.</p></td>
           <td>
-                <code>10</code>
+                <code>&#39;&#39;</code>
           </td>
         </tr>
         <tr>
-          <td><code>left_click</code></td>
+          <td><code>key_3</code></td>
           <td>
-                <code>bool</code>
+                <code>str</code>
           </td>
-          <td><p>Whether to left click on the image. Defaults to False.</p></td>
+          <td><p>The third key to press.</p></td>
           <td>
-                <code>False</code>
+                <code>&#39;&#39;</code>
           </td>
-        </tr>
-    </tbody>
-  </table>
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code><span title="typing.Union">Union</span>[<span title="typing.Tuple">Tuple</span>[int, int], <span title="typing.List">List</span>[<span title="typing.Tuple">Tuple</span>[int, int]], None]</code>
-          </td>
-          <td><p>A tuple containing the X and Y co-ordinates of the image.</p></td>
         </tr>
     </tbody>
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">(23, 17)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">left_click</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">search</span><span class="p">([</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">,</span> <span class="s1">&#39;tests\demo2.png&#39;</span><span class="p">])</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="go">[(23, 17), (67, 16)]</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;Notepad&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;Notepad&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{VK_CONTROL}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;Notepad&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{VK_CONTROL}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s2">&quot;enter&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="dost.keyboard.write_enter" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">write_enter</span><span class="p">(</span><span class="n">write_to_window</span><span class="p">,</span> <span class="n">text_to_write</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;e&#39;</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Write text to window and press enter key</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>write_to_window</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Window to write to</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>text_to_write</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Text to write</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>key</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Key to press. Defaults to "e".</p></td>
+          <td>
+                <code>&#39;e&#39;</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">write_enter</span><span class="p">(</span><span class="s2">&quot;Notepad&quot;</span><span class="p">,</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
@@ -785,7 +812,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../message/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Message" rel="prev">
+        <a href="../folder/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Folder" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -794,20 +821,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Message
+              Folder
             </div>
           </div>
         </a>
       
       
         
-        <a href="../pdf/" class="md-footer__link md-footer__link--next" aria-label="Next: Pdf" rel="next">
+        <a href="../mail/" class="md-footer__link md-footer__link--next" aria-label="Next: Mail" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Pdf
+              Mail
             </div>
           </div>
           <div class="md-footer__button md-icon">
