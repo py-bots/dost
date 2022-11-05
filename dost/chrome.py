@@ -47,7 +47,7 @@ class ChromeBrowser:
     def __init__(self):
         self.browser_driver = None
 
-    def open_browser(self, dummy_browser: bool = True, profile: str = "Default", incognito: bool = False, ):
+    def open_browser(self, dummy_browser: bool = True, profile: str = "Default", incognito: bool = False, ) -> object:
         """This function starts browser
 
         Args:
@@ -56,7 +56,7 @@ class ChromeBrowser:
             incognito (bool, optional): Whether to start in incognito mode or normal. Defaults to False.
 
         Returns:
-            browser driver: Browser's driver
+            object: Browser object
 
         Example:
             >>> browser = ChromeBrowser()

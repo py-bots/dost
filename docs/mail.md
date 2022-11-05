@@ -1,4 +1,5 @@
 ::: dost.mail
+    handler: python
     :members:
-    :undoc-members:
-    :show-inheritance:
+    options:
+      show_source: false

@@ -52,7 +52,7 @@ if not os.path.exists(output_folder_path):
 
 
 @dostify(errors=[])
-def authenticate_google_spreadsheet(credential_file_path: Union[str, WindowsPath]):
+def authenticate_google_spreadsheet(credential_file_path: Union[str, WindowsPath]) -> object:
     """Creates authentication object for google spreadsheet.
 
     Args:

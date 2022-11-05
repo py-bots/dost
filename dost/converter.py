@@ -3,22 +3,22 @@ Converter module for dost. This module contains functions to convert between dif
 
 Examples:
     >>> from dost import converter
-    >>> converter.csv_to_excel('tests\\demo.csv', 'tests\\demo.xlsx')
+    >>> converter.csv_to_excel('tests\\demo.csv')
     >>> converter.base64_to_image('tests\\demo.txt')
     >>> converter.image_to_base64('tests\\demo.png')
-    >>> converter.jpg_to_png('tests\\demo.jpg', 'tests\\demo.png')
-    >>> converter.png_to_jpg('tests\\demo.png', 'tests\\demo.jpg')
-    >>> converter.excel_to_html('tests\\demo.xlsx', 'tests\\demo.html')
+    >>> converter.jpg_to_png('tests\\demo.jpg')
+    >>> converter.png_to_jpg('tests\\demo.png')
+    >>> converter.excel_to_html('tests\\demo.xlsx')
 
 
 The module contains the following functions:
 
-- `csv_to_excel(csv_path, excel_path)`: Convert a CSV file to an Excel file.
-- `base64_to_image(path)`: Get an image from a base64 encoded string.
-- `image_to_base64(path)`: Get a base64 encoded string from an image..
-- `jpg_to_png(jpg_path, png_path)`: Convert a JPG image to a PNG image.
-- `png_to_jpg(png_path, jpg_path)`: Convert a PNG image to a JPG image.
-- `excel_to_html(excel_path, html_path)`: Convert an Excel file to a colored HTML file.
+- `csv_to_excel(input_filepath, output_folder, output_filename, contains_headers, sep)`: Convert a CSV file to an Excel file.
+- `base64_to_image(input_text, output_folder, output_filename)`: Convert a base64 string to an image.
+- `image_to_base64(image_path)`: Convert an image to a base64 string.
+- `jpg_to_png(input_filepath, output_folder, output_filename)`: Convert a JPG image to a PNG image.
+- `png_to_jpg(input_filepath, output_folder, output_filename)`: Convert a PNG image to a JPG image.
+- `excel_to_html(input_filepath, output_folder, output_filename)`: Convert an Excel file to an HTML file.
 
 """
 
@@ -144,11 +144,14 @@ def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath] = ""
 
 
 @dostify(errors=[(FileNotFoundError, '')])
-def image_to_base64(input_filepath: Union[str, WindowsPath]):
+def image_to_base64(input_filepath: Union[str, WindowsPath]) -> str:
     """Get a base64 encoded string from an image.
 
     Args:
         input_filepath (str,WindowsPath): The path to the image file.
+
+    Returns:
+        str: The base64 encoded string.
 
     Examples:
         >>> image_to_base64('tests\\demo.png')

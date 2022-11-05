@@ -2,25 +2,19 @@
 Voice Module for dost.This module contains all the functions related to voice recognition and text to speech.
 
 Examples:
-    >>> import voice3
-    >>> voice3.text_to_speech("Hello World")
-    >>> voice3.speech_to_text()
-    "Hello World"
-    >>> voice3.text_to_speech_offline("Hello World")
+    >>> from dost import voice
+    >>> voice.text_to_speech("Hello World")
     
 
 This module contains the following functions:
         
-- `text_to_speech(text)`: Converts text to speech.
 - `speech_to_text()`: Converts speech to text.
-- `text_to_speech_offline(text)`: Converts text to speech offline.
+- `text_to_speech(audio, show, rate)`: Converts text to speech.
 """
 
 
 from pathlib import WindowsPath
 from dost.helpers import dostify
-from dost.helpers import _is_speaker_available
-is_speaker_connected = _is_speaker_available()
 
 
 @dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
@@ -141,25 +135,7 @@ def speech_to_text() -> str:
 
 
 @dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
-def text_to_speech(audio, show: bool = True) -> None:
-    """
-    Converts text to speech
-    Args:
-        audio (string): Text to be converted to speech
-        show (bool): Whether to print the text or not
-    Examples:
-        >>> text_to_speech("Hello World")
-    """
-    # Import Section
-    import random
-    import os
-
-    # Code Section
-    text_to_speech_offline(audio, show)
-
-
-@dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
-def text_to_speech_offline(audio, show: bool = True, rate: int = 170) -> None:
+def text_to_speech(audio, show: bool = True, rate: int = 170) -> None:
     """
     Converts text to speech offline
     Args:
@@ -167,12 +143,13 @@ def text_to_speech_offline(audio, show: bool = True, rate: int = 170) -> None:
         show (bool): Whether to print the text or not
         rate (int): Rate of speech. Default is 170
     Examples:
-        >>> text_to_speech_offline("Hello World")
+        >>> text_to_speech("Hello World")
     """
     # Import Section
     import random
     import pyttsx3
-    import sys
+    from dost.helpers import _is_speaker_available
+    is_speaker_connected = _is_speaker_available()
 
     # Code Section
     if is_speaker_connected:

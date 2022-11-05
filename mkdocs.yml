@@ -1,8 +1,9 @@
-site_name: My-DOST
+site_name: DOST
 
 theme:
   name: "material"
   palette:
+    
   # Palette toggle for automatic mode
   - media: "(prefers-color-scheme)"
     toggle:
@@ -19,6 +20,7 @@ theme:
   # Palette toggle for dark mode
   - media: "(prefers-color-scheme: dark)"
     scheme: slate
+    primary: indigo
     toggle:
       icon: material/weather-night
       name: Switch to light mode
@@ -28,8 +30,7 @@ plugins:
   - search
 
 nav:
-  - My-DOST Docs: index.md
-  - Chrome: chrome.md
+  - index.md
   - Clipboard: clipboard.md
   - Converter: converter.md
   - Excel: excel.md

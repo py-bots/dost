@@ -2,12 +2,12 @@
 String Module for dost.This module contains functions for working with strings.
 
 Examples:
-    >>> from dost import string
-    >>> get_alphabets("hello123:l;,")
+    >>> from dost import text
+    >>> text.get_alphabets("hello123:l;,")
     'hellol'
-    >>> get_numbers("hello123:l;,")
+    >>> text.get_numbers("hello123:l;,")
     '123
-    >>> remove_special_characters("hello123:l;,")
+    >>> text.remove_special_characters("hello123:l;,")
     'hello123l'
 
 The module contains the following functions:
@@ -22,46 +22,58 @@ from dost.helpers import dostify
 
 
 @dostify(errors=[])
-def get_alphabets(inputString: str) -> str:
+def get_alphabets(text: str) -> str:
     """Extracts alphabets from the given string.
     Args:
-        inputString (str): The string from which alphabets are to be extracted.
+        text (str): The string from which alphabets are to be extracted.
+
+    Returns:
+        str: Alphabets from the given string.
+
     Examples:
         >>> get_alphabets("hello123:l;,")
         'hellol'
     """
     # Code Section
-    data = ''.join(e for e in inputString if e.isalpha())
+    data = ''.join(e for e in text if e.isalpha())
 
     return data
 
 
 @dostify(errors=[])
-def get_numbers(inputString: str) -> str:
+def get_numbers(text: str) -> str:
     """Extracts alphabets from the given string.
     Args:
-        inputString (str): The string from which numbers are to be extracted.
+        text (str): The string from which numbers are to be extracted.
+
+    Returns:
+        str: Numbers extracted from the given string.
+
     Examples:
         >>> get_numbers("hello123:l;,")
         '123'
     """
 
     # Code Section
-    data = ''.join(e for e in inputString if e.isnumeric())
+    data = ''.join(e for e in text if e.isnumeric())
 
     return data
 
 
 @dostify(errors=[])
-def remove_special_characters(inputStr: str) -> str:
+def remove_special_characters(text: str) -> str:
     """Removes special characters from the given string.
     Args:
-        inputString (str): The string from which special characters are to be removed.
+        text (str): The string from which special characters are to be removed.
+
+    Returns:
+        str: The string without special characters.
+
     Examples:
         >>> extract_only_alphabets("hello123:l;,")
         'hello123l'
     """
     # Code Section
-    data = ''.join(e for e in inputStr if e.isalnum())
+    data = ''.join(e for e in text if e.isalnum())
 
     return data

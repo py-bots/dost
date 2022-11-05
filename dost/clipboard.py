@@ -11,7 +11,7 @@ It contains the following functions:
 
 - `set_data(data, format_id)`: Set the clipboard data to the given string.
 - `get_data(format_id) -> str`: Get the clipboard data as a string.
-- `GetClipboardFormats()`: Get a list of all available clipboard formats.
+- `_GetClipboardFormats()`: Get a list of all available clipboard formats.
 """
 
 
@@ -46,14 +46,14 @@ def set_data(data: str, format_id=win32clipboard.CF_UNICODETEXT) -> None:
 
 
 @dostify(errors=[])
-def GetClipboardFormats() -> list:
+def _GetClipboardFormats() -> list:
     """Get a list of all available clipboard formats.
 
     Returns:
         A list of all available clipboard formats.
 
     Examples:
-        >>> GetClipboardFormats()
+        >>> _GetClipboardFormats()
         [1,2,3]
 
     """
@@ -91,7 +91,7 @@ def get_data(format_id=win32clipboard.CF_UNICODETEXT) -> str:
     import win32clipboard
 
     # Code Section
-    if format_id not in GetClipboardFormats():
+    if format_id not in _GetClipboardFormats():
         raise RuntimeError("That format is not available")
     win32clipboard.OpenClipboard()
     data = win32clipboard.GetClipboardData(format_id)
