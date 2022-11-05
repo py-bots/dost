@@ -30,10 +30,8 @@ The module contains the following functions:
 """
 
 
-from multiprocessing.sharedctypes import Value
 from pathlib import WindowsPath
 from typing import List, Union
-from xml.etree.ElementTree import QName
 from dost.helpers import dostify
 
 

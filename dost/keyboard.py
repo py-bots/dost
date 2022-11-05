@@ -3,16 +3,16 @@ Keyboard module for dost.This module contains functions for keyboard input and o
 
 Examples:
     >>> from dost import keyboard
-    >>> keyboard.key_press('a')
-    >>> keyboard.key_write_enter('Hello World!')
-    >>> keyboard.key_hit_enter()
+    >>> keyboard.press('a')
+    >>> keyboard.write_enter('Hello World!')
+    >>> keyboard.hit_enter()
 
 
 This module contains the following functions:
 
-`key_press(key)`: Check if a key is pressed.
-`key_write_enter(text)`: Write text and press enter.
-`key_hit_enter()`: Press enter.
+`press(key)`: Check if a key is pressed.
+`write_enter(text)`: Write text and press enter.
+`hit_enter()`: Press enter.
 
 """
 
@@ -21,7 +21,7 @@ from dost.helpers import dostify
 
 
 @dostify(errors=[])
-def key_press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '') -> None:
+def press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '') -> None:
     """Press a key or a combination of keys.
     Args:
         write_to_window (str): The window to write to.
@@ -29,9 +29,9 @@ def key_press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str
         key_2 (str): The second key to press.
         key_3 (str): The third key to press.
     Examples:
-        >>> key_press('Notepad', 'a')
-        >>> key_press('Notepad', '{VK_CONTROL}', 'S')
-        >>> key_press('Notepad', '{VK_CONTROL}', 'S',"enter")
+        >>> press('Notepad', 'a')
+        >>> press('Notepad', '{VK_CONTROL}', 'S')
+        >>> press('Notepad', '{VK_CONTROL}', 'S',"enter")
     """
     # Import Section
     import pywinauto as pwa
@@ -94,7 +94,7 @@ def key_press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str
 
 
 @dostify(errors=[])
-def key_write_enter(write_to_window: str, text_to_write: str, key: str = "e") -> None:
+def write_enter(write_to_window: str, text_to_write: str, key: str = "e") -> None:
     """Write text to window and press enter key
 
     Args:
@@ -103,7 +103,7 @@ def key_write_enter(write_to_window: str, text_to_write: str, key: str = "e") ->
         key (str, optional): Key to press. Defaults to "e".
 
     Examples:
-        >>> key_write_enter("Notepad", "Hello World")
+        >>> write_enter("Notepad", "Hello World")
     """
 
     # Import Section
@@ -128,14 +128,14 @@ def key_write_enter(write_to_window: str, text_to_write: str, key: str = "e") ->
 
 
 @dostify(errors=[])
-def key_hit_enter(write_to_window: str) -> None:
+def hit_enter(write_to_window: str) -> None:
     """Hit enter key
 
     Args:
         write_to_window (str): Window to write to
 
     Examples:
-        >>> key_press(write_to_window=write_to_window, key="enter",)
+        >>> press(write_to_window=write_to_window, key="enter",)
         """
 
     # Import Section

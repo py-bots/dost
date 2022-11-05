@@ -31,12 +31,11 @@ from multiprocessing.sharedctypes import Value
 from pathlib import WindowsPath
 import win32clipboard
 import typing as typing
-from typing import List,Union
+from typing import List, Union
 from dost.helpers import dostify
 
-dostify(errors=[(OverflowError,"Time is too large")])
 
-
+@dostify(errors=[(OverflowError, "Time is too large")])
 def pause_program(seconds: int = "5") -> None:
     """Pauses the program for the specified number of seconds
 
@@ -51,16 +50,13 @@ def pause_program(seconds: int = "5") -> None:
     import time
 
     # Code Section
-    if seconds>4294967:
+    if seconds > 4294967:
         raise OverflowError
 
     time.sleep(seconds)
-    
 
 
-dostify(errors=[()])
-
-
+@dostify(errors=[])
 def api_request(url: str, method='GET', body: dict = None, headers: dict = None) -> dict:
     """Makes an API request to the specified URL
 
@@ -110,9 +106,7 @@ def api_request(url: str, method='GET', body: dict = None, headers: dict = None)
 # print(api_request("https://todos.free.beeceptor.com/todos", body='', headers={}))
 # print(api_request(url='https://todos.free.beeceptor.com/todos'))
 
-dostify(errors=[()])
-
-
+@dostify(errors=[])
 def clipboard_set_data(data: str, format_id=win32clipboard.CF_UNICODETEXT) -> None:
     """Sets the clipboard data to the specified data
 
@@ -134,9 +128,7 @@ def clipboard_set_data(data: str, format_id=win32clipboard.CF_UNICODETEXT) -> No
     win32clipboard.CloseClipboard()
 
 
-dostify(errors=[()])
-
-
+@dostify(errors=[])
 def GetClipboardFormats() -> list:
     """Returns a list of all the formats available in the clipboard
 
@@ -162,9 +154,7 @@ def GetClipboardFormats() -> list:
     return available_formats
 
 
-dostify(errors=[()])
-
-
+@dostify(errors=[])
 def clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT) -> typing.Any:
     """Gets the data from the clipboard
 
@@ -188,9 +178,7 @@ def clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT) -> typing.Any:
     return data
 
 
-dostify(errors=[()])
-
-
+@dostify(errors=[])
 def clear_output() -> None:
     """Clears the output of the console
 
@@ -208,9 +196,7 @@ def clear_output() -> None:
     os.system(command)
 
 
-dostify(errors=[()])
-
-
+@dostify(errors=[])
 def install_module(module_name: str) -> None:
     """Installs the specified module
 
@@ -228,9 +214,7 @@ def install_module(module_name: str) -> None:
                         "install", module_name])
 
 
-dostify(errors=[()])
-
-
+@dostify(errors=[])
 def uninstall_module(module_name: str) -> None:
     """Uninstalls the specified module
 
@@ -251,10 +235,8 @@ def uninstall_module(module_name: str) -> None:
             "You cannot uninstall dost from here.")
 
 
-dostify(errors=[(FileNotFoundError, '')])
-
-
-def image_to_text(image_path: Union[str,WindowsPath]) -> str:
+@dostify(errors=[(FileNotFoundError, '')])
+def image_to_text(image_path: Union[str, WindowsPath]) -> str:
     """Converts the specified image to text
 
     Args:
@@ -270,9 +252,9 @@ def image_to_text(image_path: Union[str,WindowsPath]) -> str:
     from PIL import Image
     import pytesseract
 
-    image_path=WindowsPath(image_path)
-    
-    # Validation 
+    image_path = WindowsPath(image_path)
+
+    # Validation
     if not image_path.exists():
         raise FileNotFoundError(f"File not found at path {image_path}")
 

@@ -4,21 +4,21 @@ Converter module for dost. This module contains functions to convert between dif
 Examples:
     >>> from dost import converter
     >>> converter.csv_to_excel('tests\\demo.csv', 'tests\\demo.xlsx')
-    >>> converter.get_image_from_base64('tests\\demo.txt')
-    >>> converter.get_base64_from_image('tests\\demo.png')
-    >>> converter.image_jpg_to_png('tests\\demo.jpg', 'tests\\demo.png')
-    >>> converter._image_png_to_jpg('tests\\demo.png', 'tests\\demo.jpg')
-    >>> converter.excel_to_colored_html('tests\\demo.xlsx', 'tests\\demo.html')
+    >>> converter.base64_to_image('tests\\demo.txt')
+    >>> converter.image_to_base64('tests\\demo.png')
+    >>> converter.jpg_to_png('tests\\demo.jpg', 'tests\\demo.png')
+    >>> converter.png_to_jpg('tests\\demo.png', 'tests\\demo.jpg')
+    >>> converter.excel_to_html('tests\\demo.xlsx', 'tests\\demo.html')
 
 
 The module contains the following functions:
 
-- `convert_csv_to_excel(csv_path, excel_path)`: Convert a CSV file to an Excel file.
-- `get_image_from_base64(path)`: Get an image from a base64 encoded string.
-- `get_base64_from_image(path)`: Get a base64 encoded string from an image..
-- `convert_image_jpg_to_png(jpg_path, png_path)`: Convert a JPG image to a PNG image.
-- `convert__image_png_to_jpg(png_path, jpg_path)`: Convert a PNG image to a JPG image.
-- `excel_to_colored_html(excel_path, html_path)`: Convert an Excel file to a colored HTML file.
+- `csv_to_excel(csv_path, excel_path)`: Convert a CSV file to an Excel file.
+- `base64_to_image(path)`: Get an image from a base64 encoded string.
+- `image_to_base64(path)`: Get a base64 encoded string from an image..
+- `jpg_to_png(jpg_path, png_path)`: Convert a JPG image to a PNG image.
+- `png_to_jpg(png_path, jpg_path)`: Convert a PNG image to a JPG image.
+- `excel_to_html(excel_path, html_path)`: Convert an Excel file to a colored HTML file.
 
 """
 

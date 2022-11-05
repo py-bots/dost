@@ -3,18 +3,18 @@ String Module for dost.This module contains functions for working with strings.
 
 Examples:
     >>> from dost import string
-    >>> string_extract_only_alphabets("hello123:l;,")
+    >>> get_alphabets("hello123:l;,")
     'hellol'
-    >>> string_extract_only_alphabets("hello123:l;,")
+    >>> get_numbers("hello123:l;,")
     '123
-    >>> string_extract_only_alphabets("hello123:l;,")
+    >>> remove_special_characters("hello123:l;,")
     'hello123l'
 
 The module contains the following functions:
 
-- `string_extract_only_alphabets(string)`: Extract only alphabets from the given string.
-- `string_extract_only_numbers(string)`: Extract only numbers from the given string.
-- `string_remove_special_characters(string)`: Remove special characters from the given string.
+- `get_alphabets(string)`: Extract only alphabets from the given string.
+- `get_numbers(string)`: Extract only numbers from the given string.
+- `remove_special_characters(string)`: Remove special characters from the given string.
 
 """
 
@@ -23,12 +23,12 @@ from dost.helpers import dostify
 
 
 @dostify(errors=[])
-def string_extract_only_alphabets(inputString: str) -> str:
+def get_alphabets(inputString: str) -> str:
     """Extracts alphabets from the given string.
     Args:
         inputString (str): The string from which alphabets are to be extracted.
     Examples:
-        >>> string_extract_only_alphabets("hello123:l;,")
+        >>> get_alphabets("hello123:l;,")
         'hellol'
     """
     # Code Section
@@ -38,12 +38,12 @@ def string_extract_only_alphabets(inputString: str) -> str:
 
 
 @dostify(errors=[])
-def string_extract_only_numbers(inputString: str) -> str:
+def get_numbers(inputString: str) -> str:
     """Extracts alphabets from the given string.
     Args:
         inputString (str): The string from which numbers are to be extracted.
     Examples:
-        >>> string_extract_only_alphabets("hello123:l;,")
+        >>> get_numbers("hello123:l;,")
         '123'
     """
 
@@ -54,12 +54,12 @@ def string_extract_only_numbers(inputString: str) -> str:
 
 
 @dostify(errors=[])
-def string_remove_special_characters(inputStr: str) -> str:
+def remove_special_characters(inputStr: str) -> str:
     """Removes special characters from the given string.
     Args:
         inputString (str): The string from which special characters are to be removed.
     Examples:
-        >>> string_extract_only_alphabets("hello123:l;,")
+        >>> extract_only_alphabets("hello123:l;,")
         'hello123l'
     """
     # Code Section

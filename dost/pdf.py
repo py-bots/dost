@@ -2,12 +2,12 @@
 PDF module for dost. This module is used to extract data from PDF files.
 
 Examples:
-    >>> pdf.pdf_extract_all_tables("C:\\Users\\user\\Desktop\\demo.pdf", "C:\\Users\\user\\Desktop\\", "demo")
+    >>> pdf.extract_all_tables("C:\\Users\\user\\Desktop\\demo.pdf", "C:\\Users\\user\\Desktop\\", "demo")
 
 
 The module contains the following functions:
 
-`pdf_extract_all_tables(pdf_file_path, output_folder, output_file_name, table_with_borders)`: Extracts all tables from a pdf file and saves them as csv files in the specified folder.
+`extract_all_tables(pdf_file_path, output_folder, output_file_name, table_with_borders)`: Extracts all tables from a pdf file and saves them as csv files in the specified folder.
 
 """
 
@@ -27,7 +27,7 @@ if not os.path.exists(output_folder_path):
 
 
 @dostify(errors=[(FileNotFoundError, "")])
-def pdf_extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Union[str, WindowsPath], output_file_name: str, table_with_borders: bool = True) -> None:
+def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Union[str, WindowsPath], output_file_name: str, table_with_borders: bool = True) -> None:
     """Extracts all tables from a pdf file and saves them as csv files in the specified folder.
 
     Args:
@@ -37,7 +37,7 @@ def pdf_extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder
         table_with_borders (bool, optional): Whether the table has borders. Defaults to True.
 
     Examples:
-        >>> pdf_extract_all_tables("C:\\Users\\user\\Desktop\\demo.pdf", "C:\\Users\\user\\Desktop\\", "demo")
+        >>> extract_all_tables("C:\\Users\\user\\Desktop\\demo.pdf", "C:\\Users\\user\\Desktop\\", "demo")
 
     """
     # Import Section
