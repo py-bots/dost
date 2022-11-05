@@ -8,18 +8,17 @@ Examples:
 
 The module contains the following functions:
 
-` open_browser(dummy_browser: bool = True, profile: str = "Default", incognito: bool = False)`: Opens a chrome browser with given settings
-` navigate(url)`: Navigates to given url
-` write(string, field_name)`: Writes text to given element
-` mouse(element to search, no. of clicks, element type)`: Clicks on given element
-` scroll(direction, weight): Scrolls to webpage by given weight
-` key_press(key1,key2): Press the keys in browser
-` hit_enter(): Presses enter key
-` refresh_page(): Refreshes the webpage
-` set_waiting_time(time): Sets waiting time for browser
-` get_text(element): Gets text from given element
-` close(): Closes the browser
-
+- `open_browser(dummy_browser: bool = True, profile: str = "Default", incognito: bool = False)`: Opens a chrome browser with given settings
+- `navigate(url)`: Navigates to given url
+- `write(string, field_name)`: Writes text to given element
+- `mouse(element to search, no. of clicks, element type)`: Clicks on given element
+- `scroll(direction, weight): Scrolls to webpage by given weight
+- `key_press(key1,key2): Press the keys in browser
+- `hit_enter(): Presses enter key
+- `refresh_page(): Refreshes the webpage
+- `set_waiting_time(time): Sets waiting time for browser
+- `get_text(element): Gets text from given element
+- `close(): Closes the browser
 """
 
 

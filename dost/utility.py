@@ -23,7 +23,6 @@ This module contains the following functions:
 - `clear_output()`: Clears the output of the console
 - `install_module(module_name:str)`: Installs the specified module
 - `uninstall_module(module_name:str)`: Uninstalls the specified module 
-
 """
 
 

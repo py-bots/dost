@@ -15,7 +15,6 @@ The module contains the following functions:
 - `get_alphabets(string)`: Extract only alphabets from the given string.
 - `get_numbers(string)`: Extract only numbers from the given string.
 - `remove_special_characters(string)`: Remove special characters from the given string.
-
 """
 
 

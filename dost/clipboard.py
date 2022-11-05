@@ -9,10 +9,9 @@ Examples:
 
 It contains the following functions:
 
-` set_data(data, format_id)`: Set the clipboard data to the given string.
-` get_data(format_id) -> str`: Get the clipboard data as a string.
-` GetClipboardFormats()`: Get a list of all available clipboard formats.
-
+- `set_data(data, format_id)`: Set the clipboard data to the given string.
+- `get_data(format_id) -> str`: Get the clipboard data as a string.
+- `GetClipboardFormats()`: Get a list of all available clipboard formats.
 """
 
 

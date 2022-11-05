@@ -29,12 +29,21 @@ plugins:
 
 nav:
   - My-DOST Docs: index.md
-  - Folder: folder.md
-  - Mouse: mouse.md
-  - Message: message.md
+  - Chrome: chrome.md
+  - Clipboard: clipboard.md
   - Converter: converter.md
-  - File: file.md
   - Excel: excel.md
+  - File: file.md
+  - Folder: folder.md
+  - Keyboard: keyboard.md
+  - Mail: mail.md
+  - Message: message.md
+  - Mouse: mouse.md
+  - Pdf: pdf.md
+  - Text: text.md
+  - Utility: utility.md
+  - Voice: voice.md
+  - Windows: windows.md
   # - tutorials.md
   # - How-To Guides: how-to-guides.md
   # - reference.md

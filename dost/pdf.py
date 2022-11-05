@@ -7,7 +7,7 @@ Examples:
 
 The module contains the following functions:
 
-`extract_all_tables(pdf_file_path, output_folder, output_file_name, table_with_borders)`: Extracts all tables from a pdf file and saves them as csv files in the specified folder.
+- `extract_all_tables(pdf_file_path, output_folder, output_file_name, table_with_borders)`: Extracts all tables from a pdf file and saves them as csv files in the specified folder.
 
 """
 

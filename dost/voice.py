@@ -14,7 +14,6 @@ This module contains the following functions:
 - `text_to_speech(text)`: Converts text to speech.
 - `speech_to_text()`: Converts speech to text.
 - `text_to_speech_offline(text)`: Converts text to speech offline.
-
 """
 
 

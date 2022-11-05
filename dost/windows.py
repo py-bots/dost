@@ -26,7 +26,6 @@ The module contains the following functions:
 - `minimize_window(window_name)`: Minimize a window.
 - `close_window(window_name)`: Close a window.
 - `launch_app(application_name)`: Launch any exe or bat application.
-
 """
 
 

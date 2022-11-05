@@ -10,9 +10,9 @@ Examples:
 
 This module contains the following functions:
 
-`press(key)`: Check if a key is pressed.
-`write_enter(text)`: Write text and press enter.
-`hit_enter()`: Press enter.
+- `press(key)`: Check if a key is pressed.
+- `write_enter(text)`: Write text and press enter.
+- `hit_enter()`: Press enter.
 
 """
 
