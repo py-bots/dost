@@ -3,14 +3,14 @@ Keyboard module for dost.This module contains functions for keyboard input and o
 
 Examples:
     >>> from dost import keyboard
-    >>> keyboard.key_pressed('a')
+    >>> keyboard.key_press('a')
     >>> keyboard.key_write_enter('Hello World!')
     >>> keyboard.key_hit_enter()
 
 
 This module contains the following functions:
 
-`key_pressed(key)`: Check if a key is pressed.
+`key_press(key)`: Check if a key is pressed.
 `key_write_enter(text)`: Write text and press enter.
 `key_hit_enter()`: Press enter.
 
@@ -21,7 +21,7 @@ from dost.helpers import dostify
 
 
 @dostify(errors=[])
-def key_press(write_to_window: str, key_1: str, key_2: str = '', key_3: str = '') -> None:
+def key_press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '') -> None:
     """Press a key or a combination of keys.
     Args:
         write_to_window (str): The window to write to.
@@ -35,7 +35,7 @@ def key_press(write_to_window: str, key_1: str, key_2: str = '', key_3: str = ''
     """
     # Import Section
     import pywinauto as pwa
-    from windows import window_activate_window
+    from dost.windows import activate_window
 
     # Code Section
     if key_1 == '':
@@ -76,7 +76,7 @@ def key_press(write_to_window: str, key_1: str, key_2: str = '', key_3: str = ''
     case_2 = True if key_1 in special_keys and key_2 in special_keys and key_3 not in special_keys else False  # 2 Special Keys
 
     if write_to_window:
-        window_activate_window(write_to_window)
+        activate_window(write_to_window)
 
     if case_0:
         pwa.keyboard.send_keys(str(key_1))
@@ -109,14 +109,14 @@ def key_write_enter(write_to_window: str, text_to_write: str, key: str = "e") ->
     # Import Section
     import time
     import pywinauto as pwa
-    from windows import window_activate_window
+    from dost.windows import activate_window
 
     # Code Section
     if not text_to_write:
         raise Exception("Text to write is empty.")
 
     if write_to_window:
-        window_activate_window(write_to_window)
+        activate_window(write_to_window)
 
     time.sleep(0.2)
     pwa.keyboard.send_keys(
@@ -140,10 +140,10 @@ def key_hit_enter(write_to_window: str) -> None:
 
     # Import Section
     import pywinauto as pwa
-    from windows import window_activate_window
+    from dost.windows import activate_window
 
     # Code Section
     if write_to_window:
-        window_activate_window(write_to_window)
+        activate_window(write_to_window)
 
     pwa.keyboard.send_keys('{ENTER}')

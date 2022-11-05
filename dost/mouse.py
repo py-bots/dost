@@ -19,7 +19,7 @@ from dost.helpers import dostify
 from pathlib import WindowsPath
 
 
-@dostify(errors=[(ValueError, '')])
+@dostify(errors=[(ValueError, ''), (TypeError, '')])
 def click(x: int, y: int, button: str = "left", clicks: int = 1, absolute: bool = True):
     """Clicks the mouse at the given co-ordinates.
     Args:
@@ -61,8 +61,8 @@ def click(x: int, y: int, button: str = "left", clicks: int = 1, absolute: bool 
         pwa.mouse.click(coords=(x, y), button=button)
 
 
-@dostify(errors=[(FileNotFoundError, ''), (ValueError, '')])
-def search(img: Union[str, List[str], WindowsPath, List[WindowsPath]], wait: int = 10, left_click: bool = False) -> Union[Tuple[int, int], List[Tuple[int, int]], None]:
+@dostify(errors=[(FileNotFoundError, ''), (ValueError, ''), (TypeError, '')])
+def search(img: Union[str, List[str], WindowsPath, List[WindowsPath]], conf: int = 0.9, wait: int = 10, left_click: bool = False) -> Union[Tuple[int, int], List[Tuple[int, int]], None]:
     """Searches for the given image and returns the co-ordinates of the image.
 
     Args:
@@ -79,8 +79,6 @@ def search(img: Union[str, List[str], WindowsPath, List[WindowsPath]], wait: int
         >>> search('tests\\demo.png', wait=20, left_click=True)
         >>> search(['tests\\demo.png', 'tests\\demo2.png'])
         [(23, 17), (67, 16)]
-        >>> search('tests\\demo2.pdf')
-        You got ValueError error: Invalid image file: D:\PyBOTs\dost\\tests\demo2.pdf. Supported image formats: .png, .jpg, .jpeg, .bmp, .gif
     """
     # import section
     import pyscreeze as ps
@@ -102,10 +100,10 @@ def search(img: Union[str, List[str], WindowsPath, List[WindowsPath]], wait: int
             f'Invalid image file: {path}. Supported image formats: .png, .jpg, .jpeg, .bmp, .gif')
 
     # Body section
-    point = ps.locateCenterOnScreen(path,  minSearchTime=wait)
+    point = ps.locateCenterOnScreen(path,  minSearchTime=wait, confidence=conf)
     if point is None:
         raise ValueError(f'Image not found: {path}')
     if left_click:
-        click(point.x, point.y)
+        click(int(point.x), int(point.y))
         return None
     return (point.x, point.y)

@@ -3,14 +3,14 @@ Clipboard module for dost. This module is used to interact with the Windows clip
 
 Examples:
     >>> from dost import clipboard
-    >>> clipboard.clipboard_set_data('Hello World!')
-    >>> clipboard.clipboard_get_data()
+    >>> clipboard.set_data('Hello World!')
+    >>> clipboard.get_data()
 
 
 It contains the following functions:
 
-` clipboard_set_data(data, format_id)`: Set the clipboard data to the given string.
-` clipboard_get_data(format_id) -> str`: Get the clipboard data as a string.
+` set_data(data, format_id)`: Set the clipboard data to the given string.
+` get_data(format_id) -> str`: Get the clipboard data as a string.
 ` GetClipboardFormats()`: Get a list of all available clipboard formats.
 
 """
@@ -21,7 +21,7 @@ from dost.helpers import dostify
 
 
 @dostify(errors=[])
-def clipboard_set_data(data: str, format_id=win32clipboard.CF_UNICODETEXT) -> None:
+def set_data(data: str, format_id=win32clipboard.CF_UNICODETEXT) -> None:
     """Set the clipboard data to the given string.
 
     Args:
@@ -29,8 +29,8 @@ def clipboard_set_data(data: str, format_id=win32clipboard.CF_UNICODETEXT) -> No
         format_id (int): The format of the data. Defaults to CF_UNICODETEXT.
 
     Examples:
-        >>> clipboard_set_data('Hello World!')
-        >>> clipboard_get_data()
+        >>> set_data('Hello World!')
+        >>> get_data()
         'Hello World!'
 
     """
@@ -75,7 +75,7 @@ def GetClipboardFormats() -> list:
 
 
 @dostify(errors=[])
-def clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT) -> str:
+def get_data(format_id=win32clipboard.CF_UNICODETEXT) -> str:
     """Get the clipboard data as a string.
 
     Args:
@@ -85,7 +85,7 @@ def clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT) -> str:
         The clipboard data as a string.
 
     Examples:
-        >>> clipboard_get_data()
+        >>> get_data()
         'Hello World!'
     """
     # Import Section

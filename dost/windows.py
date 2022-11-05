@@ -6,26 +6,26 @@ Examples:
     >>> windows._window_find_exact_name('Notepad')
     'Notepad'
     >>> windows.show_desktop()
-    >>> windows.window_get_active_window()
+    >>> windows.get_active_window()
     'Notepad'
-    >>> window.window_get_all_opened_titles_windows()
+    >>> window.get_all_opened_window_titles()
     ['Notepad', 'Program Manager', 'Desktop']
-    >>> windows.window_maximize_windows('Notepad')
-    >>> windows.window_minimize_windows('Notepad')
-    >>> windows.window_close_windows('Notepad')
-    >>> windows.launch_any_exe_bat_application('notepad.exe')
+    >>> windows.maximize_window('Notepad')
+    >>> windows.minimize_window('Notepad')
+    >>> windows.close_window('Notepad')
+    >>> windows.launch_app('notepad.exe')
 
 
 The module contains the following functions:
 
 - `_window_find_exact_name(window_name)`: Find a window by its exact name.
 - `show_desktop()`: Show the desktop.
-- `window_get_active_window()`: Get the active window.
-- `window_get_all_opened_titles_windows()`: Get all opened windows.
-- `window_maximize_windows(window_name)`: Maximize a window.
-- `window_minimize_windows(window_name)`: Minimize a window.
-- `window_close_windows(window_name)`: Close a window.
-- `launch_any_exe_bat_application(application_name)`: Launch any exe or bat application.
+- `get_active_window()`: Get the active window.
+- `get_all_opened_window_titles()`: Get all opened windows.
+- `maximize_window(window_name)`: Maximize a window.
+- `minimize_window(window_name)`: Minimize a window.
+- `close_window(window_name)`: Close a window.
+- `launch_app(application_name)`: Launch any exe or bat application.
 
 """
 
@@ -66,7 +66,7 @@ def _window_find_exact_name(windowName: str) -> str:
 
 
 @dostify(errors=[])
-def window_show_desktop() -> None:
+def show_desktop() -> None:
     """Show desktop
     Examples:
         >>> window_show_desktop()
@@ -80,7 +80,7 @@ def window_show_desktop() -> None:
 
 
 @dostify(errors=[])
-def window_get_active_window() -> str:
+def get_active_window() -> str:
     """Get active window
 
     Returns:
@@ -102,7 +102,7 @@ def window_get_active_window() -> str:
 
 
 @dostify(errors=[(ValueError, '')])
-def window_activate_window(window_title: str) -> None:
+def activate_window(window_title: str) -> None:
     """Activate window
 
     Args:
@@ -133,7 +133,7 @@ def window_activate_window(window_title: str) -> None:
 
 
 @dostify(errors=[])
-def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
+def get_all_opened_window_titles() -> Union[str, List[str]]:
     """Get all opened titles windows
 
     Returns:
@@ -157,7 +157,7 @@ def window_get_all_opened_titles_windows() -> Union[str, List[str]]:
 
 
 @dostify(errors=[(ValueError, '')])
-def window_maximize_windows(windowName: str) -> None:
+def maximize_window(windowName: str) -> None:
     """Maximize windows
     Args:
         windowName (str, optional): Window name. Defaults to "".
@@ -181,7 +181,7 @@ def window_maximize_windows(windowName: str) -> None:
 
 
 @dostify(errors=[(ValueError, '')])
-def window_minimize_windows(windowName: str) -> None:
+def minimize_window(windowName: str) -> None:
     """Minimize windows
     Args:
         windowName (str): Window name
@@ -205,7 +205,7 @@ def window_minimize_windows(windowName: str) -> None:
 
 
 @dostify(errors=[(ValueError, '')])
-def window_close_windows(windowName: str) -> None:
+def close_window(windowName: str) -> None:
     """Close windows
     Args:
         windowName (str): Window name
@@ -229,7 +229,7 @@ def window_close_windows(windowName: str) -> None:
 
 
 @dostify(errors=[(FileNotFoundError, ''), (ValueError, '')])
-def launch_any_exe_bat_application(pathOfExeFile: Union[str, WindowsPath]) -> None:
+def launch_app(pathOfExeFile: Union[str, WindowsPath]) -> None:
     """Launch any exe/bat application
     Args:
         pathOfExeFile (Union[str,WindowsPath]): Path of exe/bat file

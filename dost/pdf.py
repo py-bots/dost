@@ -19,7 +19,7 @@ from typing import Union
 from dost.helpers import dostify
 
 output_folder_path = os.path.join(
-    os.path.abspath(r'C:\Users\Public\PyBots'), 'My-DOST', 'PDF Folder')
+    os.path.abspath(r'C:\Users\Public\PyBOTs LLC'), 'DOST', 'PDF Folder')
 
 # create output folder if not present
 if not os.path.exists(output_folder_path):
