@@ -11,7 +11,7 @@ Examples:
 The module contains the following functions:
 
 - `click(x, y, button, clicks, absolute)`: Click at the given coordinates.
-- `search(img, wait, left_click)`: Search for an image on the screen and return the coordinates of the top-left corner of the image.
+- `search(img_path, wait, left_click)`: Search for an image on the screen and return the coordinates of the top-left corner of the image.
 """
 
 from typing import List, Tuple, Union
@@ -62,11 +62,11 @@ def click(x: int, y: int, button: str = "left", clicks: int = 1, absolute: bool 
 
 
 @dostify(errors=[(FileNotFoundError, ''), (ValueError, ''), (TypeError, '')])
-def search(img: Union[str, List[str], WindowsPath, List[WindowsPath]], conf: int = 0.9, wait: int = 10, left_click: bool = False) -> Union[Tuple[int, int], List[Tuple[int, int]], None]:
+def search(img_path: Union[str, List[str], WindowsPath, List[WindowsPath]], conf: int = 0.9, wait: int = 10, left_click: bool = False) -> Union[Tuple[int, int], List[Tuple[int, int]], None]:
     """Searches for the given image and returns the co-ordinates of the image.
 
     Args:
-        img (Union[str, List[str], WindowsPath, List[WindowsPath]]): The path to the image.
+        img_path (Union[str, List[str], WindowsPath, List[WindowsPath]]): The path to the image.
         wait (int): The time to wait for the image to appear. Defaults to 10.
         left_click (bool): Whether to left click on the image. Defaults to False.
 
@@ -85,11 +85,11 @@ def search(img: Union[str, List[str], WindowsPath, List[WindowsPath]], conf: int
     import os
 
     # List case handling
-    if isinstance(img, list):
-        return [search(i, wait=wait) for i in img]
+    if isinstance(img_path, list):
+        return [search(i, wait=wait) for i in img_path]
 
     # Validation section
-    path = os.path.abspath(img)
+    path = os.path.abspath(img_path)
     if not os.path.isfile(path):
         raise FileNotFoundError(f'File not found: {path}')
 

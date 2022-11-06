@@ -15,7 +15,7 @@ This module contains the following functions:
 - `tabular_data_from_website(url, table_id)`: Get tabular data from website.
 - `upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url, sheet_name, df)`: Upload dataframe to google spreadsheet.
 - `create_file(output_folder, output_filename, output_sheetname)`: Create excel file.
-- `valid_data(input filepath, input sheet name, validate filepath, validate sheet name)`: Check if data is valid.
+- `valid_data(input_filepath, input_sheetname, validate_filepath, validate_sheetname)`: Check if data is valid.
 - `to_dataframe(excel_file_path, sheet_name,header)`: Convert excel file to dataframe.
 - `get_row_column_count(df)`: Get row and column count of dataframe.
 - `dataframe_to_excel(df, excel_folder, excel_file_name, sheet_name, mode)`: Convert dataframe to excel file.
@@ -29,10 +29,10 @@ This module contains the following functions:
 - `isNaN(value)`: Check if value is NaN.
 - `df_from_list(list_of_lists, header names)`: Create dataframe from list of lists.
 - `df_from_string(string, delimiter)`: Create dataframe from string.
-- `df_extract_sub_df(dataframe, row start, row end, column start, column end)`: Extract sub dataframe from dataframe.
+- `df_extract_sub_df(dataframe, row_start, row_end, column_start, column_end)`: Extract sub dataframe from dataframe.
 - `set_value_in_df(dataframe, column_name, row_number, value)`: Set value in dataframe.
 - `get_value_in_df(dataframe, column_name, row_number)`: Get value from dataframe.
-- `df_drop_rows(dataframe, row start, row end)`: Drop rows from dataframe.
+- `df_drop_rows(dataframe, row_start, row_end)`: Drop rows from dataframe.
 """
 
 

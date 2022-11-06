@@ -3,8 +3,6 @@ Windows module for dost.This module contains functions that are specific to Wind
 
 Examples:
     >>> from dost import windows
-    >>> windows._window_find_exact_name('Notepad')
-    'Notepad'
     >>> windows.show_desktop()
     >>> windows.get_active_window()
     'Notepad'
@@ -203,7 +201,7 @@ def minimize_window(window_name: str) -> None:
 
 @dostify(errors=[(ValueError, '')])
 def close_window(window_name: str) -> None:
-    """Close windows
+    """Closes the window
     Args:
         window_name (str): Window name
     Examples:

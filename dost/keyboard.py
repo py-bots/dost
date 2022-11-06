@@ -135,7 +135,7 @@ def hit_enter(write_to_window: str) -> None:
         write_to_window (str): Window to write to
 
     Examples:
-        >>> press(write_to_window=write_to_window, key="enter",)
+        >>> press(write_to_window="Notepad", key="enter",)
         """
 
     # Import Section
