@@ -34,10 +34,7 @@ def get_alphabets(text: str) -> str:
         >>> get_alphabets("hello123:l;,")
         'hellol'
     """
-    # Code Section
-    data = ''.join(e for e in text if e.isalpha())
-
-    return data
+    return ''.join(e for e in text if e.isalpha())
 
 
 @dostify(errors=[])
@@ -54,10 +51,7 @@ def get_numbers(text: str) -> str:
         '123'
     """
 
-    # Code Section
-    data = ''.join(e for e in text if e.isnumeric())
-
-    return data
+    return ''.join(e for e in text if e.isnumeric())
 
 
 @dostify(errors=[])
@@ -73,7 +67,4 @@ def remove_special_characters(text: str) -> str:
         >>> extract_only_alphabets("hello123:l;,")
         'hello123l'
     """
-    # Code Section
-    data = ''.join(e for e in text if e.isalnum())
-
-    return data
+    return ''.join(e for e in text if e.isalnum())

@@ -144,3 +144,58 @@ def dostify(errors: list = None, save_log: bool = True, log_file: str = log_file
             return try_catch_log_check_output(errors, save_log, log_file)(func)(*args, **kwargs)
         return wrapper
     return decorator_wrap
+
+
+def install_pyaudio():
+    """
+    Description:
+        Installs pyaudio.
+    Args:
+        None.
+    Returns:
+        A boolean representing whether the pyaudio was installed successfully.        
+    """
+    try:
+        import pyaudio
+    except Exception:
+        # import section
+        import sys
+        import subprocess
+        _version_1 = str(sys.version_info.major) + str(sys.version_info.minor)
+
+        _version_2 = "37m" if _version_1 == "37" else _version_1
+        _module = f"https://raw.githubusercontent.com/py-bots/autopylot/main/support/whls/PyAudio-0.2.11-cp{_version_1}-cp{_version_2}-win_amd64.whl"
+        subprocess.call([sys.executable, "-m", "pip", "install", _module],
+                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
+def make_sure_pyaudio_is_installed():
+    try:
+        import pyaudio
+    except Exception:
+        install_pyaudio()
+        import pyaudio
+
+
+def get_media_type(file_path):
+    import mimetypes
+    mimetypes.init()
+    mimestart = mimetypes.guess_type(file_path)[0]
+    if mimestart != None:
+        mimestart = mimestart.split('/')[0]
+        if mimestart in ['audio', 'video', 'image']:
+            return mimestart
+    return None
+
+
+# check if speaker is connected using pyaudio
+def _is_speaker_available():
+
+    make_sure_pyaudio_is_installed()
+
+    p = pyaudio.PyAudio()
+    for i in range(p.get_device_count()):
+        info = p.get_device_info_by_index(i)
+        if info['maxInputChannels'] > 0:
+            return True
+    return False

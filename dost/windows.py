@@ -47,16 +47,10 @@ def _window_find_exact_name(window_name: str) -> str:
 
     # Code Section
     if not window_name:
-        raise ValueError(f'Window name cannot be empty')
+        raise ValueError('Window name cannot be empty')
 
     lst = gw.getAllTitles()
-    win = ""
-    for item in lst:
-        if str(item).strip():
-            if str(window_name).lower() in str(item).lower():
-                win = item
-                break
-    return win
+    return next((item for item in lst if str(item).strip() and window_name.lower() in str(item).lower()), "")
 
 
 @dostify(errors=[])
@@ -89,11 +83,7 @@ def get_active_window() -> str:
     import win32gui
     import pygetwindow as gw
 
-    # Code Section
-    _title = win32gui.GetWindowText(win32gui.GetForegroundWindow())
-    data = _title
-
-    return data
+    return win32gui.GetWindowText(win32gui.GetForegroundWindow())
 
 
 @dostify(errors=[(ValueError, '')])
@@ -115,16 +105,15 @@ def activate_window(window_name: str) -> None:
         raise ValueError('Window title name is empty.')
 
     item = _window_find_exact_name(window_name)
-    if item != "":
-        windw = gw.getWindowsWithTitle(item)[0]
-
-        try:
-            windw.activate()
-        except:
-            windw.minimize()
-            windw.maximize()
-    else:
+    if item == "":
         raise ValueError(f'Window title name {window_name} not found')
+    window = gw.getWindowsWithTitle(item)[0]
+
+    try:
+        window.activate()
+    except Exception:
+        window.minimize()
+        window.maximize()
 
 
 @dostify(errors=[])
@@ -147,8 +136,7 @@ def get_all_opened_window_titles() -> Union[str, List[str]]:
     for item in lst:
         if str(item).strip() != "" and str(item).strip() not in allTitles_lst:
             allTitles_lst.append(str(item).strip())
-    data = allTitles_lst
-    return data
+    return allTitles_lst
 
 
 @dostify(errors=[(ValueError, '')])
@@ -168,11 +156,10 @@ def maximize_window(window_name: str) -> None:
     if not window_name:
         raise ValueError('Window title name is empty.')
     item = _window_find_exact_name(window_name)
-    if item != "":
-        windw = gw.getWindowsWithTitle(item)[0]
-        windw.maximize()
-    else:
+    if item == "":
         raise ValueError(f'Window title name {window_name} not found')
+    window = gw.getWindowsWithTitle(item)[0]
+    window.maximize()
 
 
 @dostify(errors=[(ValueError, '')])
@@ -189,14 +176,13 @@ def minimize_window(window_name: str) -> None:
 
     # Code Section
     if not window_name:
-        raise ValueError(f'Window title name is empty.')
+        raise ValueError('Window title name is empty.')
 
     item = _window_find_exact_name(window_name)
-    if item != "":
-        windw = gw.getWindowsWithTitle(item)[0]
-        windw.minimize()
-    else:
+    if item == "":
         raise ValueError(f'Window title name {window_name} not found')
+    window = gw.getWindowsWithTitle(item)[0]
+    window.minimize()
 
 
 @dostify(errors=[(ValueError, '')])
@@ -216,11 +202,10 @@ def close_window(window_name: str) -> None:
         raise ValueError('Window title name is empty.')
 
     item = _window_find_exact_name(window_name)
-    if item != "":
-        windw = gw.getWindowsWithTitle(item)[0]
-        windw.close()
-    else:
+    if item == "":
         raise ValueError(f'Window title name {window_name} not found')
+    window = gw.getWindowsWithTitle(item)[0]
+    window.close()
 
 
 @dostify(errors=[(FileNotFoundError, ''), (ValueError, '')])
@@ -254,5 +239,5 @@ def launch_app(path: Union[str, WindowsPath]) -> None:
         hwnd = win32gui.GetForegroundWindow()
         win32gui.ShowWindow(hwnd, win32con.SW_MAXIMIZE)
 
-    except Exception:
-        raise FileNotFoundError(f'No file found at {path}')
+    except Exception as e:
+        raise FileNotFoundError(f'No file found at {path}') from e

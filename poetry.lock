@@ -3644,6 +3644,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "speechrecognition"
+version = "3.8.1"
+description = "Library for performing speech recognition, with support for several engines and APIs, online and offline."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "stack-data"
 version = "0.6.0"
 description = "Extract data from python stack frames and tracebacks for informative displays"
@@ -3714,6 +3722,7 @@ typing-extensions = "*"
 [package.source]
 type = "url"
 url = "https://download.pytorch.org/whl/cpu/torch-1.10.0%2Bcpu-cp39-cp39-linux_x86_64.whl"
+
 [[package]]
 name = "torch"
 version = "1.10.0+cpu"
@@ -3728,6 +3737,7 @@ typing-extensions = "*"
 [package.source]
 type = "url"
 url = "https://download.pytorch.org/whl/cpu/torch-1.10.0%2Bcpu-cp39-cp39-win_amd64.whl"
+
 [[package]]
 name = "torch"
 version = "1.12.0+cpu"
@@ -3742,6 +3752,7 @@ typing-extensions = "*"
 [package.source]
 type = "url"
 url = "https://download.pytorch.org/whl/cpu/torch-1.12.0%2Bcpu-cp310-cp310-win_amd64.whl"
+
 [[package]]
 name = "torchvision"
 version = "0.12.0"
@@ -4058,7 +4069,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<=3.10.40"
-content-hash = "fddb7d2b4ad329b819f9bb74b490f5fdfaf0912f186c09eb95d1d5b14649a0e2"
+content-hash = "1ba51e4e101ee921fb41d810ffcea731ad05a2df2c0979308ec4caf97da53d68"
 
 [metadata.files]
 appnope = [
@@ -6326,6 +6337,9 @@ six = [
 soupsieve = [
     {file = "soupsieve-2.3.2.post1-py3-none-any.whl", hash = "sha256:3b2503d3c7084a42b1ebd08116e5f81aadfaea95863628c80a3b774a11b7c759"},
     {file = "soupsieve-2.3.2.post1.tar.gz", hash = "sha256:fc53893b3da2c33de295667a0e19f078c14bf86544af307354de5fcf12a3f30d"},
+]
+speechrecognition = [
+    {file = "SpeechRecognition-3.8.1-py2.py3-none-any.whl", hash = "sha256:4d8f73a0c05ec70331c3bacaa89ecc06dfa8d9aba0899276664cda06ab597e8e"},
 ]
 stack-data = [
     {file = "stack_data-0.6.0-py3-none-any.whl", hash = "sha256:b92d206ef355a367d14316b786ab41cb99eb453a21f2cb216a4204625ff7bc07"},

@@ -13,68 +13,7 @@ This module contains the following functions:
 """
 
 
-from pathlib import WindowsPath
 from dost.helpers import dostify
-
-
-@dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
-def _canonicalizePath(path: WindowsPath) -> WindowsPath:
-    """Converts to absolute path and removes trailing slash
-    Args:
-        path (WindowsPath): Path to be canonicalized
-    Returns:
-        WindowsPath: Canonicalized path
-    Examples:
-        >>> _canonicalizePath(WindowsPath('C:\\Users\\'))
-    """
-
-    return str(path)
-
-
-@dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
-def playsound(sound, block: bool = True) -> None:
-    """Plays the specified sound
-    Args:
-        sound (WindowsPath): Path to the sound
-        block (bool): Whether to block the thread or not
-    Examples:
-        >>> playsound(WindowsPath('C:\\Users\\user\\Desktop\\sound.mp3'))
-    """
-    # Code Section
-    sound = '"' + _canonicalizePath(sound) + '"'
-
-    from ctypes import create_unicode_buffer, windll, wintypes
-    from time import sleep
-    windll.winmm.mciSendStringW.argtypes = [
-        wintypes.LPCWSTR, wintypes.LPWSTR, wintypes.UINT, wintypes.HANDLE]
-    windll.winmm.mciGetErrorStringW.argtypes = [
-        wintypes.DWORD, wintypes.LPWSTR, wintypes.UINT]
-
-    def winCommand(*command):
-        bufLen = 600
-        buf = create_unicode_buffer(bufLen)
-        command = ' '.join(command)
-        # use widestring version of the function
-        errorCode = int(windll.winmm.mciSendStringW(
-            command, buf, bufLen - 1, 0))
-        if errorCode:
-            errorBuffer = create_unicode_buffer(bufLen)
-            # use widestring version of the function
-            windll.winmm.mciGetErrorStringW(errorCode, errorBuffer, bufLen - 1)
-            exceptionMessage = ('\n    Error ' + str(errorCode) + ' for command:'
-                                '\n        ' + command +
-                                '\n    ' + errorBuffer.value)
-            text_to_speech(exceptionMessage)
-        return buf.value
-
-    try:
-        winCommand(u'open {}'.format(sound))
-        winCommand(u'play {}{}'.format(sound, ' wait' if block else ''))
-    finally:
-        try:
-            winCommand(u'close {}'.format(sound))
-        except Exception:
-            pass
 
 
 @dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
@@ -88,14 +27,11 @@ def speech_to_text() -> str:
         "Hello World"
     """
     # Import Section
-    import pyaudio
+    from dost.helpers import make_sure_pyaudio_is_installed
     import speech_recognition as sr
-    import sys
 
-    """
-    Speech to Text using Google's Generic API
-    """
     # Code Section
+    make_sure_pyaudio_is_installed()
     recognizer = sr.Recognizer()
     energy_threshold = [3000]
 
@@ -122,6 +58,7 @@ def speech_to_text() -> str:
                     text_to_speech("Speak now")
                 audio = recognizer.listen(source)
                 data = recognizer.recognize_google(audio)
+                return data
             except AttributeError:
                 text_to_speech(
                     "Could not find PyAudio or no Microphone input device found. It may be being used by "
@@ -131,11 +68,10 @@ def speech_to_text() -> str:
                 unknown = True
             except sr.RequestError as e:
                 print("Try Again")
-    return data
 
 
 @dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
-def text_to_speech(audio, show: bool = True, rate: int = 170) -> None:
+def text_to_speech(audio: str, show: bool = True, rate: int = 170) -> None:
     """
     Converts text to speech offline
     Args:
@@ -149,10 +85,7 @@ def text_to_speech(audio, show: bool = True, rate: int = 170) -> None:
     import random
     import pyttsx3
     from dost.helpers import _is_speaker_available
-    is_speaker_connected = _is_speaker_available()
-
-    # Code Section
-    if is_speaker_connected:
+    if _is_speaker_available():
         engine = pyttsx3.init('sapi5')
         voices = engine.getProperty('voices')
         voice = random.choice(voices)  # Randomly decide male/female voice
@@ -161,10 +94,11 @@ def text_to_speech(audio, show: bool = True, rate: int = 170) -> None:
         engine.setProperty('rate', rate)
         engine.say(audio)
         engine.runAndWait()
-
-    if type(audio) is list:
-        if show:
-            print(' '.join(audio))
     else:
-        if show:
-            print(str(audio))
+        print("Speaker not connected")
+
+    if show:
+        if type(audio) is list:
+            print(' '.join(audio))
+        else:
+            print(audio)

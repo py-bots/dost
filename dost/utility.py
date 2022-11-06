@@ -5,24 +5,22 @@ Examples:
     >>> import dost.utility as utility
     >>> utility.pause_program(5)
     >>> utility.api_request("https://google.com")
-    >>> utility.clipboard_set_data("Hello World")
-    >>> utility.GetClipboardFormats()
-    >>> utility.clipboard_get_data()
     >>> utility.clear_output()
     >>> utility.install_module("requests")
     >>> utility.uninstall_module("requests")
+    >>> utility.get_module_version("requests")
+    >>> utility.image_to_text("image.png")
 
 
 This module contains the following functions:
 
 - `pause_program(seconds:int="5")`: Pauses the program for the specified number of seconds
 - `api_request(url: str, method='GET', body: dict = None, headers: dict = None)->dict`: Makes an API request to the specified URL
-- `clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT)`: Sets the clipboard data to the specified data
-- `GetClipboardFormats()`: Returns a list of all the formats available in the clipboard
-- `clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT)->typing.Any`: Gets the data from the clipboard
 - `clear_output()`: Clears the output of the console
 - `install_module(module_name:str)`: Installs the specified module
 - `uninstall_module(module_name:str)`: Uninstalls the specified module 
+- `get_module_version(module_name:str)`: Gets the version of the specified module
+- `image_to_text(image_path:str)`: Converts the specified image to text
 """
 
 
@@ -101,82 +99,6 @@ def api_request(url: str, method='GET', body: dict = None, headers: dict = None)
     return data
 
 
-# api request todos free api
-# print(api_request("https://todos.free.beeceptor.com/todos", body='', headers={}))
-# print(api_request(url='https://todos.free.beeceptor.com/todos'))
-
-@dostify(errors=[])
-def clipboard_set_data(data: str, format_id=win32clipboard.CF_UNICODETEXT) -> None:
-    """Sets the clipboard data to the specified data
-
-    Args:
-        data (str): Data to set the clipboard to
-        format_id (int, optional): Format ID of the data. Defaults to win32clipboard.CF_UNICODETEXT.
-
-    Examples:
-        >>> clipboard_set_data("Hello World")
-    """
-    # Import Section
-
-    import win32clipboard
-
-    # Code Section
-    win32clipboard.OpenClipboard()
-    win32clipboard.EmptyClipboard()
-    win32clipboard.SetClipboardData(format_id, data)
-    win32clipboard.CloseClipboard()
-
-
-@dostify(errors=[])
-def GetClipboardFormats() -> list:
-    """Returns a list of all the formats available in the clipboard
-
-    Returns:
-        list: List of formats in the clipboard
-
-    Examples:
-        >>> GetClipboardFormats()
-    """
-    # Import Section
-    import win32clipboard
-
-    # Code Section
-    win32clipboard.OpenClipboard()
-    available_formats = []
-    current_format = 0
-    while True:
-        current_format = win32clipboard.EnumClipboardFormats(current_format)
-        if not current_format:
-            break
-        available_formats.append(current_format)
-    win32clipboard.CloseClipboard()
-    return available_formats
-
-
-@dostify(errors=[])
-def clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT) -> typing.Any:
-    """Gets the data from the clipboard
-
-    Returns:
-        string:the data from the clipboard
-
-    Examples:
-        >>> clipboard_get_data()
-    """
-
-    # Import Section
-    import win32clipboard
-
-    # Code Section
-    if format_id not in GetClipboardFormats():
-        raise RuntimeError("That format is not available")
-    win32clipboard.OpenClipboard()
-    data = win32clipboard.GetClipboardData(format_id)
-    win32clipboard.CloseClipboard()
-
-    return data
-
-
 @dostify(errors=[])
 def clear_output() -> None:
     """Clears the output of the console
@@ -188,10 +110,7 @@ def clear_output() -> None:
     # Import Section
     import os
 
-    # Code Section
-    command = 'clear'
-    if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
-        command = 'cls'
+    command = 'cls' if os.name in ('nt', 'dos') else 'clear'
     os.system(command)
 
 
@@ -223,15 +142,30 @@ def uninstall_module(module_name: str) -> None:
     Examples:
         >>> uninstall_module("requests")
     """
-    # Code Section
-    if module_name != "dost":
-        import subprocess
-        import sys
-        subprocess.call([sys.executable, "-m", "pip",
-                        "uninstall", "-y", module_name])
-    else:
-        raise Exception(
-            "You cannot uninstall dost from here.")
+    if module_name == "dost":
+        raise ModuleNotFoundError("You cannot uninstall dost from here.")
+    import subprocess
+    import sys
+    subprocess.call([sys.executable, "-m", "pip",
+                    "uninstall", "-y", module_name])
+
+
+@dostify(errors=[])
+def get_module_version(module_name: str) -> str:
+    """Gets the version of the specified module
+
+    Args:
+        module_name (str): Name of the module to get the version of
+
+    Returns:
+        str: Version of the specified module
+
+    Examples:
+        >>> get_module_version("requests")
+    """
+    import importlib
+    module = importlib.import_module(module_name)
+    return module.__version__
 
 
 @dostify(errors=[(FileNotFoundError, '')])
@@ -259,6 +193,4 @@ def image_to_text(image_path: Union[str, WindowsPath]) -> str:
 
     # Code Section
     image = Image.open(image_path)
-    data = pytesseract.image_to_string(image)
-
-    return data
+    return pytesseract.image_to_string(image)

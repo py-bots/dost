@@ -5,6 +5,7 @@ Examples:
     >>> from dost import clipboard
     >>> clipboard.set_data('Hello World!')
     >>> clipboard.get_data()
+    'Hello World!'
 
 
 It contains the following functions:
@@ -53,7 +54,7 @@ def _GetClipboardFormats() -> list:
 
     Examples:
         >>> _GetClipboardFormats()
-        [1,2,3]
+        [49317, 13, 49797, 16, 1, 7]
 
     """
     # Import Section
@@ -97,3 +98,6 @@ def get_data(format_id=win32clipboard.CF_UNICODETEXT) -> str:
     win32clipboard.CloseClipboard()
 
     return data
+
+
+print(_GetClipboardFormats())

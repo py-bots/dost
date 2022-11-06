@@ -14,7 +14,6 @@ The module contains the following functions:
 
 import os
 from pathlib import WindowsPath
-from tkinter import EXCEPTION
 from typing import Union
 from dost.helpers import dostify
 
