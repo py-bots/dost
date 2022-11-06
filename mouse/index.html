@@ -565,7 +565,7 @@
       <p>The module contains the following functions:</p>
 <ul>
 <li><code>click(x, y, button, clicks, absolute)</code>: Click at the given coordinates.</li>
-<li><code>search(img, wait, left_click)</code>: Search for an image on the screen and return the coordinates of the top-left corner of the image.</li>
+<li><code>search(img_path, wait, left_click)</code>: Search for an image on the screen and return the coordinates of the top-left corner of the image.</li>
 </ul>
 
   
@@ -675,7 +675,7 @@
 
 
 <h2 id="dost.mouse.search" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">search</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">conf</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">left_click</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">search</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">conf</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">left_click</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h2>
 
@@ -696,7 +696,7 @@
     </thead>
     <tbody>
         <tr>
-          <td><code>img</code></td>
+          <td><code>img_path</code></td>
           <td>
                 <code><span title="typing.Union">Union</span>[str, <span title="typing.List">List</span>[str], <span title="pathlib.WindowsPath">WindowsPath</span>, <span title="typing.List">List</span>[<span title="pathlib.WindowsPath">WindowsPath</span>]]</code>
           </td>

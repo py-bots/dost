@@ -435,13 +435,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dost.utility.GetClipboardFormats" class="md-nav__link">
-    GetClipboardFormats()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#dost.utility.api_request" class="md-nav__link">
     api_request()
   </a>
@@ -456,15 +449,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dost.utility.clipboard_get_data" class="md-nav__link">
-    clipboard_get_data()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dost.utility.clipboard_set_data" class="md-nav__link">
-    clipboard_set_data()
+  <a href="#dost.utility.get_module_version" class="md-nav__link">
+    get_module_version()
   </a>
   
 </li>
@@ -567,13 +553,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dost.utility.GetClipboardFormats" class="md-nav__link">
-    GetClipboardFormats()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#dost.utility.api_request" class="md-nav__link">
     api_request()
   </a>
@@ -588,15 +567,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dost.utility.clipboard_get_data" class="md-nav__link">
-    clipboard_get_data()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dost.utility.clipboard_set_data" class="md-nav__link">
-    clipboard_set_data()
+  <a href="#dost.utility.get_module_version" class="md-nav__link">
+    get_module_version()
   </a>
   
 </li>
@@ -658,23 +630,21 @@
     <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">dost.utility</span> <span class="k">as</span> <span class="nn">utility</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">pause_program</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">api_request</span><span class="p">(</span><span class="s2">&quot;https://google.com&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">clipboard_set_data</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">GetClipboardFormats</span><span class="p">()</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">clipboard_get_data</span><span class="p">()</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">install_module</span><span class="p">(</span><span class="s2">&quot;requests&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">uninstall_module</span><span class="p">(</span><span class="s2">&quot;requests&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">install_module</span><span class="p">(</span><span class="s2">&quot;requests&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">uninstall_module</span><span class="p">(</span><span class="s2">&quot;requests&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">get_module_version</span><span class="p">(</span><span class="s2">&quot;requests&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">image_to_text</span><span class="p">(</span><span class="s2">&quot;image.png&quot;</span><span class="p">)</span>
 </code></pre></div>
       <p>This module contains the following functions:</p>
 <ul>
 <li><code>pause_program(seconds:int="5")</code>: Pauses the program for the specified number of seconds</li>
 <li><code>api_request(url: str, method='GET', body: dict = None, headers: dict = None)-&gt;dict</code>: Makes an API request to the specified URL</li>
-<li><code>clipboard_set_data(data:str, format_id=win32clipboard.CF_UNICODETEXT)</code>: Sets the clipboard data to the specified data</li>
-<li><code>GetClipboardFormats()</code>: Returns a list of all the formats available in the clipboard</li>
-<li><code>clipboard_get_data(format_id=win32clipboard.CF_UNICODETEXT)-&gt;typing.Any</code>: Gets the data from the clipboard</li>
 <li><code>clear_output()</code>: Clears the output of the console</li>
 <li><code>install_module(module_name:str)</code>: Installs the specified module</li>
-<li><code>uninstall_module(module_name:str)</code>: Uninstalls the specified module</li>
+<li><code>uninstall_module(module_name:str)</code>: Uninstalls the specified module </li>
+<li><code>get_module_version(module_name:str)</code>: Gets the version of the specified module</li>
+<li><code>image_to_text(image_path:str)</code>: Converts the specified image to text</li>
 </ul>
 
   
@@ -688,46 +658,6 @@
 
 
 
-
-<div class="doc doc-object doc-function">
-
-
-
-<h2 id="dost.utility.GetClipboardFormats" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">GetClipboardFormats</span><span class="p">()</span></code>
-
-</h2>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Returns a list of all the formats available in the clipboard</p>
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-<td><code>list</code></td>          <td>
-                <code>list</code>
-          </td>
-          <td><p>List of formats in the clipboard</p></td>
-        </tr>
-    </tbody>
-  </table>
-
-<p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">GetClipboardFormats</span><span class="p">()</span>
-</code></pre></div>
-
-  </div>
-
-</div>
 
 <div class="doc doc-object doc-function">
 
@@ -849,55 +779,15 @@
 
 
 
-<h2 id="dost.utility.clipboard_get_data" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">clipboard_get_data</span><span class="p">(</span><span class="n">format_id</span><span class="o">=</span><span class="n">win32clipboard</span><span class="o">.</span><span class="n">CF_UNICODETEXT</span><span class="p">)</span></code>
+<h2 id="dost.utility.get_module_version" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_module_version</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span></code>
 
 </h2>
 
 
   <div class="doc doc-contents ">
   
-      <p>Gets the data from the clipboard</p>
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-<td><code>string</code></td>          <td>
-                <code>typing.<span title="typing.Any">Any</span></code>
-          </td>
-          <td><p>the data from the clipboard</p></td>
-        </tr>
-    </tbody>
-  </table>
-
-<p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">clipboard_get_data</span><span class="p">()</span>
-</code></pre></div>
-
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-
-<h2 id="dost.utility.clipboard_set_data" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">clipboard_set_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">format_id</span><span class="o">=</span><span class="n">win32clipboard</span><span class="o">.</span><span class="n">CF_UNICODETEXT</span><span class="p">)</span></code>
-
-</h2>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Sets the clipboard data to the specified data</p>
+      <p>Gets the version of the specified module</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -911,30 +801,38 @@
     </thead>
     <tbody>
         <tr>
-          <td><code>data</code></td>
+          <td><code>module_name</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Data to set the clipboard to</p></td>
+          <td><p>Name of the module to get the version of</p></td>
           <td>
               <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>format_id</code></td>
-          <td>
-                <code>int</code>
-          </td>
-          <td><p>Format ID of the data. Defaults to win32clipboard.CF_UNICODETEXT.</p></td>
-          <td>
-                <code>win32clipboard.CF_UNICODETEXT</code>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>str</code></td>          <td>
+                <code>str</code>
+          </td>
+          <td><p>Version of the specified module</p></td>
+        </tr>
+    </tbody>
+  </table>
+
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">clipboard_set_data</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">get_module_version</span><span class="p">(</span><span class="s2">&quot;requests&quot;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
