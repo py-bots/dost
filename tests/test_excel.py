@@ -17,7 +17,7 @@ def get_demo_df(header):
 def create_excel_sheet(file_path="tests/test.xlsx", sheetname=["Test_sheet", "sheet2", "Sheet 3"]):
     folder = file_path.split("/")[0]
     file_name = file_path.split("/")[1]
-    excel_create_file(output_folder=folder,
+    create_file(output_folder=folder,
                       output_filename=file_name, output_sheetname=sheetname)
 
 
@@ -28,7 +28,7 @@ class test(unittest.TestCase):
         sheetname = "Test_sheet"
         folder = file_path.split("/")[0]
         file_name = file_path.split("/")[1]
-        excel_create_file(output_folder=folder,
+        create_file(output_folder=folder,
                           output_filename=file_name, output_sheetname=sheetname)
         assert os.path.exists(file_path) == True
         os.remove(file_path)
@@ -37,7 +37,7 @@ class test(unittest.TestCase):
         file_path = "tests/test.xlsx"
         folder = file_path.split("/")[0]
         file_name = file_path.split("/")[1]
-        excel_create_file(output_folder=folder, output_filename=file_name)
+        create_file(output_folder=folder, output_filename=file_name)
         assert os.path.exists(file_path) == True
         os.remove(file_path)
 
@@ -46,7 +46,7 @@ class test(unittest.TestCase):
         sheetname = "Test_sheet"
         folder = file_path.split("/")[0]
         file_name = file_path.split("/")[1]
-        excel_create_file(output_folder=folder,
+        create_file(output_folder=folder,
                           output_filename=file_name, output_sheetname=sheetname)
         assert os.path.exists(file_path+".xlsx") == True
         os.remove(file_path+".xlsx")
@@ -56,7 +56,7 @@ class test(unittest.TestCase):
         sheetname = ["Test_sheet", "sheet2", "Sheet 3"]
         folder = file_path.split("/")[0]
         file_name = file_path.split("/")[1]
-        excel_create_file(output_folder=folder,
+        create_file(output_folder=folder,
                           output_filename=file_name, output_sheetname=sheetname)
         assert os.path.exists(file_path) == True
         os.remove(file_path)
@@ -66,7 +66,7 @@ class test(unittest.TestCase):
 
     def test_excel_get_row_column_count(self):
         df = get_demo_df(header_value)
-        count = excel_get_row_column_count(df)
+        count = get_row_column_count(df)
         self.assertEqual(count, df.shape)
 
     def test_excel_set_single_cell(self):
@@ -74,7 +74,7 @@ class test(unittest.TestCase):
         text_to_replace = "abc"
         column_name = "Column 2"
         cell_number = 3
-        df = excel_set_single_cell(
+        df = set_single_cell(
             df, column_name, cell_number, text_to_replace)
         self.assertEqual(text_to_replace, df[column_name][cell_number-1])
 
@@ -83,11 +83,11 @@ class test(unittest.TestCase):
         column_name = "Column 2"
         cell_number = 3
         self.assertEqual(str(df[column_name][cell_number-header_value-1]),
-                         excel_get_single_cell(df, column_name, cell_number, header=header_value))
+                         get_single_cell(df, column_name, cell_number, header=header_value))
 
     def test_get_all_headers(self):
         df = get_demo_df(header_value)
-        self.assertEqual(excel_get_all_header_columns(df), list(df.columns))
+        self.assertEqual(get_all_header_columns(df), list(df.columns))
 
     def test_set_value_in_df(self):
         df = get_demo_df(header_value)
@@ -126,7 +126,7 @@ class test(unittest.TestCase):
 
     def test_excel_clear_sheet(self):
         df = get_demo_df(header_value)
-        df = excel_clear_sheet(df)
+        df = clear_sheet(df)
         self.assertEqual(df.empty, True)
         if (df.columns.empty):
             self.assertEqual(df.columns.empty, True)
@@ -139,11 +139,11 @@ class test(unittest.TestCase):
         columns_to_drop = [columns[0], columns[1]]
         # columns_to_drop=columns[0]
         if (isinstance(columns_to_drop, list)):
-            df = excel_drop_columns(df, columns_to_drop)
+            df = drop_columns(df, columns_to_drop)
             for column_to_drop in columns_to_drop:
                 self.assertEqual(column_to_drop not in df.columns, True)
         else:
-            df = excel_drop_columns(df, columns_to_drop)
+            df = drop_columns(df, columns_to_drop)
             self.assertEqual(columns_to_drop not in df.columns, True)
 
     def test_isNaN(self):
@@ -154,7 +154,7 @@ class test(unittest.TestCase):
     def test_excel_get_all_sheet_names(self):
         sheet_names = ["Test_sheet", "sheet2", "sheet 2"]
         create_excel_sheet(sheetname=sheet_names)
-        sheets = excel_get_all_sheet_names("tests/test.xlsx")
+        sheets = get_all_sheet_names("tests/test.xlsx")
         sheets.sort()
         sheet_names.sort()
         self.assertEqual(sheets, sheet_names)
@@ -184,7 +184,7 @@ class test(unittest.TestCase):
         # cols=["col1", "col2", "col3"]
         df = pd.DataFrame(list)
         print(df)
-        df = excel_remove_duplicates(df, 0)
+        df = remove_duplicates(df, 0)
         print(df)
 
     def test_df_to_excel(self):
@@ -207,14 +207,14 @@ class test(unittest.TestCase):
             "D:\Pybots resources\Excel\cred.json")
         url = "https://docs.google.com/spreadsheets/d/1z5h839kECYR484hPBYR-mC_hkxXkmuJjU-5wOoj78BQ"
         df = get_demo_df(header_value)
-        excel_upload_dataframe_to_google_spreadsheet(
+        upload_dataframe_to_google_spreadsheet(
             auth=auth, spreadsheet_url=url, sheet_name="Sheet3", df=df)
 
     def test_get_df_from_google_spreadsheet(self):
         auth = authenticate_google_spreadsheet(
             "D:\Pybots resources\Excel\cred.json")
         url = "https://docs.google.com/spreadsheets/d/1z5h839kECYR484hPBYR-mC_hkxXkmuJjU-5wOoj78BQ"
-        df = excel_get_dataframe_from_google_spreadsheet(
+        df = get_dataframe_from_google_spreadsheet(
             auth, spreadsheet_url=url, sheet_name="Sheet1")
         df_actual = get_demo_df(header_value)
         if (df.equals(df_actual)):
