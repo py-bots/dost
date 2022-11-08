@@ -35,10 +35,10 @@ def read_text(path: Union[str, List[str], WindowsPath, List[WindowsPath]]) -> Un
          The contents of the text file. If a list of paths is provided, a list of strings is returned. 
 
     Examples:
-        >>> read_text('tests\\demo.txt')
+        >>> file.read_text('tests\\demo.txt')
         'This is a demo text file.'
 
-        >>> read_text(['tests\\demo.txt', 'tests\\demo2.txt'])
+        >>> file.read_text(['tests\\demo.txt', 'tests\\demo2.txt'])
         ['This is a demo text file.', 'This is a demo2 text file.']
 
     """
@@ -62,8 +62,8 @@ def write_text(path: Union[str, WindowsPath], contents: str) -> None:
         contents (str): The contents of the text file.
 
     Examples:
-        >>> write_text('tests\\demo.txt', 'This is a demo text file.')
-        >>> read_text('tests\\demo.txt')
+        >>> file.write_text('tests\\demo.txt', 'This is a demo text file.')
+        >>> file.read_text('tests\\demo.txt')
         'This is a demo text file.'
 
     """
@@ -80,8 +80,8 @@ def copy(source: Union[str, WindowsPath], destination: Union[str, WindowsPath]) 
         destination (Union[str, WindowsPath]): The path to the destination file.
 
     Examples:
-        >>> copy('tests\\demo.txt', 'tests\\demo2.txt')
-        >>> read_text('tests\\demo2.txt')
+        >>> file.copy('tests\\demo.txt', 'tests\\demo2.txt')
+        >>> file.read_text('tests\\demo2.txt')
         'This is a demo text file.'
 
     """
@@ -100,8 +100,8 @@ def move(source: Union[str, WindowsPath], destination: Union[str, WindowsPath]) 
         destination (Union[str, WindowsPath]): The path to the destination file.
 
     Examples:
-        >>> move('tests\\demo.txt', 'tests\\demo2.txt')
-        >>> read_text('tests\\demo2.txt')
+        >>> file.move('tests\\demo.txt', 'tests\\demo2.txt')
+        >>> file.read_text('tests\\demo2.txt')
         'This is a demo text file.'
 
     """
@@ -117,8 +117,8 @@ def delete(path: Union[str, WindowsPath]) -> None:
         path (Union[str, WindowsPath]): The path to the file.
 
     Examples:
-        >>> delete('tests\\demo.txt')
-        >>> read_text('tests\\demo.txt')
+        >>> file.delete('tests\\demo.txt')
+        >>> file.read_text('tests\\demo.txt')
         ''
 
     """
@@ -134,8 +134,8 @@ def rename(path: Union[str, WindowsPath], new_name: str) -> None:
         new_name (str): The new name of the file.
 
     Examples:
-        >>> rename('tests\\demo.txt', 'demo2.txt')
-        >>> read_text('tests\\demo2.txt')
+        >>> file.rename('tests\\demo.txt', 'demo2.txt')
+        >>> file.read_text('tests\\demo2.txt')
         'This is a demo text file.'
 
     """
@@ -150,8 +150,8 @@ def create(path: Union[str, WindowsPath]) -> None:
         path (Union[str, WindowsPath]): The path to the file.
 
     Examples:
-        >>> create('tests\\demo.txt')
-        >>> read_text('tests\\demo.txt')
+        >>> file.create('tests\\demo.txt')
+        >>> file.read_text('tests\\demo.txt')
         ''
 
     """

@@ -29,7 +29,7 @@ def info(message: str, title: str = "PyBOTs") -> None:
         title (str, optional): The title of the message box. Defaults to "PyBOTs".
 
     Examples:
-        >>> info('This is a demo message.')
+        >>> message.info('This is a demo message.')
 
     """
     # Import Section
@@ -47,7 +47,7 @@ def error(message: str, title: str = "PyBOTs") -> None:
         message (str): The message to display to the user.
 
     Examples:
-        >>> error('This is a demo message.')
+        >>> message.error('This is a demo message.')
 
     """
     # import section
@@ -65,7 +65,7 @@ def warning(message: str, title: str = "PyBOTs") -> None:
         message (str): The message to display to the user.
 
     Examples:
-        >>> warning('This is a demo message.')
+        >>> message.warning('This is a demo message.')
 
     """
     # import section

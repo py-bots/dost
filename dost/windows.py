@@ -6,7 +6,7 @@ Examples:
     >>> windows.show_desktop()
     >>> windows.get_active_window()
     'Notepad'
-    >>> window.get_all_opened_window_titles()
+    >>> windows.get_all_opened_window_titles()
     ['Notepad', 'Program Manager', 'Desktop']
     >>> windows.maximize_window('Notepad')
     >>> windows.minimize_window('Notepad')

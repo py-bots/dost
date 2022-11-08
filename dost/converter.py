@@ -47,7 +47,7 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
         sep (str): The separator used in the CSV file.
 
     Examples:
-        >>> csv_to_excel('tests\\demo.csv')
+        >>> converter.csv_to_excel('tests\\demo.csv')
 
 
     """
@@ -106,7 +106,7 @@ def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath] = ""
         output_filename (str default ending with .png): The name of the output file.
 
     Examples:
-        >>> base64_to_image('"base_64_string')
+        >>> converter.base64_to_image('"base_64_string')
 
     """
     # Import Section
@@ -154,7 +154,7 @@ def image_to_base64(input_filepath: Union[str, WindowsPath]) -> str:
         str: The base64 encoded string.
 
     Examples:
-        >>> image_to_base64('tests\\demo.png')
+        >>> converter.image_to_base64('tests\\demo.png')
 
     """
     # Import section
@@ -186,7 +186,7 @@ def jpg_to_png(input_filepath: Union[str, WindowsPath], output_folder: Union[str
         output_filename (str): The name of the output file.
 
     Examples:
-        >>> jpg_to_png('tests\\demo.jpg')
+        >>> converter.jpg_to_png('tests\\demo.jpg')
 
     """
     # import section
@@ -233,7 +233,7 @@ def png_to_jpg(input_filepath: Union[str, WindowsPath], output_folder: Union[str
         output_filename (str): Output file name
 
     Examples:
-        >>> png_to_jpg('tests\\demo.png')
+        >>> converter.png_to_jpg('tests\\demo.png')
 
     """
     # Import Section
@@ -281,7 +281,7 @@ def excel_to_html(input_filepath: Union[str, WindowsPath], output_folder: Union[
         output_filename (str): Output file name
 
     Examples:
-        >>> excel_to_html('tests\\demo.xlsx')
+        >>> converter.excel_to_html('tests\\demo.xlsx')
     """
     # Import Section
     from pathlib import Path

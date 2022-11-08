@@ -36,7 +36,7 @@ def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Un
         table_with_borders (bool, optional): Whether the table has borders. Defaults to True.
 
     Examples:
-        >>> extract_all_tables("C:\\Users\\user\\Desktop\\demo.pdf", "C:\\Users\\user\\Desktop\\", "demo")
+        >>> pdf.extract_all_tables("C:\\Users\\user\\Desktop\\demo.pdf", "C:\\Users\\user\\Desktop\\", "demo")
 
     """
     # Import Section

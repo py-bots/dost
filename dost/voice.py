@@ -23,7 +23,7 @@ def speech_to_text() -> str:
     Returns:
         string: Text from the speech
     Examples:
-        >>> speech_to_text()
+        >>> voice.speech_to_text()
         "Hello World"
     """
     # Import Section
@@ -79,7 +79,7 @@ def text_to_speech(audio: str, show: bool = True, rate: int = 170) -> None:
         show (bool): Whether to print the text or not
         rate (int): Rate of speech. Default is 170
     Examples:
-        >>> text_to_speech("Hello World")
+        >>> voice.text_to_speech("Hello World")
     """
     # Import Section
     import random

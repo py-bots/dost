@@ -2,11 +2,11 @@
 Excel Module for dost. This module contains functions for working with excel and spreadsheets
 
 Examples:
-    >>> get_row_column_count(df)
+    >>> excel.get_row_column_count(df)
         (10, 5)
-    >>> get_single_cell("C:\\Users\\user\\Desktop\\excel_file.xlsx", "Column1", 1)
+    >>> excel.get_single_cell("C:\\Users\\user\\Desktop\\excel_file.xlsx", "Column1", 1)
         "abc"
-    >>> excel_create_file(output_folder="C:\\Users\\user\\Desktop", output_filename="test.xlsx", output_sheetname="Sheet1")
+    >>> excel.excel_create_file(output_folder="C:\\Users\\user\\Desktop", output_filename="test.xlsx", output_sheetname="Sheet1")
 
 This module contains the following functions:
 
@@ -15,7 +15,6 @@ This module contains the following functions:
 - `tabular_data_from_website(url, table_id)`: Get tabular data from website.
 - `upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url, sheet_name, df)`: Upload dataframe to google spreadsheet.
 - `create_file(output_folder, output_filename, output_sheetname)`: Create excel file.
-- `valid_data(input_filepath, input_sheetname, validate_filepath, validate_sheetname)`: Check if data is valid.
 - `to_dataframe(excel_file_path, sheet_name,header)`: Convert excel file to dataframe.
 - `get_row_column_count(df)`: Get row and column count of dataframe.
 - `dataframe_to_excel(df, excel_folder, excel_file_name, sheet_name, mode)`: Convert dataframe to excel file.
@@ -62,7 +61,7 @@ def authenticate_google_spreadsheet(credential_file_path: Union[str, WindowsPath
         object: Authentication object.
 
     Examples:
-        >>> auth = authenticate_google_spreadsheet(credential_file_path="C:\\Users\\user\\Desktop\\credentials.json")
+        >>> auth = excel.authenticate_google_spreadsheet(credential_file_path="C:\\Users\\user\\Desktop\\credentials.json")
     """
 
     # Import Section
@@ -97,7 +96,7 @@ def get_dataframe_from_google_spreadsheet(auth, spreadsheet_url: str, sheet_name
         df (pd.DataFrame): Dataframe object.
 
     Examples:
-        >>> get_dataframe_from_google_spreadsheet(auth,spreadsheet_url="https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0", sheet_name="Sheet1")
+        >>> excel.get_dataframe_from_google_spreadsheet(auth,spreadsheet_url="https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0", sheet_name="Sheet1")
         df
 
     """
@@ -143,7 +142,7 @@ def tabular_data_from_website(website_url: str, table_number: int = 1) -> pd.Dat
        table_number (int, optional): Table number. Defaults to 1.
 
     Examples:
-        >>> tabular_data_from_website(website_url="https://en.wikipedia.org/wiki/Wiki")
+        >>> excel.tabular_data_from_website(website_url="https://en.wikipedia.org/wiki/Wiki")
     """
 
     # Import Section
@@ -182,7 +181,7 @@ def upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url: str, sheet_nam
         df (pd.DataFrame): Dataframe object.
 
     Examples:
-        >>> upload_dataframe_to_google_spreadsheet(auth=auth, spreadsheet_url="https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0", sheet_name="Sheet1", df=df)
+        >>> excel.upload_dataframe_to_google_spreadsheet(auth=auth, spreadsheet_url="https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0", sheet_name="Sheet1", df=df)
     """
 
     # import section
@@ -238,7 +237,7 @@ def create_file(output_folder: Union[str, WindowsPath], output_filename: str, ou
         output_sheetname (str, optional): Output sheet name. Defaults to "Sheet1".
 
     Examples:
-        >>> create_file(output_folder="C:\\Users\\user\\Desktop", output_filename="test.xlsx", output_sheetname="Sheet1")
+        >>> excel.create_file(output_folder="C:\\Users\\user\\Desktop", output_filename="test.xlsx", output_sheetname="Sheet1")
     """
 
     # Import Section
@@ -275,7 +274,7 @@ def create_file(output_folder: Union[str, WindowsPath], output_filename: str, ou
 
 
 @dostify(errors=[])
-def valid_data(input_filepath: Union[str, WindowsPath], input_sheetname: str = "", validate_filepath: bool = True, validate_sheetname: bool = True) -> bool:
+def _valid_data(input_filepath: Union[str, WindowsPath], input_sheetname: str = "", validate_filepath: bool = True, validate_sheetname: bool = True) -> bool:
     """This function validates the input file path and sheet name.
 
     Args:
@@ -288,7 +287,7 @@ def valid_data(input_filepath: Union[str, WindowsPath], input_sheetname: str = "
         bool: True if valid, False if invalid.
 
     Examples:
-        >>> valid_data(input_filepath="C:\\Users\\user\\Desktop\\test.xlsx", input_sheetname="Sheet1")
+        >>> excel._valid_data(input_filepath="C:\\Users\\user\\Desktop\\test.xlsx", input_sheetname="Sheet1")
         True
     """
     # Import Section
@@ -329,7 +328,7 @@ def to_dataframe(input_filepath: Union[str, WindowsPath], input_sheetname: str, 
         pd.DataFrame: Dataframe of the excel file.
 
     Examples:
-        >>> to_dataframe(input_filepath="C:\\Users\\user\\Desktop\\test.xlsx", input_sheetname="Sheet1")
+        >>> excel.to_dataframe(input_filepath="C:\\Users\\user\\Desktop\\test.xlsx", input_sheetname="Sheet1")
         dataframe
     """
 
@@ -342,7 +341,7 @@ def to_dataframe(input_filepath: Union[str, WindowsPath], input_sheetname: str, 
     if not input_sheetname:
         raise Exception("Please provide the sheet name")
 
-    if not valid_data(input_filepath, input_sheetname):
+    if not _valid_data(input_filepath, input_sheetname):
         raise ValueError("File does not contain valid data")
     data = pd.DataFrame()
     if header > 0:
@@ -367,7 +366,7 @@ def get_row_column_count(df: pd.DataFrame) -> tuple:
         tuple: Row and column count of the dataframe.
 
     Examples:
-        >>> get_row_column_count(df)
+        >>> excel.get_row_column_count(df)
         (10, 5)
     """
 
@@ -399,7 +398,7 @@ def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath],
         mode (str, optional): Mode of the excel file. Defaults to 'a'.
 
     Examples:
-        >>> dataframe_to_excel(df, output_folder="C:\\Users\\user\\Desktop", output_filename="test.xlsx", output_sheetname="Sheet1", mode='a')
+        >>> excel.dataframe_to_excel(df, output_folder="C:\\Users\\user\\Desktop", output_filename="test.xlsx", output_sheetname="Sheet1", mode='a')
     """
 
     # import section
@@ -461,7 +460,7 @@ def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, text: 
         data (df): Modified dataframe
 
     Examples:
-        >>> set_single_cell(dataframe, "Column 1", 1, "abc")
+        >>> excel.set_single_cell(dataframe, "Column 1", 1, "abc")
         df
     """
 
@@ -501,7 +500,7 @@ def get_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, header
         data (str): Text from the desired column/cell number for the given excel file
 
     Examples:
-        >>> get_single_cell(df, "Column 1", 1)
+        >>> excel.get_single_cell(df, "Column 1", 1)
         "abc"
     """
 
@@ -537,7 +536,7 @@ def get_all_header_columns(df: pd.DataFrame) -> Union[List[str], List[int]]:
         data (list): List of header columns
 
     Examples:
-        >>> get_all_header_columns(df)
+        >>> excel.get_all_header_columns(df)
         ["Column1", "Column2"]
     """
 
@@ -563,7 +562,7 @@ def get_all_sheet_names(input_filepath: Union[str, WindowsPath]) -> List[str]:
         data (list): List of sheet names
 
     Examples:
-        >>> get_all_sheet_names("demo")
+        >>> excel.get_all_sheet_names("demo")
         ["Sheet1", "Sheet2"]
     """
 
@@ -573,7 +572,7 @@ def get_all_sheet_names(input_filepath: Union[str, WindowsPath]) -> List[str]:
     # Code Section
     if not input_filepath:
         raise Exception("Please provide the excel path")
-    if not valid_data(input_filepath, validate_sheetname=False):
+    if not _valid_data(input_filepath, validate_sheetname=False):
         raise Exception("Please provide the valid excel path")
 
     wb = load_workbook(input_filepath)
@@ -593,7 +592,7 @@ def drop_columns(df: pd.DataFrame, cols: Union[str, List[str]]) -> pd.DataFrame:
         data (df): Modified dataframe
 
     Examples:
-        >>> drop_columns(df, "column_name")
+        >>> excel.drop_columns(df, "column_name")
         df
     """
 
@@ -626,7 +625,7 @@ def clear_sheet(df: pd.DataFrame) -> pd.DataFrame:
         data (df): Modified dataframe
 
     Examples:
-        >>> clear_sheet(df)
+        >>> excel.clear_sheet(df)
         df
     """
 
@@ -656,7 +655,7 @@ def remove_duplicates(df: pd.DataFrame, column_name: Union[str, List[str], int, 
         data (df): Modified dataframe
 
     Examples:
-        >>> remove_duplicates(df, "column_name")
+        >>> excel.remove_duplicates(df, "column_name")
         df
     """
 
@@ -693,7 +692,7 @@ def isNaN(value: str) -> bool:
         bool: True if value is NaN, False otherwise
 
     Examples:
-        >>> isNaN("abc")
+        >>> excel.isNaN("abc")
         False
     """
 
@@ -716,7 +715,7 @@ def df_from_list(list_of_lists: list, column_names: List[str]) -> pd.DataFrame:
         pandas dataframe: dataframe
 
     Examples:
-        >>> df_from_list([[1,2,3],[4,5,6]], ["col1", "col2", "col3"])
+        >>> excel.df_from_list([[1,2,3],[4,5,6]], ["col1", "col2", "col3"])
         dataframe
         ..   col1  col2  col3
         0     1     2     3
@@ -753,7 +752,7 @@ def df_from_string(df_string: str, word_delimeter: str = " ", line_delimeter: st
         pandas dataframe: dataframe
 
     Examples:
-        >>> print(df_from_string("a b c;d e f"," ", ";", ["Column 1","Column 2","Column 3"]))
+        >>> print(excel.df_from_string("a b c;d e f"," ", ";", ["Column 1","Column 2","Column 3"]))
         dataframe object
         ..   Column 1  Column 2  Column 3
         0     a     b     c
@@ -795,7 +794,7 @@ def df_extract_sub_df(df: pd.DataFrame, row_start: int, row_end: int, column_sta
         pandas dataframe(pandas dataframe): sub dataframe
 
     Examples:
-        >>> df_extract_sub_df(df, 1, 2, 3, 4)
+        >>> excel.df_extract_sub_df(df, 1, 2, 3, 4)
         sub_dataframe
 
     """
@@ -827,7 +826,7 @@ def set_value_in_df(df: pd.DataFrame, row_number: int, column_number: int, value
         pandas dataframe: dataframe with value set
 
     Examples:
-        >>> set_value_in_df(df, 1, 2, "abc")
+        >>> excel.set_value_in_df(df, 1, 2, "abc")
         modified_dataframe
 
     """
@@ -865,7 +864,7 @@ def get_value_in_df(df: pd.DataFrame, row_number: int, column_number: int) -> st
     Returns:
         str: value in the cell
     Examples:
-        >>> get_value_in_df(df, 1, 2)
+        >>> excel.get_value_in_df(df, 1, 2)
         abc
 
     """
@@ -903,7 +902,7 @@ def df_drop_rows(df: pd.DataFrame, row_start: int, row_end: int) -> pd.DataFrame
     Returns:
         pandas dataframe: dataframe with rows dropped
     Examples:
-        >>> df = df_drop_rows(df, 1, 2)
+        >>> df = excel.df_drop_rows(df, 1, 2)
 
     """
 

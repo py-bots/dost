@@ -28,8 +28,8 @@ def set_data(data: str, format_id=win32clipboard.CF_UNICODETEXT) -> None:
         format_id (int): The format of the data. Defaults to CF_UNICODETEXT.
 
     Examples:
-        >>> set_data('Hello World!')
-        >>> get_data()
+        >>> clipboard.set_data('Hello World!')
+        >>> clipboard.get_data()
         'Hello World!'
 
     """
@@ -84,7 +84,7 @@ def get_data(format_id=win32clipboard.CF_UNICODETEXT) -> str:
         The clipboard data as a string.
 
     Examples:
-        >>> get_data()
+        >>> clipboard.get_data()
         'Hello World!'
     """
     # Import Section

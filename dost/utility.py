@@ -40,7 +40,7 @@ def pause_program(seconds: int = "5") -> None:
         seconds (int, optional): Number of seconds to pause the program. Defaults to "5".
 
     Examples:
-        >>> pause_program(5)
+        >>> utility.pause_program(5)
     """
 
     # Import Section
@@ -67,7 +67,7 @@ def api_request(url: str, method='GET', body: dict = None, headers: dict = None)
         dict: Response from the API
 
     Examples:
-        >>> api_request("https://google.com")
+        >>> utility.api_request("https://google.com")
     """
 
     # Import Section
@@ -104,7 +104,7 @@ def clear_output() -> None:
     """Clears the output of the console
 
     Examples:
-        >>> clear_output()
+        >>> utility.clear_output()
     """
 
     # Import Section
@@ -122,7 +122,7 @@ def install_module(module_name: str) -> None:
         module_name (str): Name of the module to install
 
     Examples:
-        >>> install_module("requests")
+        >>> utility.install_module("requests")
     """
     # Code Section
     if module_name != "dost":
@@ -140,7 +140,7 @@ def uninstall_module(module_name: str) -> None:
         module_name (str): Name of the module to uninstall
 
     Examples:
-        >>> uninstall_module("requests")
+        >>> utility.uninstall_module("requests")
     """
     if module_name == "dost":
         raise ModuleNotFoundError("You cannot uninstall dost from here.")
@@ -161,7 +161,7 @@ def get_module_version(module_name: str) -> str:
         str: Version of the specified module
 
     Examples:
-        >>> get_module_version("requests")
+        >>> utility.get_module_version("requests")
     """
     import importlib
     module = importlib.import_module(module_name)
@@ -179,7 +179,7 @@ def image_to_text(image_path: Union[str, WindowsPath]) -> str:
         string: Text from the image
 
     Examples:
-        >>> image_to_text("tests\demo2.png")
+        >>> utility.image_to_text("tests\demo2.png")
     """
     # Import Section
     from PIL import Image

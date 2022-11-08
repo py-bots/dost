@@ -29,9 +29,9 @@ def press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '
         key_2 (str): The second key to press.
         key_3 (str): The third key to press.
     Examples:
-        >>> press('Notepad', 'a')
-        >>> press('Notepad', '{VK_CONTROL}', 'S')
-        >>> press('Notepad', '{VK_CONTROL}', 'S',"enter")
+        >>> keyboard.press('Notepad', 'a')
+        >>> keyboard.press('Notepad', '{VK_CONTROL}', 'S')
+        >>> keyboard.press('Notepad', '{VK_CONTROL}', 'S',"enter")
     """
     # Import Section
     import pywinauto as pwa
@@ -103,7 +103,7 @@ def write_enter(write_to_window: str, text_to_write: str, key: str = "e") -> Non
         key (str, optional): Key to press. Defaults to "e".
 
     Examples:
-        >>> write_enter("Notepad", "Hello World")
+        >>> keyboard.write_enter("Notepad", "Hello World")
     """
 
     # Import Section
@@ -135,7 +135,7 @@ def hit_enter(write_to_window: str) -> None:
         write_to_window (str): Window to write to
 
     Examples:
-        >>> press(write_to_window="Notepad", key="enter",)
+        >>> keyboard.press(write_to_window="Notepad", key="enter",)
         """
 
     # Import Section

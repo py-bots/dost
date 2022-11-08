@@ -30,11 +30,11 @@ def click(x: int, y: int, button: str = "left", clicks: int = 1, absolute: bool 
         absolute (bool): Whether the co-ordinates are absolute or relative to the current position. Defaults to True.
 
     Examples:
-        >>> click(100, 100)
-        >>> click(100, 100, button="right")
-        >>> click(100, 100, button="middle")
-        >>> click(100, 100, button="left", clicks=2)
-        >>> click(100, 100, button="left", clicks=2, absolute=False)
+        >>> mouse.click(100, 100)
+        >>> mouse.click(100, 100, button="right")
+        >>> mouse.click(100, 100, button="middle")
+        >>> mouse.click(100, 100, button="left", clicks=2)
+        >>> mouse.click(100, 100, button="left", clicks=2, absolute=False)
 
     """
 
@@ -74,10 +74,10 @@ def search(img_path: Union[str, List[str], WindowsPath, List[WindowsPath]], conf
         A tuple containing the X and Y co-ordinates of the image.
 
     Examples:
-        >>> search('tests\\demo.png')
+        >>> mouse.search('tests\\demo.png')
         (23, 17)
-        >>> search('tests\\demo.png', wait=20, left_click=True)
-        >>> search(['tests\\demo.png', 'tests\\demo2.png'])
+        >>> mouse.search('tests\\demo.png', wait=20, left_click=True)
+        >>> mouse.search(['tests\\demo.png', 'tests\\demo2.png'])
         [(23, 17), (67, 16)]
     """
     # import section

@@ -31,7 +31,7 @@ def get_alphabets(text: str) -> str:
         str: Alphabets from the given string.
 
     Examples:
-        >>> get_alphabets("hello123:l;,")
+        >>> text.get_alphabets("hello123:l;,")
         'hellol'
     """
     return ''.join(e for e in text if e.isalpha())
@@ -47,7 +47,7 @@ def get_numbers(text: str) -> str:
         str: Numbers extracted from the given string.
 
     Examples:
-        >>> get_numbers("hello123:l;,")
+        >>> text.get_numbers("hello123:l;,")
         '123'
     """
 
@@ -64,7 +64,7 @@ def remove_special_characters(text: str) -> str:
         str: The string without special characters.
 
     Examples:
-        >>> extract_only_alphabets("hello123:l;,")
+        >>> text.extract_only_alphabets("hello123:l;,")
         'hello123l'
     """
     return ''.join(e for e in text if e.isalnum())
