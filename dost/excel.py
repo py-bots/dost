@@ -19,19 +19,19 @@ This module contains the following functions:
 - `get_row_column_count(df)`: Get row and column count of dataframe.
 - `dataframe_to_excel(df, excel_folder, excel_filename, sheet_name, mode)`: Convert dataframe to excel file.
 - `set_single_cell(df, column_name, cell_number, value)`: Set single cell value in excel file.
-- `get_single_cell(df, column_name, cell_number, header)`: Get single cell value from excel file.
+- `get_single_celldf, column_name, cell_number, header)`: Get single cell value from excel file.
 - `get_all_header_columns(df)`: Get all header columns from excel file.
 - `get_all_sheet_names(excel_file_path)`: Get all sheet names from excel file.
-- `drop_columns(dataframe, columns_to_drop)`: Drop columns from data frame.
-- `clear_sheet(dataframe)`: Clear sheet from excel file.
-- `remove_duplicates(dataframe, column_name)`: Remove duplicates from excel file.
+- `drop_columns(df, columns_to_drop)`: Drop columns from data frame.
+- `clear_sheet(df)`: Clear sheet from excel file.
+- `remove_duplicates(df, column_name)`: Remove duplicates from excel file.
 - `isNaN(value)`: Check if value is NaN.
 - `df_from_list(list_of_lists, header names)`: Create dataframe from list of lists.
 - `df_from_string(string, delimiter)`: Create dataframe from string.
-- `df_extract_sub_df(dataframe, row_start, row_end, column_start, column_end)`: Extract sub dataframe from dataframe.
-- `set_value_in_df(dataframe, column_name, row_number, value)`: Set value in dataframe.
-- `get_value_in_df(dataframe, column_name, row_number)`: Get value from dataframe.
-- `df_drop_rows(dataframe, row_start, row_end)`: Drop rows from dataframe.
+- `df_extract_sub_df(df, row_start, row_end, column_start, column_end)`: Extract sub dataframe from dataframe.
+- `set_value_in_df(df, column_name, row_number, value)`: Set value in dataframe.
+- `get_value_in_df(df, column_name, row_number)`: Get value from dataframe.
+- `df_drop_rows(df, row_start, row_end)`: Drop rows from dataframe.
 """
 
 
