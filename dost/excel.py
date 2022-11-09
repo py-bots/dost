@@ -17,7 +17,7 @@ This module contains the following functions:
 - `create_file(output_folder, output_filename, output_sheetname)`: Create excel file.
 - `to_dataframe(excel_file_path, sheet_name,header)`: Convert excel file to dataframe.
 - `get_row_column_count(df)`: Get row and column count of dataframe.
-- `dataframe_to_excel(df, excel_folder, excel_file_name, sheet_name, mode)`: Convert dataframe to excel file.
+- `dataframe_to_excel(df, excel_folder, excel_filename, sheet_name, mode)`: Convert dataframe to excel file.
 - `set_single_cell(df, column_name, cell_number, value)`: Set single cell value in excel file.
 - `get_single_cell(df, column_name, cell_number, header)`: Get single cell value from excel file.
 - `get_all_header_columns(df)`: Get all header columns from excel file.
@@ -75,7 +75,7 @@ def authenticate_google_spreadsheet(credential_file_path: Union[str, WindowsPath
     scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
              "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 
-    creds = ServiceAccountCredentials.from_json_keyfile_name(
+    creds = ServiceAccountCredentials.from_json_keyfilename(
         credential_file_path, scope)
 
     gc = gspread.authorize(creds)

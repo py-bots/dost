@@ -16,9 +16,9 @@ def get_demo_df(header):
 
 def create_excel_sheet(file_path="tests/test.xlsx", sheetname=["Test_sheet", "sheet2", "Sheet 3"]):
     folder = file_path.split("/")[0]
-    file_name = file_path.split("/")[1]
+    filename = file_path.split("/")[1]
     create_file(output_folder=folder,
-                      output_filename=file_name, output_sheetname=sheetname)
+                      output_filename=filename, output_sheetname=sheetname)
 
 
 class test(unittest.TestCase):
@@ -27,17 +27,17 @@ class test(unittest.TestCase):
         file_path = "tests/test.xlsx"
         sheetname = "Test_sheet"
         folder = file_path.split("/")[0]
-        file_name = file_path.split("/")[1]
+        filename = file_path.split("/")[1]
         create_file(output_folder=folder,
-                          output_filename=file_name, output_sheetname=sheetname)
+                          output_filename=filename, output_sheetname=sheetname)
         assert os.path.exists(file_path) == True
         os.remove(file_path)
 
         # Case 2 - Missing Sheetname
         file_path = "tests/test.xlsx"
         folder = file_path.split("/")[0]
-        file_name = file_path.split("/")[1]
-        create_file(output_folder=folder, output_filename=file_name)
+        filename = file_path.split("/")[1]
+        create_file(output_folder=folder, output_filename=filename)
         assert os.path.exists(file_path) == True
         os.remove(file_path)
 
@@ -45,9 +45,9 @@ class test(unittest.TestCase):
         file_path = "tests/test"
         sheetname = "Test_sheet"
         folder = file_path.split("/")[0]
-        file_name = file_path.split("/")[1]
+        filename = file_path.split("/")[1]
         create_file(output_folder=folder,
-                          output_filename=file_name, output_sheetname=sheetname)
+                          output_filename=filename, output_sheetname=sheetname)
         assert os.path.exists(file_path+".xlsx") == True
         os.remove(file_path+".xlsx")
 
@@ -55,9 +55,9 @@ class test(unittest.TestCase):
         file_path = "tests/test.xlsx"
         sheetname = ["Test_sheet", "sheet2", "Sheet 3"]
         folder = file_path.split("/")[0]
-        file_name = file_path.split("/")[1]
+        filename = file_path.split("/")[1]
         create_file(output_folder=folder,
-                          output_filename=file_name, output_sheetname=sheetname)
+                          output_filename=filename, output_sheetname=sheetname)
         assert os.path.exists(file_path) == True
         os.remove(file_path)
 

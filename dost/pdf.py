@@ -2,12 +2,12 @@
 PDF module for dost. This module is used to extract data from PDF files.
 
 Examples:
-    >>> pdf.extract_all_tables(pdf_file_path="C:\\Users\\user\\Desktop\\demo.pdf",output_folder="C:\\Users\\user\\Desktop\\",output_file_name = "demo")
+    >>> pdf.extract_all_tables(pdf_file_path="C:\\Users\\user\\Desktop\\demo.pdf",output_folder="C:\\Users\\user\\Desktop\\",output_filename = "demo")
 
 
 The module contains the following functions:
 
-- `extract_all_tables(pdf_file_path, output_folder, output_file_name, table_with_borders)`: Extracts all tables from a pdf file and saves them as csv files in the specified folder.
+- `extract_all_tables(pdf_file_path, output_folder, output_filename, table_with_borders)`: Extracts all tables from a pdf file and saves them as csv files in the specified folder.
 
 """
 
@@ -26,17 +26,17 @@ if not os.path.exists(output_folder_path):
 
 
 @dostify(errors=[(FileNotFoundError, "")])
-def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Union[str, WindowsPath], output_file_name: str, table_with_borders: bool = True) -> None:
+def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Union[str, WindowsPath], output_filename: str, table_with_borders: bool = True) -> None:
     """Extracts all tables from a pdf file and saves them as csv files in the specified folder.
 
     Args:
         pdf_file_path (str,WindowsPath): Path to the pdf file.
         output_folder (str,WindowsPath): Path to the output folder.
-        output_file_name (str): Name of the output file.
+        output_filename (str): Name of the output file.
         table_with_borders (bool, optional): Whether the table has borders. Defaults to True.
 
     Examples:
-        >>> pdf.extract_all_tables(pdf_file_path="C:\\Users\\user\\Desktop\\demo.pdf",output_folder="C:\\Users\\user\\Desktop\\",output_file_name = "demo")
+        >>> pdf.extract_all_tables(pdf_file_path="C:\\Users\\user\\Desktop\\demo.pdf",output_folder="C:\\Users\\user\\Desktop\\",output_filename = "demo")
 
     """
     # Import Section
@@ -51,12 +51,12 @@ def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Un
         raise FileNotFoundError(f"File not found: {pdf_file_path}")
     if not output_folder:
         output_folder = output_folder_path
-    if not output_file_name:
-        output_file_name = "pdf_" + \
+    if not output_filename:
+        output_filename = "pdf_" + \
             str(datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".xlsx"
     else:
-        if not output_file_name.endswith(".xlsx"):
-            output_file_name += ".xlsx"
+        if not output_filename.endswith(".xlsx"):
+            output_filename += ".xlsx"
 
     pdf = pdfplumber.open(pdf_file_path)
 
@@ -75,7 +75,7 @@ def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Un
 
     # excel writer
     writer = pd.ExcelWriter(os.path.join(
-        output_folder, output_file_name), engine='openpyxl')
+        output_folder, output_filename), engine='openpyxl')
 
     for table in tables:
         df_main = []
