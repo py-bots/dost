@@ -3,8 +3,8 @@ Mouse module for dost. This module contains functions for mouse control.
 
 Examples:
     >>> from dost import mouse
-    >>> mouse.click(100, 100)
-    >>> mouse.search('tests\\demo.png')
+    >>> mouse.click(x=100, y=100)
+    >>> mouse.search(img_path='tests\\demo.png')
     (23, 17)
 
 
@@ -30,11 +30,11 @@ def click(x: int, y: int, button: str = "left", clicks: int = 1, absolute: bool 
         absolute (bool): Whether the co-ordinates are absolute or relative to the current position. Defaults to True.
 
     Examples:
-        >>> mouse.click(100, 100)
-        >>> mouse.click(100, 100, button="right")
-        >>> mouse.click(100, 100, button="middle")
-        >>> mouse.click(100, 100, button="left", clicks=2)
-        >>> mouse.click(100, 100, button="left", clicks=2, absolute=False)
+        >>> mouse.click(x=100,y= 100)
+        >>> mouse.click(x=100,y= 100, button="right")
+        >>> mouse.click(x=100,y= 100, button="middle")
+        >>> mouse.click(x=100,y= 100, button="left", clicks=2)
+        >>> mouse.click(x=100,y= 100, button="left", clicks=2, absolute=False)
 
     """
 
@@ -74,10 +74,10 @@ def search(img_path: Union[str, List[str], WindowsPath, List[WindowsPath]], conf
         A tuple containing the X and Y co-ordinates of the image.
 
     Examples:
-        >>> mouse.search('tests\\demo.png')
+        >>> mouse.search(img_path='tests\\demo.png')
         (23, 17)
-        >>> mouse.search('tests\\demo.png', wait=20, left_click=True)
-        >>> mouse.search(['tests\\demo.png', 'tests\\demo2.png'])
+        >>> mouse.search(img_path='tests\\demo.png', wait=20, left_click=True)
+        >>> mouse.search(img_path=['tests\\demo.png', 'tests\\demo2.png'])
         [(23, 17), (67, 16)]
     """
     # import section

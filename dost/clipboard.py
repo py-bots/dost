@@ -3,7 +3,7 @@ Clipboard module for dost. This module is used to interact with the Windows clip
 
 Examples:
     >>> from dost import clipboard
-    >>> clipboard.set_data('Hello World!')
+    >>> clipboard.set_data(data='Hello World!')
     >>> clipboard.get_data()
     'Hello World!'
 
@@ -28,7 +28,7 @@ def set_data(data: str, format_id=win32clipboard.CF_UNICODETEXT) -> None:
         format_id (int): The format of the data. Defaults to CF_UNICODETEXT.
 
     Examples:
-        >>> clipboard.set_data('Hello World!')
+        >>> clipboard.set_data(data='Hello World!')
         >>> clipboard.get_data()
         'Hello World!'
 
@@ -100,4 +100,3 @@ def get_data(format_id=win32clipboard.CF_UNICODETEXT) -> str:
     return data
 
 
-print(_GetClipboardFormats())

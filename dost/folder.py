@@ -3,8 +3,8 @@ Folder module for dost. This module contains functions for working with folders 
 
 Examples:
     >>> from dost import folder
-    >>> folder.create_folder('tests\\demo')
-    >>> folder.delete_folder('tests\\demo')
+    >>> folder.create_folder(path='tests\\demo')
+    >>> folder.delete_folder(path='tests\\demo')
 
 It contains the following functions:
 
@@ -36,7 +36,7 @@ def create_folder(path: Union[str, WindowsPath]) -> None:
         path (Union[str, WindowsPath]): The path to the folder.
 
     Examples:
-        >>> folder.create_folder('tests\\demo')
+        >>> folder.create_folder(path='tests\\demo')
         >>> os.path.exists('tests\\demo')
         True
 
@@ -52,7 +52,7 @@ def delete_folder(path: Union[str, WindowsPath]) -> None:
         path (Union[str, WindowsPath]): The path to the folder.
 
     Examples:
-        >>> folder.delete_folder('tests\\demo')
+        >>> folder.delete_folder(path='tests\\demo')
         >>> os.path.exists('tests\\demo')
         False
 
@@ -69,7 +69,7 @@ def rename_folder(path: Union[str, WindowsPath], new_name: str) -> None:
         new_name (str): The new name of the folder.
 
     Examples:
-        >>> folder.rename_folder('tests\\demo', 'demo2')
+        >>> folder.rename_folder(path='tests\\demo', new_name='demo2')
         >>> os.path.exists('tests\\demo2')
         True
 
@@ -86,7 +86,7 @@ def copy_folder(source: Union[str, WindowsPath], destination: Union[str, Windows
         destination (Union[str, WindowsPath]): The path to the destination folder.
 
     Examples:
-        >>> folder.copy_folder('tests\\demo', 'tests\\demo2')
+        >>> folder.copy_folder(source='tests\\demo',destination= 'tests\\demo2')
         >>> os.path.exists('tests\\demo2')
         True
 
@@ -110,7 +110,7 @@ def move_folder(source: Union[str, WindowsPath], destination: Union[str, Windows
         destination (Union[str, WindowsPath]): The path to the destination folder.
 
     Examples:
-        >>> folder.move_folder('tests\\demo', 'tests\\demo2')
+        >>> folder.move_folder(source='tests\\demo', destination='tests\\demo2')
         >>> os.path.exists('tests\\demo')
         False
         >>> os.path.exists('tests\\demo2')
@@ -132,7 +132,7 @@ def get_size(path: Union[str, WindowsPath]) -> int:
         int: The size of the folder in bytes.
 
     Examples:
-        >>> folder.get_size('tests')
+        >>> folder.get_size(path='tests')
         0
 
     """
@@ -155,7 +155,7 @@ def get_size_human(path: Union[str, WindowsPath]) -> str:
         str: The size of the folder in human readable format.
 
     Examples:
-        >>> folder.get_size_human('tests')
+        >>> folder.get_size_human(path='tests')
         '0 bytes'
 
     """
@@ -177,7 +177,7 @@ def get_contents(path: Union[str, WindowsPath]) -> list:
         list: A list of all files and folders in the folder.
 
     Examples:
-        >>> folder.get_contents('tests')
+        >>> folder.get_contents(path='tests')
         ['demo', 'demo2', 'demo.txt']
 
     """
@@ -195,7 +195,7 @@ def get_contents_recursive(path: Union[str, WindowsPath]) -> list:
         list: A list of all files and folders in the folder and all subfolders.
 
     Examples:
-        >>> folder.get_contents_recursive('tests')
+        >>> folder.get_contents_recursive(path='tests')
         ['demo', 'demo2', 'demo.txt']
 
     """

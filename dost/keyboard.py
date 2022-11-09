@@ -3,16 +3,16 @@ Keyboard module for dost.This module contains functions for keyboard input and o
 
 Examples:
     >>> from dost import keyboard
-    >>> keyboard.press('a')
-    >>> keyboard.write_enter('Hello World!')
-    >>> keyboard.hit_enter()
+    >>> keyboard.press(key_1='a')
+    >>> keyboard.write_enter(text_to_write='Hello World!')
+    >>> keyboard.hit_enter(write_to_window="Notepad")
 
 
 This module contains the following functions:
 
-- `press(key)`: Check if a key is pressed.
-- `write_enter(text)`: Write text and press enter.
-- `hit_enter()`: Press enter.
+- `press(key_1,key_2,key_3,write_to_window)`: Check if a key is pressed.
+- `write_enter(write_to_window , text_to_write, key)`: Write text and press enter.
+- `hit_enter(write_to_window)`: Press enter.
 
 """
 
@@ -29,9 +29,9 @@ def press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '
         key_2 (str): The second key to press.
         key_3 (str): The third key to press.
     Examples:
-        >>> keyboard.press('Notepad', 'a')
-        >>> keyboard.press('Notepad', '{VK_CONTROL}', 'S')
-        >>> keyboard.press('Notepad', '{VK_CONTROL}', 'S',"enter")
+        >>> keyboard.press(write_to_window='Notepad', key_1='a')
+        >>> keyboard.press(write_to_window='Notepad', key_1='{VK_CONTROL}', key_2='S')
+        >>> keyboard.press(write_to_window='Notepad', key_1='{VK_CONTROL}', key_2='S',key_3="enter")
     """
     # Import Section
     import pywinauto as pwa
@@ -103,7 +103,7 @@ def write_enter(write_to_window: str, text_to_write: str, key: str = "e") -> Non
         key (str, optional): Key to press. Defaults to "e".
 
     Examples:
-        >>> keyboard.write_enter("Notepad", "Hello World")
+        >>> keyboard.write_enter(write_to_window="Notepad", text_to_write="Hello World")
     """
 
     # Import Section
@@ -135,7 +135,7 @@ def hit_enter(write_to_window: str) -> None:
         write_to_window (str): Window to write to
 
     Examples:
-        >>> keyboard.press(write_to_window="Notepad", key="enter",)
+        >>> keyboard.hit_enter(write_to_window="Notepad")
         """
 
     # Import Section

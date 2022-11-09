@@ -8,10 +8,10 @@ Examples:
     'Notepad'
     >>> windows.get_all_opened_window_titles()
     ['Notepad', 'Program Manager', 'Desktop']
-    >>> windows.maximize_window('Notepad')
-    >>> windows.minimize_window('Notepad')
-    >>> windows.close_window('Notepad')
-    >>> windows.launch_app('notepad')
+    >>> windows.maximize_window(window_name='Notepad')
+    >>> windows.minimize_window(window_name='Notepad')
+    >>> windows.close_window(window_name='Notepad')
+    >>> windows.launch_app(path='Notepad')
 
 
 The module contains the following functions:
@@ -39,7 +39,7 @@ def _window_find_exact_name(window_name: str) -> str:
     Returns:
         str: Window handle
     Examples:
-        >>> _window_find_exact_name('Notepad')
+        >>> _window_find_exact_name(window_name='Notepad')
 
     """
     # Import Section
@@ -94,7 +94,7 @@ def activate_window(window_name: str) -> None:
         window_name (str): Window title
 
     Examples:
-        >>> windows.activate_window('Notepad')
+        >>> windows.activate_window(window_name='Notepad')
     """
 
     # Import Section
@@ -168,7 +168,7 @@ def minimize_window(window_name: str) -> None:
     Args:
         window_name (str): Window name
     Examples:
-        >>> windows.minimize_window('Notepad')
+        >>> windows.minimize_window(window_name='Notepad')
     """
 
     # Import Section
@@ -191,7 +191,7 @@ def close_window(window_name: str) -> None:
     Args:
         window_name (str): Window name
     Examples:
-        >>> windows.close_window('Notepad')
+        >>> windows.close_window(window_name='Notepad')
     """
 
     # Import Section
@@ -219,7 +219,7 @@ def launch_app(path: Union[str, WindowsPath]) -> None:
         ValueError: If path is empty
 
     Examples:
-        >>> windows.launch_app(notepad)
+        >>> windows.launch_app(path=notepad)
     """
 
     # Import Section

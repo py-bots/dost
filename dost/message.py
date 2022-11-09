@@ -3,9 +3,9 @@ Message module for dost. This module contains functions for displaying messages 
 
 Examples:
     >>> from dost import message
-    >>> message.info('Hello World!')
-    >>> message.error('Hello World!')
-    >>> message.warning('Hello World!')
+    >>> message.info(msg='Hello World!')
+    >>> message.error(msg='Hello World!')
+    >>> message.warning(msg='Hello World!')
 
 
 The module contains the following functions:
@@ -29,7 +29,7 @@ def info(message: str, title: str = "PyBOTs") -> None:
         title (str, optional): The title of the message box. Defaults to "PyBOTs".
 
     Examples:
-        >>> message.info('This is a demo message.')
+        >>> message.info(msg='This is a demo message.')
 
     """
     # Import Section
@@ -47,7 +47,7 @@ def error(message: str, title: str = "PyBOTs") -> None:
         message (str): The message to display to the user.
 
     Examples:
-        >>> message.error('This is a demo message.')
+        >>> message.error(msg='This is a demo message.')
 
     """
     # import section
@@ -65,7 +65,7 @@ def warning(message: str, title: str = "PyBOTs") -> None:
         message (str): The message to display to the user.
 
     Examples:
-        >>> message.warning('This is a demo message.')
+        >>> message.warning(msg='This is a demo message.')
 
     """
     # import section

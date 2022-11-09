@@ -2,7 +2,7 @@
 PDF module for dost. This module is used to extract data from PDF files.
 
 Examples:
-    >>> pdf.extract_all_tables("C:\\Users\\user\\Desktop\\demo.pdf", "C:\\Users\\user\\Desktop\\", "demo")
+    >>> pdf.extract_all_tables(pdf_file_path="C:\\Users\\user\\Desktop\\demo.pdf",output_folder="C:\\Users\\user\\Desktop\\",output_file_name = "demo")
 
 
 The module contains the following functions:
@@ -36,7 +36,7 @@ def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Un
         table_with_borders (bool, optional): Whether the table has borders. Defaults to True.
 
     Examples:
-        >>> pdf.extract_all_tables("C:\\Users\\user\\Desktop\\demo.pdf", "C:\\Users\\user\\Desktop\\", "demo")
+        >>> pdf.extract_all_tables(pdf_file_path="C:\\Users\\user\\Desktop\\demo.pdf",output_folder="C:\\Users\\user\\Desktop\\",output_file_name = "demo")
 
     """
     # Import Section

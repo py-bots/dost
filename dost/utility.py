@@ -3,13 +3,13 @@ Utility module for dost. This module contains utility functions.
 
 Examples:
     >>> import dost.utility as utility
-    >>> utility.pause_program(5)
-    >>> utility.api_request("https://google.com")
+    >>> utility.pause_program(seconds=5)
+    >>> utility.api_request(url="https://google.com")
     >>> utility.clear_output()
-    >>> utility.install_module("requests")
-    >>> utility.uninstall_module("requests")
-    >>> utility.get_module_version("requests")
-    >>> utility.image_to_text("image.png")
+    >>> utility.install_module(module_name="requests")
+    >>> utility.uninstall_module(module_name="requests")
+    >>> utility.get_module_version(module_name="requests")
+    >>> utility.image_to_text(image_path="image.png")
 
 
 This module contains the following functions:
@@ -40,7 +40,7 @@ def pause_program(seconds: int = "5") -> None:
         seconds (int, optional): Number of seconds to pause the program. Defaults to "5".
 
     Examples:
-        >>> utility.pause_program(5)
+        >>> utility.pause_program(seconds=5)
     """
 
     # Import Section
@@ -67,7 +67,7 @@ def api_request(url: str, method='GET', body: dict = None, headers: dict = None)
         dict: Response from the API
 
     Examples:
-        >>> utility.api_request("https://google.com")
+        >>> utility.api_request(url="https://google.com")
     """
 
     # Import Section
@@ -122,7 +122,7 @@ def install_module(module_name: str) -> None:
         module_name (str): Name of the module to install
 
     Examples:
-        >>> utility.install_module("requests")
+        >>> utility.install_module(module_name="requests")
     """
     # Code Section
     if module_name != "dost":
@@ -140,7 +140,7 @@ def uninstall_module(module_name: str) -> None:
         module_name (str): Name of the module to uninstall
 
     Examples:
-        >>> utility.uninstall_module("requests")
+        >>> utility.uninstall_module(module_name="requests")
     """
     if module_name == "dost":
         raise ModuleNotFoundError("You cannot uninstall dost from here.")
@@ -161,7 +161,7 @@ def get_module_version(module_name: str) -> str:
         str: Version of the specified module
 
     Examples:
-        >>> utility.get_module_version("requests")
+        >>> utility.get_module_version(module_name="requests")
     """
     import importlib
     module = importlib.import_module(module_name)
@@ -179,7 +179,7 @@ def image_to_text(image_path: Union[str, WindowsPath]) -> str:
         string: Text from the image
 
     Examples:
-        >>> utility.image_to_text("tests\demo2.png")
+        >>> utility.image_to_text(image_path="tests\demo2.png")
     """
     # Import Section
     from PIL import Image

@@ -3,7 +3,7 @@ Voice Module for dost.This module contains all the functions related to voice re
 
 Examples:
     >>> from dost import voice
-    >>> voice.text_to_speech("Hello World")
+    >>> voice.text_to_speech(audio="Hello World")
     
 
 This module contains the following functions:
@@ -79,7 +79,7 @@ def text_to_speech(audio: str, show: bool = True, rate: int = 170) -> None:
         show (bool): Whether to print the text or not
         rate (int): Rate of speech. Default is 170
     Examples:
-        >>> voice.text_to_speech("Hello World")
+        >>> voice.text_to_speech(audio="Hello World")
     """
     # Import Section
     import random

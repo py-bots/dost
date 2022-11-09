@@ -3,7 +3,7 @@ Mail module for dost. This module contains functions for sending emails.
 
 Examples:
     >>> from dost import mail
-    >>> mail.send_gmail_using_app_password('abcd','abcd','abcd@abc.com','abcd','abcd','abc.pdf')
+    >>> mail.send_gmail_using_app_password(sender_email='abcd',sender_password='abcd',receiver_email='abcd@abc.com',subject='abcd',body='abcd',path='abc.pdf')
 
 
 This module contains the following functions:
@@ -30,7 +30,7 @@ def send_gmail_using_app_password(gmail_username: str, gmail_app_password: str, 
         message (str): Message of the email
         attachment_path (Union[str, List(str)(optional), WindowsPath, List[WindowsPath]]): Attachment path
     Examples:
-        >>> mail.send_gmail_using_app_password('abcd','abcd','abcd@abc.com','abcd','abcd','abc.pdf')
+        >>> mail.send_gmail_using_app_password(sender_email='abcd',sender_password='abcd',receiver_email='abcd@abc.com',subject='abcd',body='abcd',path='abc.pdf')
 
     """
     # Import Section

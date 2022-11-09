@@ -2,9 +2,9 @@
 Excel Module for dost. This module contains functions for working with excel and spreadsheets
 
 Examples:
-    >>> excel.get_row_column_count(df)
+    >>> excel.get_row_column_count(df=df)
         (10, 5)
-    >>> excel.get_single_cell("C:\\Users\\user\\Desktop\\excel_file.xlsx", "Column1", 1)
+    >>> excel.get_single_cell(df=df,column_name="Column1", cell_number=1)
         "abc"
     >>> excel.excel_create_file(output_folder="C:\\Users\\user\\Desktop", output_filename="test.xlsx", output_sheetname="Sheet1")
 
@@ -96,7 +96,7 @@ def get_dataframe_from_google_spreadsheet(auth, spreadsheet_url: str, sheet_name
         df (pd.DataFrame): Dataframe object.
 
     Examples:
-        >>> excel.get_dataframe_from_google_spreadsheet(auth,spreadsheet_url="https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0", sheet_name="Sheet1")
+        >>> excel.get_dataframe_from_google_spreadsheet(auth=auth,spreadsheet_url="https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0", sheet_name="Sheet1")
         df
 
     """
@@ -366,7 +366,7 @@ def get_row_column_count(df: pd.DataFrame) -> tuple:
         tuple: Row and column count of the dataframe.
 
     Examples:
-        >>> excel.get_row_column_count(df)
+        >>> excel.get_row_column_count(df=df)
         (10, 5)
     """
 
@@ -398,7 +398,7 @@ def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath],
         mode (str, optional): Mode of the excel file. Defaults to 'a'.
 
     Examples:
-        >>> excel.dataframe_to_excel(df, output_folder="C:\\Users\\user\\Desktop", output_filename="test.xlsx", output_sheetname="Sheet1", mode='a')
+        >>> excel.dataframe_to_excel(df=df, output_folder="C:\\Users\\user\\Desktop", output_filename="test.xlsx", output_sheetname="Sheet1", mode='a')
     """
 
     # import section
@@ -460,7 +460,7 @@ def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, text: 
         data (df): Modified dataframe
 
     Examples:
-        >>> excel.set_single_cell(dataframe, "Column 1", 1, "abc")
+        >>> df=excel.set_single_cell(df=df, column_name="Column 1",cell_number= 1, text="abc")
         df
     """
 
@@ -500,7 +500,7 @@ def get_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, header
         data (str): Text from the desired column/cell number for the given excel file
 
     Examples:
-        >>> excel.get_single_cell(df, "Column 1", 1)
+        >>> excel.get_single_cell(df=df, column_name="Column 1",cell_number= 1)
         "abc"
     """
 
@@ -536,7 +536,7 @@ def get_all_header_columns(df: pd.DataFrame) -> Union[List[str], List[int]]:
         data (list): List of header columns
 
     Examples:
-        >>> excel.get_all_header_columns(df)
+        >>> excel.get_all_header_columns(df=df)
         ["Column1", "Column2"]
     """
 
@@ -562,7 +562,7 @@ def get_all_sheet_names(input_filepath: Union[str, WindowsPath]) -> List[str]:
         data (list): List of sheet names
 
     Examples:
-        >>> excel.get_all_sheet_names("demo")
+        >>> excel.get_all_sheet_names(input_filepath="demo")
         ["Sheet1", "Sheet2"]
     """
 
@@ -592,7 +592,7 @@ def drop_columns(df: pd.DataFrame, cols: Union[str, List[str]]) -> pd.DataFrame:
         data (df): Modified dataframe
 
     Examples:
-        >>> excel.drop_columns(df, "column_name")
+        >>> excel.drop_columns(df=df, cols="column_name")
         df
     """
 
@@ -625,7 +625,7 @@ def clear_sheet(df: pd.DataFrame) -> pd.DataFrame:
         data (df): Modified dataframe
 
     Examples:
-        >>> excel.clear_sheet(df)
+        >>> excel.clear_sheet(df=df)
         df
     """
 
@@ -655,7 +655,7 @@ def remove_duplicates(df: pd.DataFrame, column_name: Union[str, List[str], int, 
         data (df): Modified dataframe
 
     Examples:
-        >>> excel.remove_duplicates(df, "column_name")
+        >>> excel.remove_duplicates(df=df, column_name="column 1")
         df
     """
 
@@ -692,7 +692,7 @@ def isNaN(value: str) -> bool:
         bool: True if value is NaN, False otherwise
 
     Examples:
-        >>> excel.isNaN("abc")
+        >>> excel.isNaN(value="abc")
         False
     """
 
@@ -715,7 +715,7 @@ def df_from_list(list_of_lists: list, column_names: List[str]) -> pd.DataFrame:
         pandas dataframe: dataframe
 
     Examples:
-        >>> excel.df_from_list([[1,2,3],[4,5,6]], ["col1", "col2", "col3"])
+        >>> excel.df_from_list(list_of_lists=[[1,2,3],[4,5,6]], column_names=["col1", "col2", "col3"])
         dataframe
         ..   col1  col2  col3
         0     1     2     3
@@ -752,8 +752,8 @@ def df_from_string(df_string: str, word_delimeter: str = " ", line_delimeter: st
         pandas dataframe: dataframe
 
     Examples:
-        >>> print(excel.df_from_string("a b c;d e f"," ", ";", ["Column 1","Column 2","Column 3"]))
-        dataframe object
+        >>> print(excel.df_from_string(df_string="a b c;d e f",word_delimiter=" ",line_delimiter= ";",column_names= ["Column 1","Column 2","Column 3"]))
+        dataframe 
         ..   Column 1  Column 2  Column 3
         0     a     b     c
         1     d     e     f
@@ -794,7 +794,7 @@ def df_extract_sub_df(df: pd.DataFrame, row_start: int, row_end: int, column_sta
         pandas dataframe(pandas dataframe): sub dataframe
 
     Examples:
-        >>> excel.df_extract_sub_df(df, 1, 2, 3, 4)
+        >>> excel.df_extract_sub_df(df=df,row_start= 1, row_end=2, column_start=3, column_end=4)
         sub_dataframe
 
     """
@@ -826,7 +826,7 @@ def set_value_in_df(df: pd.DataFrame, row_number: int, column_number: int, value
         pandas dataframe: dataframe with value set
 
     Examples:
-        >>> excel.set_value_in_df(df, 1, 2, "abc")
+        >>> excel.set_value_in_df(df=df, row_number=1, column_number=2, value="abc")
         modified_dataframe
 
     """
@@ -864,7 +864,7 @@ def get_value_in_df(df: pd.DataFrame, row_number: int, column_number: int) -> st
     Returns:
         str: value in the cell
     Examples:
-        >>> excel.get_value_in_df(df, 1, 2)
+        >>> excel.get_value_in_df(df=df, row_number=1, column_number=2)
         abc
 
     """
@@ -902,7 +902,7 @@ def df_drop_rows(df: pd.DataFrame, row_start: int, row_end: int) -> pd.DataFrame
     Returns:
         pandas dataframe: dataframe with rows dropped
     Examples:
-        >>> df = excel.df_drop_rows(df, 1, 2)
+        >>> df = excel.df_drop_rows(df=df, row_start=1, row_end=2)
 
     """
 
