@@ -453,13 +453,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#dost.excel.valid_data" class="md-nav__link">
-    valid_data()
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -818,13 +811,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#dost.excel.valid_data" class="md-nav__link">
-    valid_data()
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -851,11 +837,11 @@
       <p>Excel Module for dost. This module contains functions for working with excel and spreadsheets</p>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">get_row_column_count</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">get_row_column_count</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">    (10, 5)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">get_single_cell</span><span class="p">(</span><span class="s2">&quot;C:\Users\user\Desktop\excel_file.xlsx&quot;</span><span class="p">,</span> <span class="s2">&quot;Column1&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">get_single_cell</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">column_name</span><span class="o">=</span><span class="s2">&quot;Column1&quot;</span><span class="p">,</span> <span class="n">cell_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">    &quot;abc&quot;</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel_create_file</span><span class="p">(</span><span class="n">output_folder</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop&quot;</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s2">&quot;test.xlsx&quot;</span><span class="p">,</span> <span class="n">output_sheetname</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">excel_create_file</span><span class="p">(</span><span class="n">output_folder</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop&quot;</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s2">&quot;test.xlsx&quot;</span><span class="p">,</span> <span class="n">output_sheetname</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">)</span>
 </code></pre></div>
       <p>This module contains the following functions:</p>
 <ul>
@@ -864,24 +850,23 @@
 <li><code>tabular_data_from_website(url, table_id)</code>: Get tabular data from website.</li>
 <li><code>upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url, sheet_name, df)</code>: Upload dataframe to google spreadsheet.</li>
 <li><code>create_file(output_folder, output_filename, output_sheetname)</code>: Create excel file.</li>
-<li><code>valid_data(input_filepath, input_sheetname, validate_filepath, validate_sheetname)</code>: Check if data is valid.</li>
 <li><code>to_dataframe(excel_file_path, sheet_name,header)</code>: Convert excel file to dataframe.</li>
 <li><code>get_row_column_count(df)</code>: Get row and column count of dataframe.</li>
-<li><code>dataframe_to_excel(df, excel_folder, excel_file_name, sheet_name, mode)</code>: Convert dataframe to excel file.</li>
+<li><code>dataframe_to_excel(df, excel_folder, excel_filename, sheet_name, mode)</code>: Convert dataframe to excel file.</li>
 <li><code>set_single_cell(df, column_name, cell_number, value)</code>: Set single cell value in excel file.</li>
-<li><code>get_single_cell(df, column_name, cell_number, header)</code>: Get single cell value from excel file.</li>
+<li><code>get_single_celldf, column_name, cell_number, header)</code>: Get single cell value from excel file.</li>
 <li><code>get_all_header_columns(df)</code>: Get all header columns from excel file.</li>
 <li><code>get_all_sheet_names(excel_file_path)</code>: Get all sheet names from excel file.</li>
-<li><code>drop_columns(dataframe, columns_to_drop)</code>: Drop columns from data frame.</li>
-<li><code>clear_sheet(dataframe)</code>: Clear sheet from excel file.</li>
-<li><code>remove_duplicates(dataframe, column_name)</code>: Remove duplicates from excel file.</li>
+<li><code>drop_columns(df, columns_to_drop)</code>: Drop columns from data frame.</li>
+<li><code>clear_sheet(df)</code>: Clear sheet from excel file.</li>
+<li><code>remove_duplicates(df, column_name)</code>: Remove duplicates from excel file.</li>
 <li><code>isNaN(value)</code>: Check if value is NaN.</li>
 <li><code>df_from_list(list_of_lists, header names)</code>: Create dataframe from list of lists.</li>
 <li><code>df_from_string(string, delimiter)</code>: Create dataframe from string.</li>
-<li><code>df_extract_sub_df(dataframe, row_start, row_end, column_start, column_end)</code>: Extract sub dataframe from dataframe.</li>
-<li><code>set_value_in_df(dataframe, column_name, row_number, value)</code>: Set value in dataframe.</li>
-<li><code>get_value_in_df(dataframe, column_name, row_number)</code>: Get value from dataframe.</li>
-<li><code>df_drop_rows(dataframe, row_start, row_end)</code>: Drop rows from dataframe.</li>
+<li><code>df_extract_sub_df(df, row_start, row_end, column_start, column_end)</code>: Extract sub dataframe from dataframe.</li>
+<li><code>set_value_in_df(df, column_name, row_number, value)</code>: Set value in dataframe.</li>
+<li><code>get_value_in_df(df, column_name, row_number)</code>: Get value from dataframe.</li>
+<li><code>df_drop_rows(df, row_start, row_end)</code>: Drop rows from dataframe.</li>
 </ul>
 
   
@@ -953,7 +938,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="n">authenticate_google_spreadsheet</span><span class="p">(</span><span class="n">credential_file_path</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop\credentials.json&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">auth</span> <span class="o">=</span> <span class="n">excel</span><span class="o">.</span><span class="n">authenticate_google_spreadsheet</span><span class="p">(</span><span class="n">credential_file_path</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop\credentials.json&quot;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
@@ -1017,7 +1002,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">clear_sheet</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">clear_sheet</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">df</span>
 </code></pre></div>
 
@@ -1084,7 +1069,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">create_file</span><span class="p">(</span><span class="n">output_folder</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop&quot;</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s2">&quot;test.xlsx&quot;</span><span class="p">,</span> <span class="n">output_sheetname</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">create_file</span><span class="p">(</span><span class="n">output_folder</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop&quot;</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s2">&quot;test.xlsx&quot;</span><span class="p">,</span> <span class="n">output_sheetname</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
@@ -1170,7 +1155,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">dataframe_to_excel</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop&quot;</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s2">&quot;test.xlsx&quot;</span><span class="p">,</span> <span class="n">output_sheetname</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">dataframe_to_excel</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop&quot;</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s2">&quot;test.xlsx&quot;</span><span class="p">,</span> <span class="n">output_sheetname</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
@@ -1254,7 +1239,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">df_drop_rows</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">excel</span><span class="o">.</span><span class="n">df_drop_rows</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">row_start</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">row_end</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
@@ -1358,7 +1343,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">df_extract_sub_df</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">df_extract_sub_df</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">row_start</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">row_end</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column_start</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column_end</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">sub_dataframe</span>
 </code></pre></div>
 
@@ -1433,7 +1418,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">df_from_list</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="p">[</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="s2">&quot;col2&quot;</span><span class="p">,</span> <span class="s2">&quot;col3&quot;</span><span class="p">])</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">df_from_list</span><span class="p">(</span><span class="n">list_of_lists</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="n">column_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="s2">&quot;col2&quot;</span><span class="p">,</span> <span class="s2">&quot;col3&quot;</span><span class="p">])</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">dataframe</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">..   col1  col2  col3</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">0     1     2     3</span>
@@ -1531,8 +1516,8 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">df_from_string</span><span class="p">(</span><span class="s2">&quot;a b c;d e f&quot;</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Column 1&quot;</span><span class="p">,</span><span class="s2">&quot;Column 2&quot;</span><span class="p">,</span><span class="s2">&quot;Column 3&quot;</span><span class="p">]))</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">dataframe object</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">excel</span><span class="o">.</span><span class="n">df_from_string</span><span class="p">(</span><span class="n">df_string</span><span class="o">=</span><span class="s2">&quot;a b c;d e f&quot;</span><span class="p">,</span><span class="n">word_delimiter</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="n">line_delimiter</span><span class="o">=</span> <span class="s2">&quot;;&quot;</span><span class="p">,</span><span class="n">column_names</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Column 1&quot;</span><span class="p">,</span><span class="s2">&quot;Column 2&quot;</span><span class="p">,</span><span class="s2">&quot;Column 3&quot;</span><span class="p">]))</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">dataframe </span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">..   Column 1  Column 2  Column 3</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">0     a     b     c</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="go">1     d     e     f</span>
@@ -1609,7 +1594,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">drop_columns</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;column_name&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">drop_columns</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="s2">&quot;column_name&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">df</span>
 </code></pre></div>
 
@@ -1674,7 +1659,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">get_all_header_columns</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">get_all_header_columns</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">[&quot;Column1&quot;, &quot;Column2&quot;]</span>
 </code></pre></div>
 
@@ -1739,7 +1724,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">get_all_sheet_names</span><span class="p">(</span><span class="s2">&quot;demo&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">get_all_sheet_names</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s2">&quot;demo&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">[&quot;Sheet1&quot;, &quot;Sheet2&quot;]</span>
 </code></pre></div>
 
@@ -1824,7 +1809,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">get_dataframe_from_google_spreadsheet</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span><span class="n">spreadsheet_url</span><span class="o">=</span><span class="s2">&quot;https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">get_dataframe_from_google_spreadsheet</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">,</span><span class="n">spreadsheet_url</span><span class="o">=</span><span class="s2">&quot;https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">df</span>
 </code></pre></div>
 
@@ -1889,7 +1874,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">get_row_column_count</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">get_row_column_count</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">(10, 5)</span>
 </code></pre></div>
 
@@ -1984,7 +1969,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">get_single_cell</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;Column 1&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">get_single_cell</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="o">=</span><span class="s2">&quot;Column 1&quot;</span><span class="p">,</span><span class="n">cell_number</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">&quot;abc&quot;</span>
 </code></pre></div>
 
@@ -2069,7 +2054,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">get_value_in_df</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">get_value_in_df</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">row_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column_number</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">abc</span>
 </code></pre></div>
 
@@ -2134,7 +2119,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">isNaN</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">isNaN</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">False</span>
 </code></pre></div>
 
@@ -2209,7 +2194,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;column_name&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="o">=</span><span class="s2">&quot;column 1&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">df</span>
 </code></pre></div>
 
@@ -2307,7 +2292,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">set_single_cell</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="s2">&quot;Column 1&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">=</span><span class="n">excel</span><span class="o">.</span><span class="n">set_single_cell</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="o">=</span><span class="s2">&quot;Column 1&quot;</span><span class="p">,</span><span class="n">cell_number</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">df</span>
 </code></pre></div>
 
@@ -2402,7 +2387,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">set_value_in_df</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">set_value_in_df</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">row_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column_number</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">modified_dataframe</span>
 </code></pre></div>
 
@@ -2459,7 +2444,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">tabular_data_from_website</span><span class="p">(</span><span class="n">website_url</span><span class="o">=</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Wiki&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">tabular_data_from_website</span><span class="p">(</span><span class="n">website_url</span><span class="o">=</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Wiki&quot;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
@@ -2543,7 +2528,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">to_dataframe</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop</span><span class="se">\t</span><span class="s2">est.xlsx&quot;</span><span class="p">,</span> <span class="n">input_sheetname</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop</span><span class="se">\t</span><span class="s2">est.xlsx&quot;</span><span class="p">,</span> <span class="n">input_sheetname</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">dataframe</span>
 </code></pre></div>
 
@@ -2620,102 +2605,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">upload_dataframe_to_google_spreadsheet</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">,</span> <span class="n">spreadsheet_url</span><span class="o">=</span><span class="s2">&quot;https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
-</code></pre></div>
-
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-
-<h2 id="dost.excel.valid_data" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">valid_data</span><span class="p">(</span><span class="n">input_filepath</span><span class="p">,</span> <span class="n">input_sheetname</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">validate_filepath</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">validate_sheetname</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
-
-</h2>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>This function validates the input file path and sheet name.</p>
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>input_filepath</code></td>
-          <td>
-                <code><span title="pathlib.WindowsPath">WindowsPath</span></code>
-          </td>
-          <td><p>Input file path.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>input_sheetname</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td><p>Input sheet name.</p></td>
-          <td>
-                <code>&#39;&#39;</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>validate_filepath</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td><p>Whether to validate file path or not. Defaults to True.</p></td>
-          <td>
-                <code>True</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>validate_sheetname</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td><p>Whether to validate sheet name or not. Defaults to True.</p></td>
-          <td>
-                <code>True</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-<td><code>bool</code></td>          <td>
-                <code>bool</code>
-          </td>
-          <td><p>True if valid, False if invalid.</p></td>
-        </tr>
-    </tbody>
-  </table>
-
-<p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">valid_data</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop</span><span class="se">\t</span><span class="s2">est.xlsx&quot;</span><span class="p">,</span> <span class="n">input_sheetname</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">True</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">upload_dataframe_to_google_spreadsheet</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">,</span> <span class="n">spreadsheet_url</span><span class="o">=</span><span class="s2">&quot;https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 </code></pre></div>
 
   </div>

@@ -558,14 +558,14 @@
 
 <p><strong>Examples:</strong></p>
     <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dost</span> <span class="kn">import</span> <span class="n">clipboard</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">clipboard</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">clipboard</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">clipboard</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">&#39;Hello World!&#39;</span>
 </code></pre></div>
       <p>It contains the following functions:</p>
 <ul>
-<li><code>set_data(data, format_id)</code>: Set the clipboard data to the given string.</li>
-<li><code>get_data(format_id) -&gt; str</code>: Get the clipboard data as a string.</li>
+<li><code>set_data(data)</code>: Set the clipboard data to the given string.</li>
+<li><code>get_data()</code>: Get the clipboard data as a string.</li>
 </ul>
 
   
@@ -585,7 +585,7 @@
 
 
 <h2 id="dost.clipboard.get_data" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_data</span><span class="p">(</span><span class="n">format_id</span><span class="o">=</span><span class="n">win32clipboard</span><span class="o">.</span><span class="n">CF_UNICODETEXT</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">get_data</span><span class="p">()</span></code>
 
 </h2>
 
@@ -593,30 +593,6 @@
   <div class="doc doc-contents ">
   
       <p>Get the clipboard data as a string.</p>
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>format_id</code></td>
-          <td>
-                <code>int</code>
-          </td>
-          <td><p>The format of the data. Defaults to CF_UNICODETEXT.</p></td>
-          <td>
-                <code>win32clipboard.CF_UNICODETEXT</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -637,7 +613,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">get_data</span><span class="p">()</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">clipboard</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">&#39;Hello World!&#39;</span>
 </code></pre></div>
 
@@ -650,7 +626,7 @@
 
 
 <h2 id="dost.clipboard.set_data" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">format_id</span><span class="o">=</span><span class="n">win32clipboard</span><span class="o">.</span><span class="n">CF_UNICODETEXT</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></code>
 
 </h2>
 
@@ -680,22 +656,12 @@
               <em>required</em>
           </td>
         </tr>
-        <tr>
-          <td><code>format_id</code></td>
-          <td>
-                <code>int</code>
-          </td>
-          <td><p>The format of the data. Defaults to CF_UNICODETEXT.</p></td>
-          <td>
-                <code>win32clipboard.CF_UNICODETEXT</code>
-          </td>
-        </tr>
     </tbody>
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">set_data</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">get_data</span><span class="p">()</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">clipboard</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">clipboard</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">&#39;Hello World!&#39;</span>
 </code></pre></div>
 

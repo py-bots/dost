@@ -572,15 +572,15 @@
 
 <p><strong>Examples:</strong></p>
     <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dost</span> <span class="kn">import</span> <span class="n">keyboard</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">write_enter</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">hit_enter</span><span class="p">()</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="n">key_1</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">write_enter</span><span class="p">(</span><span class="n">text_to_write</span><span class="o">=</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">hit_enter</span><span class="p">(</span><span class="n">write_to_window</span><span class="o">=</span><span class="s2">&quot;Notepad&quot;</span><span class="p">)</span>
 </code></pre></div>
       <p>This module contains the following functions:</p>
 <ul>
-<li><code>press(key)</code>: Check if a key is pressed.</li>
-<li><code>write_enter(text)</code>: Write text and press enter.</li>
-<li><code>hit_enter()</code>: Press enter.</li>
+<li><code>press(key_1,key_2,key_3,write_to_window)</code>: Check if a key is pressed.</li>
+<li><code>write_enter(write_to_window , text_to_write, key)</code>: Write text and press enter.</li>
+<li><code>hit_enter(write_to_window)</code>: Press enter.</li>
 </ul>
 
   
@@ -634,7 +634,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">press</span><span class="p">(</span><span class="n">write_to_window</span><span class="o">=</span><span class="s2">&quot;Notepad&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;enter&quot;</span><span class="p">,)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">hit_enter</span><span class="p">(</span><span class="n">write_to_window</span><span class="o">=</span><span class="s2">&quot;Notepad&quot;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
@@ -710,9 +710,9 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;Notepad&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;Notepad&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{VK_CONTROL}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;Notepad&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{VK_CONTROL}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s2">&quot;enter&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="n">write_to_window</span><span class="o">=</span><span class="s1">&#39;Notepad&#39;</span><span class="p">,</span> <span class="n">key_1</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="n">write_to_window</span><span class="o">=</span><span class="s1">&#39;Notepad&#39;</span><span class="p">,</span> <span class="n">key_1</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{VK_CONTROL}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">key_2</span><span class="o">=</span><span class="s1">&#39;S&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="n">write_to_window</span><span class="o">=</span><span class="s1">&#39;Notepad&#39;</span><span class="p">,</span> <span class="n">key_1</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{VK_CONTROL}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">key_2</span><span class="o">=</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="n">key_3</span><span class="o">=</span><span class="s2">&quot;enter&quot;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
@@ -778,7 +778,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">write_enter</span><span class="p">(</span><span class="s2">&quot;Notepad&quot;</span><span class="p">,</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">keyboard</span><span class="o">.</span><span class="n">write_enter</span><span class="p">(</span><span class="n">write_to_window</span><span class="o">=</span><span class="s2">&quot;Notepad&quot;</span><span class="p">,</span> <span class="n">text_to_write</span><span class="o">=</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>

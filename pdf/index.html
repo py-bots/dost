@@ -543,11 +543,11 @@
       <p>PDF module for dost. This module is used to extract data from PDF files.</p>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">pdf</span><span class="o">.</span><span class="n">extract_all_tables</span><span class="p">(</span><span class="s2">&quot;C:\Users\user\Desktop\demo.pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;C:\Users\user\Desktop</span><span class="se">\&quot;</span><span class="s2">, &quot;</span><span class="n">demo</span><span class="s2">&quot;)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">pdf</span><span class="o">.</span><span class="n">extract_all_tables</span><span class="p">(</span><span class="n">pdf_file_path</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop\demo.pdf&quot;</span><span class="p">,</span><span class="n">output_folder</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop</span><span class="se">\&quot;</span><span class="s2">,output_filename = &quot;</span><span class="n">demo</span><span class="s2">&quot;)</span>
 </code></pre></div>
       <p>The module contains the following functions:</p>
 <ul>
-<li><code>extract_all_tables(pdf_file_path, output_folder, output_file_name, table_with_borders)</code>: Extracts all tables from a pdf file and saves them as csv files in the specified folder.</li>
+<li><code>extract_all_tables(pdf_file_path, output_folder, output_filename, table_with_borders)</code>: Extracts all tables from a pdf file and saves them as csv files in the specified folder.</li>
 </ul>
 
   
@@ -567,7 +567,7 @@
 
 
 <h2 id="dost.pdf.extract_all_tables" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">extract_all_tables</span><span class="p">(</span><span class="n">pdf_file_path</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">output_file_name</span><span class="p">,</span> <span class="n">table_with_borders</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">extract_all_tables</span><span class="p">(</span><span class="n">pdf_file_path</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">,</span> <span class="n">table_with_borders</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 </h2>
 
@@ -608,7 +608,7 @@
           </td>
         </tr>
         <tr>
-          <td><code>output_file_name</code></td>
+          <td><code>output_filename</code></td>
           <td>
                 <code>str</code>
           </td>
@@ -631,7 +631,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">extract_all_tables</span><span class="p">(</span><span class="s2">&quot;C:\Users\user\Desktop\demo.pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;C:\Users\user\Desktop</span><span class="se">\&quot;</span><span class="s2">, &quot;</span><span class="n">demo</span><span class="s2">&quot;)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">pdf</span><span class="o">.</span><span class="n">extract_all_tables</span><span class="p">(</span><span class="n">pdf_file_path</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop\demo.pdf&quot;</span><span class="p">,</span><span class="n">output_folder</span><span class="o">=</span><span class="s2">&quot;C:\Users\user\Desktop</span><span class="se">\&quot;</span><span class="s2">,output_filename = &quot;</span><span class="n">demo</span><span class="s2">&quot;)</span>
 </code></pre></div>
 
   </div>

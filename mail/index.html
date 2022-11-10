@@ -541,10 +541,12 @@
   <div class="doc doc-contents first">
   
       <p>Mail module for dost. This module contains functions for sending emails.</p>
-<p>Examples:<br />
-    &gt;&gt;&gt; from dost import mail
-    &gt;&gt;&gt; mail.send_gmail_using_app_password('abcd','abcd','abcd@abc.com','abcd','abcd','abc.pdf')</p>
-<p>This module contains the following functions:</p>
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dost</span> <span class="kn">import</span> <span class="n">mail</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mail</span><span class="o">.</span><span class="n">send_gmail_using_app_password</span><span class="p">(</span><span class="n">sender_email</span><span class="o">=</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="n">sender_password</span><span class="o">=</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="n">receiver_email</span><span class="o">=</span><span class="s1">&#39;abcd@abc.com&#39;</span><span class="p">,</span><span class="n">subject</span><span class="o">=</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="n">body</span><span class="o">=</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;abc.pdf&#39;</span><span class="p">)</span>
+</code></pre></div>
+      <p>This module contains the following functions:</p>
 <ul>
 <li><code>send_gmail_using_app_password(sender_email, sender_password, receiver_email, subject, body, attachment_path)</code>: Send an email using a gmail account and an app password.</li>
 </ul>
@@ -650,7 +652,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">send_gmail_using_app_password</span><span class="p">(</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="s1">&#39;abcd@abc.com&#39;</span><span class="p">,</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="s1">&#39;abc.pdf&#39;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mail</span><span class="o">.</span><span class="n">send_gmail_using_app_password</span><span class="p">(</span><span class="n">sender_email</span><span class="o">=</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="n">sender_password</span><span class="o">=</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="n">receiver_email</span><span class="o">=</span><span class="s1">&#39;abcd@abc.com&#39;</span><span class="p">,</span><span class="n">subject</span><span class="o">=</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="n">body</span><span class="o">=</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;abc.pdf&#39;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
