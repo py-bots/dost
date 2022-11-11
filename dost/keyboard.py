@@ -24,10 +24,10 @@ from dost.helpers import dostify
 def press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '') -> None:
     """Press a key or a combination of keys.
     Args:
-        write_to_window (str): The window to write to.
         key_1 (str): The first key to press.
         key_2 (str): The second key to press.
         key_3 (str): The third key to press.
+        write_to_window (str): The window to write to. 
     Examples:
         >>> keyboard.press(write_to_window='Notepad', key_1='a')
         >>> keyboard.press(write_to_window='Notepad', key_1='{VK_CONTROL}', key_2='S')

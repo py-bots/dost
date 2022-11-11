@@ -4,14 +4,14 @@ Mouse module for dost. This module contains functions for mouse control.
 Examples:
     >>> from dost import mouse
     >>> mouse.click(x=100, y=100)
-    >>> mouse.search(img_path='tests\\demo.png')
+    >>> mouse.search(image_path='tests\\demo.png')
     (23, 17)
 
 
 The module contains the following functions:
 
 - `click(x, y, button, clicks, absolute)`: Click at the given coordinates.
-- `search(img_path, conf, wait, left_click)`: Search for an image on the screen and return the coordinates of the top-left corner of the image.
+- `search(image_path, conf, wait, left_click)`: Search for an image on the screen and return the coordinates of the top-left corner of the image.
 """
 
 from typing import List, Tuple, Union
@@ -62,11 +62,11 @@ def click(x: int, y: int, button: str = "left", clicks: int = 1, absolute: bool 
 
 
 @dostify(errors=[(FileNotFoundError, ''), (ValueError, ''), (TypeError, '')])
-def search(img_path: Union[str, List[str], WindowsPath, List[WindowsPath]], conf: int = 0.9, wait: int = 10, left_click: bool = False) -> Union[Tuple[int, int], List[Tuple[int, int]], None]:
+def search(image_path: Union[str, List[str], WindowsPath, List[WindowsPath]], conf: int = 0.9, wait: int = 10, left_click: bool = False) -> Union[Tuple[int, int], List[Tuple[int, int]], None]:
     """Searches for the given image and returns the co-ordinates of the image.
 
     Args:
-        img_path (Union[str, List[str], WindowsPath, List[WindowsPath]]): The path to the image.
+        image_path (Union[str, List[str], WindowsPath, List[WindowsPath]]): The path to the image.
         conf (int): The confidence level. Defaults to 0.9.
         wait (int): The time to wait for the image to appear. Defaults to 10.
         left_click (bool): Whether to left click on the image. Defaults to False.
@@ -75,10 +75,10 @@ def search(img_path: Union[str, List[str], WindowsPath, List[WindowsPath]], conf
         A tuple containing the X and Y co-ordinates of the image.
 
     Examples:
-        >>> mouse.search(img_path='tests\\demo.png')
+        >>> mouse.search(image_path='tests\\demo.png')
         (23, 17)
-        >>> mouse.search(img_path='tests\\demo.png', wait=20, left_click=True)
-        >>> mouse.search(img_path=['tests\\demo.png', 'tests\\demo2.png'])
+        >>> mouse.search(image_path='tests\\demo.png', wait=20, left_click=True)
+        >>> mouse.search(image_path=['tests\\demo.png', 'tests\\demo2.png'])
         [(23, 17), (67, 16)]
     """
     # import section
@@ -86,11 +86,11 @@ def search(img_path: Union[str, List[str], WindowsPath, List[WindowsPath]], conf
     import os
 
     # List case handling
-    if isinstance(img_path, list):
-        return [search(i, wait=wait) for i in img_path]
+    if isinstance(image_path, list):
+        return [search(i, wait=wait) for i in image_path]
 
     # Validation section
-    path = os.path.abspath(img_path)
+    path = os.path.abspath(image_path)
     if not os.path.isfile(path):
         raise FileNotFoundError(f'File not found: {path}')
 

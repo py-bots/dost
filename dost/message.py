@@ -27,7 +27,7 @@ def info(message: str, title: str = "PyBOTs") -> None:
         message (str): Message to display
         title (str): Title of the message
     Examples:
-        >>> message.info(msg='Hello World!', title='PyBOTs')
+        >>> message.info(message='Hello World!', title='PyBOTs')
     """
     # Import Section
     import ctypes
@@ -43,7 +43,7 @@ def error(message: str, title: str = "PyBOTs") -> None:
         message (str): Message to display
         title (str): Title of the message
     Examples:
-        >>> message.error(msg='Bad news world!', title='PyBOTs')
+        >>> message.error(message='Bad news world!', title='PyBOTs')
 
     """
     # import section
@@ -60,7 +60,7 @@ def warning(message: str, title: str = "PyBOTs") -> None:
         message (str): Message to display
         title (str): Title of the message
     Examples:
-        >>> message.error(msg='About to Boom World!', title='PyBOTs')
+        >>> message.error(message='About to Boom World!', title='PyBOTs')
 
     """
     # import section

@@ -172,7 +172,7 @@ def image_to_base64(input_filepath: Union[str, WindowsPath]) -> str:
         raise Exception("Image file does not exist")
     return data
 
-    
+
 @dostify(errors=[(FileNotFoundError, "")])
 def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath] = "", output_filename: str = ""):
     """Get an image from a base64 encoded string.
@@ -182,8 +182,8 @@ def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath] = ""
         output_folder (str,WindowsPath): The path to the output folder.
         output_filename (str default ending with .png): The name of the output file.
 
-    Examples:kk
-        >>> converter.base64_to_image(input_filepath='base_64_string')
+    Examples:
+        >>> converter.base64_to_image(input_text=base_64_string)
 
     """
     # Import Section

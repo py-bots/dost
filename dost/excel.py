@@ -460,7 +460,7 @@ def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, value:
         data (df): Modified dataframe
 
     Examples:
-        >>> df=excel.set_single_cell(df=df, column_name="Column 1",cell_number= 1, text="abc")
+        >>> df=excel.set_single_cell(df=df, column_name="Column 1",cell_number= 1, value="abc")
         df
     """
 
@@ -475,7 +475,7 @@ def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, value:
         raise Exception("Please provide the column name")
 
     if not value:
-        raise Exception("Please provide the text to be set")
+        raise Exception("Please provide the value to be set")
 
     if cell_number < 1:
         raise Exception("Please provide the valid cell number")
