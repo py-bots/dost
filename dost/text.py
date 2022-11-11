@@ -3,18 +3,18 @@ String Module for dost.This module contains functions for working with strings.
 
 Examples:
     >>> from dost import text
-    >>> text.get_alphabets(string="hello123:l;,")
+    >>> text.get_alphabets(text="hello123:l;,")
     'hellol'
-    >>> text.get_numbers(string="hello123:l;,")
+    >>> text.get_numbers(text="hello123:l;,")
     '123
-    >>> text.remove_special_characters(string="hello123:l;,")
+    >>> text.remove_special_characters(text="hello123:l;,")
     'hello123l'
 
 The module contains the following functions:
 
-- `get_alphabets(string)`: Extract only alphabets from the given string.
-- `get_numbers(string)`: Extract only numbers from the given string.
-- `remove_special_characters(string)`: Remove special characters from the given string.
+- `get_alphabets(text)`: Extract only alphabets from the given string.
+- `get_numbers(text)`: Extract only numbers from the given string.
+- `remove_special_characters(text)`: Remove special characters from the given string.
 """
 
 
@@ -31,7 +31,7 @@ def get_alphabets(text: str) -> str:
         str: Alphabets from the given string.
 
     Examples:
-        >>> text.get_alphabets(string="hello123:l;,")
+        >>> text.get_alphabets(text="hello123:l;,")
         'hellol'
     """
     return ''.join(e for e in text if e.isalpha())
@@ -47,7 +47,7 @@ def get_numbers(text: str) -> str:
         str: Numbers extracted from the given string.
 
     Examples:
-        >>> text.get_numbers(string="hello123:l;,")
+        >>> text.get_numbers(text="hello123:l;,")
         '123'
     """
 
@@ -64,7 +64,7 @@ def remove_special_characters(text: str) -> str:
         str: The string without special characters.
 
     Examples:
-        >>> text.extract_only_alphabets(string="hello123:l;,")
+        >>> text.extract_only_alphabets(text="hello123:l;,")
         'hello123l'
     """
     return ''.join(e for e in text if e.isalnum())

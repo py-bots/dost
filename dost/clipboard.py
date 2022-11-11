@@ -7,25 +7,21 @@ Examples:
     >>> clipboard.get_data()
     'Hello World!'
 
-
 It contains the following functions:
 
-- `set_data(data, format_id)`: Set the clipboard data to the given string.
-- `get_data(format_id) -> str`: Get the clipboard data as a string.
+- `set_data(data)`: Set the clipboard data to the given string.
+- `get_data()`: Get the clipboard data as a string.
 """
 
-
-import win32clipboard
 from dost.helpers import dostify
 
 
 @dostify(errors=[])
-def set_data(data: str, format_id=win32clipboard.CF_UNICODETEXT) -> None:
+def set_data(data: str) -> None:
     """Set the clipboard data to the given string.
 
     Args:
         data (str): The data to set the clipboard to.
-        format_id (int): The format of the data. Defaults to CF_UNICODETEXT.
 
     Examples:
         >>> clipboard.set_data(data='Hello World!')
@@ -35,7 +31,7 @@ def set_data(data: str, format_id=win32clipboard.CF_UNICODETEXT) -> None:
     """
     # Import Section
     import win32clipboard
-
+    format_id = win32clipboard.CF_UNICODETEXT
     # Code Section
     win32clipboard.OpenClipboard()
     try:
@@ -74,11 +70,8 @@ def _GetClipboardFormats() -> list:
 
 
 @dostify(errors=[])
-def get_data(format_id=win32clipboard.CF_UNICODETEXT) -> str:
+def get_data() -> str:
     """Get the clipboard data as a string.
-
-    Args:
-        format_id (int): The format of the data. Defaults to CF_UNICODETEXT.
 
     Returns:
         The clipboard data as a string.
@@ -91,12 +84,11 @@ def get_data(format_id=win32clipboard.CF_UNICODETEXT) -> str:
     import win32clipboard
 
     # Code Section
-    if format_id not in _GetClipboardFormats():
-        raise RuntimeError("That format is not available")
+    format_id = win32clipboard.CF_UNICODETEXT
+    # if format_id not in _GetClipboardFormats():
+    #     raise RuntimeError("That format is not available")
     win32clipboard.OpenClipboard()
     data = win32clipboard.GetClipboardData(format_id)
     win32clipboard.CloseClipboard()
 
     return data
-
-

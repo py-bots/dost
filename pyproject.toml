@@ -1,14 +1,14 @@
 [tool.poetry]
 name = "dost"
-version = "0.0.2"
+version = "0.0.3"
 readme = "README.md"
 packages = [{include = "dost"}]
-description = "My-DOST is a Python based Utility platform as an Open Source project. We strive to liberate humans from mundane, repetitive tasks, giving them more time to use their intellect and creativity to solve higher-order business challenges and perform knowledge work."
-authors = ["PyBots <support@pybots.ai>"]
+description = "DOST is a Python based Utility platform as an Open Source project. We strive to liberate humans from mundane, repetitive tasks, giving them more time to use their intellect and creativity to solve higher-order business challenges and perform knowledge work."
+authors = ["PyBOTs <support@pybots.ai>"]
 license = "MIT"
-homepage = ""
-repository = ""
-documentation = "https://py-bots.github.io/my-dost/"
+homepage = "https://pybots.ai"
+repository = "https://github.com/py-bots/dost"
+documentation = "https://py-bots.github.io/dost/"
 keywords = ["PyBots","dost","my-dost","utility","Python","Automation", "Software BOT","Dost", "bots", "RPA"]
 classifiers = [
     'Development Status :: 4 - Beta',
@@ -27,7 +27,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8.0,<=3.10.40"
+python = ">=3.9.0,<=3.10.40"
 typeguard = "^2.13.3"
 PyScreeze = "^0.1.28"
 pywinauto = "^0.6.8"

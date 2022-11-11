@@ -15,7 +15,7 @@ The module contains the following functions:
 
 - `csv_to_excel(input_filepath, output_folder, output_filename, contains_headers, sep)`: Convert a CSV file to an Excel file.
 - `base64_to_image(input_text, output_folder, output_filename)`: Convert a base64 string to an image.
-- `image_to_base64(image_path)`: Convert an image to a base64 string.
+- `image_to_base64(input_filepath)`: Convert an image to a base64 string.
 - `jpg_to_png(input_filepath, output_folder, output_filename)`: Convert a JPG image to a PNG image.
 - `png_to_jpg(input_filepath, output_folder, output_filename)`: Convert a PNG image to a JPG image.
 - `excel_to_html(input_filepath, output_folder, output_filename)`: Convert an Excel file to an HTML file.
@@ -59,7 +59,7 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
 
     # Code Section
     if not input_filepath:
-        raise Exception("CSV File name cannot be empty")
+        raise ValueError("CSV File name cannot be empty")
 
     if not os.path.exists(input_filepath):
         raise FileNotFoundError(f"File not found at path {input_filepath}")
@@ -80,7 +80,7 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
         else:
             output_filename = output_filename+".xlsx"
     if not sep:
-        raise Exception("Separator cannot be empty")
+        raise ValueError("Separator cannot be empty")
 
     excel_file_path = os.path.join(
         output_folder, output_filename)
@@ -105,7 +105,7 @@ def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath] = ""
         output_folder (str,WindowsPath): The path to the output folder.
         output_filename (str default ending with .png): The name of the output file.
 
-    Examples:
+    Examples:kk
         >>> converter.base64_to_image(input_filepath='base_64_string')
 
     """

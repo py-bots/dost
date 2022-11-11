@@ -3,16 +3,16 @@ Message module for dost. This module contains functions for displaying messages 
 
 Examples:
     >>> from dost import message
-    >>> message.info(msg='Hello World!')
-    >>> message.error(msg='Hello World!')
-    >>> message.warning(msg='Hello World!')
+    >>> message.info(message='Hello World!')
+    >>> message.error(message='Hello World!')
+    >>> message.warning(message='Hello World!')
 
 
 The module contains the following functions:
 
-- `info(msg)`: Display an info message.
-- `error(msg)`: Display an error message.
-- `warning(msg)`: Display a warning message.
+- `info(message, title)`: Display an info message to the user.
+- `error(message, title)`: Display an error message to the user.
+- `warning(message, title)`: Display a warning message to the user.
 
 """
 
@@ -22,15 +22,12 @@ from dost.helpers import dostify
 
 @dostify(errors=[])
 def info(message: str, title: str = "PyBOTs") -> None:
-    """Display a message box with an 'OK' button.
-
-    Args:   
-        message (str): The message to display to the user.
-        title (str, optional): The title of the message box. Defaults to "PyBOTs".
-
+    """Display an info message to the user.
+    Args:
+        message (str): Message to display
+        title (str): Title of the message
     Examples:
-        >>> message.info(msg='This is a demo message.')
-
+        >>> message.info(msg='Hello World!', title='PyBOTs')
     """
     # Import Section
     import ctypes
@@ -41,13 +38,12 @@ def info(message: str, title: str = "PyBOTs") -> None:
 
 @dostify(errors=[])
 def error(message: str, title: str = "PyBOTs") -> None:
-    """Display a message box with an 'OK' button.
-
-    Args:   
-        message (str): The message to display to the user.
-
+    """Display an error message to the user.
+    Args:
+        message (str): Message to display
+        title (str): Title of the message
     Examples:
-        >>> message.error(msg='This is a demo message.')
+        >>> message.error(msg='Bad news world!', title='PyBOTs')
 
     """
     # import section
@@ -59,13 +55,12 @@ def error(message: str, title: str = "PyBOTs") -> None:
 
 @dostify(errors=[])
 def warning(message: str, title: str = "PyBOTs") -> None:
-    """Display a message box with an 'OK' button.
-
-    Args:   
-        message (str): The message to display to the user.
-
+    """Display a warning message to the user.
+    Args:
+        message (str): Message to display
+        title (str): Title of the message
     Examples:
-        >>> message.warning(msg='This is a demo message.')
+        >>> message.error(msg='About to Boom World!', title='PyBOTs')
 
     """
     # import section
