@@ -9,7 +9,7 @@ Examples:
 It contains the following functions:
 
 - `read_text(path)`: Read a text file and return the content as a string.
-- `write_text(path, content)`: Write a text file with the given content.
+- `write_text(path, contents)`: Write a text file with the given content.
 - `copy(source, destination)`: Copy a file from the source to the destination.
 - `move(source, destination)`: Move a file from the source to the destination.
 - `delete(path)`: Delete a file at the given path.

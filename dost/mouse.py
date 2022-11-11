@@ -11,7 +11,7 @@ Examples:
 The module contains the following functions:
 
 - `click(x, y, button, clicks, absolute)`: Click at the given coordinates.
-- `search(img_path, wait, left_click)`: Search for an image on the screen and return the coordinates of the top-left corner of the image.
+- `search(img_path, conf, wait, left_click)`: Search for an image on the screen and return the coordinates of the top-left corner of the image.
 """
 
 from typing import List, Tuple, Union
@@ -67,6 +67,7 @@ def search(img_path: Union[str, List[str], WindowsPath, List[WindowsPath]], conf
 
     Args:
         img_path (Union[str, List[str], WindowsPath, List[WindowsPath]]): The path to the image.
+        conf (int): The confidence level. Defaults to 0.9.
         wait (int): The time to wait for the image to appear. Defaults to 10.
         left_click (bool): Whether to left click on the image. Defaults to False.
 

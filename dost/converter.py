@@ -14,11 +14,11 @@ Examples:
 The module contains the following functions:
 
 - `csv_to_excel(input_filepath, output_folder, output_filename, contains_headers, sep)`: Convert a CSV file to an Excel file.
-- `base64_to_image(input_text, output_folder, output_filename)`: Convert a base64 string to an image.
+- `excel_to_html(input_filepath, output_folder, output_filename)`: Convert an Excel file to an HTML file.
 - `image_to_base64(input_filepath)`: Convert an image to a base64 string.
+- `base64_to_image(input_text, output_folder, output_filename)`: Convert a base64 string to an image.
 - `jpg_to_png(input_filepath, output_folder, output_filename)`: Convert a JPG image to a PNG image.
 - `png_to_jpg(input_filepath, output_folder, output_filename)`: Convert a PNG image to a JPG image.
-- `excel_to_html(input_filepath, output_folder, output_filename)`: Convert an Excel file to an HTML file.
 
 """
 
@@ -96,6 +96,83 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
     writer.close()
 
 
+@dostify(errors=[(FileNotFoundError, '')])
+def excel_to_html(input_filepath: Union[str, WindowsPath], output_folder: Union[str, WindowsPath] = "", output_filename: str = ""):
+    """Converts the excel file to colored html file
+
+    Args:
+        input_filepath (str,WindowsPath): Input excel file path
+        output_folder (str,WindowsPath): Output folder path
+        output_filename (str): Output file name
+
+    Examples:
+        >>> converter.excel_to_html(input_filepath='tests\\demo.xlsx')
+    """
+    # Import Section
+    from pathlib import Path
+    from xlsx2html import xlsx2html
+    import datetime
+
+    # Code Section
+    if not input_filepath:
+        raise Exception("Please provide the excel path")
+
+    if not os.path.exists(input_filepath):
+        raise FileNotFoundError(f"File not found at path {input_filepath}")
+
+    if not output_folder:
+        output_folder = output_folder_path
+
+    if not os.path.exists(output_folder):
+        # os.makedirs(output_folder)
+        raise FileNotFoundError(f"Folder not found at path {output_folder}")
+
+    if not output_filename:
+        output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+'_'+str(
+            datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".html")
+    else:
+        if (output_filename.endswith(".html")):
+            output_filename = os.path.join(output_folder, str(output_filename))
+        else:
+            output_filename = os.path.join(
+                output_folder, output_filename+'.html')
+
+    xlsx2html(input_filepath, output_filename)
+
+
+@dostify(errors=[(FileNotFoundError, '')])
+def image_to_base64(input_filepath: Union[str, WindowsPath]) -> str:
+    """Get a base64 encoded string from an image.
+
+    Args:
+        input_filepath (str,WindowsPath): The path to the image file.
+
+    Returns:
+        str: The base64 encoded string.
+
+    Examples:
+        >>> converter.image_to_base64(input_filepath='tests\\demo.png')
+
+    """
+    # Import section
+    import base64
+    import os
+
+    # Code section
+    if not input_filepath:
+        raise Exception("Image file name cannot be empty")
+
+    if not os.path.exists(input_filepath):
+        raise FileNotFoundError(f"File not found at path {input_filepath}")
+
+    if os.path.exists(input_filepath):
+        with open(input_filepath, "rb") as f:
+            data = base64.b64encode(f.read())
+    else:
+        raise Exception("Image file does not exist")
+    return data
+
+    
 @dostify(errors=[(FileNotFoundError, "")])
 def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath] = "", output_filename: str = ""):
     """Get an image from a base64 encoded string.
@@ -141,39 +218,6 @@ def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath] = ""
             f.write(img_binary)
     else:
         raise Exception("Image folder path does not exist")
-
-
-@dostify(errors=[(FileNotFoundError, '')])
-def image_to_base64(input_filepath: Union[str, WindowsPath]) -> str:
-    """Get a base64 encoded string from an image.
-
-    Args:
-        input_filepath (str,WindowsPath): The path to the image file.
-
-    Returns:
-        str: The base64 encoded string.
-
-    Examples:
-        >>> converter.image_to_base64(input_filepath='tests\\demo.png')
-
-    """
-    # Import section
-    import base64
-    import os
-
-    # Code section
-    if not input_filepath:
-        raise Exception("Image file name cannot be empty")
-
-    if not os.path.exists(input_filepath):
-        raise FileNotFoundError(f"File not found at path {input_filepath}")
-
-    if os.path.exists(input_filepath):
-        with open(input_filepath, "rb") as f:
-            data = base64.b64encode(f.read())
-    else:
-        raise Exception("Image file does not exist")
-    return data
 
 
 @dostify(errors=[(FileNotFoundError, '')])
@@ -270,46 +314,3 @@ def png_to_jpg(input_filepath: Union[str, WindowsPath], output_folder: Union[str
     rgb_im = im.convert('RGB')
     rgb_im.save(output_filename)
 
-
-@dostify(errors=[(FileNotFoundError, '')])
-def excel_to_html(input_filepath: Union[str, WindowsPath], output_folder: Union[str, WindowsPath] = "", output_filename: str = ""):
-    """Converts the excel file to colored html file
-
-    Args:
-        input_filepath (str,WindowsPath): Input excel file path
-        output_folder (str,WindowsPath): Output folder path
-        output_filename (str): Output file name
-
-    Examples:
-        >>> converter.excel_to_html(input_filepath='tests\\demo.xlsx')
-    """
-    # Import Section
-    from pathlib import Path
-    from xlsx2html import xlsx2html
-    import datetime
-
-    # Code Section
-    if not input_filepath:
-        raise Exception("Please provide the excel path")
-
-    if not os.path.exists(input_filepath):
-        raise FileNotFoundError(f"File not found at path {input_filepath}")
-
-    if not output_folder:
-        output_folder = output_folder_path
-
-    if not os.path.exists(output_folder):
-        # os.makedirs(output_folder)
-        raise FileNotFoundError(f"Folder not found at path {output_folder}")
-
-    if not output_filename:
-        output_filename = os.path.join(output_folder, str(Path(input_filepath).stem)+'_'+str(
-            datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".html")
-    else:
-        if (output_filename.endswith(".html")):
-            output_filename = os.path.join(output_folder, str(output_filename))
-        else:
-            output_filename = os.path.join(
-                output_folder, output_filename+'.html')
-
-    xlsx2html(input_filepath, output_filename)

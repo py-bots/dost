@@ -12,25 +12,25 @@ This module contains the following functions:
 
 - `authenticate_google_spreadsheet(credential_file_path)`: This creates authentication object for google spreadsheet.
 - `get_dataframe_from_google_spreadsheet(auth, spreadsheet_url, sheet_name)`: Get dataframe from google spreadsheet.
-- `tabular_data_from_website(url, table_id)`: Get tabular data from website.
+- `tabular_data_from_website(website_url, table_number)`: Get tabular data from website.
 - `upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url, sheet_name, df)`: Upload dataframe to google spreadsheet.
 - `create_file(output_folder, output_filename, output_sheetname)`: Create excel file.
-- `to_dataframe(excel_file_path, sheet_name,header)`: Convert excel file to dataframe.
+- `to_dataframe(input_filepath, input_sheetname, header)`: Convert excel file to dataframe.
 - `get_row_column_count(df)`: Get row and column count of dataframe.
-- `dataframe_to_excel(df, excel_folder, excel_filename, sheet_name, mode)`: Convert dataframe to excel file.
+- `dataframe_to_excel(df, output_folder, output_filename, output_sheetname, mode)`: Convert dataframe to excel file.
 - `set_single_cell(df, column_name, cell_number, value)`: Set single cell value in excel file.
-- `get_single_celldf, column_name, cell_number, header)`: Get single cell value from excel file.
+- `get_single_cell(df, column_name, cell_number, header)`: Get single cell value from excel file.
 - `get_all_header_columns(df)`: Get all header columns from excel file.
-- `get_all_sheet_names(excel_file_path)`: Get all sheet names from excel file.
-- `drop_columns(df, columns_to_drop)`: Drop columns from data frame.
+- `get_all_sheet_names(input_filepath)`: Get all sheet names from excel file.
+- `drop_columns(df, cols)`: Drop columns from data frame.
 - `clear_sheet(df)`: Clear sheet from excel file.
 - `remove_duplicates(df, column_name)`: Remove duplicates from excel file.
 - `isNaN(value)`: Check if value is NaN.
-- `df_from_list(list_of_lists, header names)`: Create dataframe from list of lists.
-- `df_from_string(string, delimiter)`: Create dataframe from string.
+- `df_from_list(list_of_lists, column_names)`: Create dataframe from list of lists.
+- `df_from_string(df_string, word_delimiter, line_delimeter, column_names)`: Create dataframe from string.
 - `df_extract_sub_df(df, row_start, row_end, column_start, column_end)`: Extract sub dataframe from dataframe.
-- `set_value_in_df(df, column_name, row_number, value)`: Set value in dataframe.
-- `get_value_in_df(df, column_name, row_number)`: Get value from dataframe.
+- `set_value_in_df(df, row_number, column_number, value)`: Set value in dataframe.
+- `get_value_in_df(df, row_number, column_number)`: Get value from dataframe.
 - `df_drop_rows(df, row_start, row_end)`: Drop rows from dataframe.
 """
 
@@ -446,7 +446,7 @@ def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath],
 
 
 @dostify(errors=[])
-def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, text: str) -> pd.DataFrame:
+def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, value: str) -> pd.DataFrame:
     """
     Description:
         Writes the given text to the desired column/cell number for the given excel file
@@ -454,7 +454,7 @@ def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, text: 
         df (pandas dataframe): Dataframe of the excel file.
         column_name (str, optional): Column name of the excel file. Defaults to "".
         cell_number (int, optional): Cell number of the excel file. Defaults to 1.
-        text (str, optional): Text to be written to the excel file. Defaults to "".
+        value (str, optional): Text to be written to the excel file. Defaults to "".
 
     Returns:
         data (df): Modified dataframe
@@ -474,13 +474,13 @@ def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, text: 
     if not column_name:
         raise Exception("Please provide the column name")
 
-    if not text:
+    if not value:
         raise Exception("Please provide the text to be set")
 
     if cell_number < 1:
         raise Exception("Please provide the valid cell number")
 
-    df.at[cell_number-1, column_name] = text
+    df.at[cell_number-1, column_name] = value
     data = df
 
     return data

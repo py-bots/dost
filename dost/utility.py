@@ -14,13 +14,13 @@ Examples:
 
 This module contains the following functions:
 
-- `pause_program(seconds:int="5")`: Pauses the program for the specified number of seconds
-- `api_request(url: str, method='GET', body: dict = None, headers: dict = None)->dict`: Makes an API request to the specified URL
+- `pause_program(seconds)`: Pauses the program for the specified number of seconds
+- `api_request(url , method, body, headers)`: Makes an API request to the specified URL
 - `clear_output()`: Clears the output of the console
-- `install_module(module_name:str)`: Installs the specified module
-- `uninstall_module(module_name:str)`: Uninstalls the specified module 
-- `get_module_version(module_name:str)`: Gets the version of the specified module
-- `image_to_text(image_path:str)`: Converts the specified image to text
+- `install_module(module_name)`: Installs the specified module
+- `uninstall_module(module_name)`: Uninstalls the specified module 
+- `get_module_version(module_name)`: Gets the version of the specified module
+- `image_to_text(image_path)`: Converts the specified image to text
 """
 
 

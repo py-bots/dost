@@ -3,12 +3,12 @@ Mail module for dost. This module contains functions for sending emails.
 
 Examples:
     >>> from dost import mail
-    >>> mail.send_gmail_using_app_password(sender_email='abcd',sender_password='abcd',receiver_email='abcd@abc.com',subject='abcd',body='abcd',path='abc.pdf')
+    >>> mail.send_gmail_using_app_password(gmail_username='abcd',gmail_app_password='abcd',to_email_id='abcd@abc.com',subject='abcd',message='abcd',attachment_path='abc.pdf')
 
 
 This module contains the following functions:
 
-- `send_gmail_using_app_password(sender_email, sender_password, receiver_email, subject, body, attachment_path)`: Send an email using a gmail account and an app password.
+- `send_gmail_using_app_password(gmail_username, gmail_app_password, to_email_id, subject, message, attachment_path)`: Send an email using a gmail account and an app password.
 
 """
 
