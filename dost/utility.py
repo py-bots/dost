@@ -55,6 +55,7 @@ def pause_program(seconds: int = "5") -> None:
 
 @dostify(errors=[])
 def api_request(url: str, method='GET', body: dict = None, headers: dict = None) -> dict:
+    # sourcery skip: raise-specific-error
     """Makes an API request to the specified URL
 
     Args:

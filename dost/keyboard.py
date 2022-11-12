@@ -22,6 +22,7 @@ from dost.helpers import dostify
 
 @dostify(errors=[])
 def press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '') -> None:
+    # sourcery skip: raise-specific-error
     """Press a key or a combination of keys.
     Args:
         key_1 (str): The first key to press.
@@ -38,7 +39,7 @@ def press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '
     from dost.windows import activate_window
 
     # Code Section
-    if key_1 == '':
+    if not key_1:
         raise Exception("Key 1 is empty.")
 
     special_keys = ['{SCROLLLOCK}', '{VK_SPACE}', '{VK_LSHIFT}', '{VK_PAUSE}', '{VK_MODECHANGE}',
@@ -71,15 +72,17 @@ def press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '
     def make_up(key):
         return key.replace('}', ' up}')
 
-    case_0 = True if not key_2 and not key_3 else False
-    case_1 = True if key_1 in special_keys and key_2 not in special_keys and key_3 not in special_keys else False  # Only 1 Special Key
-    case_2 = True if key_1 in special_keys and key_2 in special_keys and key_3 not in special_keys else False  # 2 Special Keys
+    case_0 = not key_2 and not key_3
+    # Only 1 Special Key
+    case_1 = key_1 in special_keys and key_2 not in special_keys and key_3 not in special_keys
+    # 2 Special Keys
+    case_2 = key_1 in special_keys and key_2 in special_keys and key_3 not in special_keys
 
     if write_to_window:
         activate_window(write_to_window)
 
     if case_0:
-        pwa.keyboard.send_keys(str(key_1))
+        pwa.keyboard.send_keys(key_1)
     elif case_1:
         key_1_down = make_down(key_1)
         key_1_up = make_up(key_1)
@@ -95,6 +98,7 @@ def press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '
 
 @dostify(errors=[])
 def write_enter(write_to_window: str, text_to_write: str, key: str = "e") -> None:
+    # sourcery skip: raise-specific-error
     """Write text to window and press enter key
 
     Args:

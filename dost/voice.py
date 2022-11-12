@@ -57,8 +57,7 @@ def speech_to_text() -> str:
                 if not unknown:
                     text_to_speech("Speak now")
                 audio = recognizer.listen(source)
-                data = recognizer.recognize_google(audio)
-                return data
+                return recognizer.recognize_google(audio)
             except AttributeError:
                 text_to_speech(
                     "Could not find PyAudio or no Microphone input device found. It may be being used by "

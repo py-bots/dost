@@ -18,9 +18,9 @@ from typing import Union
 from dost.helpers import dostify
 
 
-
 @dostify(errors=[(FileNotFoundError, "")])
 def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Union[str, WindowsPath], output_filename: str, table_with_borders: bool = True) -> None:
+    # sourcery skip: raise-specific-error
     """Extracts all tables from a pdf file and saves them as csv files in the specified folder.
 
     Args:
@@ -41,7 +41,7 @@ def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Un
     # Code Section
     if not pdf_file_path:
         raise Exception("PDF file path cannot be empty")
-        
+
     if (isinstance(pdf_file_path)):
         raise FileNotFoundError(f"File not found: {pdf_file_path}")
 
@@ -51,24 +51,22 @@ def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Un
     if not output_filename:
         output_filename = "pdf_" + \
             str(datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".xlsx"
-    else:
-        if not output_filename.endswith(".xlsx"):
-            output_filename += ".xlsx"
+    elif not output_filename.endswith(".xlsx"):
+        output_filename += ".xlsx"
 
     pdf = pdfplumber.open(pdf_file_path)
 
     tables = []
 
     if table_with_borders:
-        for each_page in pdf.pages:
-            tables.append(each_page.extract_tables())
+        tables.extend(each_page.extract_tables() for each_page in pdf.pages)
     else:
         table_settings = {
             "vertical_strategy": "text",
             "horizontal_strategy": "text"
         }
-        for each_page in pdf.pages:
-            tables.append(each_page.extract_tables(table_settings))
+        tables.extend(each_page.extract_tables(table_settings)
+                      for each_page in pdf.pages)
 
     # excel writer
     writer = pd.ExcelWriter(os.path.join(

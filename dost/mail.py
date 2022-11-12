@@ -29,8 +29,8 @@ def send_gmail_using_app_password(gmail_username: str, gmail_app_password: str, 
         subject (str): Subject of the email
         message (str): Message of the email
         attachment_path (Union[str, List(str)(optional), WindowsPath, List[WindowsPath]]): Attachment path
-    
-    
+
+
     Examples:
         >>> mail.send_gmail_using_app_password(gmail_username='abcd',gmail_app_password='abcd',to_email_id='abcd@abc.com',subject='abcd',message='abcd',attachment_path='abc.pdf')
 
@@ -43,19 +43,19 @@ def send_gmail_using_app_password(gmail_username: str, gmail_app_password: str, 
 
     # Validation Section
     if not gmail_username:
-        raise ValueError(f'Gmail username cannot be empty')
+        raise ValueError('Gmail username cannot be empty')
 
     if not gmail_app_password:
-        raise ValueError(f'Gmail app password cannot be empty')
+        raise ValueError('Gmail app password cannot be empty')
 
     if not to_email_id:
-        raise ValueError(f'To email id cannot be empty')
+        raise ValueError('To email id cannot be empty')
 
     if not subject:
-        raise ValueError(f'Subject cannot be empty')
+        raise ValueError('Subject cannot be empty')
 
     if not message:
-        raise ValueError(f'Message cannot be empty')
+        raise ValueError('Message cannot be empty')
 
     yag = yagmail.SMTP(gmail_username, gmail_app_password)
 

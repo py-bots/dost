@@ -192,7 +192,7 @@ def get_media_type(file_path):
 def _is_speaker_available():
 
     make_sure_pyaudio_is_installed()
-
+    import pyaudio
     p = pyaudio.PyAudio()
     for i in range(p.get_device_count()):
         info = p.get_device_info_by_index(i)
