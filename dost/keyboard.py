@@ -4,15 +4,16 @@ Keyboard module for dost.This module contains functions for keyboard input and o
 Examples:
     >>> from dost import keyboard
     >>> keyboard.press(key_1='a')
-    >>> keyboard.write_enter(text_to_write='Hello World!')
-    >>> keyboard.hit_enter(write_to_window="Notepad")
+    >>> keyboard.write(text='Hello World!')
+    >>> keyboard.write(text='Hello World!', end='enter')
+    >>> keyboard.hit_enter(window="Notepad")
 
 
 This module contains the following functions:
 
-- `press(key_1,key_2,key_3,write_to_window)`: Check if a key is pressed.
-- `write_enter(write_to_window , text_to_write, key)`: Write text and press enter.
-- `hit_enter(write_to_window)`: Press enter.
+- `press(key_1, key_2, key_3, window)`: Check if a key is pressed.
+- `write(text, window, end)`: Write text and press enter.
+- `hit_enter(window)`: Press enter.
 
 """
 
@@ -21,26 +22,49 @@ from dost.helpers import dostify
 
 
 @dostify(errors=[])
-def press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '') -> None:
+def press(key_1: str, key_2: str = '', key_3: str = '', window: str = '') -> None:
     # sourcery skip: raise-specific-error
     """Press a key or a combination of keys.
     Args:
         key_1 (str): The first key to press.
         key_2 (str): The second key to press.
         key_3 (str): The third key to press.
-        write_to_window (str): The window to write to. 
+        window (str): The window to press the key in.
     Examples:
-        >>> keyboard.press(write_to_window='Notepad', key_1='a')
-        >>> keyboard.press(write_to_window='Notepad', key_1='{VK_CONTROL}', key_2='S')
-        >>> keyboard.press(write_to_window='Notepad', key_1='{VK_CONTROL}', key_2='S',key_3="enter")
+        >>> keyboard.press(key_1='a', window='Notepad')
+        >>> keyboard.press(key_1='ctrl', key_2='a')
+        >>> keyboard.press(key_1='ctrl', key_2='shift',key_3='esc')
     """
     # Import Section
     import pywinauto as pwa
     from dost.windows import activate_window
+    from typing import Union
 
     # Code Section
     if not key_1:
         raise Exception("Key 1 is empty.")
+
+    def assign_key(shortcut: str) -> Union[str, bool]:
+        shortcut = shortcut.lower()
+        if shortcut == 'enter':
+            return '{VK_RETURN}'
+        elif shortcut == 'ctrl':
+            return '{VK_CONTROL}'
+        elif shortcut == 'alt':
+            return '{VK_MENU}'
+        elif shortcut == 'shift':
+            return '{VK_SHIFT}'
+        elif shortcut == 'win':
+            return '{VK_RWIN}'
+        elif shortcut == 'space':
+            return '{VK_SPACE}'
+        elif shortcut == 'tab':
+            return '{VK_TAB}'
+        else:
+            return False
+
+    def assign_number(shortcut: str) -> str:
+        return f'{{VK_NUMPAD{shortcut}}}'
 
     special_keys = ['{SCROLLLOCK}', '{VK_SPACE}', '{VK_LSHIFT}', '{VK_PAUSE}', '{VK_MODECHANGE}',
                     '{BACK}', '{VK_HOME}', '{F23}', '{F22}', '{F21}', '{F20}', '{VK_HANGEUL}', '{VK_KANJI}',
@@ -66,6 +90,47 @@ def press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '
                     '{VK_F19}', '{VK_EXECUTE}', '{VK_PLAY}', '{VK_RMENU}', '{VK_F13}', '{VK_F12}', '{LWIN}',
                     '{VK_DOWN}', '{VK_F17}', '{VK_F16}', '{VK_F15}', '{VK_F14}']
 
+    numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+    if len(key_1) == 1 and key_1 in numbers:
+        key_1 = assign_number(key_1)
+    if len(key_2) == 1 and key_2 in numbers:
+        key_2 = assign_number(key_2)
+    if len(key_3) == 1 and key_3 in numbers:
+        key_3 = assign_number(key_3)
+
+    if not key_1.startswith('{') and len(key_1) > 1:
+        key_1 = key_1.upper()
+        real_key = assign_key(key_1)
+        if not real_key:
+            for key in special_keys:
+                if key_1 in key:
+                    key_1 = key
+                    break
+        else:
+            key_1 = real_key
+
+    if not key_2.startswith('{') and len(key_2) > 1:
+        key_2 = key_2.upper()
+        real_key = assign_key(key_2)
+        if not real_key:
+            for key in special_keys:
+                if key_2 in key:
+                    key_2 = key
+                    break
+        else:
+            key_2 = real_key
+
+    if not key_3.startswith('{') and len(key_3) > 1:
+        key_3 = key_3.upper()
+        real_key = assign_key(key_3)
+        if not real_key:
+            for key in special_keys:
+                if key_3 in key:
+                    key_3 = key
+                    break
+        else:
+            key_3 = real_key
+
     def make_down(key):
         return key.replace('}', ' down}')
 
@@ -77,9 +142,11 @@ def press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '
     case_1 = key_1 in special_keys and key_2 not in special_keys and key_3 not in special_keys
     # 2 Special Keys
     case_2 = key_1 in special_keys and key_2 in special_keys and key_3 not in special_keys
+    # 3 Special Keys
+    case_3 = key_1 in special_keys and key_2 in special_keys and key_3 in special_keys
 
-    if write_to_window:
-        activate_window(write_to_window)
+    if window:
+        activate_window(window)
 
     if case_0:
         pwa.keyboard.send_keys(key_1)
@@ -94,20 +161,29 @@ def press(key_1: str, key_2: str = '', key_3: str = '', write_to_window: str = '
         key_2_up = make_up(key_2)
         pwa.keyboard.send_keys(
             str(key_1_down + key_2_down + key_3 + key_2_up + key_1_up))
+    elif case_3:
+        key_1_down = make_down(key_1)
+        key_1_up = make_up(key_1)
+        key_2_down = make_down(key_2)
+        key_2_up = make_up(key_2)
+        key_3_down = make_down(key_3)
+        key_3_up = make_up(key_3)
+        pwa.keyboard.send_keys(
+            str(key_1_down + key_2_down + key_3_down + key_3_up + key_2_up + key_1_up))
 
 
 @dostify(errors=[])
-def write_enter(write_to_window: str, text_to_write: str, key: str = "e") -> None:
+def write(text: str, window: str = '', end: str = "enter") -> None:
     # sourcery skip: raise-specific-error
     """Write text to window and press enter key
 
     Args:
-        write_to_window (str): Window to write to
-        text_to_write (str): Text to write
-        key (str, optional): Key to press. Defaults to "e".
+        text (str): Text to write
+        window (str, optional): The window to write to. Defaults to Active window
+        end (str, optional): Key to press at end. Available options are 'enter', 'tab'. Defaults to "enter"
 
     Examples:
-        >>> keyboard.write_enter(write_to_window="Notepad", text_to_write="Hello World")
+        >>> keyboard.write(text="Hello World", window="Notepad")
     """
 
     # Import Section
@@ -116,30 +192,30 @@ def write_enter(write_to_window: str, text_to_write: str, key: str = "e") -> Non
     from dost.windows import activate_window
 
     # Code Section
-    if not text_to_write:
+    if not text:
         raise Exception("Text to write is empty.")
 
-    if write_to_window:
-        activate_window(write_to_window)
+    if window:
+        activate_window(window)
 
     time.sleep(0.2)
     pwa.keyboard.send_keys(
-        text_to_write, with_spaces=True, with_tabs=True, with_newlines=True)
-    if key.lower() == "e":
+        text, with_spaces=True, with_tabs=True, with_newlines=True)
+    if end and end.lower() in {"e", "enter"}:
         pwa.keyboard.send_keys('{ENTER}')
-    if key.lower() == "t":
+    if end and end.lower() in {"t", "tab"}:
         pwa.keyboard.send_keys('{TAB}')
 
 
 @dostify(errors=[])
-def hit_enter(write_to_window: str) -> None:
+def hit_enter(window: str = '') -> None:
     """Hit enter key
 
     Args:
-        write_to_window (str): Window to write to
+        window (str, optional): The window to press enter key. Defaults to Active window
 
     Examples:
-        >>> keyboard.hit_enter(write_to_window="Notepad")
+        >>> keyboard.hit_enter(window="Notepad")
         """
 
     # Import Section
@@ -147,7 +223,7 @@ def hit_enter(write_to_window: str) -> None:
     from dost.windows import activate_window
 
     # Code Section
-    if write_to_window:
-        activate_window(write_to_window)
+    if window:
+        activate_window(window)
 
     pwa.keyboard.send_keys('{ENTER}')
