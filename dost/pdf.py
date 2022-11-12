@@ -50,8 +50,8 @@ def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Un
     if not output_folder:
         raise Exception("Output folder cannot be empty")
 
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+    os.makedirs(output_folder, exist_ok=True)
+
     if not output_filename:
         output_filename = "pdf_" + \
             str(datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".xlsx"

@@ -241,8 +241,7 @@ def create_file(output_folder: Union[str, WindowsPath], output_filename: str, ou
     if not output_folder:
         raise Exception("Output folder name cannot be empty")
     
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+    os.makedirs(output_folder,exist_ok=True)
 
     output_filename = os.path.join(output_folder, f"{str(Path(output_filename).stem)}.xlsx") if ".xlsx" not in output_filename else os.path.join(
         output_folder, output_filename)
@@ -395,8 +394,7 @@ def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath],
     if not output_filename:
         output_filename = "file"
     
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+    os.makedirs(output_folder,exist_ok=True)
 
     output_filepath = os.path.join(output_folder, f"{str(Path(output_filename).stem)}.xlsx") if ".xlsx" not in output_filename else os.path.join(
         output_folder, output_filename)
