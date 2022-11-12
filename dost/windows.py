@@ -109,11 +109,12 @@ def activate_window(window_name: str) -> None:
         raise ValueError(f'Window title name {window_name} not found')
     window = gw.getWindowsWithTitle(item)[0]
 
-    try:
+    if not window.isActive:
         window.activate()
-    except Exception:
-        window.minimize()
-        window.maximize()
+
+    if window.isMinimized:
+        window.restore()
+        window.activate()
 
 
 @dostify(errors=[])
