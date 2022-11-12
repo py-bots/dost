@@ -42,13 +42,6 @@ from pathlib import WindowsPath
 from dost.helpers import dostify
 from typing import List
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 60785dd76416cb3986bf29bbba6cad53af67569c
->>>>>>> Stashed changes
 
 @dostify(errors=[])
 def authenticate_google_spreadsheet(credential_file_path: Union[str, WindowsPath]) -> object:
@@ -159,17 +152,10 @@ def tabular_data_from_website(website_url: str, table_number: int = 1) -> pd.Dat
     if table_number > len(all_tables):
         raise Exception(
             "Table number cannot be greater than number of tables")
-<<<<<<< Updated upstream
 
     if table_number < 1:
         raise Exception("Table number cannot be less than 1")
 
-=======
-
-    if table_number < 1:
-        raise Exception("Table number cannot be less than 1")
-
->>>>>>> Stashed changes
     return all_tables[table_number - 1]
 
 # @dostify(errors=[])
@@ -408,27 +394,12 @@ def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath],
 
     if not output_filename:
         output_filename = "file"
-<<<<<<< Updated upstream
-
-    output_filepath = os.path.join(output_folder, f"{str(Path(output_filename).stem)}.xlsx") if ".xlsx" not in output_filename else os.path.join(
-        output_folder, output_filename)
-=======
-<<<<<<< HEAD
     
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
-    if ".xlsx" not in output_filename:
-        output_filepath = os.path.join(output_folder, str(
-            Path(output_filename).stem) + ".xlsx")
-    else:
-        output_filepath = os.path.join(output_folder, str(
-            output_filename))
-=======
 
     output_filepath = os.path.join(output_folder, f"{str(Path(output_filename).stem)}.xlsx") if ".xlsx" not in output_filename else os.path.join(
         output_folder, output_filename)
->>>>>>> 60785dd76416cb3986bf29bbba6cad53af67569c
->>>>>>> Stashed changes
 
     if not output_sheetname:
         raise Exception("Please provide the sheet name")

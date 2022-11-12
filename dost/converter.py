@@ -32,7 +32,7 @@ from typing import Union, List
 #     os.makedirs(output_folder_path)
 
 
-@dostify(errors=[(FileNotFoundError, '')])
+@dostify(errors=[(FileNotFoundError, ''),(OSError,'')])
 def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[str, WindowsPath], output_filename: str = "", contains_headers: bool = True, sep: str = ","):
     """Convert a CSV file to an Excel file.
 
@@ -54,7 +54,7 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
     import pandas as pd
     import datetime
 
-    output_folder = Path(output_folder)
+    output_folder = Path(str(output_folder))
     # Code Section
     if not input_filepath:
         raise ValueError("CSV File name cannot be empty")
