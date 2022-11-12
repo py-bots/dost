@@ -65,8 +65,7 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
     if not os.path.exists(input_filepath):
         raise FileNotFoundError(f"File not found at path {input_filepath}")
 
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+    os.makedirs(output_folder,exist_ok=True)
 
     if not output_filename:
         output_filename = f"converted {str(Path(input_filepath).stem)}.xlsx"
@@ -122,8 +121,7 @@ def excel_to_html(input_filepath: Union[str, WindowsPath], output_folder: Union[
     if not os.path.exists(input_filepath):
         raise FileNotFoundError(f"File not found at path {input_filepath}")
 
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+    os.makedirs(output_folder,exist_ok=True)
 
     if output_filename:
         output_filename = os.path.join(output_folder, output_filename) if (
@@ -192,6 +190,7 @@ def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath], out
     import base64
     import os
     import datetime
+    from pathlib import Path
 
     output_folder = Path(output_folder)
     # Code Section
@@ -201,8 +200,7 @@ def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath], out
     if not output_folder:
         raise Exception("Output folder cannot be empty")
 
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+    os.makedirs(output_folder,exist_ok=True)
 
     if not output_filename:
         output_filename = "base64_image_" + \
@@ -252,8 +250,7 @@ def jpg_to_png(input_filepath: Union[str, WindowsPath], output_folder: Union[str
     if not os.path.exists(input_filepath):
         raise FileNotFoundError(f"File not found at path {input_filepath}")
 
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+    os.makedirs(output_folder,exist_ok=True)
 
     if output_filename:
         output_filename = os.path.join(output_folder, output_filename) if output_filename.endswith(
@@ -302,8 +299,7 @@ def png_to_jpg(input_filepath: Union[str, WindowsPath], output_folder: Union[str
     if not output_folder:
         raise Exception("Enter the valid output folder path")
 
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+    os.makedirs(output_folder,exist_ok=True)
 
     if output_filename:
         output_filename = os.path.join(output_folder, output_filename) if output_filename.endswith(
