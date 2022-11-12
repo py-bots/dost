@@ -54,6 +54,7 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
     import pandas as pd
     import datetime
 
+    output_folder = Path(output_folder)
     # Code Section
     if not input_filepath:
         raise ValueError("CSV File name cannot be empty")
@@ -65,8 +66,7 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
         raise FileNotFoundError(f"File not found at path {input_filepath}")
 
     if not os.path.exists(output_folder):
-        # os.makedirs(output_folder)
-        raise FileNotFoundError(f"Folder not found at path {output_folder}")
+        os.makedirs(output_folder)
 
     if not output_filename:
         output_filename = f"converted {str(Path(input_filepath).stem)}.xlsx"
@@ -111,6 +111,7 @@ def excel_to_html(input_filepath: Union[str, WindowsPath], output_folder: Union[
     from xlsx2html import xlsx2html
     import datetime
 
+    output_folder = Path(output_folder)
     # Code Section
     if not input_filepath:
         raise Exception("Please provide the excel path")
@@ -122,8 +123,7 @@ def excel_to_html(input_filepath: Union[str, WindowsPath], output_folder: Union[
         raise FileNotFoundError(f"File not found at path {input_filepath}")
 
     if not os.path.exists(output_folder):
-        # os.makedirs(output_folder)
-        raise FileNotFoundError(f"Folder not found at path {output_folder}")
+        os.makedirs(output_folder)
 
     if output_filename:
         output_filename = os.path.join(output_folder, output_filename) if (
@@ -193,6 +193,7 @@ def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath], out
     import os
     import datetime
 
+    output_folder = Path(output_folder)
     # Code Section
     if not input_text:
         raise Exception("Image base64 string cannot be empty")
@@ -201,8 +202,7 @@ def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath], out
         raise Exception("Output folder cannot be empty")
 
     if not os.path.exists(output_folder):
-        # os.makedirs(output_folder)
-        raise FileNotFoundError(f"Folder not found at path {output_folder}")
+        os.makedirs(output_folder)
 
     if not output_filename:
         output_filename = "base64_image_" + \
@@ -241,6 +241,7 @@ def jpg_to_png(input_filepath: Union[str, WindowsPath], output_folder: Union[str
     from PIL import Image
     import datetime
 
+    output_folder=Path(output_folder)
     # Code section
     if not input_filepath:
         raise Exception("Enter the valid input image path")
@@ -252,8 +253,7 @@ def jpg_to_png(input_filepath: Union[str, WindowsPath], output_folder: Union[str
         raise FileNotFoundError(f"File not found at path {input_filepath}")
 
     if not os.path.exists(output_folder):
-        # os.makedirs(output_folder)
-        raise FileNotFoundError(f"Folder not found at path {output_folder}")
+        os.makedirs(output_folder)
 
     if output_filename:
         output_filename = os.path.join(output_folder, output_filename) if output_filename.endswith(
@@ -291,6 +291,7 @@ def png_to_jpg(input_filepath: Union[str, WindowsPath], output_folder: Union[str
     from PIL import Image
     import datetime
 
+    output_folder=Path(output_folder)
     # Code Section
     if not input_filepath:
         raise Exception("Enter the valid input image path")
@@ -302,8 +303,7 @@ def png_to_jpg(input_filepath: Union[str, WindowsPath], output_folder: Union[str
         raise Exception("Enter the valid output folder path")
 
     if not os.path.exists(output_folder):
-        # os.makedirs(output_folder)
-        raise FileNotFoundError(f"Folder not found at path {output_folder}")
+        os.makedirs(output_folder)
 
     if output_filename:
         output_filename = os.path.join(output_folder, output_filename) if output_filename.endswith(
