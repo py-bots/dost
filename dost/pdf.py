@@ -17,12 +17,6 @@ from pathlib import WindowsPath
 from typing import Union
 from dost.helpers import dostify
 
-output_folder_path = os.path.join(
-    os.path.abspath(r'C:\Users\Public\PyBOTs LLC'), 'DOST', 'PDF Folder')
-
-# create output folder if not present
-if not os.path.exists(output_folder_path):
-    os.makedirs(output_folder_path)
 
 
 @dostify(errors=[(FileNotFoundError, "")])
@@ -47,10 +41,13 @@ def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Un
     # Code Section
     if not pdf_file_path:
         raise Exception("PDF file path cannot be empty")
+        
     if (isinstance(pdf_file_path)):
         raise FileNotFoundError(f"File not found: {pdf_file_path}")
+
     if not output_folder:
-        output_folder = output_folder_path
+        raise Exception("Output folder cannot be empty")
+
     if not output_filename:
         output_filename = "pdf_" + \
             str(datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".xlsx"
