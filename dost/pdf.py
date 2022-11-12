@@ -37,7 +37,9 @@ def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Un
     import pdfplumber
     import pandas as pd
     import datetime
+    from pathlib import Path
 
+    output_folder = Path(output_folder)
     # Code Section
     if not pdf_file_path:
         raise Exception("PDF file path cannot be empty")
@@ -48,6 +50,8 @@ def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Un
     if not output_folder:
         raise Exception("Output folder cannot be empty")
 
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
     if not output_filename:
         output_filename = "pdf_" + \
             str(datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".xlsx"

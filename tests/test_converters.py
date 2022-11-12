@@ -14,9 +14,7 @@ class test(unittest.TestCase):
 
         if (type == "excel"):
             if not output_filename:
-                start_name = "excel_"
-                mid_part = datetime.datetime.now().strftime("%Y")
-                start_name = start_name+mid_part
+                start_name = "converted "
                 files_list = os.listdir(output_folder)
                 for file in files_list:
                     if file.startswith(start_name) and file.endswith(".xlsx"):
@@ -105,24 +103,26 @@ class test(unittest.TestCase):
         # return 0
         input_filepath = 'tests\demo.csv'
         input_filepath_path = r'tests\demo.csv'
-        output_folder = 'tests'
-        output_folder_path = r'tests'
+        output_folder = 'tests\new_folder'
+        output_folder_path = r'tests\new_folder'
         output_filename = "demo.xlsx"
 
         # convert_csv_to_excel(input_filepath=r'tests\demo.csv')
         # convert_csv_to_excel(input_filepath=input_filepath)
         # self.check_remove(type="excel", input_filepath=input_filepath)
 
-        csv_to_excel(input_filepath=input_filepath_path,
-                             output_folder=output_folder_path)
-    #     self.check_remove(
-    #         type="excel", output_folder=output_folder, input_filepath=input_filepath)
-    #     convert_csv_to_excel(input_filepath=input_filepath,
-    #                          output_folder=output_folder)
-    #     self.check_remove(
-    #         type="excel", output_folder=output_folder, input_filepath=input_filepath)
-    #     convert_csv_to_excel(input_filepath=input_filepath_path,
-    #                          output_folder=output_folder_path, output_filename=output_filename)
+        # self.check_remove(
+        #     type="excel", output_folder=output_folder, input_filepath=input_filepath)
+        csv_to_excel(input_filepath=input_filepath,
+                             output_folder=output_folder)
+
+        # csv_to_excel(input_filepath=input_filepath_path,
+        #                      output_folder=output_folder_path)
+        # self.check_remove(
+        #     type="excel", output_folder=output_folder, input_filepath=input_filepath)
+
+        # csv_to_excel(input_filepath=input_filepath_path,
+        #                      output_folder=output_folder_path, output_filename=output_filename)
     #     self.check_remove("excel", output_folder,
     #                       output_filename, input_filepath)
 
