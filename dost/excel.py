@@ -27,7 +27,7 @@ This module contains the following functions:
 - `remove_duplicates(df, column_name)`: Remove duplicates from excel file.
 - `isNaN(value)`: Check if value is NaN.
 - `df_from_list(list_of_lists, column_names)`: Create dataframe from list of lists.
-- `df_from_string(df_string, word_delimiter, line_delimeter, column_names)`: Create dataframe from string.
+- `df_from_string(df_string, word_delimiter, line_delimiter, column_names)`: Create dataframe from string.
 - `df_extract_sub_df(df, row_start, row_end, column_start, column_end)`: Extract sub dataframe from dataframe.
 - `set_value_in_df(df, row_number, column_number, value)`: Set value in dataframe.
 - `get_value_in_df(df, row_number, column_number)`: Get value from dataframe.
@@ -42,13 +42,10 @@ from pathlib import WindowsPath
 from dost.helpers import dostify
 from typing import List
 
-# create output folder if not present
-if not os.path.exists(output_folder_path):
-    os.makedirs(output_folder_path)
-
 
 @dostify(errors=[])
 def authenticate_google_spreadsheet(credential_file_path: Union[str, WindowsPath]) -> object:
+    # sourcery skip: raise-specific-error
     """Creates authentication object for google spreadsheet.
 
     Args:
@@ -75,13 +72,12 @@ def authenticate_google_spreadsheet(credential_file_path: Union[str, WindowsPath
     creds = ServiceAccountCredentials.from_json_keyfilename(
         credential_file_path, scope)
 
-    gc = gspread.authorize(creds)
-
-    return gc
+    return gspread.authorize(creds)
 
 
 @dostify(errors=[])
 def get_dataframe_from_google_spreadsheet(auth, spreadsheet_url: str, sheet_name: str = "Sheet1") -> pd.DataFrame:
+    # sourcery skip: raise-specific-error
     """ Get dataframe from google spreadsheet
 
     Args:
@@ -126,12 +122,12 @@ def get_dataframe_from_google_spreadsheet(auth, spreadsheet_url: str, sheet_name
     else:
         worksheet = sh.worksheet(sheet_name)
 
-    data_frame = pd.DataFrame(worksheet.get_all_records())
-    return data_frame
+    return pd.DataFrame(worksheet.get_all_records())
 
 
 @dostify(errors=[])
 def tabular_data_from_website(website_url: str, table_number: int = 1) -> pd.DataFrame:
+    # sourcery skip: raise-specific-error
     """Returns a dataframe from a website table.
 
     Args:
@@ -152,23 +148,21 @@ def tabular_data_from_website(website_url: str, table_number: int = 1) -> pd.Dat
     all_tables = pd.read_html(website_url)
 
     if not table_number:
-        data = all_tables
-    else:
-        if table_number > len(all_tables):
-            raise Exception(
-                "Table number cannot be greater than number of tables")
+        return all_tables
+    if table_number > len(all_tables):
+        raise Exception(
+            "Table number cannot be greater than number of tables")
 
-        if table_number < 1:
-            raise Exception("Table number cannot be less than 1")
+    if table_number < 1:
+        raise Exception("Table number cannot be less than 1")
 
-        data = all_tables[table_number - 1]
-
-    return data
+    return all_tables[table_number - 1]
 
 # @dostify(errors=[])
 
 
 def upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url: str, sheet_name: str, df: pd.DataFrame) -> None:
+    # sourcery skip: raise-specific-error
     """Uploads a dataframe to a google spreadsheet.
 
     Args:
@@ -200,12 +194,8 @@ def upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url: str, sheet_nam
     # get all the worksheets from sh
     worksheet_list = sh.worksheets()
 
-    # check if sheet_name is already present in worksheet_list
-    sheet_present = False
-    for worksheet in worksheet_list:
-        if worksheet.title == sheet_name:
-            sheet_present = True
-            break
+    sheet_present = any(worksheet.title ==
+                        sheet_name for worksheet in worksheet_list)
 
     if sheet_present:
         # append df to existing sheet
@@ -226,6 +216,7 @@ def upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url: str, sheet_nam
 
 @dostify(errors=[])
 def create_file(output_folder: Union[str, WindowsPath], output_filename: str, output_sheetname: Union[str, List[str]] = "Sheet1") -> None:
+    # sourcery skip: raise-specific-error
     """ Creates an excel file with a sheet in the specified folder.
 
     Args:
@@ -250,11 +241,8 @@ def create_file(output_folder: Union[str, WindowsPath], output_filename: str, ou
     if not output_folder:
         raise Exception("Output folder name cannot be empty")
 
-    if ".xlsx" not in output_filename:
-        output_filename = os.path.join(output_folder, str(
-            Path(output_filename).stem) + ".xlsx")
-    else:
-        output_filename = os.path.join(output_folder, output_filename)
+    output_filename = os.path.join(output_folder, f"{str(Path(output_filename).stem)}.xlsx") if ".xlsx" not in output_filename else os.path.join(
+        output_folder, output_filename)
 
     wb = Workbook()
     ws = wb.active
@@ -270,6 +258,7 @@ def create_file(output_folder: Union[str, WindowsPath], output_filename: str, ou
 
 @dostify(errors=[])
 def _valid_data(input_filepath: Union[str, WindowsPath], input_sheetname: str = "", validate_filepath: bool = True, validate_sheetname: bool = True) -> bool:
+    # sourcery skip: raise-specific-error
     """This function validates the input file path and sheet name.
 
     Args:
@@ -289,21 +278,19 @@ def _valid_data(input_filepath: Union[str, WindowsPath], input_sheetname: str = 
     import os
     from openpyxl import load_workbook
 
-    # Code Section
-    input_filepath = str(input_filepath)
-    input_sheetname = str(input_sheetname)
     if validate_filepath:
-        if not ".xlsx" in input_filepath:
+        # Code Section
+        input_filepath = str(input_filepath)
+        if ".xlsx" not in input_filepath:
             raise Exception(
                 "Please provide the excel file name with .xlsx extension")
-            return False
         if not os.path.exists(input_filepath):
             raise Exception(
                 "Please provide the excel file name with correct path")
-            return False
         if validate_sheetname:
             wb = load_workbook(input_filepath)
             sheet_names = wb.sheetnames
+            input_sheetname = input_sheetname
             if input_sheetname not in sheet_names:
                 raise Exception(
                     "Please provide the correct sheet name")
@@ -312,6 +299,7 @@ def _valid_data(input_filepath: Union[str, WindowsPath], input_sheetname: str = 
 
 @dostify(errors=[(ValueError, '')])
 def to_dataframe(input_filepath: Union[str, WindowsPath], input_sheetname: str, header: int = 1) -> pd.DataFrame:
+    # sourcery skip: raise-specific-error
     """Converts excel file to dataframe.
 
     Args:
@@ -346,12 +334,13 @@ def to_dataframe(input_filepath: Union[str, WindowsPath], input_sheetname: str, 
         data = pd.read_excel(
             input_filepath, sheet_name=input_sheetname, header=None, engine='openpyxl')
     else:
-        ValueError(f'Header value cannot be negative')
+        ValueError('Header value cannot be negative')
     return data
 
 
 @dostify(errors=[])
 def get_row_column_count(df: pd.DataFrame) -> tuple:
+    # sourcery skip: raise-specific-error
     """ Returns the row and column count of the dataframe
 
     Args:
@@ -371,18 +360,12 @@ def get_row_column_count(df: pd.DataFrame) -> tuple:
     # Code Section
     if not isinstance(df, pd.DataFrame):
         raise Exception("Please provide the dataframe")
-
-    row, col = df.shape
-    data = (row, col)
-
-    # If the function returns a value, it should be assigned to the data variable.
-    # data = value
-    return data
+    return df.shape
 
 
 @dostify(errors=[])
-# append / overwrite
 def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath], output_filename: str, output_sheetname: str = "Sheet1", mode: str = 'a') -> None:
+    # sourcery skip: raise-specific-error
     """ Converts the dataframe to excel file
 
     Args:
@@ -408,12 +391,8 @@ def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath],
     if not output_filename:
         output_filename = "file"
 
-    if ".xlsx" not in output_filename:
-        output_filepath = os.path.join(output_folder, str(
-            Path(output_filename).stem) + ".xlsx")
-    else:
-        output_filepath = os.path.join(output_folder, str(
-            output_filename))
+    output_filepath = os.path.join(output_folder, f"{str(Path(output_filename).stem)}.xlsx") if ".xlsx" not in output_filename else os.path.join(
+        output_folder, output_filename)
 
     if not output_sheetname:
         raise Exception("Please provide the sheet name")
@@ -421,11 +400,7 @@ def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath],
     if not isinstance(df, pd.DataFrame):
         raise Exception("Please provide the dataframe")
 
-    new_file = False
-    if not os.path.exists(output_filepath):
-        # create_file(output_folder, output_filename)
-        new_file = True
-
+    new_file = not os.path.exists(output_filepath)
     if mode == 'a' and not new_file:
         with pd.ExcelWriter(output_filepath, mode="a", engine="openpyxl", if_sheet_exists="overlay",) as writer:
             current_df = to_dataframe(
@@ -440,6 +415,7 @@ def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath],
 
 @dostify(errors=[])
 def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, value: str) -> pd.DataFrame:
+    # sourcery skip: raise-specific-error
     """
     Description:
         Writes the given text to the desired column/cell number for the given excel file
@@ -474,13 +450,12 @@ def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, value:
         raise Exception("Please provide the valid cell number")
 
     df.at[cell_number-1, column_name] = value
-    data = df
-
-    return data
+    return df
 
 
 @dostify(errors=[])
 def get_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, header: int = 1) -> str:
+    # sourcery skip: raise-specific-error
     """Gets the text from the desired column/cell number for the given excel file
 
     Args:
@@ -520,6 +495,7 @@ def get_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, header
 
 @dostify(errors=[])
 def get_all_header_columns(df: pd.DataFrame) -> Union[List[str], List[int]]:
+    # sourcery skip: raise-specific-error
     """Gets all header columns from the excel file
 
     Args:
@@ -540,12 +516,12 @@ def get_all_header_columns(df: pd.DataFrame) -> Union[List[str], List[int]]:
     if not isinstance(df, pd.DataFrame):
         raise Exception("Please provide the dataframe")
 
-    data = df.columns.values.tolist()
-    return data
+    return df.columns.values.tolist()
 
 
 @dostify(errors=[])
 def get_all_sheet_names(input_filepath: Union[str, WindowsPath]) -> List[str]:
+    # sourcery skip: raise-specific-error
     """Gets the sheet names from the excel file
 
     Args:
@@ -569,12 +545,12 @@ def get_all_sheet_names(input_filepath: Union[str, WindowsPath]) -> List[str]:
         raise Exception("Please provide the valid excel path")
 
     wb = load_workbook(input_filepath)
-    data = wb.sheetnames
-    return data
+    return wb.sheetnames
 
 
 @dostify(errors=[(KeyError, "Please provide valid column names")])
 def drop_columns(df: pd.DataFrame, cols: Union[str, List[str]]) -> pd.DataFrame:
+    # sourcery skip: raise-specific-error
     """Drops the columns from the excel file
 
     Args:
@@ -609,6 +585,7 @@ def drop_columns(df: pd.DataFrame, cols: Union[str, List[str]]) -> pd.DataFrame:
 
 @dostify(errors=[])
 def clear_sheet(df: pd.DataFrame) -> pd.DataFrame:
+    # sourcery skip: raise-specific-error
     """Clears the sheet
 
     Args:
@@ -632,12 +609,12 @@ def clear_sheet(df: pd.DataFrame) -> pd.DataFrame:
     # Clears the contents of the sheet
     df.drop(df.index, inplace=True)
 
-    data = df
-    return data
+    return df
 
 
 @dostify(errors=[])
 def remove_duplicates(df: pd.DataFrame, column_name: Union[str, List[str], int, List[int]]) -> pd.DataFrame:
+    # sourcery skip: raise-specific-error
     """Removes the duplicates from the given column
 
     Args:
@@ -670,8 +647,7 @@ def remove_duplicates(df: pd.DataFrame, column_name: Union[str, List[str], int, 
         df.drop_duplicates(subset=column_name,
                            keep=which_one_to_keep, inplace=True)
 
-    data = df
-    return data
+    return df
 
 
 @dostify(errors=[(ValueError, "Give a valid value")])
@@ -698,6 +674,7 @@ def isNaN(value: str) -> bool:
 
 @dostify(errors=[])
 def df_from_list(list_of_lists: list, column_names: List[str]) -> pd.DataFrame:
+    # sourcery skip: raise-specific-error
     """Converts list of lists to dataframe
 
     Args:
@@ -722,23 +699,18 @@ def df_from_list(list_of_lists: list, column_names: List[str]) -> pd.DataFrame:
     if not isinstance(list_of_lists, list):
         raise Exception("Please pass input as list of lists")
 
-    if isinstance(list_of_lists, list):
-        if column_names == None:
-            data = pd.DataFrame(list_of_lists)
-        else:
-            data = pd.DataFrame(list_of_lists, columns=column_names)
-
-    return data
+    return pd.DataFrame(list_of_lists) if column_names is None else pd.DataFrame(list_of_lists, columns=column_names)
 
 
 @dostify(errors=[])
-def df_from_string(df_string: str, word_delimeter: str = " ", line_delimeter: str = "\n", column_names: list = None) -> pd.DataFrame:
+def df_from_string(df_string: str, word_delimiter: str = " ", line_delimiter: str = "\n", column_names: list = None) -> pd.DataFrame:
+    # sourcery skip: raise-specific-error
     """Converts string to dataframe
 
     Args:
         df_string (str): string to be converted to dataframe
-        word_delimeter (str): word delimeter.Defaults to space
-        line_delimeter (str): line delimeter. Defaults to new line
+        word_delimiter (str): word delimiter.Defaults to space
+        line_delimiter (str): line delimiter. Defaults to new line
         column_names (list): column names. Defaults to None
 
     Returns:
@@ -761,19 +733,20 @@ def df_from_string(df_string: str, word_delimeter: str = " ", line_delimeter: st
         raise Exception("Please pass input as string")
 
     if not isinstance(df_string, str):
-        df_string = str(df_string)
+        df_string = df_string
 
-    if column_names == None:
-        data = pd.DataFrame([x.split(word_delimeter)
-                            for x in df_string.split(line_delimeter)])
+    if column_names is None:
+        data = pd.DataFrame([x.split(word_delimiter)
+                            for x in df_string.split(line_delimiter)])
     elif isinstance(column_names, list):
-        data = pd.DataFrame([x.split(word_delimeter) for x in df_string.split(
-            line_delimeter)], columns=column_names)
+        data = pd.DataFrame([x.split(word_delimiter) for x in df_string.split(
+            line_delimiter)], columns=column_names)
     return data
 
 
 @dostify(errors=[])
 def df_extract_sub_df(df: pd.DataFrame, row_start: int, row_end: int, column_start: int, column_end: int) -> pd.DataFrame:
+    # sourcery skip: raise-specific-error
     """Extracts sub dataframe from the given dataframe
 
     Args:
@@ -807,6 +780,7 @@ def df_extract_sub_df(df: pd.DataFrame, row_start: int, row_end: int, column_sta
 
 @dostify(errors=[])
 def set_value_in_df(df: pd.DataFrame, row_number: int, column_number: int, value: str) -> pd.DataFrame:
+    # sourcery skip: raise-specific-error
     """Sets value in dataframe
 
     Args:
@@ -847,6 +821,7 @@ def set_value_in_df(df: pd.DataFrame, row_number: int, column_number: int, value
 
 @dostify(errors=[])
 def get_value_in_df(df: pd.DataFrame, row_number: int, column_number: int) -> str:
+    # sourcery skip: raise-specific-error
     """Gets value from dataframe
 
     Args:
@@ -885,6 +860,7 @@ def get_value_in_df(df: pd.DataFrame, row_number: int, column_number: int) -> st
 
 @dostify(errors=[])
 def df_drop_rows(df: pd.DataFrame, row_start: int, row_end: int) -> pd.DataFrame:
+    # sourcery skip: raise-specific-error
     """Drops rows from dataframe
 
     Args:

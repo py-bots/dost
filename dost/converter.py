@@ -57,7 +57,7 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
     # Code Section
     if not input_filepath:
         raise ValueError("CSV File name cannot be empty")
-    
+
     if not output_folder:
         raise ValueError("Output folder cannot be empty")
 
@@ -69,14 +69,15 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
         raise FileNotFoundError(f"Folder not found at path {output_folder}")
 
     if not output_filename:
-        output_filename = "converted " + str(Path(input_filepath).stem) + ".xlsx"
+        output_filename = f"converted {str(Path(input_filepath).stem)}.xlsx"
         if os.path.exists(os.path.join(output_folder, output_filename)):
-            output_filename = "converted " + str(Path(input_filepath).stem) + " " + str(datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")) + ".xlsx"
+            output_filename = f"converted {str(Path(input_filepath).stem)} " + str(
+                datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")) + ".xlsx"
+
+    elif (output_filename.endswith(".xlsx")):
+        output_filename = output_filename
     else:
-        if (output_filename.endswith(".xlsx")):
-            output_filename = output_filename
-        else:
-            output_filename = output_filename+".xlsx"
+        output_filename += ".xlsx"
     if not sep:
         raise ValueError("Separator cannot be empty")
 
@@ -84,9 +85,7 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
         output_folder, output_filename)
     excel_file_path = Path(excel_file_path)
     writer = pd.ExcelWriter(excel_file_path)
-    headers = 'infer'
-    if contains_headers == False:
-        headers = None
+    headers = 'infer' if contains_headers else None
     df = pd.read_csv(input_filepath, sep=sep, header=headers)
     df.to_excel(writer, sheet_name='Sheet1',
                 index=False, header=contains_headers)
@@ -96,6 +95,7 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
 
 @dostify(errors=[(FileNotFoundError, '')])
 def excel_to_html(input_filepath: Union[str, WindowsPath], output_folder: Union[str, WindowsPath], output_filename: str = ""):
+    # sourcery skip: raise-specific-error
     """Converts the excel file to colored html file
 
     Args:
@@ -125,22 +125,24 @@ def excel_to_html(input_filepath: Union[str, WindowsPath], output_folder: Union[
         # os.makedirs(output_folder)
         raise FileNotFoundError(f"Folder not found at path {output_folder}")
 
-    if not output_filename:
-        output_filename = os.path.join(output_folder, "converted " + str(Path(input_filepath).stem) + ".html")
-        if os.path.exists(output_filename):
-            output_filename = os.path.join(output_folder, "converted " + str(Path(input_filepath).stem) + " " + str(datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")) + ".html")
+    if output_filename:
+        output_filename = os.path.join(output_folder, output_filename) if (
+            output_filename.endswith(".html")) else os.path.join(output_folder, f'{output_filename}.html')
+
     else:
-        if (output_filename.endswith(".html")):
-            output_filename = os.path.join(output_folder, str(output_filename))
-        else:
-            output_filename = os.path.join(
-                output_folder, output_filename+'.html')
+        output_filename = os.path.join(
+            output_folder, f"converted {str(Path(input_filepath).stem)}.html")
+
+        if os.path.exists(output_filename):
+            output_filename = os.path.join(output_folder, ((f"converted {str(Path(input_filepath).stem)} " + str(
+                datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S"))) + ".html"))
 
     xlsx2html(input_filepath, output_filename)
 
 
 @dostify(errors=[(FileNotFoundError, '')])
 def image_to_base64(input_filepath: Union[str, WindowsPath]) -> str:
+    # sourcery skip: raise-specific-error
     """Get a base64 encoded string from an image.
 
     Args:
@@ -174,6 +176,7 @@ def image_to_base64(input_filepath: Union[str, WindowsPath]) -> str:
 
 @dostify(errors=[(FileNotFoundError, "")])
 def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath], output_filename: str = ""):
+    # sourcery skip: raise-specific-error
     """Get an image from a base64 encoded string.
 
     Args:
@@ -204,14 +207,13 @@ def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath], out
     if not output_filename:
         output_filename = "base64_image_" + \
             str(datetime.datetime.now().strftime("%Y%m%d_%H%M%S")) + ".png"
-    else:
-        if not (str(output_filename).endswith(".png") or str(output_filename).endswith(".jpg")):
-            output_filename = output_filename + ".png"
-        else:
-            output_filename = output_filename
+    elif output_filename.endswith(".png") or output_filename.endswith(".jpg"):
+        output_filename = output_filename
 
-    input_text = bytes(input_text, 'utf-8')
+    else:
+        output_filename += ".png"
     if os.path.exists(output_folder):
+        input_text = bytes(input_text, 'utf-8')
         img_binary = base64.decodebytes(input_text)
         with open(os.path.join(output_folder, output_filename), "wb") as f:
             f.write(img_binary)
@@ -221,6 +223,7 @@ def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath], out
 
 @dostify(errors=[(FileNotFoundError, '')])
 def jpg_to_png(input_filepath: Union[str, WindowsPath], output_folder: Union[str, WindowsPath], output_filename: str = ""):
+    # sourcery skip: raise-specific-error
     """Convert a JPG image to a PNG image.
 
     Args:
@@ -252,17 +255,17 @@ def jpg_to_png(input_filepath: Union[str, WindowsPath], output_folder: Union[str
         # os.makedirs(output_folder)
         raise FileNotFoundError(f"Folder not found at path {output_folder}")
 
-    if not output_filename:
-        output_filename = os.path.join(output_folder, "converted "+str(Path(input_filepath).stem) + ".png")
-        if(os.path.exists(output_filename)):
+    if output_filename:
+        output_filename = os.path.join(output_folder, output_filename) if output_filename.endswith(
+            ".png") else os.path.join(output_folder, f"{output_filename}.png")
+
+    else:
+        output_filename = os.path.join(
+            output_folder, f"converted {str(Path(input_filepath).stem)}.png")
+
+        if (os.path.exists(output_filename)):
             output_filename = os.path.join(
                 output_folder, "converted " + str(datetime.datetime.now().strftime("%Y%m%d_%H%M %S")) + ".png")
-    else:
-        if output_filename.endswith(".png"):
-            output_filename = os.path.join(output_folder, str(output_filename))
-        else:
-            output_filename = os.path.join(
-                output_folder, str(output_filename)+".png")
     im = Image.open(input_filepath)
     rgb_im = im.convert('RGB')
     rgb_im.save(output_filename)
@@ -270,6 +273,7 @@ def jpg_to_png(input_filepath: Union[str, WindowsPath], output_folder: Union[str
 
 @dostify(errors=[(FileNotFoundError, '')])
 def png_to_jpg(input_filepath: Union[str, WindowsPath], output_folder: Union[str, WindowsPath], output_filename: str = ""):
+    # sourcery skip: raise-specific-error
     """Converts the image from png to jpg format
 
     Args:
@@ -301,19 +305,17 @@ def png_to_jpg(input_filepath: Union[str, WindowsPath], output_folder: Union[str
         # os.makedirs(output_folder)
         raise FileNotFoundError(f"Folder not found at path {output_folder}")
 
-    if not output_filename:
-        output_filename = os.path.join(output_folder, "converted "+str(Path(input_filepath).stem) + ".jpg")
-        if(os.path.exists(output_filename)):
+    if output_filename:
+        output_filename = os.path.join(output_folder, output_filename) if output_filename.endswith(
+            ".jpg") else os.path.join(output_folder, f"{output_filename}.jpg")
+
+    else:
+        output_filename = os.path.join(
+            output_folder, f"converted {str(Path(input_filepath).stem)}.jpg")
+
+        if (os.path.exists(output_filename)):
             output_filename = os.path.join(
                 output_folder, "converted " + str(datetime.datetime.now().strftime("%Y%m%d_%H%M %S")) + ".jpg")
-    else:
-        if output_filename.endswith(".jpg"):
-            output_filename = os.path.join(output_folder, str(output_filename))
-        else:
-            output_filename = os.path.join(
-                output_folder, str(output_filename)+".jpg")
-
     im = Image.open(input_filepath)
     rgb_im = im.convert('RGB')
     rgb_im.save(output_filename)
-
