@@ -33,11 +33,11 @@ from dost.helpers import dostify
 
 
 @dostify(errors=[(OverflowError, "Time is too large")])
-def pause_program(seconds: int = "5") -> None:
+def pause_program(seconds: float = 5) -> None:
     """Pauses the program for the specified number of seconds
 
     Args:
-        seconds (int, optional): Number of seconds to pause the program. Defaults to "5".
+        seconds (float, optional): Number of seconds to pause the program. Defaults to "5".
 
     Examples:
         >>> utility.pause_program(seconds=5)

@@ -1,2 +1,3 @@
-import os
-os.makedirs('tests/new_folder', exist_ok=True)
+from dost import utility
+# utility.pause_program() 
+utility.pause_program()

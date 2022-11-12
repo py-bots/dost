@@ -103,8 +103,8 @@ class test(unittest.TestCase):
         # return 0
         input_filepath = 'tests\demo.csv'
         input_filepath_path = r'tests\demo.csv'
-        output_folder = 'tests\new_folder'
-        output_folder_path = r'tests\new_folder'
+        output_folder = 'tests/new_folder'
+        output_folder_path = r'tests/new_folder'
         output_filename = "demo.xlsx"
 
         # convert_csv_to_excel(input_filepath=r'tests\demo.csv')
@@ -113,13 +113,13 @@ class test(unittest.TestCase):
 
         # self.check_remove(
         #     type="excel", output_folder=output_folder, input_filepath=input_filepath)
-        # csv_to_excel(input_filepath=input_filepath,
-        #                      output_folder=output_folder)
+        csv_to_excel(input_filepath=input_filepath,
+                             output_folder=output_folder)
 
         csv_to_excel(input_filepath=input_filepath_path,
                              output_folder=output_folder_path)
-        csv_to_excel(input_filepath=input_filepath_path,
-                             output_folder=output_folder_path)
+        # csv_to_excel(input_filepath=input_filepath_path,
+        #                      output_folder=output_folder_path)
         # self.check_remove(
         #     type="excel", output_folder=output_folder, input_filepath=input_filepath)
 

@@ -44,7 +44,7 @@ def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Un
     if not pdf_file_path:
         raise Exception("PDF file path cannot be empty")
 
-    if (isinstance(pdf_file_path)):
+    if not os.path.exists(pdf_file_path):
         raise FileNotFoundError(f"File not found: {pdf_file_path}")
 
     if not output_folder:
