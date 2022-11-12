@@ -42,9 +42,6 @@ from pathlib import WindowsPath
 from dost.helpers import dostify
 from typing import List
 
-output_folder_path = os.path.join(os.path.abspath(
-    r'C:\Users\Public\PyBots'), 'My-DOST', 'Excel Folder')
-
 # create output folder if not present
 if not os.path.exists(output_folder_path):
     os.makedirs(output_folder_path)
@@ -246,14 +243,12 @@ def create_file(output_folder: Union[str, WindowsPath], output_filename: str, ou
     from openpyxl import Workbook
 
     # Code Section
-    if not output_folder:
-        raise Exception("Excel File name cannot be empty")
 
     if not output_filename:
         raise Exception("Excel File Name cannot be empty")
 
-    if not os.path.exists(output_folder):
-        output_folder = output_folder_path
+    if not output_folder:
+        raise Exception("Output folder name cannot be empty")
 
     if ".xlsx" not in output_filename:
         output_filename = os.path.join(output_folder, str(
@@ -408,12 +403,10 @@ def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath],
 
     # Code Section
     if not output_folder:
-        output_folder = output_folder_path
+        raise Exception("Output Folder name cannot be empty")
+
     if not output_filename:
         output_filename = "file"
-
-    if not os.path.exists(output_folder):
-        output_folder = output_folder_path
 
     if ".xlsx" not in output_filename:
         output_filepath = os.path.join(output_folder, str(

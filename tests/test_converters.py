@@ -1,8 +1,8 @@
 from pathlib import Path
 import datetime
 import pandas as pd
-from folder import *
-from converters import *
+from dost.folder import *
+from dost.converter import *
 import unittest
 import os
 import sys
@@ -11,8 +11,6 @@ sys.path.insert(0, "dost")
 
 class test(unittest.TestCase):
     def check_remove(self, type: str, output_folder="", output_filename="", input_filepath=""):
-        if not output_folder:
-            output_folder = r"C:\Users\Public\PyBots\My-DOST\Converters Folder"
 
         if (type == "excel"):
             if not output_filename:
@@ -52,9 +50,7 @@ class test(unittest.TestCase):
 
         if (type == "jpg_image"):
             if not output_filename:
-                start_name = Path(input_filepath).stem
-                mid_part = datetime.datetime.now().strftime("%Y")
-                start_name = start_name+mid_part
+                start_name = "converted "+Path(input_filepath).stem
                 files_list = os.listdir(output_folder)
                 for file in files_list:
                     if file.startswith(start_name) and file.endswith(".jpg"):
@@ -114,83 +110,89 @@ class test(unittest.TestCase):
         output_filename = "demo.xlsx"
 
         # convert_csv_to_excel(input_filepath=r'tests\demo.csv')
-        convert_csv_to_excel(input_filepath=input_filepath)
-        self.check_remove(type="excel", input_filepath=input_filepath)
-        convert_csv_to_excel(input_filepath=input_filepath_path,
+        # convert_csv_to_excel(input_filepath=input_filepath)
+        # self.check_remove(type="excel", input_filepath=input_filepath)
+
+        csv_to_excel(input_filepath=input_filepath_path,
                              output_folder=output_folder_path)
-        self.check_remove(
-            type="excel", output_folder=output_folder, input_filepath=input_filepath)
-        convert_csv_to_excel(input_filepath=input_filepath,
-                             output_folder=output_folder)
-        self.check_remove(
-            type="excel", output_folder=output_folder, input_filepath=input_filepath)
-        convert_csv_to_excel(input_filepath=input_filepath_path,
-                             output_folder=output_folder_path, output_filename=output_filename)
-        self.check_remove("excel", output_folder,
-                          output_filename, input_filepath)
-        convert_csv_to_excel(input_filepath=input_filepath,
-                             output_folder=output_folder, output_filename=output_filename)
-        self.check_remove("excel", output_folder,
-                          output_filename, input_filepath)
-        convert_csv_to_excel(input_filepath=input_filepath_path, output_folder=output_folder_path,
-                             output_filename=output_filename, contains_headers=True)
-        self.check_remove("excel", output_folder,
-                          output_filename, input_filepath)
-        convert_csv_to_excel(input_filepath=input_filepath, output_folder=output_folder,
-                             output_filename=output_filename, contains_headers=True)
-        self.check_remove("excel", output_folder,
-                          output_filename, input_filepath)
-        convert_csv_to_excel(input_filepath=input_filepath_path, output_folder=output_folder_path,
-                             output_filename=output_filename, contains_headers=True, sep=",")
-        self.check_remove("excel", output_folder,
-                          output_filename, input_filepath)
-        convert_csv_to_excel(input_filepath=input_filepath, output_folder=output_folder,
-                             output_filename=output_filename, contains_headers=True, sep=",")
-        self.check_remove("excel", output_folder,
-                          output_filename, input_filepath)
+    #     self.check_remove(
+    #         type="excel", output_folder=output_folder, input_filepath=input_filepath)
+    #     convert_csv_to_excel(input_filepath=input_filepath,
+    #                          output_folder=output_folder)
+    #     self.check_remove(
+    #         type="excel", output_folder=output_folder, input_filepath=input_filepath)
+    #     convert_csv_to_excel(input_filepath=input_filepath_path,
+    #                          output_folder=output_folder_path, output_filename=output_filename)
+    #     self.check_remove("excel", output_folder,
+    #                       output_filename, input_filepath)
 
-    def test_jpg_to_png(self):
-        # return 0
-        input_filepath_str = 'tests\demo.jpg'
-        input_filepath_path = r'tests\demo.jpg'
-        output_folder_str = 'tests'
-        output_folder_path = r'tests'
-        output_filename = "demo.png"
+    #     convert_csv_to_excel(input_filepath=input_filepath,
+    #                          output_folder=output_folder, output_filename=output_filename)
+    #     self.check_remove("excel", output_folder,
+    #                       output_filename, input_filepath)
 
-        # Path format
-        convert_image_jpg_to_png(input_filepath=input_filepath_path)
-        self.check_remove("png_image", input_filepath=input_filepath_path)
-        convert_image_jpg_to_png(
-            input_filepath=input_filepath_path, output_filename=output_filename)
-        self.check_remove(
-            "png_image", output_filename=output_filename, input_filepath=input_filepath_str)
-        convert_image_jpg_to_png(
-            input_filepath=input_filepath_path, output_folder=output_folder_path)
-        self.check_remove("png_image", output_folder=output_folder_path,
-                          input_filepath=input_filepath_path)
-        convert_image_jpg_to_png(input_filepath=input_filepath_path,
-                                 output_folder=output_folder_path, output_filename=output_filename)
-        self.check_remove("png_image", output_folder_str,
-                          output_filename, input_filepath_str)
+    #     convert_csv_to_excel(input_filepath=input_filepath_path, output_folder=output_folder_path,
+    #                          output_filename=output_filename, contains_headers=True)
+    #     self.check_remove("excel", output_folder,
+    #                       output_filename, input_filepath)
 
-        # String Format
-        convert_image_jpg_to_png(input_filepath=input_filepath_str)
-        self.check_remove("png_image", input_filepath=input_filepath_path)
-        convert_image_jpg_to_png(
-            input_filepath=input_filepath_str, output_filename=output_filename)
-        self.check_remove(
-            "png_image", output_filename=output_filename, input_filepath=input_filepath_str)
-        convert_image_jpg_to_png(
-            input_filepath=input_filepath_str, output_folder=output_folder_str)
-        self.check_remove("png_image", output_folder=output_folder_path,
-                          input_filepath=input_filepath_path)
-        convert_image_jpg_to_png(input_filepath=input_filepath_str,
-                                 output_folder=output_folder_str, output_filename=output_filename)
-        self.check_remove("png_image", output_folder_str,
-                          output_filename, input_filepath_str)
+    #     convert_csv_to_excel(input_filepath=input_filepath, output_folder=output_folder,
+    #                          output_filename=output_filename, contains_headers=True)
+    #     self.check_remove("excel", output_folder,
+    #                       output_filename, input_filepath)
+
+    #     convert_csv_to_excel(input_filepath=input_filepath_path, output_folder=output_folder_path,
+    #                          output_filename=output_filename, contains_headers=True, sep=",")
+    #     self.check_remove("excel", output_folder,
+    #                       output_filename, input_filepath)
+
+    #     convert_csv_to_excel(input_filepath=input_filepath, output_folder=output_folder,
+    #                          output_filename=output_filename, contains_headers=True, sep=",")
+    #     self.check_remove("excel", output_folder,
+    #                       output_filename, input_filepath)
+
+    # def test_jpg_to_png(self):
+    #     # return 0
+    #     input_filepath_str = 'tests\demo.jpg'
+    #     input_filepath_path = r'tests\demo.jpg'
+    #     output_folder_str = 'tests'
+    #     output_folder_path = r'tests'
+    #     output_filename = "demo.png"
+
+    #     # Path format
+    #     convert_image_jpg_to_png(input_filepath=input_filepath_path)
+    #     self.check_remove("png_image", input_filepath=input_filepath_path)
+    #     convert_image_jpg_to_png(
+    #         input_filepath=input_filepath_path, output_filename=output_filename)
+    #     self.check_remove(
+    #         "png_image", output_filename=output_filename, input_filepath=input_filepath_str)
+    #     convert_image_jpg_to_png(
+    #         input_filepath=input_filepath_path, output_folder=output_folder_path)
+    #     self.check_remove("png_image", output_folder=output_folder_path,
+    #                       input_filepath=input_filepath_path)
+    #     convert_image_jpg_to_png(input_filepath=input_filepath_path,
+    #                              output_folder=output_folder_path, output_filename=output_filename)
+    #     self.check_remove("png_image", output_folder_str,
+    #                       output_filename, input_filepath_str)
+
+    #     # String Format
+    #     convert_image_jpg_to_png(input_filepath=input_filepath_str)
+    #     self.check_remove("png_image", input_filepath=input_filepath_path)
+    #     convert_image_jpg_to_png(
+    #         input_filepath=input_filepath_str, output_filename=output_filename)
+    #     self.check_remove(
+    #         "png_image", output_filename=output_filename, input_filepath=input_filepath_str)
+    #     convert_image_jpg_to_png(
+    #         input_filepath=input_filepath_str, output_folder=output_folder_str)
+    #     self.check_remove("png_image", output_folder=output_folder_path,
+    #                       input_filepath=input_filepath_path)
+    #     convert_image_jpg_to_png(input_filepath=input_filepath_str,
+    #                              output_folder=output_folder_str, output_filename=output_filename)
+    #     self.check_remove("png_image", output_folder_str,
+    #                       output_filename, input_filepath_str)
 
     def test_png_to_jpg(self):
-        # return 0
+        return 0
         input_filepath_str = 'tests\demo2.png'
         input_filepath_path = r'tests\demo2.png'
         output_folder_str = 'tests'
@@ -230,13 +232,13 @@ class test(unittest.TestCase):
                           output_filename, input_filepath_str)
 
     def test_img_to_base(self):
-        # return -1
+        return -1
         self.str = convert_image_to_base64('tests\\demo2.png')
         write_text_file(r'tests\\base64.txt', str(self.str))
         print(self.str)
 
     def test_base_to_img(self):
-        # return 0
+        return 0
         output_folder = r'tests'
         output_filename = "demo_base_img"
 
@@ -256,7 +258,7 @@ class test(unittest.TestCase):
                           output_filename, input_img_base64)
 
     def test_colored_html(self):
-        # return -1
+        return -1
 
         # String format
         input_file_str = "tests\demo_Coloured.xlsx"
