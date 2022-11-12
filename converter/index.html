@@ -614,21 +614,21 @@
 
 <p><strong>Examples:</strong></p>
     <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dost</span> <span class="kn">import</span> <span class="n">converter</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">csv_to_excel</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.csv&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">csv_to_excel</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.csv&#39;</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">base64_to_image</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.txt&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">image_to_base64</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">jpg_to_png</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.jpg&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">png_to_jpg</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">excel_to_html</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.xlsx&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">image_to_base64</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">jpg_to_png</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.jpg&#39;</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">png_to_jpg</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">excel_to_html</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.xlsx&#39;</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
 </code></pre></div>
       <p>The module contains the following functions:</p>
 <ul>
 <li><code>csv_to_excel(input_filepath, output_folder, output_filename, contains_headers, sep)</code>: Convert a CSV file to an Excel file.</li>
-<li><code>base64_to_image(input_text, output_folder, output_filename)</code>: Convert a base64 string to an image.</li>
+<li><code>excel_to_html(input_filepath, output_folder, output_filename)</code>: Convert an Excel file to an HTML file.</li>
 <li><code>image_to_base64(input_filepath)</code>: Convert an image to a base64 string.</li>
+<li><code>base64_to_image(input_text, output_folder, output_filename)</code>: Convert a base64 string to an image.</li>
 <li><code>jpg_to_png(input_filepath, output_folder, output_filename)</code>: Convert a JPG image to a PNG image.</li>
 <li><code>png_to_jpg(input_filepath, output_folder, output_filename)</code>: Convert a PNG image to a JPG image.</li>
-<li><code>excel_to_html(input_filepath, output_folder, output_filename)</code>: Convert an Excel file to an HTML file.</li>
 </ul>
 
   
@@ -648,7 +648,7 @@
 
 
 <h2 id="dost.converter.base64_to_image" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">base64_to_image</span><span class="p">(</span><span class="n">input_text</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">base64_to_image</span><span class="p">(</span><span class="n">input_text</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
 
 </h2>
 
@@ -685,7 +685,7 @@
           </td>
           <td><p>The path to the output folder.</p></td>
           <td>
-                <code>&#39;&#39;</code>
+              <em>required</em>
           </td>
         </tr>
         <tr>
@@ -700,8 +700,10 @@
         </tr>
     </tbody>
   </table>
-      <p>Examples:kk
-    &gt;&gt;&gt; converter.base64_to_image(input_filepath='base_64_string')</p>
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">base64_to_image</span><span class="p">(</span><span class="n">input_text</span><span class="o">=</span><span class="n">base_64_string</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
+</code></pre></div>
 
   </div>
 
@@ -712,7 +714,7 @@
 
 
 <h2 id="dost.converter.csv_to_excel" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">csv_to_excel</span><span class="p">(</span><span class="n">input_filepath</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">contains_headers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">csv_to_excel</span><span class="p">(</span><span class="n">input_filepath</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">contains_headers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span></code>
 
 </h2>
 
@@ -749,7 +751,7 @@
           </td>
           <td><p>The path to the output folder.</p></td>
           <td>
-                <code>&#39;&#39;</code>
+              <em>required</em>
           </td>
         </tr>
         <tr>
@@ -786,7 +788,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">csv_to_excel</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.csv&#39;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">csv_to_excel</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.csv&#39;</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
@@ -798,7 +800,7 @@
 
 
 <h2 id="dost.converter.excel_to_html" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">excel_to_html</span><span class="p">(</span><span class="n">input_filepath</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">excel_to_html</span><span class="p">(</span><span class="n">input_filepath</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
 
 </h2>
 
@@ -835,7 +837,7 @@
           </td>
           <td><p>Output folder path</p></td>
           <td>
-                <code>&#39;&#39;</code>
+              <em>required</em>
           </td>
         </tr>
         <tr>
@@ -852,7 +854,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">excel_to_html</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.xlsx&#39;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">excel_to_html</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.xlsx&#39;</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
@@ -928,7 +930,7 @@
 
 
 <h2 id="dost.converter.jpg_to_png" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">jpg_to_png</span><span class="p">(</span><span class="n">input_filepath</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">jpg_to_png</span><span class="p">(</span><span class="n">input_filepath</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
 
 </h2>
 
@@ -965,7 +967,7 @@
           </td>
           <td><p>The path to the output folder.</p></td>
           <td>
-                <code>&#39;&#39;</code>
+              <em>required</em>
           </td>
         </tr>
         <tr>
@@ -982,7 +984,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">jpg_to_png</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.jpg&#39;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">jpg_to_png</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.jpg&#39;</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
@@ -994,7 +996,7 @@
 
 
 <h2 id="dost.converter.png_to_jpg" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">png_to_jpg</span><span class="p">(</span><span class="n">input_filepath</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">png_to_jpg</span><span class="p">(</span><span class="n">input_filepath</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1031,7 +1033,7 @@
           </td>
           <td><p>Output folder path</p></td>
           <td>
-                <code>&#39;&#39;</code>
+              <em>required</em>
           </td>
         </tr>
         <tr>
@@ -1048,7 +1050,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">png_to_jpg</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">converter</span><span class="o">.</span><span class="n">png_to_jpg</span><span class="p">(</span><span class="n">input_filepath</span><span class="o">=</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s1">&#39;tests&#39;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>

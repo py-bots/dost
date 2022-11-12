@@ -847,25 +847,25 @@
 <ul>
 <li><code>authenticate_google_spreadsheet(credential_file_path)</code>: This creates authentication object for google spreadsheet.</li>
 <li><code>get_dataframe_from_google_spreadsheet(auth, spreadsheet_url, sheet_name)</code>: Get dataframe from google spreadsheet.</li>
-<li><code>tabular_data_from_website(url, table_id)</code>: Get tabular data from website.</li>
+<li><code>tabular_data_from_website(website_url, table_number)</code>: Get tabular data from website.</li>
 <li><code>upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url, sheet_name, df)</code>: Upload dataframe to google spreadsheet.</li>
 <li><code>create_file(output_folder, output_filename, output_sheetname)</code>: Create excel file.</li>
-<li><code>to_dataframe(excel_file_path, sheet_name,header)</code>: Convert excel file to dataframe.</li>
+<li><code>to_dataframe(input_filepath, input_sheetname, header)</code>: Convert excel file to dataframe.</li>
 <li><code>get_row_column_count(df)</code>: Get row and column count of dataframe.</li>
-<li><code>dataframe_to_excel(df, excel_folder, excel_filename, sheet_name, mode)</code>: Convert dataframe to excel file.</li>
+<li><code>dataframe_to_excel(df, output_folder, output_filename, output_sheetname, mode)</code>: Convert dataframe to excel file.</li>
 <li><code>set_single_cell(df, column_name, cell_number, value)</code>: Set single cell value in excel file.</li>
-<li><code>get_single_celldf, column_name, cell_number, header)</code>: Get single cell value from excel file.</li>
+<li><code>get_single_cell(df, column_name, cell_number, header)</code>: Get single cell value from excel file.</li>
 <li><code>get_all_header_columns(df)</code>: Get all header columns from excel file.</li>
-<li><code>get_all_sheet_names(excel_file_path)</code>: Get all sheet names from excel file.</li>
-<li><code>drop_columns(df, columns_to_drop)</code>: Drop columns from data frame.</li>
+<li><code>get_all_sheet_names(input_filepath)</code>: Get all sheet names from excel file.</li>
+<li><code>drop_columns(df, cols)</code>: Drop columns from data frame.</li>
 <li><code>clear_sheet(df)</code>: Clear sheet from excel file.</li>
 <li><code>remove_duplicates(df, column_name)</code>: Remove duplicates from excel file.</li>
 <li><code>isNaN(value)</code>: Check if value is NaN.</li>
-<li><code>df_from_list(list_of_lists, header names)</code>: Create dataframe from list of lists.</li>
-<li><code>df_from_string(string, delimiter)</code>: Create dataframe from string.</li>
+<li><code>df_from_list(list_of_lists, column_names)</code>: Create dataframe from list of lists.</li>
+<li><code>df_from_string(df_string, word_delimiter, line_delimiter, column_names)</code>: Create dataframe from string.</li>
 <li><code>df_extract_sub_df(df, row_start, row_end, column_start, column_end)</code>: Extract sub dataframe from dataframe.</li>
-<li><code>set_value_in_df(df, column_name, row_number, value)</code>: Set value in dataframe.</li>
-<li><code>get_value_in_df(df, column_name, row_number)</code>: Get value from dataframe.</li>
+<li><code>set_value_in_df(df, row_number, column_number, value)</code>: Set value in dataframe.</li>
+<li><code>get_value_in_df(df, row_number, column_number)</code>: Get value from dataframe.</li>
 <li><code>df_drop_rows(df, row_start, row_end)</code>: Drop rows from dataframe.</li>
 </ul>
 
@@ -1434,7 +1434,7 @@
 
 
 <h2 id="dost.excel.df_from_string" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">df_from_string</span><span class="p">(</span><span class="n">df_string</span><span class="p">,</span> <span class="n">word_delimeter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">line_delimeter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">column_names</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">df_from_string</span><span class="p">(</span><span class="n">df_string</span><span class="p">,</span> <span class="n">word_delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">line_delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">column_names</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1465,21 +1465,21 @@
           </td>
         </tr>
         <tr>
-          <td><code>word_delimeter</code></td>
+          <td><code>word_delimiter</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>word delimeter.Defaults to space</p></td>
+          <td><p>word delimiter.Defaults to space</p></td>
           <td>
                 <code>&#39; &#39;</code>
           </td>
         </tr>
         <tr>
-          <td><code>line_delimeter</code></td>
+          <td><code>line_delimiter</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>line delimeter. Defaults to new line</p></td>
+          <td><p>line delimiter. Defaults to new line</p></td>
           <td>
                 <code>&#39;\n&#39;</code>
           </td>
@@ -2207,7 +2207,7 @@
 
 
 <h2 id="dost.excel.set_single_cell" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_single_cell</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">cell_number</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">set_single_cell</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">cell_number</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></code>
 
 </h2>
 
@@ -2261,7 +2261,7 @@
           </td>
         </tr>
         <tr>
-          <td><code>text</code></td>
+          <td><code>value</code></td>
           <td>
                 <code>str</code>
           </td>
@@ -2292,7 +2292,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">=</span><span class="n">excel</span><span class="o">.</span><span class="n">set_single_cell</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="o">=</span><span class="s2">&quot;Column 1&quot;</span><span class="p">,</span><span class="n">cell_number</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">=</span><span class="n">excel</span><span class="o">.</span><span class="n">set_single_cell</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="o">=</span><span class="s2">&quot;Column 1&quot;</span><span class="p">,</span><span class="n">cell_number</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">df</span>
 </code></pre></div>
 

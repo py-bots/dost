@@ -559,13 +559,13 @@
 <p><strong>Examples:</strong></p>
     <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dost</span> <span class="kn">import</span> <span class="n">mouse</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mouse</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mouse</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">img_path</span><span class="o">=</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mouse</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">)</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">(23, 17)</span>
 </code></pre></div>
       <p>The module contains the following functions:</p>
 <ul>
 <li><code>click(x, y, button, clicks, absolute)</code>: Click at the given coordinates.</li>
-<li><code>search(img_path, wait, left_click)</code>: Search for an image on the screen and return the coordinates of the top-left corner of the image.</li>
+<li><code>search(image_path, conf, wait, left_click)</code>: Search for an image on the screen and return the coordinates of the top-left corner of the image.</li>
 </ul>
 
   
@@ -675,7 +675,7 @@
 
 
 <h2 id="dost.mouse.search" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">search</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">conf</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">left_click</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">search</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">conf</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">left_click</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h2>
 
@@ -696,13 +696,23 @@
     </thead>
     <tbody>
         <tr>
-          <td><code>img_path</code></td>
+          <td><code>image_path</code></td>
           <td>
                 <code><span title="typing.Union">Union</span>[str, <span title="typing.List">List</span>[str], <span title="pathlib.WindowsPath">WindowsPath</span>, <span title="typing.List">List</span>[<span title="pathlib.WindowsPath">WindowsPath</span>]]</code>
           </td>
           <td><p>The path to the image.</p></td>
           <td>
               <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>conf</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>The confidence level. Defaults to 0.9.</p></td>
+          <td>
+                <code>0.9</code>
           </td>
         </tr>
         <tr>
@@ -747,10 +757,10 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mouse</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">img_path</span><span class="o">=</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mouse</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">(23, 17)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mouse</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">img_path</span><span class="o">=</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">left_click</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mouse</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">img_path</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">,</span> <span class="s1">&#39;tests\demo2.png&#39;</span><span class="p">])</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mouse</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">left_click</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">mouse</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">image_path</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tests\demo.png&#39;</span><span class="p">,</span> <span class="s1">&#39;tests\demo2.png&#39;</span><span class="p">])</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="go">[(23, 17), (67, 16)]</span>
 </code></pre></div>
 
