@@ -34,6 +34,7 @@ def set_data(data: str) -> None:
     format_id = win32clipboard.CF_UNICODETEXT
     # Code Section
     win32clipboard.OpenClipboard()
+    data=data.encode('utf-16')
     try:
         win32clipboard.EmptyClipboard()
         win32clipboard.SetClipboardData(format_id, data)
@@ -92,3 +93,4 @@ def get_data() -> str:
     win32clipboard.CloseClipboard()
 
     return data
+set_data("s")
