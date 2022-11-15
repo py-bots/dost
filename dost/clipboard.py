@@ -31,13 +31,11 @@ def set_data(data: str) -> None:
     """
     # Import Section
     import win32clipboard
-    format_id = win32clipboard.CF_UNICODETEXT
     # Code Section
     win32clipboard.OpenClipboard()
-    data=data.encode('utf-16')
     try:
         win32clipboard.EmptyClipboard()
-        win32clipboard.SetClipboardData(format_id, data)
+        win32clipboard.SetClipboardText(data)
     finally:
         win32clipboard.CloseClipboard()
 
@@ -93,4 +91,3 @@ def get_data() -> str:
     win32clipboard.CloseClipboard()
 
     return data
-set_data("s")
