@@ -558,12 +558,12 @@
 
 <p><strong>Examples:</strong></p>
     <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dost</span> <span class="kn">import</span> <span class="n">voice</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span><span class="o">.</span><span class="n">text_to_speech</span><span class="p">(</span><span class="n">audio</span><span class="o">=</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span><span class="o">.</span><span class="n">text_to_speech</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
 </code></pre></div>
       <p>This module contains the following functions:</p>
 <ul>
 <li><code>speech_to_text()</code>: Converts speech to text.</li>
-<li><code>text_to_speech(audio, show, rate)</code>: Converts text to speech.</li>
+<li><code>text_to_speech(text, show, rate)</code>: Converts text to speech.</li>
 </ul>
 
   
@@ -624,7 +624,7 @@
 
 
 <h2 id="dost.voice.text_to_speech" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">text_to_speech</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">170</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">text_to_speech</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">170</span><span class="p">)</span></code>
 
 </h2>
 
@@ -645,7 +645,7 @@
     </thead>
     <tbody>
         <tr>
-          <td><code>audio</code></td>
+          <td><code>text</code></td>
           <td>
                 <code>string</code>
           </td>
@@ -678,7 +678,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span><span class="o">.</span><span class="n">text_to_speech</span><span class="p">(</span><span class="n">audio</span><span class="o">=</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span><span class="o">.</span><span class="n">text_to_speech</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
