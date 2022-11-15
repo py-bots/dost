@@ -3,13 +3,13 @@ Voice Module for dost.This module contains all the functions related to voice re
 
 Examples:
     >>> from dost import voice
-    >>> voice.text_to_speech(audio="Hello World")
+    >>> voice.text_to_speech(text="Hello World")
     
 
 This module contains the following functions:
         
 - `speech_to_text()`: Converts speech to text.
-- `text_to_speech(audio, show, rate)`: Converts text to speech.
+- `text_to_speech(text, show, rate)`: Converts text to speech.
 """
 
 
@@ -70,15 +70,15 @@ def speech_to_text() -> str:
 
 
 @dostify(errors=[(Exception, "Could not find PyAudio or no Microphone input device found. It may be being used by another application.")])
-def text_to_speech(audio: str, show: bool = True, rate: int = 170) -> None:
+def text_to_speech(text: str, show: bool = True, rate: int = 170) -> None:
     """
     Converts text to speech offline
     Args:
-        audio (string): Text to be converted to speech
+        text (string): Text to be converted to speech
         show (bool): Whether to print the text or not
         rate (int): Rate of speech. Default is 170
     Examples:
-        >>> voice.text_to_speech(audio="Hello World")
+        >>> voice.text_to_speech(text="Hello World")
     """
     # Import Section
     import random
@@ -91,13 +91,13 @@ def text_to_speech(audio: str, show: bool = True, rate: int = 170) -> None:
         engine.setProperty('voice', voice.id)
 
         engine.setProperty('rate', rate)
-        engine.say(audio)
+        engine.say(text)
         engine.runAndWait()
     else:
         print("Speaker not connected")
 
     if show:
-        if type(audio) is list:
-            print(' '.join(audio))
+        if type(text) is list:
+            print(' '.join(text))
         else:
-            print(audio)
+            print(text)
