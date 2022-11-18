@@ -629,7 +629,7 @@
 <p><strong>Examples:</strong></p>
     <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">dost.utility</span> <span class="k">as</span> <span class="nn">utility</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">pause_program</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">api_request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://google.com&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">api_request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://catfact.ninja/fact?max_length=140&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">install_module</span><span class="p">(</span><span class="n">module_name</span><span class="o">=</span><span class="s2">&quot;requests&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">uninstall_module</span><span class="p">(</span><span class="n">module_name</span><span class="o">=</span><span class="s2">&quot;requests&quot;</span><span class="p">)</span>
@@ -699,7 +699,7 @@
           <td>
                 <code>str</code>
           </td>
-          <td><p>HTTP method to use. Defaults to 'GET'.</p></td>
+          <td><p>HTTP method to use for the request. Available options are "GET", "POST", "PUT", "DELETE". Defaults to "GET".</p></td>
           <td>
                 <code>&#39;GET&#39;</code>
           </td>
@@ -746,7 +746,7 @@
   </table>
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">api_request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://google.com&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">utility</span><span class="o">.</span><span class="n">api_request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://catfact.ninja/fact?max_length=140&quot;</span><span class="p">)</span>
 </code></pre></div>
 
   </div>
