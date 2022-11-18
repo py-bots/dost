@@ -4,7 +4,7 @@ Utility module for dost. This module contains utility functions.
 Examples:
     >>> import dost.utility as utility
     >>> utility.pause_program(seconds=5)
-    >>> utility.api_request(url="https://google.com")
+    >>> utility.api_request(url="https://catfact.ninja/fact?max_length=140")
     >>> utility.clear_output()
     >>> utility.install_module(module_name="requests")
     >>> utility.uninstall_module(module_name="requests")
@@ -68,7 +68,8 @@ def api_request(url: str, method='GET', body: dict = None, headers: dict = None)
         dict: Response from the API
 
     Examples:
-        >>> utility.api_request(url="https://google.com")
+        >>> utility.api_request(url="https://catfact.ninja/fact?max_length=140")
+")
     """
 
     # Import Section
@@ -99,8 +100,6 @@ def api_request(url: str, method='GET', body: dict = None, headers: dict = None)
         raise Exception(response.text)
     return data
 
-
-@dostify(errors=[])
 def clear_output() -> None:
     """Clears the output of the console
 
