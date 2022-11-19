@@ -909,7 +909,7 @@
         <tr>
           <td><code>credential_file_path</code></td>
           <td>
-                <code><span title="pathlib.WindowsPath">WindowsPath</span></code>
+                <code>str || WindowsPath</code>
           </td>
           <td><p>Credential file path.</p></td>
           <td>
@@ -973,7 +973,7 @@
         <tr>
           <td><code>df</code></td>
           <td>
-                <code>pandas dataframe</code>
+                <code>Pandas dataframe</code>
           </td>
           <td><p>Dataframe of the excel file.</p></td>
           <td>
@@ -994,7 +994,7 @@
     <tbody>
         <tr>
 <td><code>data</code></td>          <td>
-                <code>df</code>
+                <code>Pandas dataframe</code>
           </td>
           <td><p>Modified dataframe</p></td>
         </tr>
@@ -1038,7 +1038,7 @@
         <tr>
           <td><code>output_folder</code></td>
           <td>
-                <code><span title="pathlib.WindowsPath">WindowsPath</span></code>
+                <code>str || WindowsPath</code>
           </td>
           <td><p>Output folder path.</p></td>
           <td>
@@ -1058,7 +1058,7 @@
         <tr>
           <td><code>output_sheetname</code></td>
           <td>
-                <code>str</code>
+                <code>str || list</code>
           </td>
           <td><p>Output sheet name. Defaults to "Sheet1".</p></td>
           <td>
@@ -1114,7 +1114,7 @@
         <tr>
           <td><code>output_folder</code></td>
           <td>
-                <code><span title="pathlib.WindowsPath">WindowsPath</span></code>
+                <code>str || WindowsPath</code>
           </td>
           <td><p>Output folder path.</p></td>
           <td>
@@ -1565,7 +1565,7 @@
         <tr>
           <td><code>cols</code></td>
           <td>
-                <code>str, list(str</code>
+                <code>str || list(str</code>
           </td>
           <td><p>Column name to be dropped.</p></td>
           <td>
@@ -1695,7 +1695,7 @@
         <tr>
           <td><code>input_filepath</code></td>
           <td>
-                <code>str</code>
+                <code>str || Windowspath</code>
           </td>
           <td><p>Path of the excel file.</p></td>
           <td>
@@ -2165,9 +2165,9 @@
         <tr>
           <td><code>column_name</code></td>
           <td>
-                <code>str</code>
+                <code>str || int || list</code>
           </td>
-          <td><p>Column name of the excel file. Defaults to "".</p></td>
+          <td><p>Column name of the excel file..</p></td>
           <td>
               <em>required</em>
           </td>
@@ -2186,7 +2186,7 @@
     <tbody>
         <tr>
 <td><code>data</code></td>          <td>
-                <code>df</code>
+                <code>Pandas Dataframe</code>
           </td>
           <td><p>Modified dataframe</p></td>
         </tr>
@@ -2277,16 +2277,16 @@
   <table>
     <thead>
       <tr>
-<th>Name</th>        <th>Type</th>
+        <th>Type</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-<td><code>data</code></td>          <td>
-                <code>df</code>
+          <td>
+                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
           </td>
-          <td><p>Modified dataframe</p></td>
+          <td><p>pandas dataframe: Modified dataframe</p></td>
         </tr>
     </tbody>
   </table>
@@ -2442,6 +2442,8 @@
         </tr>
     </tbody>
   </table>
+      <p>Returns: 
+    pandas DataFrame: Table from the website.</p>
 
 <p><strong>Examples:</strong></p>
     <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">excel</span><span class="o">.</span><span class="n">tabular_data_from_website</span><span class="p">(</span><span class="n">website_url</span><span class="o">=</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Wiki&quot;</span><span class="p">)</span>
@@ -2479,7 +2481,7 @@
         <tr>
           <td><code>input_filepath</code></td>
           <td>
-                <code><span title="typing.Union">Union</span>[str, <span title="pathlib.WindowsPath">WindowsPath</span>]</code>
+                <code>str || WindowsPath</code>
           </td>
           <td><p>Input file path.</p></td>
           <td>
@@ -2522,7 +2524,7 @@
           <td>
                 <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
           </td>
-          <td><p>pd.DataFrame: Dataframe of the excel file.</p></td>
+          <td><p>Pandas DataFrame: Dataframe of the excel file.</p></td>
         </tr>
     </tbody>
   </table>
@@ -2594,7 +2596,7 @@
         <tr>
           <td><code>df</code></td>
           <td>
-                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+                <code>Pandas DataFrame</code>
           </td>
           <td><p>Dataframe object.</p></td>
           <td>
