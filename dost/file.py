@@ -29,7 +29,7 @@ def read_text(path: Union[str, List[str], WindowsPath, List[WindowsPath]]) -> Un
     """Reads a text file and returns its contents as a string.
 
     Args:
-        path (Union[str, List[str], WindowsPath, List[WindowsPath]]): The path to the text file.
+        path (str || list || WindowsPath): The path to the text file.
 
     Returns:
          The contents of the text file. If a list of paths is provided, a list of strings is returned. 
@@ -58,7 +58,7 @@ def write_text(path: Union[str, WindowsPath], contents: str) -> None:
     """ Write a text file with the given contents.
 
     Args:
-        path (Union[str, WindowsPath]): The path to the text file.
+        path (str || WindowsPath): The path to the text file.
         contents (str): The contents of the text file.
 
     Examples:
@@ -76,7 +76,7 @@ def copy(source: Union[str, WindowsPath], destination: Union[str, WindowsPath]) 
     """ Copy a file from source to destination.
 
     Args:
-        source (Union[str, WindowsPath]): The path to the source file.
+        source (str || WindowsPath): The path to the source file.
         destination (Union[str, WindowsPath]): The path to the destination file.
 
     Examples:
@@ -114,7 +114,7 @@ def delete(path: Union[str, WindowsPath]) -> None:
     """ Delete a file.
 
     Args:
-        path (Union[str, WindowsPath]): The path to the file.
+        path (str || WindowsPath): The path to the file.
 
     Examples:
         >>> file.delete(path='tests\\demo.txt')
@@ -130,7 +130,7 @@ def rename(path: Union[str, WindowsPath], new_name: str) -> None:
     """ Rename a file.
 
     Args:
-        path (Union[str, WindowsPath]): The path to the file.
+        path (str || WindowsPath): The path to the file.
         new_name (str): The new name of the file.
 
     Examples:
@@ -147,7 +147,7 @@ def create(path: Union[str, WindowsPath]) -> None:
     """ Create a file.
 
     Args:
-        path (Union[str, WindowsPath]): The path to the file.
+        path (str || WindowsPath): The path to the file.
 
     Examples:
         >>> file.create(path='tests\\demo.txt')

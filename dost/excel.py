@@ -49,7 +49,7 @@ def authenticate_google_spreadsheet(credential_file_path: Union[str, WindowsPath
     """Creates authentication object for google spreadsheet.
 
     Args:
-        credential_file_path (WindowsPath): Credential file path.
+        credential_file_path (str || WindowsPath): Credential file path.
 
     Returns:
         object: Authentication object.
@@ -134,6 +134,8 @@ def tabular_data_from_website(website_url: str, table_number: int = 1) -> pd.Dat
        website_url (str): Website URL.
        table_number (int, optional): Table number. Defaults to 1.
 
+    Returns: 
+        pandas DataFrame: Table from the website.
     Examples:
         >>> excel.tabular_data_from_website(website_url="https://en.wikipedia.org/wiki/Wiki")
     """
@@ -169,7 +171,7 @@ def upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url: str, sheet_nam
         auth (object): Authentication object.
         spreadsheet_url (str): Spreadsheet URL.
         sheet_name (str): Sheet name.
-        df (pd.DataFrame): Dataframe object.
+        df (Pandas DataFrame): Dataframe object.
 
     Examples:
         >>> excel.upload_dataframe_to_google_spreadsheet(auth=auth, spreadsheet_url="https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0", sheet_name="Sheet1", df=df)
@@ -220,9 +222,9 @@ def create_file(output_folder: Union[str, WindowsPath], output_filename: str, ou
     """ Creates an excel file with a sheet in the specified folder.
 
     Args:
-        output_folder (WindowsPath): Output folder path.
+        output_folder (str || WindowsPath): Output folder path.
         output_filename (str): Output file name.
-        output_sheetname (str, optional): Output sheet name. Defaults to "Sheet1".
+        output_sheetname (str || list, optional): Output sheet name. Defaults to "Sheet1".
 
     Examples:
         >>> excel.create_file(output_folder="C:\\Users\\user\\Desktop", output_filename="test.xlsx", output_sheetname="Sheet1")
@@ -305,12 +307,12 @@ def to_dataframe(input_filepath: Union[str, WindowsPath], input_sheetname: str, 
     """Converts excel file to dataframe.
 
     Args:
-        input_filepath (Union[str,WindowsPath]): Input file path.
+        input_filepath (str || WindowsPath): Input file path.
         input_sheetname (str): Input sheet name.
         header (int, optional): Header row number. Defaults to 1.
 
     Returns:
-        pd.DataFrame: Dataframe of the excel file.
+        Pandas DataFrame: Dataframe of the excel file.
 
     Examples:
         >>> excel.to_dataframe(input_filepath="C:\\Users\\user\\Desktop\\test.xlsx", input_sheetname="Sheet1")
@@ -372,7 +374,7 @@ def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath],
 
     Args:
         df (pandas dataframe): Dataframe of the excel file.
-        output_folder (WindowsPath): Output folder path.
+        output_folder (str || WindowsPath): Output folder path.
         output_filename (str): Output file name.
         output_sheetname (str, optional): Output sheet name. Defaults to "Sheet1".
         mode (str, optional): Mode of the excel file. Defaults to 'a'.
@@ -431,7 +433,7 @@ def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, value:
         value (str, optional): Text to be written to the excel file. Defaults to "".
 
     Returns:
-        data (df): Modified dataframe
+        pandas dataframe: Modified dataframe
 
     Examples:
         >>> df=excel.set_single_cell(df=df, column_name="Column 1",cell_number= 1, value="abc")
@@ -530,7 +532,7 @@ def get_all_sheet_names(input_filepath: Union[str, WindowsPath]) -> List[str]:
     """Gets the sheet names from the excel file
 
     Args:
-        input_filepath (str): Path of the excel file.
+        input_filepath (str || Windowspath): Path of the excel file.
 
     Returns:
         data (list): List of sheet names
@@ -560,7 +562,7 @@ def drop_columns(df: pd.DataFrame, cols: Union[str, List[str]]) -> pd.DataFrame:
 
     Args:
         df (pandas dataframe): Dataframe of the excel file.
-        cols (str, list(str)): Column name to be dropped.
+        cols (str || list(str)): Column name to be dropped.
 
     Returns:
         data (df): Modified dataframe
@@ -594,10 +596,10 @@ def clear_sheet(df: pd.DataFrame) -> pd.DataFrame:
     """Clears the sheet
 
     Args:
-        df (pandas dataframe): Dataframe of the excel file.
+        df (Pandas dataframe): Dataframe of the excel file.
 
     Returns:
-        data (df): Modified dataframe
+        data (Pandas dataframe): Modified dataframe
 
     Examples:
         >>> excel.clear_sheet(df=df)
@@ -624,10 +626,10 @@ def remove_duplicates(df: pd.DataFrame, column_name: Union[str, List[str], int, 
 
     Args:
         df (pandas dataframe): Dataframe of the excel file.
-        column_name (str, optional): Column name of the excel file. Defaults to "".
+        column_name (str || int || list, optional): Column name of the excel file..
 
     Returns:
-        data (df): Modified dataframe
+        data (Pandas Dataframe): Modified dataframe
 
     Examples:
         >>> excel.remove_duplicates(df=df, column_name="column 1")

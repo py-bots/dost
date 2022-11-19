@@ -173,7 +173,7 @@ def image_to_text(image_path: Union[str, WindowsPath]) -> str:
     """Converts the specified image to text
 
     Args:
-        image_path (WindowsPath): Path to the image
+        image_path (str || WindowsPath): Path to the image
 
     Returns:
         string: Text from the image

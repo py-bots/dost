@@ -37,8 +37,8 @@ def csv_to_excel(input_filepath: Union[str, WindowsPath], output_folder: Union[s
     """Convert a CSV file to an Excel file.
 
     Args:
-        input_filepath (str,WindowsPath): The path to the CSV file.
-        output_folder (str,WindowsPath): The path to the output folder.
+        input_filepath (str || WindowsPath): The path to the CSV file.
+        output_folder (str || WindowsPath): The path to the output folder.
         output_filename (str): The name of the output file.
         contains_headers (bool): Whether the CSV file contains headers.
         sep (str): The separator used in the CSV file.
@@ -98,8 +98,8 @@ def excel_to_html(input_filepath: Union[str, WindowsPath], output_folder: Union[
     """Converts the excel file to colored html file
 
     Args:
-        input_filepath (str,WindowsPath): Input excel file path
-        output_folder (str,WindowsPath): Output folder path
+        input_filepath (str || WindowsPath): Input excel file path
+        output_folder (str || WindowsPath): Output folder path
         output_filename (str): Output file name
 
     Examples:
@@ -144,7 +144,7 @@ def image_to_base64(input_filepath: Union[str, WindowsPath]) -> str:
     """Get a base64 encoded string from an image.
 
     Args:
-        input_filepath (str,WindowsPath): The path to the image file.
+        input_filepath (str || WindowsPath): The path to the image file.
 
     Returns:
         str: The base64 encoded string.
@@ -179,7 +179,7 @@ def base64_to_image(input_text: str, output_folder: Union[str, WindowsPath], out
 
     Args:
         input_text (str): The base64 encoded string.
-        output_folder (str,WindowsPath): The path to the output folder.
+        output_folder (str || WindowsPath): The path to the output folder.
         output_filename (str default ending with .png): The name of the output file.
 
     Examples:
@@ -225,8 +225,8 @@ def jpg_to_png(input_filepath: Union[str, WindowsPath], output_folder: Union[str
     """Convert a JPG image to a PNG image.
 
     Args:
-        input_filepath (str,WindowsPath): The path to the JPG image.
-        output_folder (str,WindowsPath): The path to the output folder.
+        input_filepath (str || WindowsPath): The path to the JPG image.
+        output_folder (str || WindowsPath): The path to the output folder.
         output_filename (str): The name of the output file.
 
     Examples:
@@ -274,8 +274,8 @@ def png_to_jpg(input_filepath: Union[str, WindowsPath], output_folder: Union[str
     """Converts the image from png to jpg format
 
     Args:
-        input_filepath (str,WindowsPath): Input image file path
-        output_folder (str,WindowsPath): Output folder path
+        input_filepath (str || WindowsPath): Input image file path
+        output_folder (str || WindowsPath): Output folder path
         output_filename (str): Output file name
 
     Examples:

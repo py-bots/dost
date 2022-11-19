@@ -73,7 +73,7 @@ def get_active_window() -> str:
     """Get active window
 
     Returns:
-        Union[str,List[str]]: Active window
+        str : Active window
 
     Examples:
         >>> windows.get_active_window()
@@ -122,7 +122,7 @@ def get_all_opened_window_titles() -> Union[str, List[str]]:
     """Get all opened titles windows
 
     Returns:
-        Union[str, List[str]]: All opened titles windows
+        (str || list): All opened titles windows
 
     Examples:
         >>> windows.get_all_opened_window_titles()
@@ -144,7 +144,7 @@ def get_all_opened_window_titles() -> Union[str, List[str]]:
 def maximize_window(window_name: str) -> None:
     """Maximize windows
     Args:
-        window_name (str, optional): Window name. Defaults to "".
+        window_name (str): Window name.
     Examples:
         >>> windows.maximize_window()
     """
@@ -213,7 +213,7 @@ def close_window(window_name: str) -> None:
 def launch_app(path: Union[str, WindowsPath]) -> None:
     """Launch any exe/bat application
     Args:
-        path (Union[str, WindowsPath]): Path to exe/bat application or application name
+        path (str || WindowsPath): Path to exe/bat application or application name
 
     Raises:
         FileNotFoundError: If path is not found

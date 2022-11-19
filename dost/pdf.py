@@ -24,8 +24,8 @@ def extract_all_tables(pdf_file_path: Union[str, WindowsPath], output_folder: Un
     """Extracts all tables from a pdf file and saves them as csv files in the specified folder.
 
     Args:
-        pdf_file_path (str,WindowsPath): Path to the pdf file.
-        output_folder (str,WindowsPath): Path to the output folder.
+        pdf_file_path (str || WindowsPath): Path to the pdf file.
+        output_folder (str || WindowsPath): Path to the output folder.
         output_filename (str): Name of the output file.
         table_with_borders (bool, optional): Whether the table has borders. Defaults to True.
 

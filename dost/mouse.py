@@ -66,13 +66,13 @@ def search(image_path: Union[str, List[str], WindowsPath, List[WindowsPath]], co
     """Searches for the given image and returns the co-ordinates of the image.
 
     Args:
-        image_path (Union[str, List[str], WindowsPath, List[WindowsPath]]): The path to the image.
+        image_path (str || WindowsPath || list): The path to the image.
         conf (int): The confidence level. Defaults to 0.9.
         wait (int): The time to wait for the image to appear. Defaults to 10.
         left_click (bool): Whether to left click on the image. Defaults to False.
 
     Returns:
-        A tuple containing the X and Y co-ordinates of the image.
+        tuple || list of tuples : A tuple containing the X and Y co-ordinates of the image.
 
     Examples:
         >>> mouse.search(image_path='tests\\demo.png')

@@ -33,7 +33,7 @@ def create_folder(path: Union[str, WindowsPath]) -> None:
     """ Create a folder at the given path.
 
     Args:
-        path (Union[str, WindowsPath]): The path to the folder.
+        path (str || WindowsPath): The path to the folder.
 
     Examples:
         >>> folder.create_folder(path='tests\\demo')
@@ -49,7 +49,7 @@ def delete_folder(path: Union[str, WindowsPath]) -> None:
     """ Delete a folder at the given path.
 
     Args:
-        path (Union[str, WindowsPath]): The path to the folder.
+        path (str || WindowsPath): The path to the folder.
 
     Examples:
         >>> folder.delete_folder(path='tests\\demo')
@@ -65,7 +65,7 @@ def rename_folder(path: Union[str, WindowsPath], new_name: str) -> None:
     """ Rename a folder at the given path.
 
     Args:
-        path (Union[str, WindowsPath]): The path to the folder.
+        path (str || WindowsPath): The path to the folder.
         new_name (str): The new name of the folder.
 
     Examples:
@@ -82,8 +82,8 @@ def copy_folder(source: Union[str, WindowsPath], destination: Union[str, Windows
     """ Copy a folder from the source to the destination.
 
     Args:
-        source (Union[str, WindowsPath]): The path to the source folder.
-        destination (Union[str, WindowsPath]): The path to the destination folder.
+        source (str || WindowsPath): The path to the source folder.
+        destination (str || WindowsPath): The path to the destination folder.
 
     Examples:
         >>> folder.copy_folder(source='tests\\demo',destination= 'tests\\demo2')
@@ -106,8 +106,8 @@ def move_folder(source: Union[str, WindowsPath], destination: Union[str, Windows
     """ Move a folder from the source to the destination.
 
     Args:
-        source (Union[str, WindowsPath]): The path to the source folder.
-        destination (Union[str, WindowsPath]): The path to the destination folder.
+        source (str || WindowsPath): The path to the source folder.
+        destination (str || WindowsPath): The path to the destination folder.
 
     Examples:
         >>> folder.move_folder(source='tests\\demo', destination='tests\\demo2')
@@ -126,7 +126,7 @@ def get_size(path: Union[str, WindowsPath]) -> int:
     """ Get the size of a folder in bytes.
 
     Args:
-        path (Union[str, WindowsPath]): The path to the folder.
+        path (str || WindowsPath): The path to the folder.
 
     Returns:
         int: The size of the folder in bytes.
@@ -149,7 +149,7 @@ def get_size_human(path: Union[str, WindowsPath]) -> str:
     """ Get the size of a folder in human readable format.
 
     Args:
-        path (Union[str, WindowsPath]): The path to the folder.
+        path (str || WindowsPath): The path to the folder.
 
     Returns:
         str: The size of the folder in human readable format.
@@ -171,7 +171,7 @@ def get_contents(path: Union[str, WindowsPath]) -> list:
     """ Get a list of all files and folders in a folder.
 
     Args:
-        path (Union[str, WindowsPath]): The path to the folder.
+        path (str || WindowsPath): The path to the folder.
 
     Returns:
         list: A list of all files and folders in the folder.
@@ -189,7 +189,7 @@ def get_contents_recursive(path: Union[str, WindowsPath]) -> list:
     """ Get a list of all files and folders in a folder and all subfolders.
 
     Args:
-        path (Union[str, WindowsPath]): The path to the folder.
+        path (str || WindowsPath): The path to the folder.
 
     Returns:
         list: A list of all files and folders in the folder and all subfolders.

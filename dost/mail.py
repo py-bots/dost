@@ -25,10 +25,10 @@ def send_gmail_using_app_password(gmail_username: str, gmail_app_password: str, 
     Args:
         gmail_username (str): Gmail username
         gmail_app_password (str): Gmail app password
-        to_email_id (Union[str, List[str]]): To email id
+        to_email_id (str || list): To email id
         subject (str): Subject of the email
         message (str): Message of the email
-        attachment_path (Union[str, List(str)(optional), WindowsPath, List[WindowsPath]]): Attachment path
+        attachment_path (str || WindowsPath || list, optional): Attachment path
 
 
     Examples:
