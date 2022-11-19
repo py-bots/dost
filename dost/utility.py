@@ -23,12 +23,9 @@ This module contains the following functions:
 - `image_to_text(image_path)`: Converts the specified image to text
 """
 
-
-from multiprocessing.sharedctypes import Value
 from pathlib import WindowsPath
-import win32clipboard
 import typing as typing
-from typing import List, Union
+from typing import Union
 from dost.helpers import dostify
 
 
@@ -60,7 +57,7 @@ def api_request(url: str, method='GET', body: dict = None, headers: dict = None)
 
     Args:
         url (str): URL to make request to
-        method (str, optional): HTTP method to use. Defaults to 'GET'.
+        method (str, optional): HTTP method to use for the request. Available options are "GET", "POST", "PUT", "DELETE". Defaults to "GET".
         body (dict, optional): Body of the request. Defaults to None.
         headers (dict, optional): Headers of the request. Defaults to None.
 
@@ -69,7 +66,6 @@ def api_request(url: str, method='GET', body: dict = None, headers: dict = None)
 
     Examples:
         >>> utility.api_request(url="https://catfact.ninja/fact?max_length=140")
-")
     """
 
     # Import Section
@@ -80,16 +76,22 @@ def api_request(url: str, method='GET', body: dict = None, headers: dict = None)
     if headers is None:
         headers = {"charset": "utf-8", "Content-Type": "application/json"}
 
-    if method == 'GET':
+    method = method.lower()
+
+    if method != "get":
+        if body is None:
+            body = {}
+
+    if method in ['get', 'g']:
         response = requests.get(
             url, headers=headers, params=body)
-    elif method == 'POST':
+    elif method in ['post', 'po']:
         response = requests.post(
             url, data=json.dumps(body), headers=json.dumps(headers))
-    elif method == 'PUT':
+    elif method in ['put', 'pu']:
         response = requests.put(
             url, data=json.dumps(body), headers=json.dumps(headers))
-    elif method == 'DELETE':
+    elif method in ['delete', 'del']:
         response = requests.delete(
             url, data=json.dumps(body), headers=json.dumps(headers))
     else:
@@ -99,6 +101,7 @@ def api_request(url: str, method='GET', body: dict = None, headers: dict = None)
     else:
         raise Exception(response.text)
     return data
+
 
 def clear_output() -> None:
     """Clears the output of the console

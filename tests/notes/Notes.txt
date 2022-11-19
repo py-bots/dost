@@ -1,0 +1,7 @@
+Run Functions from command line, useful to run from Electron
+
+args = sys.argv
+# args[0] = current file
+# args[1] = function name
+# args[2:] = function args : (*unpacked)
+globals()[args[1]](*args[2:])

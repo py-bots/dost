@@ -25,12 +25,13 @@ from dost.helpers import dostify
 def press(key_1: str, key_2: str = '', key_3: str = '', window: str = '') -> None:
     # sourcery skip: raise-specific-error
     """Press a key or a combination of keys.
+
     Args:
         key_1 (str): The first key to press.
         key_2 (str): The second key to press.
         key_3 (str): The third key to press.
         window (str): The window to press the key in.
-        
+
     Examples:
         >>> keyboard.press(key_1='a', window='Notepad')
         >>> keyboard.press(key_1='ctrl', key_2='a')
