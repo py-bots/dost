@@ -32,7 +32,7 @@ def read_text(path: Union[str, List[str], WindowsPath, List[WindowsPath]]) -> Un
         path (str || list || WindowsPath): The path to the text file.
 
     Returns:
-         The contents of the text file. If a list of paths is provided, a list of strings is returned. 
+        (str || list) :The contents of the text file. If a list of paths is provided, a list of strings is returned. 
 
     Examples:
         >>> file.read_text(path='tests\\demo.txt')
@@ -77,7 +77,7 @@ def copy(source: Union[str, WindowsPath], destination: Union[str, WindowsPath]) 
 
     Args:
         source (str || WindowsPath): The path to the source file.
-        destination (Union[str, WindowsPath]): The path to the destination file.
+        destination (str || WindowsPath): The path to the destination file.
 
     Examples:
         >>> file.copy(source='tests\\demo.txt',destination= 'tests\\demo2.txt')
@@ -96,8 +96,8 @@ def move(source: Union[str, WindowsPath], destination: Union[str, WindowsPath]) 
     """ Move a file from source to destination.
 
     Args:
-        source (Union[str, WindowsPath]): The path to the source file.
-        destination (Union[str, WindowsPath]): The path to the destination file.
+        source (str || WindowsPath): The path to the source file.
+        destination (str || WindowsPath): The path to the destination file.
 
     Examples:
         >>> file.move(source='tests\\demo.txt',destination='tests\\demo2.txt')

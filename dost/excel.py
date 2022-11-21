@@ -86,7 +86,7 @@ def get_dataframe_from_google_spreadsheet(auth, spreadsheet_url: str, sheet_name
         sheet_name (str): Sheet name.
 
     Returns:
-        df (pd.DataFrame): Dataframe object.
+        df (pandas DataFrame): Dataframe object.
 
     Examples:
         >>> excel.get_dataframe_from_google_spreadsheet(auth=auth,spreadsheet_url="https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0", sheet_name="Sheet1")
@@ -312,7 +312,7 @@ def to_dataframe(input_filepath: Union[str, WindowsPath], input_sheetname: str, 
         header (int, optional): Header row number. Defaults to 1.
 
     Returns:
-        Pandas DataFrame: Dataframe of the excel file.
+        df (pandas dataframe): Dataframe of the excel file.
 
     Examples:
         >>> excel.to_dataframe(input_filepath="C:\\Users\\user\\Desktop\\test.xlsx", input_sheetname="Sheet1")
@@ -433,7 +433,7 @@ def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, value:
         value (str, optional): Text to be written to the excel file. Defaults to "".
 
     Returns:
-        pandas dataframe: Modified dataframe
+        df (pandas dataframe): Modified dataframe
 
     Examples:
         >>> df=excel.set_single_cell(df=df, column_name="Column 1",cell_number= 1, value="abc")
@@ -562,10 +562,10 @@ def drop_columns(df: pd.DataFrame, cols: Union[str, List[str]]) -> pd.DataFrame:
 
     Args:
         df (pandas dataframe): Dataframe of the excel file.
-        cols (str || list(str)): Column name to be dropped.
+        cols (str || list): Column name to be dropped.
 
     Returns:
-        data (df): Modified dataframe
+        df (pandas dataframe): Modified dataframe
 
     Examples:
         >>> excel.drop_columns(df=df, cols="column_name")
@@ -599,7 +599,7 @@ def clear_sheet(df: pd.DataFrame) -> pd.DataFrame:
         df (Pandas dataframe): Dataframe of the excel file.
 
     Returns:
-        data (Pandas dataframe): Modified dataframe
+        df (Pandas dataframe): Modified dataframe
 
     Examples:
         >>> excel.clear_sheet(df=df)
@@ -629,7 +629,7 @@ def remove_duplicates(df: pd.DataFrame, column_name: Union[str, List[str], int, 
         column_name (str || int || list, optional): Column name of the excel file..
 
     Returns:
-        data (Pandas Dataframe): Modified dataframe
+        df (Pandas Dataframe): Modified dataframe
 
     Examples:
         >>> excel.remove_duplicates(df=df, column_name="column 1")
@@ -689,7 +689,7 @@ def df_from_list(list_of_lists: list, column_names: List[str]) -> pd.DataFrame:
         column_names (list): column names
 
     Returns:
-        pandas dataframe: dataframe
+        df (pandas dataframe): dataframe
 
     Examples:
         >>> excel.df_from_list(list_of_lists=[[1,2,3],[4,5,6]], column_names=["col1", "col2", "col3"])
@@ -721,7 +721,7 @@ def df_from_string(df_string: str, word_delimiter: str = " ", line_delimiter: st
         column_names (list): column names. Defaults to None
 
     Returns:
-        pandas dataframe: dataframe
+        df (pandas dataframe): dataframe
 
     Examples:
         >>> print(excel.df_from_string(df_string="a b c;d e f",word_delimiter=" ",line_delimiter= ";",column_names= ["Column 1","Column 2","Column 3"]))
@@ -764,7 +764,7 @@ def df_extract_sub_df(df: pd.DataFrame, row_start: int, row_end: int, column_sta
         column_end (int): column end (exclusive)
 
     Returns:
-        pandas dataframe(pandas dataframe): sub dataframe
+        df (pandas dataframe): sub dataframe
 
     Examples:
         >>> excel.df_extract_sub_df(df=df,row_start= 1, row_end=2, column_start=3, column_end=4)
@@ -797,7 +797,7 @@ def set_value_in_df(df: pd.DataFrame, row_number: int, column_number: int, value
         value (str): value to be set in the cell
 
     Returns:
-        pandas dataframe: dataframe with value set
+        pndas dataframe (pandas dataframe): dataframe with value set
 
     Examples:
         >>> excel.set_value_in_df(df=df, row_number=1, column_number=2, value="abc")
@@ -876,7 +876,7 @@ def df_drop_rows(df: pd.DataFrame, row_start: int, row_end: int) -> pd.DataFrame
         row_end (int): row end   (exclusive)
 
     Returns:
-        pandas dataframe: dataframe with rows dropped
+        df (pandas dataframe): dataframe with rows dropped
     Examples:
         >>> df = excel.df_drop_rows(df=df, row_start=1, row_end=2)
 
