@@ -86,7 +86,7 @@ def get_dataframe_from_google_spreadsheet(auth, spreadsheet_url: str, sheet_name
         sheet_name (str): Sheet name.
 
     Returns:
-        df (pandas DataFrame): Dataframe object.
+        df (pd.DataFrame): Dataframe object.
 
     Examples:
         >>> excel.get_dataframe_from_google_spreadsheet(auth=auth,spreadsheet_url="https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0", sheet_name="Sheet1")
@@ -135,7 +135,7 @@ def tabular_data_from_website(website_url: str, table_number: int = 1) -> pd.Dat
        table_number (int, optional): Table number. Defaults to 1.
 
     Returns: 
-        pandas DataFrame: Table from the website.
+        pd.DataFrame: Table from the website.
     Examples:
         >>> excel.tabular_data_from_website(website_url="https://en.wikipedia.org/wiki/Wiki")
     """
@@ -171,7 +171,7 @@ def upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url: str, sheet_nam
         auth (object): Authentication object.
         spreadsheet_url (str): Spreadsheet URL.
         sheet_name (str): Sheet name.
-        df (Pandas DataFrame): Dataframe object.
+        df (pd.DataFrame): Dataframe object.
 
     Examples:
         >>> excel.upload_dataframe_to_google_spreadsheet(auth=auth, spreadsheet_url="https://docs.google.com/spreadsheets/d/1X2X3X4X5X6X7X8X9X/edit#gid=0", sheet_name="Sheet1", df=df)
@@ -189,7 +189,7 @@ def upload_dataframe_to_google_spreadsheet(auth, spreadsheet_url: str, sheet_nam
         raise Exception("spreadsheet url cannot be empty")
 
     if not isinstance(df, pd.DataFrame):
-        raise Exception("dataframe must be a pandas dataframe")
+        raise Exception("dataframe must be a pd.DataFrame")
 
     sh = auth.open_by_url(url=spreadsheet_url)
 
@@ -242,8 +242,8 @@ def create_file(output_folder: Union[str, WindowsPath], output_filename: str, ou
 
     if not output_folder:
         raise Exception("Output folder name cannot be empty")
-    
-    os.makedirs(output_folder,exist_ok=True)
+
+    os.makedirs(output_folder, exist_ok=True)
 
     output_filename = os.path.join(output_folder, f"{str(Path(output_filename).stem)}.xlsx") if ".xlsx" not in output_filename else os.path.join(
         output_folder, output_filename)
@@ -312,7 +312,7 @@ def to_dataframe(input_filepath: Union[str, WindowsPath], input_sheetname: str, 
         header (int, optional): Header row number. Defaults to 1.
 
     Returns:
-        df (pandas dataframe): Dataframe of the excel file.
+        df (pd.DataFrame): Dataframe of the excel file.
 
     Examples:
         >>> excel.to_dataframe(input_filepath="C:\\Users\\user\\Desktop\\test.xlsx", input_sheetname="Sheet1")
@@ -348,7 +348,7 @@ def get_row_column_count(df: pd.DataFrame) -> tuple:
     """ Returns the row and column count of the dataframe
 
     Args:
-        df (pandas dataframe): Dataframe of the excel file.
+        df (pd.DataFrame): Dataframe of the excel file.
 
     Returns:
         tuple: Row and column count of the dataframe.
@@ -373,7 +373,7 @@ def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath],
     """ Converts the dataframe to excel file
 
     Args:
-        df (pandas dataframe): Dataframe of the excel file.
+        df (pd.DataFrame): Dataframe of the excel file.
         output_folder (str || WindowsPath): Output folder path.
         output_filename (str): Output file name.
         output_sheetname (str, optional): Output sheet name. Defaults to "Sheet1".
@@ -395,8 +395,8 @@ def dataframe_to_excel(df: pd.DataFrame, output_folder: Union[str, WindowsPath],
 
     if not output_filename:
         output_filename = "file"
-    
-    os.makedirs(output_folder,exist_ok=True)
+
+    os.makedirs(output_folder, exist_ok=True)
 
     output_filepath = os.path.join(output_folder, f"{str(Path(output_filename).stem)}.xlsx") if ".xlsx" not in output_filename else os.path.join(
         output_folder, output_filename)
@@ -427,13 +427,13 @@ def set_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, value:
     Description:
         Writes the given text to the desired column/cell number for the given excel file
     Args:
-        df (pandas dataframe): Dataframe of the excel file.
+        df (pd.DataFrame): Dataframe of the excel file.
         column_name (str, optional): Column name of the excel file. Defaults to "".
         cell_number (int, optional): Cell number of the excel file. Defaults to 1.
         value (str, optional): Text to be written to the excel file. Defaults to "".
 
     Returns:
-        df (pandas dataframe): Modified dataframe
+        df (pd.DataFrame): Modified dataframe
 
     Examples:
         >>> df=excel.set_single_cell(df=df, column_name="Column 1",cell_number= 1, value="abc")
@@ -466,7 +466,7 @@ def get_single_cell(df: pd.DataFrame, column_name: str, cell_number: int, header
     """Gets the text from the desired column/cell number for the given excel file
 
     Args:
-        df (pandas dataframe): Dataframe of the excel file.
+        df (pd.DataFrame): Dataframe of the excel file.
         column_name (str, optional): Column name of the excel file. Defaults to "".
         cell_number (int, optional): Cell number of the excel file. Defaults to 1.
         header (int, optional): Header row number. Defaults to 1.
@@ -506,7 +506,7 @@ def get_all_header_columns(df: pd.DataFrame) -> Union[List[str], List[int]]:
     """Gets all header columns from the excel file
 
     Args:
-        df (pandas dataframe): Dataframe of the excel file.
+        df (pd.DataFrame): Dataframe of the excel file.
 
     Returns:
         data (list): List of header columns
@@ -561,11 +561,11 @@ def drop_columns(df: pd.DataFrame, cols: Union[str, List[str]]) -> pd.DataFrame:
     """Drops the columns from the excel file
 
     Args:
-        df (pandas dataframe): Dataframe of the excel file.
+        df (pd.DataFrame): Dataframe of the excel file.
         cols (str || list): Column name to be dropped.
 
     Returns:
-        df (pandas dataframe): Modified dataframe
+        df (pd.DataFrame): Modified dataframe
 
     Examples:
         >>> excel.drop_columns(df=df, cols="column_name")
@@ -596,10 +596,10 @@ def clear_sheet(df: pd.DataFrame) -> pd.DataFrame:
     """Clears the sheet
 
     Args:
-        df (Pandas dataframe): Dataframe of the excel file.
+        df (pd.DataFrame): Dataframe of the excel file.
 
     Returns:
-        df (Pandas dataframe): Modified dataframe
+        df (pd.DataFrame): Modified dataframe
 
     Examples:
         >>> excel.clear_sheet(df=df)
@@ -625,11 +625,11 @@ def remove_duplicates(df: pd.DataFrame, column_name: Union[str, List[str], int, 
     """Removes the duplicates from the given column
 
     Args:
-        df (pandas dataframe): Dataframe of the excel file.
+        df (pd.DataFrame): Dataframe of the excel file.
         column_name (str || int || list, optional): Column name of the excel file..
 
     Returns:
-        df (Pandas Dataframe): Modified dataframe
+        df (pd.DataFrame): Modified dataframe
 
     Examples:
         >>> excel.remove_duplicates(df=df, column_name="column 1")
@@ -689,7 +689,7 @@ def df_from_list(list_of_lists: list, column_names: List[str]) -> pd.DataFrame:
         column_names (list): column names
 
     Returns:
-        df (pandas dataframe): dataframe
+        df (pd.DataFrame): dataframe
 
     Examples:
         >>> excel.df_from_list(list_of_lists=[[1,2,3],[4,5,6]], column_names=["col1", "col2", "col3"])
@@ -721,7 +721,7 @@ def df_from_string(df_string: str, word_delimiter: str = " ", line_delimiter: st
         column_names (list): column names. Defaults to None
 
     Returns:
-        df (pandas dataframe): dataframe
+        df (pd.DataFrame): dataframe
 
     Examples:
         >>> print(excel.df_from_string(df_string="a b c;d e f",word_delimiter=" ",line_delimiter= ";",column_names= ["Column 1","Column 2","Column 3"]))
@@ -757,14 +757,14 @@ def df_extract_sub_df(df: pd.DataFrame, row_start: int, row_end: int, column_sta
     """Extracts sub dataframe from the given dataframe
 
     Args:
-        df (pandas dataframe): dataframe
+        df (pd.DataFrame): dataframe
         row_start (int): row start (inclusive)
         row_end (int): row end   (exclusive)
         column_start (int): column start (inclusive)
         column_end (int): column end (exclusive)
 
     Returns:
-        df (pandas dataframe): sub dataframe
+        df (pd.DataFrame): sub dataframe
 
     Examples:
         >>> excel.df_extract_sub_df(df=df,row_start= 1, row_end=2, column_start=3, column_end=4)
@@ -791,13 +791,13 @@ def set_value_in_df(df: pd.DataFrame, row_number: int, column_number: int, value
     """Sets value in dataframe
 
     Args:
-        df (pandas dataframe): dataframe to be modified
+        df (pd.DataFrame): dataframe to be modified
         row_number (int): Row number of the cell
         column_number (int): Column number of the cell
         value (str): value to be set in the cell
 
     Returns:
-        pndas dataframe (pandas dataframe): dataframe with value set
+        pndas dataframe (pd.DataFrame): dataframe with value set
 
     Examples:
         >>> excel.set_value_in_df(df=df, row_number=1, column_number=2, value="abc")
@@ -832,7 +832,7 @@ def get_value_in_df(df: pd.DataFrame, row_number: int, column_number: int) -> st
     """Gets value from dataframe
 
     Args:
-        df (pandas dataframe): dataframe
+        df (pd.DataFrame): dataframe
         row_number (int): Row number of the cell
         column_number (int): Column number of the cell
 
@@ -871,12 +871,12 @@ def df_drop_rows(df: pd.DataFrame, row_start: int, row_end: int) -> pd.DataFrame
     """Drops rows from dataframe
 
     Args:
-        df (pandas dataframe): dataframe
+        df (pd.DataFrame): dataframe
         row_start (int): row start (inclusive)
         row_end (int): row end   (exclusive)
 
     Returns:
-        df (pandas dataframe): dataframe with rows dropped
+        df (pd.DataFrame): dataframe with rows dropped
     Examples:
         >>> df = excel.df_drop_rows(df=df, row_start=1, row_end=2)
 
