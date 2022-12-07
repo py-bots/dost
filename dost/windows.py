@@ -233,12 +233,7 @@ def launch_app(path: Union[str, WindowsPath]) -> None:
     if not path:
         raise ValueError('Path of the exe file is empty.')
 
-    try:
-        abs_path = os.path.abspath(path)
-        os.startfile(abs_path)
-        time.sleep(2)
-        hwnd = win32gui.GetForegroundWindow()
-        win32gui.ShowWindow(hwnd, win32con.SW_MAXIMIZE)
-
-    except Exception as e:
-        raise FileNotFoundError(f'No file found at {path}') from e
+    os.startfile(path)
+    time.sleep(1)
+    hwnd = win32gui.GetForegroundWindow()
+    win32gui.ShowWindow(hwnd, win32con.SW_MAXIMIZE)
